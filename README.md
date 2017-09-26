@@ -5,5 +5,5 @@ Each of us will pull this from the repo, then add your name to this file.
 After that push it back up to the repo.  Doing this ensures each of us can pull and push from github.
 
 Names:
-Jerome Troy
+Jerome Troy,
 Matt Collins
