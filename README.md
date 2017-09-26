@@ -6,4 +6,5 @@ After that push it back up to the repo.  Doing this ensures each of us can pull 
 
 Names:
 Jerome Troy,
-Matt Collins
+Matt Collins,
+Evie Boyd
