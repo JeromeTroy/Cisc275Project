@@ -65,6 +65,8 @@ View
             swim
             grab
             drop
+    losing scene
+    winning scene
     
 
 Controller
@@ -78,4 +80,9 @@ Controller
             call mini game
             exit mini game
             incurr effects on main game
+        at finish
+            if timer ran out   
+                call losing scene
+            if got to finish line
+                call winning scene
         
