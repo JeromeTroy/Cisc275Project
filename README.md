@@ -8,3 +8,32 @@ Names:
 Jerome Troy,
 Matt Collins,
 Evie Boyd
+
+
+
+Classes Needed:
+
+Model
+    tutorial model
+    main model
+        map
+        unique part
+        repeats
+        
+    
+
+View
+    title screen
+    tutorial
+    main game
+        main map
+        fish character
+    
+
+Controller
+
+    main
+        call title
+        call tutorial
+        call main game
+        
