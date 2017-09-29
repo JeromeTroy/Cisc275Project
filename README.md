@@ -8,6 +8,12 @@ Names:
 Jerome Troy,
 Matt Collins,
 Evie Boyd,
+Alani Johnson
+
+
+
+
+MVC design pattern
 
 
 
