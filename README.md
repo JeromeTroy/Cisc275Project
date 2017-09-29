@@ -7,67 +7,117 @@ After that push it back up to the repo.  Doing this ensures each of us can pull 
 Names:
 Jerome Troy,
 Matt Collins,
-Evie Boyd
+Evie Boyd,
 
 
 
 Classes Needed:
 
 Model
+
     tutorial model
+
     main model
+
         map
+
         unique part
+
         repeats
+
         timer
+
         local trash amounts
+
     trash
+
         locations
+
         motion
+
     food 
+
         locations
+
         motion
+
         effects
+
     mini model
+
         map
+
         timer
+
     fish character
+
         location
+
         actions
+
     diver character
+
         location
+
         actions
         
         
     
 
 View
+
     title screen
+
     tutorial - main game
+
     tutorial - mini game
+
     main game
+
         main map
+
         local scene
+
     mini game
+
         map
+
         scene
+
     trash
+
     food
+
     fish character
+
         directions
+
         actions
+
             swim
+
             eat
+
             get stuck
+
     diver character
+
         directions
+
         actions
+
             swim
+
             grab
+
             drop
+
     losing scene
+
     winning scene
+
     
+
 
 Controller
 
