@@ -7,7 +7,6 @@ After that push it back up to the repo.  Doing this ensures each of us can pull 
 Names:
 Jerome Troy,
 Matt Collins,
-<<HEAD
 Evie Boyd,
 Alani Johnson
 
@@ -143,4 +142,3 @@ Controller
             if got to finish line
                 call winning scene
         
->>>>>>> ClassesNeeded-Jerome
