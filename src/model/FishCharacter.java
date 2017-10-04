@@ -66,7 +66,28 @@ public class FishCharacter {
 	
 	// TODO implement rotation of fish to new orientation
 	
-	// TODO implement getting caught by trash
+	// TODO verify this implementation of contact and getting caught
+	public boolean isContact(Stuff s){
+		boolean inXRange = false;
+		boolean inYRange = false;
+		if ((getLowerX() <= s.getUpperX()) && (getLowerX() >= s.getLowerX())){
+			inXRange = true;
+		}
+		else if ((getUpperX() >= s.getUpperX()) && (getUpperX() <= s.getLowerX())){
+			inXRange = true;
+		}
+		if ((getLowerY() <= s.getUpperY()) && (getLowerY() >= s.getLowerY())){
+			inYRange = true;
+		}
+		else if ((getUpperY() >= s.getUpperY()) && (getUpperY() <= s.getLowerY())){
+			inYRange = true;
+		}
+		return (inXRange && inYRange);
+	}
+	
+	public boolean isCaught(Stuff s){
+		return (s.isTrash() && isContact(s));
+	}
 	
 	// TODO bounds handling
 	
@@ -93,11 +114,17 @@ public class FishCharacter {
 	
 	
 	// getters
-	public int getxloc(){
+	public int getLowerX(){
 		return xloc;
 	}
-	public int getyloc(){
+	public int getUpperY(){
 		return yloc;
+	}
+	public int getUpperX(){
+		return xloc + xlen;
+	}
+	public int getLowerY(){
+		return yloc + ylen;
 	}
 	public int getScore(){
 		return score;
