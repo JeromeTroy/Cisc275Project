@@ -67,7 +67,7 @@ public class FishCharacter {
 	// TODO implement rotation of fish to new orientation
 	
 	// TODO verify this implementation of contact and getting caught
-	public boolean isContact(Stuff s){
+	public boolean isContact(StuffInOcean s){
 		boolean inXRange = false;
 		boolean inYRange = false;
 		if ((getLowerX() <= s.getUpperX()) && (getLowerX() >= s.getLowerX())){
@@ -85,7 +85,7 @@ public class FishCharacter {
 		return (inXRange && inYRange);
 	}
 	
-	public boolean isCaught(Stuff s){
+	public boolean isCaught(StuffInOcean s){
 		return (s.isTrash() && isContact(s));
 	}
 	

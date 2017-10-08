@@ -7,7 +7,7 @@ public class MainGameModel {
 	private Timer timer;						// countdown timer
 	private double trashAmount;					// level of the trash around the main character
 	private double foodAmount;					// level of food around the main character
-	private Collection<Stuff> trashList;		// list of all trash components - stuff = both trash and food
+	private Collection<StuffInOcean> trashList;		// list of all trash components - stuff = both trash and food
 	
 	private MiniGameModel miniGame;				// mini game
 
