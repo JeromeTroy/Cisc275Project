@@ -1,13 +1,8 @@
 package model;
 
-public class FishCharacter {
+public class FishCharacter extends StuffInOcean{
 	
 	// Attributes
-	private int xloc; 	// left bound
-	private int yloc; 	// upper bound
-	private int xlen; 	// length in x direction
-	private int ylen; 	// length in y direction
-	
 	private final int xIncr = 1;		// x increment when moving
 	private final int yIncr = 1;		// y increment when moving
 	
@@ -53,41 +48,19 @@ public class FishCharacter {
 		// moves the fish
 		
 		if (north) {
-			yloc += yIncr;
+			position.setY(position.getY() + yIncr);
 		} else if (south) {
-			yloc -= yIncr;
+			position.setY(position.getY() - yIncr);
 		}
 		if (east) {
-			xloc += xIncr;
+			position.setX(position.getX() + xIncr);
 		} else if (west) {
-			xloc -= xIncr;
+			position.setX(position.getX() - xIncr);
 		}
 	}
 	
 	// TODO implement rotation of fish to new orientation
 	
-	// TODO verify this implementation of contact and getting caught
-	public boolean isContact(StuffInOcean s){
-		boolean inXRange = false;
-		boolean inYRange = false;
-		if ((getLowerX() <= s.getUpperX()) && (getLowerX() >= s.getLowerX())){
-			inXRange = true;
-		}
-		else if ((getUpperX() >= s.getUpperX()) && (getUpperX() <= s.getLowerX())){
-			inXRange = true;
-		}
-		if ((getLowerY() <= s.getUpperY()) && (getLowerY() >= s.getLowerY())){
-			inYRange = true;
-		}
-		else if ((getUpperY() >= s.getUpperY()) && (getUpperY() <= s.getLowerY())){
-			inYRange = true;
-		}
-		return (inXRange && inYRange);
-	}
-	
-	public boolean isCaught(StuffInOcean s){
-		return (s.isTrash() && isContact(s));
-	}
 	
 	// TODO bounds handling
 	
@@ -107,34 +80,15 @@ public class FishCharacter {
 	}
 	
 	public String toString() {
-		String location = "The fish is at (" + xloc + ", " + yloc + ") facing ";
+		String location = "The fish is at (" + position.toString() + ") facing ";
 		location += getOrientation();
 		return location;
 	}
 	
 	
 	// getters
-	public int getLowerX(){
-		return xloc;
-	}
-	public int getUpperY(){
-		return yloc;
-	}
-	public int getUpperX(){
-		return xloc + xlen;
-	}
-	public int getLowerY(){
-		return yloc + ylen;
-	}
 	public int getScore(){
 		return score;
 	}
 	
-	// setters
-	public void setxlen(int l){
-		xlen = l;
-	}
-	public void setylen(int l){
-		ylen = l;
-	}
 }
