@@ -60,15 +60,4 @@ public class StuffInOcean implements Comparable{
 			return 0;
 		}
 	}
-	
-	/*
-	 * Collision detection
-	 * Compares separation distance to radii
-	 * Compares SQUARE of distance to SQUARE of the sum of radii
-	 * Once again, sqrt's are not stable...
-	 */
-	public boolean isCollided(StuffInOcean s){
-		int separation = position.distFrom(s.getPosition());
-		return (separation <= (radius + s.getRadius())*(radius + s.getRadius()));
-	}
 }

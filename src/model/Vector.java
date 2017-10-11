@@ -18,27 +18,30 @@ public class Vector implements Comparable{
 		y = 0;
 	}
 
-	/*
-	 *  pythagorean theorem c^2 = a^2 + b^2
-	 *  returns the SQUARE of the norm
-	 *  Sqrt's are not stable...
-	 */
+	// pythagorean theorem c^2 = a^2 + b^2
 	public int norm2(){
 		return x*x + y*y;
 	}
 
+	// getters
+	public int getX(){
+		return x;
+	}
+	public int getY(){
+		return y;
+	}
 	
+	// printing
+	public String toString(){
+		return "<" + x  + ", " + y + ">";
+	}
 
 	// vector dot product
 	public int dotWith(Vector v){
 		return v.getX()*x + v.getY()*y;
 	}
 
-	/*
-	 *  determine the distance between 2 vectors
-	 *  returns the SQUARE of the distance
-	 *  sqrt's are not stable...
-	 */
+	// determine the distance between 2 vectors
 	public int distFrom(Vector v){
 		return v.norm2() + norm2() - 2*dotWith(v);
 	}
@@ -67,28 +70,4 @@ public class Vector implements Comparable{
 			return 0;
 		}
 	}
-	
-	// getters
-	public int getX(){
-		return x;
-	}
-	public int getY(){
-		return y;
-	}
-	
-	// printing
-	public String toString(){
-		return "<" + x  + ", " + y + ">";
-	}
-	
-	// setters
-	public void setX(int xVal){
-		x = xVal;
-	}
-	
-	public void setY(int yVal){
-		y = yVal;
-	}
-	
-		
 }
