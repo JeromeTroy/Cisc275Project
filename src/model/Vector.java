@@ -49,6 +49,14 @@ public class Vector implements Comparable{
 		return y;
 	}
 	
+	// setters
+	public void setX(int xval){
+		x = xval;
+	}
+	public void setY(int yval){
+		y = yval;
+	}
+	
 	/*
 	 *  printing(non-Javadoc)
 	 * @see java.lang.Object#toString()

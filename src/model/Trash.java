@@ -5,14 +5,14 @@ public class Trash extends StuffInOcean{
 	public Trash(){
 		isTrash = true;
 		isFish = false;
-		isFodd = false;
+		isFood = false;
 		position = new Vector();
 	}
 
 	public Trash(int r){
 		isTrash = true;
 		isFish = false;
-		isFodd = false;
+		isFood = false;
 		radius = r;
 		position = new Vector();
 	}

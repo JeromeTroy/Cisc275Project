@@ -1,15 +1,12 @@
 package model;
 
-public class FishCharacter {
+import java.util.*;
+public class FishCharacter extends StuffInOcean{
 	
 	// Attributes
-	private int xloc; 	// left bound
-	private int yloc; 	// upper bound
-	private int xlen; 	// length in x direction
-	private int ylen; 	// length in y direction
 	
-	private final int xIncr = 1;		// x increment when moving
-	private final int yIncr = 1;		// y increment when moving
+	private int xIncr = 1;		// x increment when moving
+	private int yIncr = 1;		// y increment when moving
 	
 	// orientations
 	private boolean north;				// is the fish facing north
@@ -17,28 +14,26 @@ public class FishCharacter {
 	private boolean east; 				// is the fish facing east
 	private boolean west; 				// is the fish facing west
 	
-	private int score;	// player's score
+	private int score;			// player's score
+	private ArrayList<String> possibleOrientations = new ArrayList<String>();
 	
 	private boolean isCaught; 		// whether the fish is caught in trash
 	
 	
 	// Methods
 	
-	public FishCharacter(){	// TODO implement view parameter
-		/*
-		 * Constructor
-		 * Input:
-		 * 		none
-		 * Output:
-		 * 		new FishCharacter
-		 * Sets location, score
-		 */
+	/*
+	 * Constructor
+	 * Input:
+	 * 		none
+	 * Output:
+	 * 		new FishCharacter
+	 * Sets location, score
+	 */
+	public FishCharacter(){	// TODO implement view parameters through controller
 		
-		xloc = 5;			// may need to be changed
-		yloc = 5;
-		xlen = 0; 			// TODO when implemented view, this value will be assigned
-		ylen = 0;
-		
+		position = new Vector(5,5);
+		radius = xIncr;
 		score = 0; 			// set score
 		
 		// set orientation
@@ -47,46 +42,93 @@ public class FishCharacter {
 		north = false;
 		south = false;
 		isCaught = false;
+		possibleOrientations.add("north");
+		possibleOrientations.add("northwest");
+		possibleOrientations.add("west");
+		possibleOrientations.add("southwest");
+		possibleOrientations.add("south");
+		possibleOrientations.add("southeast");
+		possibleOrientations.add("east");
+		possibleOrientations.add("northeast");
 	}
 	
-	public void move(){
-		// moves the fish
-		
+	/*
+	 * Moving the fish
+	 * This method DOES NOT handle bounds, this is dealt with at the caller
+	 * Input:
+	 * 		None
+	 * Output:
+	 * 		None
+	 * moves the fish
+	 */
+	public void move() {
+		// moves the fish	
+		boolean badMove = false;
 		if (north) {
-			yloc += yIncr;
+			position.setY(position.getY() - yIncr);
 		} else if (south) {
-			yloc -= yIncr;
+			position.setY(position.getY() + yIncr);
 		}
 		if (east) {
-			xloc += xIncr;
+			position.setX(position.getX() + xIncr);
 		} else if (west) {
-			xloc -= xIncr;
+			position.setX(position.getX() - xIncr);
 		}
 	}
 	
 	// TODO implement rotation of fish to new orientation
-	
-	// TODO verify this implementation of contact and getting caught
-	public boolean isContact(StuffInOcean s){
-		boolean inXRange = false;
-		boolean inYRange = false;
-		if ((getLowerX() <= s.getUpperX()) && (getLowerX() >= s.getLowerX())){
-			inXRange = true;
+	/*
+	 * Rotations of the fish
+	 * Input:
+	 * 		degrees		int 		degrees to rotate COUNTERCLOCKWISE
+	 * Output:
+	 * 		None
+	 */
+	public void rotate(int degrees){
+		int currIndex = possibleOrientations.indexOf(getOrientation());
+		String newOrientation = "";
+		if (degrees < 45){
+			newOrientation = getOrientation();
+			extractOrientationFromString(newOrientation);
+		}else if ((degrees > 45) && (degrees < 90)){
+			newOrientation = possibleOrientations.get(currIndex + 1);
+			extractOrientationFromString(newOrientation);
+		}else if ((degrees > 90) && (degrees < 135)){
+			newOrientation = possibleOrientations.get(currIndex + 2);
+			extractOrientationFromString(newOrientation);
+		}else if ((degrees > 135) && (degrees < 180)){
+			newOrientation = possibleOrientations.get(currIndex + 3);
+			extractOrientationFromString(newOrientation);
+		}else if (degrees > 180){
+			north = !north;
+			south = !south;
+			east = !east;
+			west = !west;
+			rotate(degrees - 180);
+		}else if (degrees < 0){
+			rotate(degrees + 360);
+		}else{
+			System.out.println("invalid degrees, do not know how to handle, degrees = " + degrees);
 		}
-		else if ((getUpperX() >= s.getUpperX()) && (getUpperX() <= s.getLowerX())){
-			inXRange = true;
-		}
-		if ((getLowerY() <= s.getUpperY()) && (getLowerY() >= s.getLowerY())){
-			inYRange = true;
-		}
-		else if ((getUpperY() >= s.getUpperY()) && (getUpperY() <= s.getLowerY())){
-			inYRange = true;
-		}
-		return (inXRange && inYRange);
 	}
 	
+	public void extractOrientationFromString(String or){
+		north = or.startsWith("north");
+		south = or.startsWith("south");
+		east = or.endsWith("east");
+		west = or.endsWith("west");
+		if (north && south){ 
+			north = false;
+			south = false;
+		}
+		if (east && west){
+			west = false;
+		}
+	}
+	// TODO verify this implementation of contact and getting caught
+	
 	public boolean isCaught(StuffInOcean s){
-		return (s.isTrash() && isContact(s));
+		return (s.isTrash() && isCollided(s));
 	}
 	
 	// TODO bounds handling
@@ -107,34 +149,22 @@ public class FishCharacter {
 	}
 	
 	public String toString() {
-		String location = "The fish is at (" + xloc + ", " + yloc + ") facing ";
+		String location = "The fish is at "+ position.toString() + " facing ";
 		location += getOrientation();
 		return location;
 	}
 	
 	
 	// getters
-	public int getLowerX(){
-		return xloc;
-	}
-	public int getUpperY(){
-		return yloc;
-	}
-	public int getUpperX(){
-		return xloc + xlen;
-	}
-	public int getLowerY(){
-		return yloc + ylen;
-	}
 	public int getScore(){
 		return score;
 	}
 	
 	// setters
-	public void setxlen(int l){
-		xlen = l;
+	public void setXIncr(int l){
+		xIncr = l;
 	}
-	public void setylen(int l){
-		ylen = l;
+	public void setYIncr(int l){
+		yIncr = l;
 	}
 }
