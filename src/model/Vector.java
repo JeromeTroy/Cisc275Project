@@ -7,18 +7,36 @@ public class Vector implements Comparable{
 	private int y;		// y position
 
 	// Constructors
+	
+	/*
+	 * Constructor
+	 * Input:
+	 * 		xval 	int 	x value for position
+	 *  	yval 	int 	y value for position
+	 */
 	public Vector(int xval, int yval){
 		x = xval;
 		y = yval;
 	}
 	
-	// default constructor (zero vector)
+	/* 
+	 * default constructor (zero vector)
+	 * Input:
+	 * 		None
+	 */
 	public Vector(){
 		x = 0;
 		y = 0;
 	}
 
-	// pythagorean theorem c^2 = a^2 + b^2
+	/*
+	 * Calculates the length^2 of the vector
+	 * uses pythagorean theorem c^2 = a^2 + b^2
+	 * Input:
+	 * 		None
+	 * Output:
+	 * 		int 	length^2
+	 */
 	public int norm2(){
 		return x*x + y*y;
 	}
@@ -31,17 +49,35 @@ public class Vector implements Comparable{
 		return y;
 	}
 	
-	// printing
+	/*
+	 *  printing(non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 * Output:
+	 * 		String <x, y>
+	 */
 	public String toString(){
 		return "<" + x  + ", " + y + ">";
 	}
 
-	// vector dot product
+	/*
+	 * vector dot product
+	 * Input:
+	 * 		v 		Vector 		vector to calculate dot product with
+	 * Output:	
+	 * 		int 	dot product 	x1*x2 + y1*y2
+	 */
 	public int dotWith(Vector v){
 		return v.getX()*x + v.getY()*y;
 	}
 
-	// determine the distance between 2 vectors
+	/*
+	 * determine the distance between 2 vectors
+	 * |v-u|^2 = |v|^2 + |u|^2 - 2(v.u)
+	 * Input:
+	 * 		v 		Vector 		vector to calculate distance from
+	 * Output:
+	 * 		int 	distance from the vector 
+	 */
 	public int distFrom(Vector v){
 		return v.norm2() + norm2() - 2*dotWith(v);
 	}
@@ -53,6 +89,10 @@ public class Vector implements Comparable{
 	 * For comparing vectors
 	 * 		sorts first by x values (distance along map)
 	 * 		sorts then by y values (height)
+	 * Input:
+	 * 		o 		Object 		object to be compared to
+	 * Output:
+	 * 		int 	value of comparison
 	 */
 	public int compareTo(Object o){
 		if (o instanceof Vector){ // only compare other vectors
