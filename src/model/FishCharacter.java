@@ -1,18 +1,26 @@
 package model;
 
 import java.util.*;
+import java.math.*;
 public class FishCharacter extends StuffInOcean{
 	
 	// Attributes
 	
+	/*
 	private int xIncr = 1;		// x increment when moving
 	private int yIncr = 1;		// y increment when moving
+	*/
+	private int step = 1;
 	
 	// orientations
+	/*
 	private boolean north;				// is the fish facing north
 	private boolean south;				// is the fish facing south
 	private boolean east; 				// is the fish facing east
 	private boolean west; 				// is the fish facing west
+	*/
+	
+	private int angle; 					// angle (counterclockwise) from east facing
 	
 	private int score;			// player's score
 	private ArrayList<String> possibleOrientations = new ArrayList<String>();
@@ -33,15 +41,18 @@ public class FishCharacter extends StuffInOcean{
 	public FishCharacter(){	// TODO implement view parameters through controller
 		
 		position = new Vector(5,5);
-		radius = xIncr;
+		radius = step;
 		score = 0; 			// set score
 		
 		// set orientation
+		/*
 		east = true;
 		west = false;
 		north = false;
 		south = false;
 		isCaught = false;
+		*/
+		angle = 0;
 		possibleOrientations.add("north");
 		possibleOrientations.add("northwest");
 		possibleOrientations.add("west");
@@ -63,7 +74,7 @@ public class FishCharacter extends StuffInOcean{
 	 */
 	public void move() {
 		// moves the fish	
-		boolean badMove = false;
+		/*
 		if (north) {
 			position.setY(position.getY() - yIncr);
 		} else if (south) {
@@ -74,9 +85,13 @@ public class FishCharacter extends StuffInOcean{
 		} else if (west) {
 			position.setX(position.getX() - xIncr);
 		}
+		*/
+		int deltaX = (int) Math.cos(Math.toRadians(angle))*step;
+		int deltaY = (int) Math.sin(Math.toRadians(angle))*step;
+		position.setX(position.getX() + deltaX);
+		position.setY(position.getY() + deltaY);
 	}
 	
-	// TODO implement rotation of fish to new orientation
 	/*
 	 * Rotations of the fish
 	 * Input:
@@ -85,6 +100,7 @@ public class FishCharacter extends StuffInOcean{
 	 * 		None
 	 */
 	public void rotate(int degrees){
+		/*
 		int currIndex = possibleOrientations.indexOf(getOrientation());
 		String newOrientation = "";
 		if (degrees < 45){
@@ -110,8 +126,16 @@ public class FishCharacter extends StuffInOcean{
 		}else{
 			System.out.println("invalid degrees, do not know how to handle, degrees = " + degrees);
 		}
+		*/
+		angle += degrees;
+		if (angle < 0){
+			rotate(360);
+		}else if (angle >= 360){
+			rotate(-360);
+		}
 	}
 	
+	/*
 	public void extractOrientationFromString(String or){
 		north = or.startsWith("north");
 		south = or.startsWith("south");
@@ -125,6 +149,8 @@ public class FishCharacter extends StuffInOcean{
 			west = false;
 		}
 	}
+	*/
+	
 	// TODO verify this implementation of contact and getting caught
 	
 	public boolean isCaught(StuffInOcean s){
@@ -134,6 +160,7 @@ public class FishCharacter extends StuffInOcean{
 	// TODO bounds handling
 	
 	public String getOrientation(){
+		/*
 		String orient = "";
 		if (north) {
 			orient += "north";
@@ -143,6 +170,19 @@ public class FishCharacter extends StuffInOcean{
 		if (east) {
 			orient += "east";
 		}else if (west) {
+			orient += "west";
+		}
+		return orient;
+		*/
+		String orient = "";
+		if ((angle >= 45/2) && (angle <= (180-45/2))){
+			orient += "north";
+		}else if ((angle >= (180 +45/2)) && (angle <= (360 - 45/2))){
+			orient += "south";
+		}
+		if ((angle <= (90 - 45/2)) || (angle >= (270 + 45/2))){
+			orient += "east";
+		}else if ((angle >= (90 + 45/2)) && (angle <= (270 - 45/2))){
 			orient += "west";
 		}
 		return orient;
@@ -161,10 +201,7 @@ public class FishCharacter extends StuffInOcean{
 	}
 	
 	// setters
-	public void setXIncr(int l){
-		xIncr = l;
-	}
-	public void setYIncr(int l){
-		yIncr = l;
+	public void setStepSize(int l){
+		step = l;
 	}
 }
