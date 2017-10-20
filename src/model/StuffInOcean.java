@@ -3,9 +3,6 @@ package model;
 public class StuffInOcean implements Comparable{
 
 	protected Vector position; 	// position vector
-	protected boolean isTrash; 	// is it garbage
-	protected boolean isFish; 	// is it a fish
-	protected boolean isFood; 	// is it food
 	protected int radius;		// size of stuff
 	
 	/*
@@ -17,16 +14,13 @@ public class StuffInOcean implements Comparable{
 	 * 		<Type> located at <x, y>
 	 */
 	public String toString(){
-		String objectString = "";
-		if (isTrash){
-			objectString += "Trash ";
-		}else if (isFish){
-			objectString += "Fish ";
-		}else if (isFood){
-			objectString += "Food ";
-		}
+		String objectString = getName();
 		objectString += "located at " + position.toString();
 		return objectString;
+	}
+	
+	public String getName(){
+		return "Stuff ";
 	}
 	
 	// getters
@@ -34,16 +28,16 @@ public class StuffInOcean implements Comparable{
 		return position;
 	}
 	
-	public boolean isTrash(){
-		return isTrash;
+	public boolean isFood(){
+		return false;
 	}
 	
 	public boolean isFish(){
-		return isFish;
+		return false;
 	}
 	
-	public boolean isFood(){
-		return isFood;
+	public boolean isTrash(){
+		return false;
 	}
 	
 	public int getRadius(){
