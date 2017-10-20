@@ -2,7 +2,7 @@ package model;
 
 import java.util.*;
 
-public class StuffSet extends ArrayList {
+public class StuffSet extends ArrayList<StuffInOcean> {
 	
 	public StuffSet(){}
 	
@@ -22,33 +22,28 @@ public class StuffSet extends ArrayList {
 	 * Output:
 	 * 		boolean 	if the addition was successful
 	 */
-	public boolean add(Object o){
-		if (o instanceof StuffInOcean){
-			StuffInOcean s = (StuffInOcean) o;
-			super.add(s);
-			Collections.sort(this);
-			int currIndex = indexOf(s);
-			boolean goodAdd = true;
-			
-			try{
-				StuffInOcean ahead = (StuffInOcean) get(currIndex-1);
-				goodAdd = !s.isCollided(ahead);
-			}catch (IndexOutOfBoundsException e){
-				goodAdd = true;
-			}
-			
-			try{
-				StuffInOcean behind = (StuffInOcean) get(currIndex+1);
-				goodAdd = !s.isCollided(behind);
-			}catch (IndexOutOfBoundsException e){}
-			
-			if (!goodAdd){
-				remove(s);
-			}
-			return goodAdd;
-		}else{
-			return false;
+	public boolean add(StuffInOcean s){
+		super.add(s);
+		Collections.sort(this);
+		int currIndex = indexOf(s);
+		boolean goodAdd = true;
+		
+		try{
+			StuffInOcean ahead = (StuffInOcean) get(currIndex-1);
+			goodAdd = !s.isCollided(ahead);
+		}catch (IndexOutOfBoundsException e){
+			goodAdd = true;
 		}
+		
+		try{
+			StuffInOcean behind = (StuffInOcean) get(currIndex+1);
+			goodAdd = !s.isCollided(behind);
+		}catch (IndexOutOfBoundsException e){}
+		
+		if (!goodAdd){
+			remove(s);
+		}
+		return goodAdd;
 		
 	}
 	

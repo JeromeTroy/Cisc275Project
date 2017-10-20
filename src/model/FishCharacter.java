@@ -92,6 +92,10 @@ public class FishCharacter extends StuffInOcean{
 		position.setY(position.getY() + deltaY);
 	}
 	
+	public String getName(){
+		return "Fish ";
+	}
+	
 	/*
 	 * Rotations of the fish
 	 * Input:
