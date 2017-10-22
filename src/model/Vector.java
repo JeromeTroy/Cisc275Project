@@ -1,6 +1,6 @@
 package model;
 
-public class Vector implements Comparable{
+public class Vector implements Comparable<Vector>{
 
 	// Vector for collision detection
 	private int x; 		// x position
@@ -64,7 +64,7 @@ public class Vector implements Comparable{
 	 * 		String <x, y>
 	 */
 	public String toString(){
-		return "<" + x  + ", " + y + ">";
+		return "<" + x  + "," + y + ">";
 	}
 
 	/*
@@ -102,20 +102,14 @@ public class Vector implements Comparable{
 	 * Output:
 	 * 		int 	value of comparison
 	 */
-	public int compareTo(Object o){
-		if (o instanceof Vector){ // only compare other vectors
-			Vector v = (Vector) o;
-			Integer yPos = new Integer(v.getY());
-			Integer xPos = new Integer(v.getX());
-			if (yPos.equals(y)){
-				return xPos.compareTo(x);
-			}
-			else{
-				return yPos.compareTo(y);
-			}
+	public int compareTo(Vector o){
+		Integer yPos = new Integer(o.getY());
+		Integer xPos = new Integer(o.getX());
+		if (yPos.equals(y)){
+			return xPos.compareTo(x);
 		}
-		else{	// handling non-vector object
-			return 0;
+		else{
+			return yPos.compareTo(y);
 		}
 	}
 }

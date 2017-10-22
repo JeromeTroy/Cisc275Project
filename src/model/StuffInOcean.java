@@ -1,6 +1,6 @@
 package model;
 
-public abstract class StuffInOcean implements Comparable{
+public abstract class StuffInOcean implements Comparable<StuffInOcean>{
 	protected Vector position; 	// position vector
 	
 	/*
@@ -12,8 +12,7 @@ public abstract class StuffInOcean implements Comparable{
 	 * 		<Type> located at <x, y>
 	 */
 	public String toString(){
-		String objectString = getName();
-		return objectString += "located at " + position.toString();
+		return getName() + "located at " + position.toString();
 	}
 	
 	public abstract String getName();
@@ -48,14 +47,8 @@ public abstract class StuffInOcean implements Comparable{
 	 *  Output:
 	 *  	int 	value of comparison
 	 */
-	public int compareTo(Object o){
-		if (o instanceof StuffInOcean){	// only compare StuffInOcean
-			StuffInOcean s = (StuffInOcean) o;
-			return position.compareTo(s.getPosition());
-		}
-		else{	// non StuffInOcean
-			return 0;
-		}
+	public int compareTo(StuffInOcean o){
+		return position.compareTo(((StuffInOcean)o).getPosition());
 	}
 	
 	/*

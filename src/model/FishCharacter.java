@@ -96,6 +96,12 @@ public class FishCharacter extends StuffInOcean{
 		return "Fish ";
 	}
 	
+	public boolean isFish(){
+		return true;
+	}
+	
+	
+	
 	/*
 	 * Rotations of the fish
 	 * Input:
@@ -216,4 +222,5 @@ public class FishCharacter extends StuffInOcean{
 	public void setRadius(int r){
 		radius = r;
 	}
+	
 }
