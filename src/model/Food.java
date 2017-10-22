@@ -1,27 +1,17 @@
 package model;
 
 public class Food extends StuffInOcean{
+	protected int radius = 1;
 	
 	public Food(){
-		position = new Vector();
-	}
-
-	public Food(int r){
-		radius = r;
 		position = new Vector();
 	}
 
 	public Food(int xpos, int ypos){
 		position = new Vector(xpos, ypos);
 	}
-
-	public Food(int r, int x, int y){
-		position = new Vector(x,y);
-		radius = r;
-	}
 	
-	public Food(int r, Vector pos){
-		radius = r;
+	public Food(Vector pos){
 		position = pos;
 	}
 	
@@ -31,5 +21,9 @@ public class Food extends StuffInOcean{
 
 	public String getName(){
 		return "Food ";
+	}
+	
+	public int getRadius(){
+		return radius;
 	}
 }
