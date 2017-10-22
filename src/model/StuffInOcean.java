@@ -1,9 +1,7 @@
 package model;
 
-public class StuffInOcean implements Comparable{
-
+public abstract class StuffInOcean implements Comparable{
 	protected Vector position; 	// position vector
-	protected int radius;		// size of stuff
 	
 	/*
 	 * printing(non-Javadoc)
@@ -15,13 +13,10 @@ public class StuffInOcean implements Comparable{
 	 */
 	public String toString(){
 		String objectString = getName();
-		objectString += "located at " + position.toString();
-		return objectString;
+		return objectString += "located at " + position.toString();
 	}
 	
-	public String getName(){
-		return "Stuff ";
-	}
+	public abstract String getName();
 	
 	// getters
 	public Vector getPosition(){
@@ -40,9 +35,7 @@ public class StuffInOcean implements Comparable{
 		return false;
 	}
 	
-	public int getRadius(){
-		return radius;
-	}
+	abstract public int getRadius();
 	
 	/*
 	 * (non-Javadoc)
@@ -75,7 +68,7 @@ public class StuffInOcean implements Comparable{
 	 */
 	public boolean isCollided(StuffInOcean s){
 		int separation = position.distFrom(s.getPosition());
-		int radiiSum = radius + s.getRadius();
+		int radiiSum = this.getRadius() + s.getRadius();
 		return (separation <= radiiSum*radiiSum);
 	}
 }

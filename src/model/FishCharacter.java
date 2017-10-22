@@ -3,8 +3,8 @@ package model;
 import java.util.*;
 import java.math.*;
 public class FishCharacter extends StuffInOcean{
-	
-	// Attributes
+	protected int radius = 1;
+	// Attributes //TODO: remove comments
 	
 	/*
 	private int xIncr = 1;		// x increment when moving
@@ -41,7 +41,7 @@ public class FishCharacter extends StuffInOcean{
 	public FishCharacter(){	// TODO implement view parameters through controller
 		
 		position = new Vector(5,5);
-		radius = step;
+		//radius = step;
 		score = 0; 			// set score
 		
 		// set orientation
@@ -204,8 +204,16 @@ public class FishCharacter extends StuffInOcean{
 		return score;
 	}
 	
+	public int getRadius(){
+		return radius;
+	}
+	
 	// setters
 	public void setStepSize(int l){
 		step = l;
+	}
+	
+	public void setRadius(int r){
+		radius = r;
 	}
 }

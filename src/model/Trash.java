@@ -1,13 +1,9 @@
 package model;
 
 public class Trash extends StuffInOcean{
-
+	protected int radius = 1;	
+	
 	public Trash(){
-		position = new Vector();
-	}
-
-	public Trash(int r){
-		radius = r;
 		position = new Vector();
 	}
 
@@ -15,13 +11,12 @@ public class Trash extends StuffInOcean{
 		position = new Vector(xpos, ypos);
 	}
 
-	public Trash(int r, int x, int y){
-		position = new Vector(x,y);
-		radius = r;
-	}
+//	public Trash(int r, int x, int y){
+//		position = new Vector(x,y);
+//		radius = r;
+//	}
 	
-	public Trash(int r, Vector pos){
-		radius = r;
+	public Trash(Vector pos){
 		position = pos;
 	}
 	
@@ -33,5 +28,8 @@ public class Trash extends StuffInOcean{
 		return "Trash ";
 	}
 	
+	public int getRadius(){
+		return radius;
+	}
 
 }
