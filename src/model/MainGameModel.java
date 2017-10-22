@@ -21,8 +21,33 @@ public class MainGameModel {
 		everyThing = new StuffSet();
 		everyThing.add(fishy);
 		
-		timer = new Timer(); 				// fix this?
-		
+		timer = new Timer(); 				// fix this	
+	}
+	
+	// getters
+	public FishCharacter getFishy(){
+		return fishy;
+	}
+	
+	public StuffSet getStuff(){
+		return everyThing;
+	}
+	
+	public MiniGameModel getMiniGame(){
+		return miniGame;
+	}
+	
+	public double getTrashAmount(){
+		return trashAmount;
+	}
+	
+	public double getFoodAmount(){
+		return foodAmount;
+	}
+	
+	// adders
+	public boolean addStuff(StuffInOcean s){
+		return everyThing.add(s);
 	}
 	
 	public void accumulate(){    			 //accumulate trash

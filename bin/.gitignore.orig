@@ -1,7 +1,7 @@
-<<<<<<< HEAD
-/.project
-/controller/
-=======
->>>>>>> master
+
 /model/
+<<<<<<< HEAD
 /view/
+=======
+/controller/
+>>>>>>> master
