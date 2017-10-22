@@ -11,7 +11,7 @@ public class MainGameModel {
 	
 	private Map theMap; 					// the map
 	private MiniGameModel miniGame;				// mini game
-
+	private int trashAccumulation = 2; //sets the accumulation of trash
 	
 	public MainGameModel(){
 		fishy = new FishCharacter();
@@ -48,5 +48,23 @@ public class MainGameModel {
 	// adders
 	public boolean addStuff(StuffInOcean s){
 		return everyThing.add(s);
+	}
+	
+	public void accumulate(){    			 //accumulate trash
+		int incTrash = (int) (Math.random()*100%2)+1;  //TODO: how much trash needs to be generated per method call
+		for (int i=0; i<incTrash; i++){
+			everyThing.add(new Trash((int)Math.random()*100,(int)Math.random()*100));  //TODO: replace randomly generated location
+		}
+	}
+	
+	public void removeTrash(){
+		ArrayList<Trash> allTrash = new ArrayList<>();
+		for (StuffInOcean s : everyThing){
+			if (s.isTrash()){
+				allTrash.add((Trash)s);
+			}
+		}
+		
+		everyThing.removeAll(allTrash);
 	}
 }
