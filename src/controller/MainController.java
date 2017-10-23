@@ -14,10 +14,6 @@ public class MainController {
 	public MainController(){
 		model = new MainGameModel();
 		
-		model.addStuff(new Trash(1, 100,100));
-		model.addStuff(new Trash(1, 0,0));
-		model.addStuff(new Food(1, 50,50));
-		System.out.println(model.getStuff());
 	}
 	
 	
@@ -29,6 +25,15 @@ public class MainController {
 		System.out.println("Ending game");
 		
 		MainController theController = new MainController();
+		System.out.println(theController.getModel().getFishy());
+		theController.getModel().getFishy().move(theController.getModel().getMap());
+		theController.getModel().getFishy().rotate(90);
+		System.out.println(theController.getModel().getFishy());
+		theController.getModel().getFishy().move(theController.getModel().getMap());
+		System.out.println(theController.getModel().getFishy());
 	}
 
+	public MainGameModel getModel(){
+		return model;
+	}
 }

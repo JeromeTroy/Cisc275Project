@@ -1,4 +1,5 @@
 /.project
-/modelTest/
-/model/
 /controller/
+/model/
+/modelTest/
+/view/

@@ -22,6 +22,8 @@ public class MainGameModel {
 		everyThing.add(fishy);
 		
 		timer = new Timer(); 				// fix this	
+		
+		theMap = new Map(1000, 100);		// map 1000 units long, 100 units tall
 	}
 	
 	// getters
@@ -44,6 +46,9 @@ public class MainGameModel {
 	public double getFoodAmount(){
 		return foodAmount;
 	}
+	public Map getMap(){
+		return theMap;
+	}
 	
 	// adders
 	public boolean addStuff(StuffInOcean s){
@@ -53,10 +58,12 @@ public class MainGameModel {
 	public void accumulate(){    			 //accumulate trash
 		int incTrash = (int) (Math.random()*100%2)+1;  //TODO: how much trash needs to be generated per method call
 		for (int i=0; i<incTrash; i++){
-			everyThing.add(new Trash((int)Math.random()*100,(int)Math.random()*100));  //TODO: replace randomly generated location
+			everyThing.add(new Trash((int)Math.random()*100,(int)Math.random()*100));  
+			//TODO: replace randomly generated location with locally random location
 		}
 	}
 	
+
 	public void removeTrash(){
 		ArrayList<Trash> allTrash = new ArrayList<>();
 		for (StuffInOcean s : everyThing){
