@@ -47,9 +47,14 @@ public abstract class StuffInOcean implements Comparable<StuffInOcean>{
 	 *  Output:
 	 *  	int 	value of comparison
 	 */
-	public int compareTo(StuffInOcean o){
-		return position.compareTo(((StuffInOcean)o).getPosition());
+//	changed natural compare to for stuffInOcean
+//	public int compareTo(StuffInOcean o){
+//		return position.compareTo(((StuffInOcean)o).getPosition());
+//	}
+	public int compareTo(StuffInOcean s){
+		return this.getPosition().distFrom(s.getPosition());
 	}
+	
 	
 	/*
 	 * Collision detection
