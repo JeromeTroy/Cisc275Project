@@ -2,13 +2,27 @@ package model;
 
 import java.util.*;
 
-public class StuffSet extends ArrayList<StuffInOcean> {
-
+public class StuffSet extends ArrayList<StuffInOcean> implements Comparable<StuffInOcean> {
+	//sort method update to sort by distance
+	//compareTo for adding 
+	//add elements off screen 45 degree angle arc
+	// -- pull screen size from controller
+	// --fix to center of corner
+	
+	int partitionDist;
+	FishCharacter f;
+	
 	public StuffSet() {
 	}
 
-	public StuffSet(StuffInOcean s) {
-		add(s);
+	public StuffSet(FishCharacter f) {
+		this.f = f;
+		add(f);
+	}
+	
+	public StuffSet(FishCharacter f, int partitionDist) {
+		this(f);
+		this.partitionDist = partitionDist;
 	}
 
 	@Override
@@ -21,6 +35,11 @@ public class StuffSet extends ArrayList<StuffInOcean> {
 	 * addition was successful
 	 */
 	public boolean add(StuffInOcean s) {
+		
+		
+		
+		
+		
 		super.add(s);
 		Collections.sort(this);
 		int currIndex = indexOf(s);

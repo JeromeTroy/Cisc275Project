@@ -9,7 +9,7 @@ public abstract class StuffInOcean implements Comparable<StuffInOcean>{
 	 * Input:
 	 * 		None
 	 * Output:
-	 * 		<Type> located at <x, y>
+	 * 		<Type> located at <x,y>
 	 */
 	public String toString(){
 		return getName() + "located at " + position.toString();

@@ -11,6 +11,7 @@ public class FoodTest {
 	static StuffInOcean s;
 	static Food f;
 	
+	
 	@BeforeClass
 	public static void setUp() throws Exception {
 		s = new Food(5,3);
@@ -38,7 +39,7 @@ public class FoodTest {
 	@Test
 	public void testFood() {
 		Food ff = new Food();
-		Food sf = new Food();
+		StuffInOcean sf = new Food();
 		assertEquals("Test x:",sf.getPosition().getX(),0);
 		assertEquals("Test y:",sf.getPosition().getY(),0);
 		
