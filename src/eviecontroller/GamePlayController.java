@@ -5,15 +5,18 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import view.GamePlayScreen;
+import model.FishCharacter;
 
 public class GamePlayController implements ActionListener, MouseMotionListener  {
 	
 	static GamePlayScreen thisGameScreen;
+	FishCharacter f;
 
 	public GamePlayController(){
-		
-	thisGameScreen = new GamePlayScreen();
-	thisGameScreen.getLayeredPane().addMouseMotionListener(this);
+		f = new FishCharacter();
+		thisGameScreen = new GamePlayScreen();
+		thisGameScreen.getLayeredPane().addMouseMotionListener(this);
+		thisGameScreen.fishMovement(10,10);
 	}
 	
 	@Override
@@ -25,7 +28,8 @@ public class GamePlayController implements ActionListener, MouseMotionListener  
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
-		thisGameScreen.getFishLabel().setLocation(e.getX() - thisGameScreen.getFishLabel().getWidth() / 2, e.getY() - thisGameScreen.getFishLabel().getHeight() / 2);
+		thisGameScreen.getFishLabel().setLocation(10, 10);
+		//thisGameScreen.getFishLabel().setLocation(f.getPosition().getX() - thisGameScreen.getFishLabel().getWidth() / 2, f.getPosition().getX() - thisGameScreen.getFishLabel().getHeight() / 2);
 	}
 
 	@Override

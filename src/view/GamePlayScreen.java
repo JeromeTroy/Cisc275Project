@@ -26,7 +26,7 @@ public class GamePlayScreen extends JPanel {
 	
 	private JLayeredPane layeredPane;
 	private JLabel fishLabel;
-	//private JLabel bgLabel;
+	private JLabel bgLabel;
 	//private Image bgImage;
 	//private JCheckBox onTop;
 	//private JComboBox layerList;
@@ -40,6 +40,7 @@ public class GamePlayScreen extends JPanel {
 		
 		// Create and load the duke icon.
 				final ImageIcon icon = createImageIcon("images/fishie.png");
+				final ImageIcon bg = createImageIcon("images/bg.png");
 		
 		// Create and add the Duke label to the layered pane.
 		fishLabel = new JLabel(icon);
@@ -49,6 +50,17 @@ public class GamePlayScreen extends JPanel {
 			fishLabel.setBackground(Color.BLUE);
 		}
 		layeredPane.add(fishLabel, new Integer(2), 0);
+		fishMovement(10,10);
+		
+		// Create and add the background label to the layered pane.
+				bgLabel = new JLabel(bg);
+				if (icon == null) {
+					System.err.println("Background icon not found; using blue rectangle instead.");
+					bgLabel.setOpaque(true);
+					bgLabel.setBackground(Color.BLUE);
+				}
+				layeredPane.add(bgLabel, new Integer(0), 0);
+				bgLabel.setLocation(3, 3);
 		
 		// Add control pane and layered pane to this JPanel.
 		add(Box.createRigidArea(new Dimension(0, 10)));
@@ -126,5 +138,9 @@ public class GamePlayScreen extends JPanel {
 
 	public void setFishLabel(JLabel fishLabel) {
 		this.fishLabel = fishLabel;
+	}
+	
+	public void fishMovement(int a, int b){
+		fishLabel.setLocation(a, b);
 	}
 }
