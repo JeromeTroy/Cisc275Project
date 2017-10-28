@@ -1,6 +1,6 @@
 package model;
 
-public class FishOutOfBoundsException extends Exception{
+public class FishOutOfBoundsException extends OutOfBoundsException{
 
 	public FishOutOfBoundsException() {
 		
