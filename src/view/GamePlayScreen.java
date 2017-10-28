@@ -22,7 +22,7 @@ import javax.swing.JPanel;
 
 
 
-public class GamePlayScreen extends JPanel implements ActionListener, MouseMotionListener  {
+public class GamePlayScreen extends JPanel {
 	
 	private JLayeredPane layeredPane;
 	private JLabel fishLabel;
@@ -32,11 +32,11 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 	//private JComboBox layerList;
 	
 	public GamePlayScreen(){
-		layeredPane = new JLayeredPane();
-		layeredPane.setPreferredSize(new Dimension(700, 500));
-		layeredPane.setBorder(BorderFactory.createTitledBorder("Move the Mouse to Move Fishie"));
-		layeredPane.addMouseMotionListener(this);
-		layeredPane.setLayout(new GridLayout(1, 1));
+		setLayeredPane(new JLayeredPane());
+		getLayeredPane().setPreferredSize(new Dimension(700, 500));
+		getLayeredPane().setBorder(BorderFactory.createTitledBorder("Move the Mouse to Move Fishie"));
+		//layeredPane.addMouseMotionListener(this);
+		getLayeredPane().setLayout(new GridLayout(1, 1));
 		
 		// Create and load the duke icon.
 				final ImageIcon icon = createImageIcon("images/fishie.png");
@@ -54,7 +54,7 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		add(Box.createRigidArea(new Dimension(0, 10)));
 		// add(createControlPanel());
 		add(Box.createRigidArea(new Dimension(0, 10)));
-		add(layeredPane);
+		add(getLayeredPane());
 	}
 	
 	/** Returns an ImageIcon, or null if the path was invalid. */
@@ -93,30 +93,38 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		frame.setVisible(true);
 	}
 	public static void activateGamePlayScreen() {
-		//createAndShowGUI();
+		createAndShowGUI();
 	}
-	@Override
-	public void mouseDragged(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
+//	@Override
+//	public void mouseDragged(MouseEvent arg0) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//	@Override
+//	public void mouseMoved(MouseEvent arg0) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//	@Override
+//	public void actionPerformed(ActionEvent arg0) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+	
+
+	public JLayeredPane getLayeredPane() {
+		return layeredPane;
 	}
-	@Override
-	public void mouseMoved(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
+
+	public void setLayeredPane(JLayeredPane layeredPane) {
+		this.layeredPane = layeredPane;
 	}
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
+	
+	public JLabel getFishLabel() {
+		return fishLabel;
 	}
-	public static void main(String[] args) {
-		// Schedule a job for the event-dispatching thread:
-		// creating and showing this application's GUI.
-		javax.swing.SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				createAndShowGUI();
-			}
-		});
+
+	public void setFishLabel(JLabel fishLabel) {
+		this.fishLabel = fishLabel;
 	}
 }
