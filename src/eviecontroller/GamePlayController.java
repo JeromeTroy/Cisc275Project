@@ -17,6 +17,7 @@ public class GamePlayController implements ActionListener, MouseMotionListener  
 		thisGameScreen = new GamePlayScreen();
 		thisGameScreen.getLayeredPane().addMouseMotionListener(this);
 		thisGameScreen.fishMovement(10,10);
+		thisGameScreen.setGameScore(f.getScore());
 	}
 	
 	@Override
@@ -44,6 +45,7 @@ public class GamePlayController implements ActionListener, MouseMotionListener  
 	public static void main(String[] args) {
 		// Schedule a job for the event-dispatching thread:
 		// creating and showing this application's GUI.
+		
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				thisGameScreen.activateGamePlayScreen();

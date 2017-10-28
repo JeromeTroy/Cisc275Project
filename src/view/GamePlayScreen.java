@@ -27,6 +27,7 @@ public class GamePlayScreen extends JPanel {
 	private JLayeredPane layeredPane;
 	private JLabel fishLabel;
 	private JLabel bgLabel;
+	private int gameScore = -1;
 	//private Image bgImage;
 	//private JCheckBox onTop;
 	//private JComboBox layerList;
@@ -34,7 +35,7 @@ public class GamePlayScreen extends JPanel {
 	public GamePlayScreen(){
 		setLayeredPane(new JLayeredPane());
 		getLayeredPane().setPreferredSize(new Dimension(700, 500));
-		getLayeredPane().setBorder(BorderFactory.createTitledBorder("Move the Mouse to Move Fishie"));
+		getLayeredPane().setBorder(BorderFactory.createTitledBorder("Move the Mouse to Move Fishie. Current Score: "+ gameScore));
 		//layeredPane.addMouseMotionListener(this);
 		getLayeredPane().setLayout(new GridLayout(1, 1));
 		
@@ -142,5 +143,9 @@ public class GamePlayScreen extends JPanel {
 	
 	public void fishMovement(int a, int b){
 		fishLabel.setLocation(a, b);
+	}
+	
+	public void setGameScore(int a){
+		gameScore = a;
 	}
 }
