@@ -35,6 +35,13 @@ public class StuffSet extends ArrayList<StuffInOcean> {
 	 * addition was successful
 	 */
 	public boolean add(StuffInOcean s) {
+		if (f == null) {
+			if (s.isFish()) {
+				super.add(s);
+				this.f = (FishCharacter) s;
+				return true;
+			}
+		}
 
 		for (StuffInOcean item : this) {
 			if (s.isCollided(item)) {
@@ -43,7 +50,9 @@ public class StuffSet extends ArrayList<StuffInOcean> {
 		}
 
 		super.add(s);
-		Collections.sort(this, new DistToFishComparator(f));
+		if (f != null) {
+			Collections.sort(this, new DistToFishComparator(f));
+		}
 		return true;
 
 		// super.add(s);
