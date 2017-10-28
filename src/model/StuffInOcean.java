@@ -2,7 +2,7 @@ package model;
 
 public class StuffInOcean implements Comparable{
 
-	protected Vector position; 	// position vector
+	protected OurVector position; 	// position vector
 	protected boolean isTrash; 	// is it garbage
 	protected boolean isFish; 	// is it a fish
 	protected boolean isFood; 	// is it food
@@ -30,7 +30,7 @@ public class StuffInOcean implements Comparable{
 	}
 	
 	// getters
-	public Vector getPosition(){
+	public OurVector getPosition(){
 		return position;
 	}
 	

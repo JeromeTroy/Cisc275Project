@@ -6,7 +6,7 @@ public class Trash extends StuffInOcean{
 		isTrash = true;
 		isFish = false;
 		isFood = false;
-		position = new Vector();
+		position = new OurVector();
 	}
 
 	public Trash(int r){
@@ -14,17 +14,17 @@ public class Trash extends StuffInOcean{
 		isFish = false;
 		isFood = false;
 		radius = r;
-		position = new Vector();
+		position = new OurVector();
 	}
 
 	public Trash(int xpos, int ypos){
-		position = new Vector(xpos, ypos);
+		position = new OurVector(xpos, ypos);
 		isTrash = true;
 		isFish = false;
 	}
 
 	public Trash(int r, int x, int y){
-		position = new Vector(x,y);
+		position = new OurVector(x,y);
 		isTrash = true;
 		isFish = false;
 		isFood = false;

@@ -22,6 +22,7 @@ public class MovementDemo extends JPanel implements ActionListener, MouseMotionL
 	private JLayeredPane layeredPane;
 	private JLabel dukeLabel;
 	private JLabel bgLabel;
+	private Image bgImage;
 	private JCheckBox onTop;
 	private JComboBox layerList;
 
@@ -54,13 +55,20 @@ public class MovementDemo extends JPanel implements ActionListener, MouseMotionL
 
 		// Create and add the background to the pane.
 
-		bgLabel = new JLabel(bg);
-		if (icon == null) {
-			System.err.println("Background icon not found; using black rectangle instead.");
-			bgLabel.setOpaque(true);
-			bgLabel.setBackground(Color.BLACK);
+//		bgLabel = new JLabel(bg);
+//		if (icon == null) {
+//			System.err.println("Background icon not found; using black rectangle instead.");
+//			bgLabel.setOpaque(true);
+//			bgLabel.setBackground(Color.BLACK);
+//		}
+//		layeredPane.add(bgLabel, new Integer(0), 0);
+		
+		bgImage = bg.getImage();
+		if (bg == null){
+			System.err.println("NOt found, black rectangle as substitute");
+			//TODO: set black rectangle
 		}
-		layeredPane.add(bgLabel, new Integer(0), 0);
+		
 
 		// Create and add the Duke label to the layered pane.
 		dukeLabel = new JLabel(icon);

@@ -40,7 +40,7 @@ public class FishCharacter extends StuffInOcean{
 	 */
 	public FishCharacter(){	// TODO implement view parameters through controller
 		
-		position = new Vector(5,5);
+		position = new OurVector(5,5);
 		radius = step;
 		score = 0; 			// set score
 		
