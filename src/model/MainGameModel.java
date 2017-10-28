@@ -8,20 +8,23 @@ public class MainGameModel {
 	private double trashAmount;					// level of the trash around the main character
 	private double foodAmount;					// level of food around the main character
 	private StuffSet everyThing; 				// all the stuff in the ocean
-	
+	private int gameLengthSeconds;
 	private Map theMap; 					// the map
 	private MiniGameModel miniGame;				// mini game
 	private int trashAccumulation = 2; //sets the accumulation of trash
+	private boolean gameOver;
 	
 	public MainGameModel(){
-		fishy = new FishCharacter();
+		gameOver = false;
+		everyThing = new StuffSet();
 		trashAmount = 0;
 		foodAmount = 0;
+		gameLengthSeconds = 180;
 		
-		everyThing = new StuffSet();
+		timer = new Timer(); //TODO: fix this
+		
+		fishy = new FishCharacter();
 		everyThing.add(fishy);
-		
-		timer = new Timer(); 				// fix this	
 		
 		theMap = new Map(1000, 100);		// map 1000 units long, 100 units tall
 	}
@@ -50,20 +53,39 @@ public class MainGameModel {
 		return theMap;
 	}
 	
+	//setters
+	public void setTrashAccumulation(int i){
+		trashAccumulation= i;
+	}
+	
 	// adders
 	public boolean addStuff(StuffInOcean s){
 		return everyThing.add(s);
 	}
 	
-	public void accumulate(){    			 //accumulate trash
-		int incTrash = (int) (Math.random()*100%2)+1;  //TODO: how much trash needs to be generated per method call
+	/* accumulateTrash() - accumulate trash
+	 * 					   randomly generates amount of trash between 0-set trashAccumulation
+	 * 					   places trash at random location of vector <0-100,0-100>
+	 * parameters - none
+	 * input - none
+	 * return - none
+	 * output - none
+	 */
+	public void accumulateTrash(){    			 //accumulate trash
+		int incTrash = (int) (Math.random()*100%trashAccumulation)+1;  //TODO: how much trash needs to be generated per method call
 		for (int i=0; i<incTrash; i++){
-			everyThing.add(new Trash((int)Math.random()*100,(int)Math.random()*100));  
+			addStuff(new Trash((int)Math.random()*100,(int)Math.random()*100));  
 			//TODO: replace randomly generated location with locally random location
 		}
 	}
 	
-
+	
+	/* removeTrash() - removes all of the trash from the stuffSet
+	 * parameters - none
+	 * input - none
+	 * return - none
+	 * output - none
+	 */
 	public void removeTrash(){
 		ArrayList<Trash> allTrash = new ArrayList<>();
 		for (StuffInOcean s : everyThing){
@@ -74,4 +96,22 @@ public class MainGameModel {
 		
 		everyThing.removeAll(allTrash);
 	}
+	
+	public boolean endGame(){
+		gameOver = true;
+		System.out.println("Game Over");
+		return true;
+	}
+	
+	public boolean startGame(){
+		return true; //TODO: implement
+	}
+	
+	class EndGameTask extends TimerTask {
+		public void run() {
+			System.out.print("Time up");
+			endGame();
+		}
+	}
+	
 }

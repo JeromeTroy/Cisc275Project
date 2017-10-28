@@ -72,7 +72,7 @@
   </class>  
   <class id="10" language="java" name="model.MainGameModel" project="ciscgame" 
     file="/ciscgame/src/model/MainGameModel.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="662" y="254"/>    
+    <position height="-1" width="-1" x="657" y="212"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -99,7 +99,7 @@
   </class>  
   <class id="13" language="java" name="model.MiniGameModel" project="ciscgame" 
     file="/ciscgame/src/model/MiniGameModel.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="871" y="146"/>    
+    <position height="-1" width="-1" x="983" y="86"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -126,130 +126,171 @@
   </class>  
   <class id="16" language="java" name="model.Map" project="ciscgame" file="/ciscgame/src/model/Map.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="872" y="388"/>    
+    <position height="-1" width="-1" x="974" y="370"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <dependency id="17">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <association id="18">    
-    <bendpoint x="530" y="710"/>    
-    <end type="SOURCE" refId="15" navigable="false">      
-      <attribute id="19" name="position"/>      
-      <multiplicity id="20" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="11" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="21">    
-    <end type="SOURCE" refId="8"/>    
+  <class id="17" language="java" name="model.DistToFishComparator" project="ciscgame" 
+    file="/ciscgame/src/model/DistToFishComparator.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="992" y="561"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="18">    
+    <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="15"/>  
   </generalization>  
-  <association id="22">    
+  <dependency id="19">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <generalization id="20">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <association id="21">    
     <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="23" name="miniGame"/>      
-      <multiplicity id="24" minimum="0" maximum="1"/>    
+      <attribute id="22" name="miniGame">        
+        <position height="0" width="0" x="112" y="-60"/>      
+      </attribute>      
+      <multiplicity id="23" minimum="0" maximum="1">        
+        <position height="0" width="0" x="112" y="-60"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="13" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="25">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="15"/>  
-  </dependency>  
-  <generalization id="26">    
-    <end type="SOURCE" refId="6"/>    
+  <association id="24">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="25" name="f"/>      
+      <multiplicity id="26" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="27">    
+    <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="15"/>  
   </generalization>  
-  <dependency id="27">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="15"/>  
-  </dependency>  
   <dependency id="28">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="14"/>  
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="12"/>  
   </dependency>  
   <dependency id="29">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="14"/>  
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="12"/>  
   </dependency>  
   <dependency id="30">    
     <end type="SOURCE" refId="14"/>    
     <end type="TARGET" refId="11"/>  
   </dependency>  
-  <association id="31">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="32" name="theMap"/>      
-      <multiplicity id="33" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="16" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="34">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="12"/>  
-  </dependency>  
-  <dependency id="35">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <dependency id="36">    
+  <dependency id="31">    
     <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="11"/>  
   </dependency>  
-  <association id="37">    
+  <dependency id="32">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <association id="33">    
     <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="38" name="everyThing"/>      
-      <multiplicity id="39" minimum="0" maximum="1"/>    
+      <attribute id="34" name="everyThing">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="35" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <dependency id="36">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <association id="37">    
+    <bendpoint x="530" y="710"/>    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="38" name="position">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="39" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <dependency id="40">    
-    <end type="SOURCE" refId="6"/>    
+    <end type="SOURCE" refId="17"/>    
     <end type="TARGET" refId="11"/>  
   </dependency>  
-  <generalization id="41">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="10"/>  
-  </generalization>  
-  <dependency id="42">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="9"/>  
-  </dependency>  
-  <generalization id="43">    
-    <end type="SOURCE" refId="14"/>    
+  <dependency id="41">    
+    <end type="SOURCE" refId="9"/>    
     <end type="TARGET" refId="15"/>  
-  </generalization>  
-  <dependency id="44">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="5"/>  
   </dependency>  
-  <association id="45">    
+  <association id="42">    
     <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="46" name="fishy"/>      
-      <multiplicity id="47" minimum="0" maximum="1"/>    
+      <attribute id="43" name="fishy">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="44" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="48">    
+  <dependency id="45">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <association id="46">    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="49" name="model"/>      
-      <multiplicity id="50" minimum="0" maximum="1"/>    
+      <attribute id="47" name="model">        
+        <position height="0" width="0" x="-5" y="-42"/>      
+      </attribute>      
+      <multiplicity id="48" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-5" y="-42"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="51">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="12"/>  
+  <dependency id="49">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="11"/>  
   </dependency>  
+  <association id="50">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="51" name="theMap">        
+        <position height="0" width="0" x="102" y="-18"/>      
+      </attribute>      
+      <multiplicity id="52" minimum="0" maximum="1">        
+        <position height="0" width="0" x="102" y="-18"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="53">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <dependency id="54">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="14"/>  
+  </dependency>  
+  <generalization id="55">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
