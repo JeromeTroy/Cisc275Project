@@ -9,7 +9,7 @@ import org.junit.Test;
 import model.*;
 
 
-public class StuffSet_Test {
+public class StuffSetTest {
 	StuffSet s;
 	FishCharacter f;
 	
