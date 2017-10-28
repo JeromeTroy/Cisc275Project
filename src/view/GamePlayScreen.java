@@ -41,7 +41,7 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		layeredPane.setLayout(new GridLayout(1, 1));
 		
 		// Create and load the duke icon.
-				final ImageIcon icon = createImageIcon("gameplay_images/fishie.png");
+				final ImageIcon icon = createImageIcon("images/fishie.png");
 		
 		// Create and add the Duke label to the layered pane.
 		fishLabel = new JLabel(icon);
