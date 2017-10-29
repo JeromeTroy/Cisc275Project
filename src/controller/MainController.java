@@ -11,15 +11,14 @@ import java.util.Timer;
 public class MainController {
 	private static Timer timer;
 	private static MainGameModel model;
-	
+	private static Thread mainGame;
 	
 	public MainController(){
 		model = new MainGameModel();
 		timer = new Timer();
-		Thread tutorial = new Thread();
-		Thread mainGame = new Thread();
-		Thread miniGame = new Thread();
-		Thread endScreen = new Thread();
+		mainGame = new Thread(new mainGame());
+		//Thread miniGame = new Thread();
+		//mainGame.start();
 	}
 	
 	
@@ -38,6 +37,7 @@ public class MainController {
 	
 	public static void startGame(){
 		MainController controller = new MainController();
+		mainGame.start();
 		
 	
 }
@@ -46,6 +46,7 @@ public class MainController {
 	}
 	
 	protected static void tick() {
+		System.out.println("Tick");
 		model.update();
 		
 	}

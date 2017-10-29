@@ -89,6 +89,7 @@ public class TitleScreen extends JPanel implements ActionListener, MouseMotionLi
 		String cmd = e.getActionCommand();
 		if (cmd == "goToGame"){
 			MainController.startGame();
+			//TODO: need action to open game
 		} else if (cmd == "goToTutorial"){
 			MainController.startTutorial();
 		}
