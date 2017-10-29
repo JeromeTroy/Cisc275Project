@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import controller.MainController;
 
 import javax.swing.JButton;
 
@@ -86,7 +87,11 @@ public class TitleScreen extends JPanel implements ActionListener, MouseMotionLi
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		String cmd = e.getActionCommand();
-		System.out.println(cmd);
+		if (cmd == "goToGame"){
+			MainController.startGame();
+		} else if (cmd == "goToTutorial"){
+			MainController.startTutorial();
+		}
 		
 	}
 	

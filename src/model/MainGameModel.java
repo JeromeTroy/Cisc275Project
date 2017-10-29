@@ -15,13 +15,12 @@ public class MainGameModel {
 	private boolean gameOver;
 	
 	public MainGameModel(){
+		startGame();
 		gameOver = false;
 		everyThing = new StuffSet();
 		trashAmount = 0;
 		foodAmount = 0;
 		gameLengthSeconds = 180;
-		
-		timer = new Timer(); //TODO: fix this
 		
 		fishy = new FishCharacter();
 		everyThing.add(fishy);
@@ -103,15 +102,12 @@ public class MainGameModel {
 		return true;
 	}
 	
-	public boolean startGame(){
-		return true; //TODO: implement
+	public void startGame(){
+		System.out.println("Game Start...");
 	}
 	
-	class EndGameTask extends TimerTask {
-		public void run() {
-			System.out.print("Time up");
-			endGame();
-		}
+	public void update(){
+		System.out.println("Run Game");
 	}
 	
 }
