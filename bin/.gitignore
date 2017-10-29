@@ -1,10 +1,8 @@
-<<<<<<< HEAD
+/.project
+/ClassDiagram.ucls
+/controller/
 /fishieredux/
 /images/
 /model/
-/view/
-/controller/
-=======
-/.project
 /modelTest/
->>>>>>> master
+/view/

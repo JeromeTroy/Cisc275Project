@@ -1,11 +1,35 @@
 package model;
 
 public abstract class StuffInOcean implements Comparable<StuffInOcean>{
-<<<<<<< HEAD
 	protected OurVector position; 	// position vector
-=======
-	protected Vector position; 	// position vector
->>>>>>> master
+	protected int radius; 			// size of circle
+	
+	// Constructors
+	public StuffInOcean(){
+		position = new OurVector();
+	}
+	
+	public StuffInOcean(int xval, int yval){
+		position = new OurVector(xval,yval);
+	}
+	
+	public StuffInOcean(OurVector v){
+		position = v;
+	}
+	
+	public StuffInOcean(int xval, int yval, int rad){
+		position = new OurVector(xval,yval);
+		radius = rad;
+	}
+	
+	public StuffInOcean(OurVector v, int rad){
+		position = v;
+		radius = rad;
+	}
+	
+	public StuffInOcean(int rad){
+		radius = rad;
+	}
 	
 	/*
 	 * printing(non-Javadoc)
@@ -22,7 +46,7 @@ public abstract class StuffInOcean implements Comparable<StuffInOcean>{
 	public abstract String getName();
 	
 	// getters
-	public Vector getPosition(){
+	public OurVector getPosition(){
 		return position;
 	}
 	
@@ -38,7 +62,9 @@ public abstract class StuffInOcean implements Comparable<StuffInOcean>{
 		return false;
 	}
 	
-	abstract public int getRadius();
+	public int getRadius(){
+		return radius;
+	}
 	
 	/*
 	 * (non-Javadoc)

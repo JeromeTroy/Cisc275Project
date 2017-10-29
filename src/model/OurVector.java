@@ -1,10 +1,6 @@
 package model;
 
-<<<<<<< HEAD:src/model/OurVector.java
-public class OurVector implements Comparable{
-=======
-public class Vector implements Comparable<Vector>{
->>>>>>> master:src/model/Vector.java
+public class OurVector implements Comparable<OurVector>{
 
 	// Vector for collision detection
 	private int x; 		// x position
@@ -106,25 +102,12 @@ public class Vector implements Comparable<Vector>{
 	 * Output:
 	 * 		int 	value of comparison
 	 */
-<<<<<<< HEAD:src/model/OurVector.java
-	public int compareTo(Object o){
-		if (o instanceof OurVector){ // only compare other vectors
-			OurVector v = (OurVector) o;
-			Integer yPos = new Integer(v.getY());
-			Integer xPos = new Integer(v.getX());
-			if (yPos.equals(y)){
-				return xPos.compareTo(x);
-			}
-			else{
-				return yPos.compareTo(y);
-			}
-=======
-	public int compareTo(Vector o){
-		Integer yPos = new Integer(o.getY());
-		Integer xPos = new Integer(o.getX());
+	public int compareTo(OurVector o){
+		OurVector v = (OurVector) o;
+		Integer yPos = new Integer(v.getY());
+		Integer xPos = new Integer(v.getX());
 		if (yPos.equals(y)){
 			return xPos.compareTo(x);
->>>>>>> master:src/model/Vector.java
 		}
 		else{
 			return yPos.compareTo(y);

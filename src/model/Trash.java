@@ -1,23 +1,31 @@
 package model;
 
 public class Trash extends StuffInOcean{
-	protected int radius = 1;	
-	
+
 	public Trash(){
-		position = new Vector();
+		position = new OurVector();
 	}
-
-	public Trash(int xpos, int ypos){
-		position = new Vector(xpos, ypos);
-	}
-
-//	public Trash(int r, int x, int y){
-//		position = new Vector(x,y);
-//		radius = r;
-//	}
 	
-	public Trash(Vector pos){
-		position = pos;
+	public Trash(int xval, int yval){
+		position = new OurVector(xval,yval);
+	}
+	
+	public Trash(OurVector v){
+		position = v;
+	}
+	
+	public Trash(int xval, int yval, int rad){
+		position = new OurVector(xval,yval);
+		radius = rad;
+	}
+	
+	public Trash(OurVector v, int rad){
+		position = v;
+		radius = rad;
+	}
+	
+	public Trash(int rad){
+		radius = rad;
 	}
 	
 	public boolean isTrash(){
