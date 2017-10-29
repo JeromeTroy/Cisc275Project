@@ -1,6 +1,6 @@
 package model;
 
-public class MainMap {
+public class Map {
 
 	private int length; 			// total length of the map
 	private int height; 			// total height of the map
@@ -14,13 +14,13 @@ public class MainMap {
 		return height;
 	}
 	
-	public MainMap(int l, int h, int ul){
+	public Map(int l, int h, int ul){
 		length = l;
 		height = h;
 		uniqueLength = ul;
 	}
 	
-	public MainMap(int l, int h){
+	public Map(int l, int h){
 		length = l;
 		height = h;
 	}

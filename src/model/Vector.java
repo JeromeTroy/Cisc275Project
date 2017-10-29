@@ -1,10 +1,6 @@
 package model;
 
-<<<<<<< HEAD:src/model/OurVector.java
-public class OurVector implements Comparable{
-=======
 public class Vector implements Comparable<Vector>{
->>>>>>> master:src/model/Vector.java
 
 	// Vector for collision detection
 	private int x; 		// x position
@@ -18,7 +14,7 @@ public class Vector implements Comparable<Vector>{
 	 * 		xval 	int 	x value for position
 	 *  	yval 	int 	y value for position
 	 */
-	public OurVector(int xval, int yval){
+	public Vector(int xval, int yval){
 		x = xval;
 		y = yval;
 	}
@@ -28,7 +24,7 @@ public class Vector implements Comparable<Vector>{
 	 * Input:
 	 * 		None
 	 */
-	public OurVector(){
+	public Vector(){
 		x = 0;
 		y = 0;
 	}
@@ -78,7 +74,7 @@ public class Vector implements Comparable<Vector>{
 	 * Output:	
 	 * 		int 	dot product 	x1*x2 + y1*y2
 	 */
-	public int dotWith(OurVector v){
+	public int dotWith(Vector v){
 		return v.getX()*x + v.getY()*y;
 	}
 
@@ -90,7 +86,7 @@ public class Vector implements Comparable<Vector>{
 	 * Output:
 	 * 		int 	distance from the vector 
 	 */
-	public int distFrom(OurVector v){
+	public int distFrom(Vector v){
 		return v.norm2() + norm2() - 2*dotWith(v);
 	}
 
@@ -106,25 +102,11 @@ public class Vector implements Comparable<Vector>{
 	 * Output:
 	 * 		int 	value of comparison
 	 */
-<<<<<<< HEAD:src/model/OurVector.java
-	public int compareTo(Object o){
-		if (o instanceof OurVector){ // only compare other vectors
-			OurVector v = (OurVector) o;
-			Integer yPos = new Integer(v.getY());
-			Integer xPos = new Integer(v.getX());
-			if (yPos.equals(y)){
-				return xPos.compareTo(x);
-			}
-			else{
-				return yPos.compareTo(y);
-			}
-=======
 	public int compareTo(Vector o){
 		Integer yPos = new Integer(o.getY());
 		Integer xPos = new Integer(o.getX());
 		if (yPos.equals(y)){
 			return xPos.compareTo(x);
->>>>>>> master:src/model/Vector.java
 		}
 		else{
 			return yPos.compareTo(y);
