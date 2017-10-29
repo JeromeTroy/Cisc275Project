@@ -1,12 +1,7 @@
 package model;
 
-public class StuffInOcean implements Comparable{
-
+public abstract class StuffInOcean implements Comparable<StuffInOcean>{
 	protected OurVector position; 	// position vector
-	protected boolean isTrash; 	// is it garbage
-	protected boolean isFish; 	// is it a fish
-	protected boolean isFood; 	// is it food
-	protected int radius;		// size of stuff
 	
 	/*
 	 * printing(non-Javadoc)
@@ -14,41 +9,32 @@ public class StuffInOcean implements Comparable{
 	 * Input:
 	 * 		None
 	 * Output:
-	 * 		<Type> located at <x, y>
+	 * 		<Type> located at <x,y>
 	 */
 	public String toString(){
-		String objectString = "";
-		if (isTrash){
-			objectString += "Trash ";
-		}else if (isFish){
-			objectString += "Fish ";
-		}else if (isFood){
-			objectString += "Food ";
-		}
-		objectString += "located at " + position.toString();
-		return objectString;
+		return getName() + "located at " + position.toString();
 	}
 	
+	public abstract String getName();
+	
 	// getters
-	public OurVector getPosition(){
+	public Vector getPosition(){
 		return position;
 	}
 	
-	public boolean isTrash(){
-		return isTrash;
+	public boolean isFood(){
+		return false;
 	}
 	
 	public boolean isFish(){
-		return isFish;
+		return false;
 	}
 	
-	public boolean isFood(){
-		return isFood;
+	public boolean isTrash(){
+		return false;
 	}
 	
-	public int getRadius(){
-		return radius;
-	}
+	abstract public int getRadius();
 	
 	/*
 	 * (non-Javadoc)
@@ -61,15 +47,14 @@ public class StuffInOcean implements Comparable{
 	 *  Output:
 	 *  	int 	value of comparison
 	 */
-	public int compareTo(Object o){
-		if (o instanceof StuffInOcean){	// only compare StuffInOcean
-			StuffInOcean s = (StuffInOcean) o;
-			return position.compareTo(s.getPosition());
-		}
-		else{	// non StuffInOcean
-			return 0;
-		}
+//	changed natural compare to for stuffInOcean
+//	public int compareTo(StuffInOcean o){
+//		return position.compareTo(((StuffInOcean)o).getPosition());
+//	}
+	public int compareTo(StuffInOcean s){
+		return this.getPosition().distFrom(s.getPosition());
 	}
+	
 	
 	/*
 	 * Collision detection
@@ -81,7 +66,7 @@ public class StuffInOcean implements Comparable{
 	 */
 	public boolean isCollided(StuffInOcean s){
 		int separation = position.distFrom(s.getPosition());
-		int radiiSum = radius + s.getRadius();
+		int radiiSum = this.getRadius() + s.getRadius();
 		return (separation <= radiiSum*radiiSum);
 	}
 }
