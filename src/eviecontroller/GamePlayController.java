@@ -6,18 +6,20 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import view.GamePlayScreen;
 import model.FishCharacter;
+import eviemodel.MovementTestModel;
 
 public class GamePlayController implements ActionListener, MouseMotionListener  {
 	
 	static GamePlayScreen thisGameScreen;
-	FishCharacter f;
+	MovementTestModel thisModel;
 
 	public GamePlayController(){
-		f = new FishCharacter();
+		//f = new FishCharacter();
 		thisGameScreen = new GamePlayScreen();
+		thisModel = new MovementTestModel();
 		thisGameScreen.getLayeredPane().addMouseMotionListener(this);
 		thisGameScreen.fishMovement(10,10);
-		thisGameScreen.setGameScore(f.getScore());
+		thisGameScreen.setGameScore(thisModel.getFishy().getScore());
 	}
 	
 	@Override
