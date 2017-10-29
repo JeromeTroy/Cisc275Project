@@ -20,11 +20,14 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import eviecontroller.GamePlayController;
 
 
-public class GamePlayScreen extends JPanel {
+
+public class GamePlayScreen extends JPanel  implements ActionListener, MouseMotionListener {
 	
-	private JLayeredPane layeredPane;
+	public GamePlayController control;
+	public JLayeredPane layeredPane;
 	private JLabel fishLabel;
 	private JLabel bgLabel;
 	private int gameScore = -1;
@@ -33,6 +36,7 @@ public class GamePlayScreen extends JPanel {
 	//private JComboBox layerList;
 	
 	public GamePlayScreen(){
+		//control = new GamePlayController();
 		setLayeredPane(new JLayeredPane());
 		getLayeredPane().setPreferredSize(new Dimension(700, 500));
 		getLayeredPane().setBorder(BorderFactory.createTitledBorder("Move the Mouse to Move Fishie. Current Score: "+ gameScore));
@@ -68,6 +72,11 @@ public class GamePlayScreen extends JPanel {
 		// add(createControlPanel());
 		add(Box.createRigidArea(new Dimension(0, 10)));
 		add(getLayeredPane());
+	}
+	
+	public GamePlayScreen(GamePlayController g){
+		GamePlayScreen gs = new GamePlayScreen();
+		gs.control = g;
 	}
 	
 	/** Returns an ImageIcon, or null if the path was invalid. */
@@ -108,21 +117,28 @@ public class GamePlayScreen extends JPanel {
 	public static void activateGamePlayScreen() {
 		createAndShowGUI();
 	}
-//	@Override
-//	public void mouseDragged(MouseEvent arg0) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//	@Override
-//	public void mouseMoved(MouseEvent arg0) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//	@Override
-//	public void actionPerformed(ActionEvent arg0) {
-//		// TODO Auto-generated method stub
-//		
-//	}
+	@Override
+	public void mouseDragged(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+		control.thisModel.moveFishy(e.getX(), e.getY());
+		control.thisModel.printFishy();
+		System.out.println("bababooey");
+		control.thisGameScreen.getFishLabel().setLocation(10, 10);
+		//thisGameScreen.getFishLabel().setLocation(f.getPosition().getX() - thisGameScreen.getFishLabel().getWidth() / 2, f.getPosition().getX() - thisGameScreen.getFishLabel().getHeight() / 2);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		String cmd = e.getActionCommand();
+		
+	}
 	
 
 	public JLayeredPane getLayeredPane() {

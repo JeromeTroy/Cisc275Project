@@ -15,4 +15,12 @@ public class MovementTestModel {
 		return fishy;
 	}
 	
+	public void moveFishy(int newx, int newy){
+		fishy.moveToPoint(newx, newy);
+	}
+	
+	public void printFishy(){
+		System.out.println(fishy.toString());
+	}
+	
 }

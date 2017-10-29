@@ -77,6 +77,11 @@ public class FishCharacter extends StuffInOcean{
 		}
 	}
 	
+	public void moveToPoint(int newx, int newy){
+		position.setX(newx);
+		position.setY(newy);
+	}
+	
 	public String getName(){
 		return "Fish ";
 	}
