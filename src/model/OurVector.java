@@ -1,6 +1,6 @@
 package model;
 
-public class Vector implements Comparable<Vector>{
+public class OurVector implements Comparable<OurVector>{
 
 	// Vector for collision detection
 	private int x; 		// x position
@@ -14,7 +14,7 @@ public class Vector implements Comparable<Vector>{
 	 * 		xval 	int 	x value for position
 	 *  	yval 	int 	y value for position
 	 */
-	public Vector(int xval, int yval){
+	public OurVector(int xval, int yval){
 		x = xval;
 		y = yval;
 	}
@@ -24,7 +24,7 @@ public class Vector implements Comparable<Vector>{
 	 * Input:
 	 * 		None
 	 */
-	public Vector(){
+	public OurVector(){
 		x = 0;
 		y = 0;
 	}
@@ -74,7 +74,7 @@ public class Vector implements Comparable<Vector>{
 	 * Output:	
 	 * 		int 	dot product 	x1*x2 + y1*y2
 	 */
-	public int dotWith(Vector v){
+	public int dotWith(OurVector v){
 		return v.getX()*x + v.getY()*y;
 	}
 
@@ -86,7 +86,7 @@ public class Vector implements Comparable<Vector>{
 	 * Output:
 	 * 		int 	distance from the vector 
 	 */
-	public int distFrom(Vector v){
+	public int distFrom(OurVector v){
 		return v.norm2() + norm2() - 2*dotWith(v);
 	}
 
@@ -102,9 +102,10 @@ public class Vector implements Comparable<Vector>{
 	 * Output:
 	 * 		int 	value of comparison
 	 */
-	public int compareTo(Vector o){
-		Integer yPos = new Integer(o.getY());
-		Integer xPos = new Integer(o.getX());
+	public int compareTo(OurVector o){
+		OurVector v = (OurVector) o;
+		Integer yPos = new Integer(v.getY());
+		Integer xPos = new Integer(v.getX());
 		if (yPos.equals(y)){
 			return xPos.compareTo(x);
 		}

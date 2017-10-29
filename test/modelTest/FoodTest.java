@@ -64,7 +64,7 @@ public class FoodTest {
 
 	@Test
 	public void testFoodVector() {
-		Vector v = new Vector(12,13);
+		OurVector v = new OurVector(12,13);
 		Food f1 = new Food(v);
 		StuffInOcean s1 = new Food(v);
 		

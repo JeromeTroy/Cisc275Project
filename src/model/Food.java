@@ -1,18 +1,31 @@
 package model;
 
 public class Food extends StuffInOcean{
-	protected int radius = 1;
-	
-	public Food(){
-		position = new Vector();
-	}
 
-	public Food(int xpos, int ypos){
-		position = new Vector(xpos, ypos);
+	public Food(){
+		position = new OurVector();
 	}
 	
-	public Food(Vector pos){
-		position = pos;
+	public Food(int xval, int yval){
+		position = new OurVector(xval,yval);
+	}
+	
+	public Food(OurVector v){
+		position = v;
+	}
+	
+	public Food(int xval, int yval, int rad){
+		position = new OurVector(xval,yval);
+		radius = rad;
+	}
+	
+	public Food(OurVector v, int rad){
+		position = v;
+		radius = rad;
+	}
+	
+	public Food(int rad){
+		radius = rad;
 	}
 	
 	public boolean isFood(){
