@@ -1,7 +1,11 @@
 package model;
 
 public abstract class StuffInOcean implements Comparable<StuffInOcean>{
+<<<<<<< HEAD
+	protected OurVector position; 	// position vector
+=======
 	protected Vector position; 	// position vector
+>>>>>>> master
 	
 	/*
 	 * printing(non-Javadoc)
