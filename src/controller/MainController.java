@@ -9,18 +9,16 @@ import java.util.*;
 import java.util.Timer;
 
 public class MainController {
-	private static Timer timer;
+	private static GameTimer timer;
 	private static MainGameModel model;
-	private static Thread mainGame;
+	private static MainGame mainGame;
+	private static Thread miniGame;
 	
 	public MainController(){
 		model = new MainGameModel();
-		timer = new Timer();
-		mainGame = new Thread(new mainGame());
-		//Thread miniGame = new Thread();
-		//mainGame.start();
+		timer = new GameTimer(model.getGameLengthSeconds());
+		mainGame = new MainGame();
 	}
-	
 	
 	public static void main(String[] args) {
 		openGame();
@@ -48,6 +46,16 @@ public class MainController {
 	protected static void tick() {
 		System.out.println("Tick");
 		model.update();
+		
+	}
+	
+	public static void endGame(){
+		mainGame.interrupt();
+	}
+	
+	public static void launchMiniGame(){
+		mainGame.pause();
+		
 		
 	}
 }
