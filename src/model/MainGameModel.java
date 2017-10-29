@@ -6,12 +6,13 @@ public class MainGameModel {
 
 	private FishCharacter fishy; // the main character
 	private Timer timer; // countdown timer
-	private double trashAmount; // level of the trash around the main character
-	private double foodAmount; // level of food around the main character
+	private int trashAmount; // level of the trash around the main character
+	private int foodAmount; // level of food around the main character
 	private StuffSet everyThing; // all the stuff in the ocean
 	private int gameLengthSeconds;
 	private Map theMap; // the map
 	private MiniGameModel miniGame; // mini game
+	
 	private int trashAccumulation = 2; // sets the accumulation of trash
 	private boolean gameOver;
 	private boolean isCaught;
@@ -43,11 +44,11 @@ public class MainGameModel {
 		return miniGame;
 	}
 
-	public double getTrashAmount() {
+	public int getTrashAmount() {
 		return trashAmount;
 	}
 
-	public double getFoodAmount() {
+	public int getFoodAmount() {
 		return foodAmount;
 	}
 
@@ -59,13 +60,65 @@ public class MainGameModel {
 		return isCaught;
 	}
 
+	public int getGameLengthSeconds() {
+		return gameLengthSeconds;
+	}
+
+	public int getTrashAccumulation() {
+		return trashAccumulation;
+	}
+
+	public boolean isGameOver() {
+		return gameOver;
+	}
+
+	public Timer getTimer() {
+		return timer;
+	}
+
+	public StuffSet getEveryThing() {
+		return everyThing;
+	}
+
+	public Map getTheMap() {
+		return theMap;
+	}
 	// setters
 	public void setTrashAccumulation(int i) {
 		trashAccumulation = i;
 	}
 
+	public void setTrashAmount(int trashAmount) {
+		this.trashAmount = trashAmount;
+	}
+
+	public void setFoodAmount(int foodAmount) {
+		this.foodAmount = foodAmount;
+	}
+
+	public void setGameLengthSeconds(int gameLengthSeconds) {
+		this.gameLengthSeconds = gameLengthSeconds;
+	}
+
+	public void setCaught(boolean isCaught) {
+		this.isCaught = isCaught;
+	}
+
+	public void setEveryThing(StuffSet everyThing) {
+		this.everyThing = everyThing;
+	}
+
+	public void setTheMap(Map theMap) {
+		this.theMap = theMap;
+	}
+
+	public void setTimer(Timer timer) {
+		this.timer = timer;
+	}
+
 	// adders
 	public boolean addStuff(StuffInOcean s) {
+		// TODO: modify method for arc
 		return everyThing.add(s);
 	}
 
