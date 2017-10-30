@@ -12,6 +12,7 @@ public class MainGameModel {
 	private Map theMap; 					// the map
 	private MiniGameModel miniGame;				// mini game
 	private int trashAccumulation = 2; //sets the accumulation of trash
+	private DistToFishComparator comparator;
 	
 	public MainGameModel(){
 		fishy = new FishCharacter();
@@ -24,6 +25,8 @@ public class MainGameModel {
 		timer = new Timer(); 				// fix this	
 		
 		theMap = new Map(1000, 100);		// map 1000 units long, 100 units tall
+		
+		comparator = new DistToFishComparator(fishy);
 	}
 	
 	// getters
