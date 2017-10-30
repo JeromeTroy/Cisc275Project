@@ -23,7 +23,9 @@ import javax.swing.JButton;
 
 
 public class TitleScreen extends JPanel implements ActionListener, MouseMotionListener {
-
+	
+	private MainController c;
+	
 	// attributes
 	private JLayeredPane layeredPane;
 	private JButton gameStart;
@@ -39,6 +41,9 @@ public class TitleScreen extends JPanel implements ActionListener, MouseMotionLi
 	
 	// constructor
 	public TitleScreen(){
+		//invoke constructor
+		c = new MainController();
+		
 		// layout
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
@@ -102,17 +107,17 @@ public class TitleScreen extends JPanel implements ActionListener, MouseMotionLi
 		// TODO Auto-generated method stub
 		String cmd = e.getActionCommand();
 		if (cmd == "goToGame"){
-			MainController.startGame();
+			c.startGame();
 			//TODO: need action to open game
 		} else if (cmd == "goToTutorial"){
-			MainController.startTutorial();
+			c.startTutorial();
 			//TODO: get rid of below
 		} else if (cmd== "fishCaught"){
-			MainController.mainGameModel.setCaught(!MainController.mainGameModel.getIsCaught());
+			c.mainGameModel.setCaught(!MainController.mainGameModel.getIsCaught());
 		} else if (cmd == "miniGameOver"){
-			MainController.miniGame.setOver(true);
+			c.miniGame.setOver(true);
 		} else if (cmd == "mainGameOver"){
-			MainController.mainGameModel.setOver(true);
+			c.mainGameModel.setOver(true);
 		}
 		
 	}

@@ -12,36 +12,22 @@ public class MainController {
 	public static MainGameModel mainGameModel;
 	private static GameTimerThread gameTimerThread;
 	public static MiniGameModel miniGame;
-	private static int tickPeriod = 30; // in milliseconds
+	private int tickPeriod = 30; // in milliseconds
 
 	public MainController() {
-		mainGameModel = new MainGameModel();
-		// timer = new GameTimer(mainGameModel.getGameLengthSeconds(),
-		// tickPeriod);
-		gameTimerThread = new GameTimerThread(mainGameModel.getGameLengthSeconds(), tickPeriod);
-
-	}
-
-	public static void main(String[] args) {
-		openGame();
 	}
 
 	public MainGameModel getModel() {
 		return mainGameModel;
 	}
 
-	public static void openGame() {
-		Runnable theGame = new RunGame();
-		javax.swing.SwingUtilities.invokeLater(theGame);
-	}
-
-	public static void startGame() {
-		MainController controller = new MainController();
-		gameTimerThread.start();
+	public void startGame() {
+		mainGameModel = new MainGameModel();
+		gameTimerThread = new GameTimerThread(mainGameModel.getGameLengthSeconds(), tickPeriod,this);		gameTimerThread.start();
 
 	}
 
-	public static void startTutorial() {
+	public void startTutorial() {
 		System.out.println("Start Tutorial");
 	}
 
