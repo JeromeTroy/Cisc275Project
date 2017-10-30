@@ -160,8 +160,10 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		// should stop within frame. so should the tail.
 		if (!c.inMiniGame()) {
 			fishLabel.setLocation(e.getX() - fishLabel.getWidth() / 2, e.getY() - fishLabel.getHeight() / 2);
+			//if(fishLabel.getLocation().getX()>300.0){
 			bgPos--;
 			bgLabel.setLocation(bgPos, 0);
+			//}
 		}
 	}
 
@@ -171,7 +173,12 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 
 	}
 	
-	
+	public void viewTick(){
+		//if(fishLabel.getLocation().getX()>300.0){
+		bgPos--;
+		bgLabel.setLocation(bgPos, 0);
+		//}
+	}
 	
 	
 	// public static void main(String[] args) {

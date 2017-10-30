@@ -43,6 +43,7 @@ public class MainController {
 			}
 		} else {
 			mainGameModel.update();
+			gameScreen.viewTick();
 		}
 		if (mainGameModel.isGameOver()) {
 			endGame();

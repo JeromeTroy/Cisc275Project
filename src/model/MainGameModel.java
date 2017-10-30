@@ -28,12 +28,12 @@ public class MainGameModel {
 		startGame();
 		gameOver = false;
 		fishy = new FishCharacter();
-		everyThing = new StuffSet(fishy);
+		everyThing = new StuffSet();
 		trashAmount = 0;
 		foodAmount = 0;
 		gameLengthSeconds = 180;
 
-		fishy = new FishCharacter();
+		
 		//everyThing.add(fishy);
 
 		theMap = new Map(1000, 100); // map 1000 units long, 100 units tall
