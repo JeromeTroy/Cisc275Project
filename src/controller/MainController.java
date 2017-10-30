@@ -80,7 +80,7 @@ public class MainController {
 	}
 	
 	public boolean inMiniGame(){
-		return  inMiniGame;
+		return inMiniGame;
 	}
 	
 	public void setInMiniGame(boolean b){
@@ -89,6 +89,10 @@ public class MainController {
 
 	public MainGameModel getModel(){
 		return mainGameModel;
+	}
+	
+	public MainGameModel getMiniGame(){
+		return miniGame;
 	}
 
 }
