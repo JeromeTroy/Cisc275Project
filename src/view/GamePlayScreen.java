@@ -30,6 +30,8 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 	
 	private JLayeredPane layeredPane;
 	private JLabel fishLabel;
+	private JLabel foodLabel;
+	private JLabel trashLabel;
 	private static MainController c;
 	//private JLabel bgLabel;
 	//private Image bgImage;
@@ -45,14 +47,20 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		layeredPane.setLayout(new GridLayout(1, 1));
 		
 		// Create and load the duke icon.
-		final ImageIcon icon = createImageIcon("images/fishie.png");
+		final ImageIcon fishIcon = createImageIcon("images/fishie.png");
+		
+		//Create and load food icon
+		final ImageIcon foodIcon = createImageIcon("images/food.jpg");
+		
+		//Create and load trash icon
+		final ImageIcon trashIcon = createImageIcon("images/fishie.png");
 		
 		// Create and load the background image.
 		final ImageIcon bg = createImageIcon("images/bg.png");
 		
 		// Create and add the Duke label to the layered pane.
-		fishLabel = new JLabel(icon);
-		if (icon == null) {
+		fishLabel = new JLabel(fishIcon);
+		if (fishIcon == null) {
 			System.err.println("Fishie icon not found; using blue rectangle instead.");
 			fishLabel.setOpaque(true);
 			fishLabel.setBackground(Color.BLUE);
