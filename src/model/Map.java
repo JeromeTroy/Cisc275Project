@@ -7,7 +7,7 @@ public class Map {
 	private int length; 			// total length of the map
 	private int height; 			// total height of the map
 	private int uniqueLength; 		// length of the map that is unique, beyond this will be periodic
-	private Vector position;
+	private OurVector position;
 	
 	
 	
@@ -43,10 +43,11 @@ public class Map {
 	}
 	
 	public void getCenter(){
-		//TODO: implement
+		int segment = Math.floorDiv(position.getX(), uniqueLength);
+		//return new OurVector((segment*uniqueLength)+0.5*uniqueLength);
 	}
 	
-	public Vector getPosition(){
-		return position;
-	}
+//	public Vector getPosition(){
+//		return position;
+//	}
 }

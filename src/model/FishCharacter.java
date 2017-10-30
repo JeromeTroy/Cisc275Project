@@ -14,7 +14,7 @@ public class FishCharacter extends StuffInOcean{
 	private int score;			// player's score
 	private ArrayList<String> possibleOrientations = new ArrayList<String>();
 	
-	boolean isCaught; 		// whether the fish is caught in trash
+	private boolean isCaught; 		// whether the fish is caught in trash
 	
 	
 	// Methods
@@ -85,10 +85,6 @@ public class FishCharacter extends StuffInOcean{
 		return true;
 	}
 	
-	public boolean getIsFish() {
-		return isFish();
-	}
-	
 	
 	
 	/*
@@ -142,26 +138,10 @@ public class FishCharacter extends StuffInOcean{
 		return score;
 	}
 	
-	public int getAngle(){
-		return angle;
-	}
-	
-	
-	public boolean getIsCaught() {
-		return isCaught;
-	}
-	
 	public int getRadius(){
 		return radius;
 	}
 	
-	public ArrayList<String> getPossibleOrientations() {
-		return possibleOrientations;
-	}
-	
-	public int getStepSize() {
-		return step;
-	}
 	// setters
 	public void setStepSize(int l){
 		step = l;
@@ -169,11 +149,6 @@ public class FishCharacter extends StuffInOcean{
 	
 	public void setRadius(int r){
 		radius = r;
-	}
-
-	public void setAngle(int a) {
-		angle = a;
-		
 	}
 	
 }

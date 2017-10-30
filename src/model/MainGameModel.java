@@ -5,13 +5,13 @@ import java.util.*;
 public class MainGameModel {
 
 	private FishCharacter fishy; // the main character
-	private Timer timer; // countdown timer
+	//private Timer timer; // countdown timer
 	private int trashAmount; // level of the trash around the main character
 	private int foodAmount; // level of food around the main character
 	private StuffSet everyThing; // all the stuff in the ocean
 	private int gameLengthSeconds;
 	private Map theMap; // the map
-	private MiniGameModel miniGame; // mini game
+	//private MiniGameModel miniGame; // mini game
 	
 	private int trashAccumulation = 2; // sets the accumulation of trash
 	private boolean gameOver;
@@ -41,9 +41,9 @@ public class MainGameModel {
 		return everyThing;
 	}
 
-	public MiniGameModel getMiniGame() {
-		return miniGame;
-	}
+//	public MiniGameModel getMiniGame() {
+//		return miniGame;
+//	}
 
 	public int getTrashAmount() {
 		return trashAmount;
@@ -73,9 +73,9 @@ public class MainGameModel {
 		return gameOver;
 	}
 
-	public Timer getTimer() {
-		return timer;
-	}
+//	public Timer getTimer() {
+//		return timer;
+//	}
 
 	public StuffSet getEveryThing() {
 		return everyThing;
@@ -113,9 +113,9 @@ public class MainGameModel {
 		this.theMap = theMap;
 	}
 
-	public void setTimer(Timer timer) {
-		this.timer = timer;
-	}
+//	public void setTimer(Timer timer) {
+//		this.timer = timer;
+//	}
 	
 	public void setOver(boolean b){
 		this.gameOver = b;

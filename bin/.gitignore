@@ -1,1 +1,4 @@
-bin/
+/controller/
+/model/
+/modelTest/
+/view/

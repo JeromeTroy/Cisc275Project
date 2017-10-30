@@ -23,7 +23,7 @@ public class MainController {
 
 	public void startGame() {
 		mainGameModel = new MainGameModel();
-		gameTimerThread = new GameTimerThread(mainGameModel.getGameLengthSeconds(), tickPeriod,this);		gameTimerThread.start();
+		gameTimerThread = new GameTimerThread(mainGameModel.getGameLengthSeconds(), getTickPeriod(),this);		gameTimerThread.start();
 
 	}
 
@@ -52,7 +52,6 @@ public class MainController {
 	}
 
 	public static void endGame() {
-		// TODO: This part isn't working as expected
 		gameTimerThread.stopTick();
 		System.out.println("Game Over");
 		System.out.println("End Screen");
@@ -68,6 +67,14 @@ public class MainController {
 
 	public static void endMiniGame() {
 		gameTimerThread.exitMiniGameMode();
+	}
+
+	public int getTickPeriod() {
+		return tickPeriod;
+	}
+
+	public void setTickPeriod(int tickPeriod) {
+		this.tickPeriod = tickPeriod;
 	}
 
 }

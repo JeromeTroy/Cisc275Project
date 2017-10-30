@@ -12,12 +12,13 @@ public class GameTimerThread extends Thread implements Runnable {
 	int tickPeriod;
 	int gameLength; // in milliseconds
 	int currentTimeElapsed = 0; // in milliseconds
-
-	public GameTimerThread(int gameLengthInSeconds, int tickPeriod) {
+	MainController c;
+	public GameTimerThread(int gameLengthInSeconds, int tickPeriod, MainController c) {
 		// this.model = model;
 		this.timer = new Timer();
 		this.tickPeriod = tickPeriod;
 		this.gameLength = gameLengthInSeconds * 1000;
+		this.c =c;
 	}
 
 	@Override
@@ -26,10 +27,10 @@ public class GameTimerThread extends Thread implements Runnable {
 		timer.scheduleAtFixedRate(new TimerTask() {
 			public void run() {
 				currentTimeElapsed += tickPeriod;
-				MainController.tick();
+				c.tick();
 
 			}
-		}, 0, tickPeriod);
+		}, 0, c.getTickPeriod());
 
 	}
 
