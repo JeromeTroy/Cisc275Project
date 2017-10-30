@@ -12,30 +12,37 @@ public class MainController {
 	private  MainGameModel mainGameModel;
 	private GamePlayScreen gameScreen;
 	private  GameTimerThread gameTimerThread;
-	//private GameTimerThread gameTimerThread;
 	private  MiniGameModel miniGame;
 	private int tickPeriod = 30; // in milliseconds
-	boolean inMiniGame; // is the game tick being paused here? The timer
-	// displayed is independent of the game timer
+	boolean inMiniGame;
 
 	public MainController() {
 	}
 
-
+	/* startGame() - begins game play
+	 * 				 creates instance of MainGameModel and the gametimer and starts the game timer
+	 */
 	public void startGame() {
 		mainGameModel = new MainGameModel();
 		gameTimerThread = new GameTimerThread(mainGameModel.getGameLengthSeconds(), getTickPeriod(),this);		
 		gameTimerThread.start();
 
 	}
-
+	
+	/* StartTutorial() -  POTENTIALLY DELETABLE
+	 * 					  currently just prints to console
+	 */
 	public void startTutorial() {
 		System.out.println("Start Tutorial");
 	}
 
+	/* tick() - controls the model and view updating at each tick
+	 * 
+	 */
 	protected void tick() {
 		System.out.println("Tick");
-
+		
+		//controls state of the game
 		if (inMiniGame) {
 			miniGame.update();
 			if (miniGame.isGameOver()) {
@@ -53,12 +60,19 @@ public class MainController {
 
 	}
 
+	/* endGame() - end the GamePlay
+	 * 			   //TODO: needs to fire some sort of end score in view
+	 * 
+	 */
 	public void endGame() {
 		gameTimerThread.stopTick();
 		System.out.println("Game Over");
 		System.out.println("End Screen");
 	}
 
+	/* launchMiniGame() - initializes minigame launches miniGame
+	 * 
+	 */
 	public void launchMiniGame() {
 		inMiniGame = true;
 		miniGame = new MiniGameModel();
