@@ -114,11 +114,11 @@ public class TitleScreen extends JPanel implements ActionListener, MouseMotionLi
 			c.startTutorial();
 			//TODO: get rid of below
 		} else if (cmd== "fishCaught"){
-			c.mainGameModel.setCaught(!c.mainGameModel.getIsCaught());
+			c.getModel().setCaught(!c.getModel().getIsCaught());
 		} else if (cmd == "miniGameOver"){
-			c.miniGame.setOver(true);
+			c.getMiniGame().setOver(true);
 		} else if (cmd == "mainGameOver"){
-			c.mainGameModel.setOver(true);
+			c.getModel().setOver(true);
 		}
 		
 	}

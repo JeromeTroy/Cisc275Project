@@ -34,14 +34,6 @@ public class GameTimerThread extends Thread implements Runnable {
 
 	}
 
-//	public void enterMiniGameMode() {
-//		c.setInMiniGame(true);
-//	}
-//
-//	public void exitMiniGameMode() {
-//		inMiniGame = false;
-//	}
-
 	public void stopTick() {
 		timer.cancel();
 	}
