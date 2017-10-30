@@ -23,6 +23,7 @@ public class MainGameModel {
 		everyThing = new StuffSet();
 		trashAmount = 0;
 		foodAmount = 0;
+<<<<<<< HEAD
 		gameLengthSeconds = 180;
 
 		fishy = new FishCharacter();
@@ -30,6 +31,16 @@ public class MainGameModel {
 
 		theMap = new Map(1000, 100); // map 1000 units long, 100 units tall
 		isCaught = false;
+=======
+		
+		everyThing = new StuffSet();
+		// everyThing.add(fishy);
+		
+		timer = new Timer(); 				// fix this	
+		
+		theMap = new Map(1000, 100);		// map 1000 units long, 100 units tall
+		
+>>>>>>> b2f38653bf57906637a81056d34a442cc025117c
 	}
 
 	// getters
@@ -165,6 +176,7 @@ public class MainGameModel {
 
 		everyThing.removeAll(allTrash);
 	}
+<<<<<<< HEAD
 
 	public boolean endGame() {
 		gameOver = true;
@@ -182,4 +194,20 @@ public class MainGameModel {
 		//}
 	}
 
+=======
+	
+	// moving
+	/*
+	 * Moves everything
+	 * Only allows movement based on map's moveMap method
+	 */
+	public void modelTick(){
+		if (theMap.moveMap(fishy)) {				// if move allowed
+			for (StuffInOcean crap : everyThing) {	// move everything
+				crap.move(fishy);
+			}
+		}
+	}
+	
+>>>>>>> b2f38653bf57906637a81056d34a442cc025117c
 }

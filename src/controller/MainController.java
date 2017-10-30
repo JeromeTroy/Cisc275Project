@@ -83,8 +83,24 @@ public class MainController {
 		return  inMiniGame;
 	}
 	
+<<<<<<< HEAD
 	public void setInMiniGame(boolean b){
 		inMiniGame = b;
+=======
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("Starting Game...");
+		Runnable theGame = new RunGame();
+		javax.swing.SwingUtilities.invokeLater(theGame);
+		System.out.println("Ending game");
+		
+		MainController theController = new MainController();
+		
+	}
+
+	public MainGameModel getModel(){
+		return model;
+>>>>>>> b2f38653bf57906637a81056d34a442cc025117c
 	}
 
 }
