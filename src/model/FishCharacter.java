@@ -150,5 +150,26 @@ public class FishCharacter extends StuffInOcean{
 	public void setRadius(int r){
 		radius = r;
 	}
+
+	public ArrayList<String> getPossibleOrientations() {
+		return possibleOrientations;
+	}
+
+	public boolean getIsCaught() {
+		return isCaught;
+	}
+
+	public int getAngle() {
+		return angle;
+	}
+
+	public void setAngle(int a) {
+		angle = a;
+		
+	}
+
+	public int getStepSize() {
+		return step;
+	}
 	
 }
