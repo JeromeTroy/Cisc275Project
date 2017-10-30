@@ -37,7 +37,7 @@ public class MainGameModel {
 
 		theMap = new Map(1000, 100); // map 1000 units long, 100 units tall
 		accumulateYMax = theMap.getHeight();
-		isCaught = false;
+		//isCaught = false;
 		
 		everyThing = new StuffSet();
 		// everyThing.add(fishy);
