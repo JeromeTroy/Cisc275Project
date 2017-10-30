@@ -20,7 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
-import fishieredux.MovementDemo;
+//import fishieredux.MovementDemo;
 
 //import fishieredux.MovementDemo;
 
@@ -41,7 +41,10 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		layeredPane.setLayout(new GridLayout(1, 1));
 		
 		// Create and load the duke icon.
-				final ImageIcon icon = createImageIcon("images/fishie.png");
+		final ImageIcon icon = createImageIcon("images/fishie.png");
+		
+		// Create and load the background image.
+		final ImageIcon bg = createImageIcon("images/bg.png");
 		
 		// Create and add the Duke label to the layered pane.
 		fishLabel = new JLabel(icon);
@@ -61,7 +64,7 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 	
 	/** Returns an ImageIcon, or null if the path was invalid. */
 	protected static ImageIcon createImageIcon(String path) {
-		java.net.URL imgURL = MovementDemo.class.getResource(path);
+		java.net.URL imgURL = GamePlayScreen.class.getResource(path);
 		if (imgURL != null) {
 			return new ImageIcon(imgURL);
 		} else {
@@ -95,7 +98,7 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		frame.setVisible(true);
 	}
 	public static void activateGamePlayScreen() {
-		//createAndShowGUI();
+		createAndShowGUI();
 	}
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
@@ -103,8 +106,8 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		
 	}
 	@Override
-	public void mouseMoved(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+	public void mouseMoved(MouseEvent e) {
+		fishLabel.setLocation(e.getX() - fishLabel.getWidth() / 2, e.getY() - fishLabel.getHeight() / 2);
 		
 	}
 	@Override
