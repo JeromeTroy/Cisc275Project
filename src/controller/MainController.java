@@ -4,15 +4,18 @@ package controller;
 //TODO: organize imports
 import model.*;
 import javax.swing.*;
+
+import view.GamePlayScreen;
 import view.TitleScreen;
 
 public class MainController {
 
 	private MainGameModel model;
-	
+	private GamePlayScreen screen;
 	
 	public MainController(){
 		model = new MainGameModel();
+		screen = new GamePlayScreen();
 		
 	}
 	
