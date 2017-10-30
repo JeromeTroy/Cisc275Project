@@ -74,6 +74,19 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		add(layeredPane);
 	}
 	
+	public void displayFoodTrash(){
+		boolean isFood;
+		for (int i=0; i<c.getMainGameModel().getStuff().size(); i++){
+			isFood = c.getMainGameModel().getStuff().get(i).isFood();
+			if (isFood){
+				layeredPane.add(new Jlabel(foodIcon)); //TODO: figure out how to put item on xyCoord
+			}
+		
+		}
+		
+		
+	}
+	
 	/** Returns an ImageIcon, or null if the path was invalid. */
 	protected static ImageIcon createImageIcon(String path) {
 		java.net.URL imgURL = GamePlayScreen.class.getResource(path);
