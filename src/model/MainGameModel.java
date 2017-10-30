@@ -27,19 +27,20 @@ public class MainGameModel {
 	public MainGameModel() {
 		startGame();
 		gameOver = false;
-		everyThing = new StuffSet();
+		fishy = new FishCharacter();
+		everyThing = new StuffSet(fishy);
 		trashAmount = 0;
 		foodAmount = 0;
 		gameLengthSeconds = 180;
 
-		fishy = new FishCharacter();
-		everyThing.add(fishy);
+	
+		//everyThing.add(fishy);
 
 		theMap = new Map(1000, 100); // map 1000 units long, 100 units tall
 		accumulateYMax = theMap.getHeight();
 		//isCaught = false;
 		
-		everyThing = new StuffSet();
+		//everyThing = new StuffSet();
 		// everyThing.add(fishy);
 		
 		timer = new Timer(); 				// fix this	
