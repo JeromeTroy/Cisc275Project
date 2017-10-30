@@ -33,6 +33,8 @@ public class TestController {
 		// Schedule a job for the event-dispatching thread:
 		// creating and showing this application's GUI.
 		//System.out.println("hi there");
+		//System.out.println(m.getTrashAmount());
+		
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				view.activateView();
