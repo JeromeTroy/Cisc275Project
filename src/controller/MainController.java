@@ -25,12 +25,7 @@ public class MainController {
 		System.out.println("Ending game");
 		
 		MainController theController = new MainController();
-		System.out.println(theController.getModel().getFishy());
-		theController.getModel().getFishy().move(theController.getModel().getMap());
-		theController.getModel().getFishy().rotate(90);
-		System.out.println(theController.getModel().getFishy());
-		theController.getModel().getFishy().move(theController.getModel().getMap());
-		System.out.println(theController.getModel().getFishy());
+		
 	}
 
 	public MainGameModel getModel(){

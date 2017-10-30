@@ -19,7 +19,7 @@ public class MainGameModel {
 		foodAmount = 0;
 		
 		everyThing = new StuffSet();
-		everyThing.add(fishy);
+		// everyThing.add(fishy);
 		
 		timer = new Timer(); 				// fix this	
 		
@@ -74,4 +74,18 @@ public class MainGameModel {
 		
 		everyThing.removeAll(allTrash);
 	}
+	
+	// moving
+	/*
+	 * Moves everything
+	 * Only allows movement based on map's moveMap method
+	 */
+	public void modelTick(){
+		if (theMap.moveMap(fishy)) {				// if move allowed
+			for (StuffInOcean crap : everyThing) {	// move everything
+				crap.move(fishy);
+			}
+		}
+	}
+	
 }

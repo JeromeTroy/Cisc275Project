@@ -55,7 +55,7 @@ public class FishCharacter extends StuffInOcean{
 	 * 		None
 	 * moves the fish
 	 */
-	public void move(Map m) {
+	public void move() {
 		// moves the fish	
 		
 		// temporary storage
