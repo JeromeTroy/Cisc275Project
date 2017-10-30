@@ -10,7 +10,7 @@ import java.util.Timer;
 public class MainController {
 	// private static GameTimer timer;
 	public static MainGameModel mainGameModel;
-	private static MainGameThread mainGameThread;
+	private static GameTimerThread gameTimerThread;
 	public static MiniGameModel miniGame;
 	private static int tickPeriod = 30; // in milliseconds
 
@@ -18,7 +18,7 @@ public class MainController {
 		mainGameModel = new MainGameModel();
 		// timer = new GameTimer(mainGameModel.getGameLengthSeconds(),
 		// tickPeriod);
-		mainGameThread = new MainGameThread(mainGameModel.getGameLengthSeconds(), tickPeriod);
+		gameTimerThread = new GameTimerThread(mainGameModel.getGameLengthSeconds(), tickPeriod);
 
 	}
 
@@ -37,7 +37,7 @@ public class MainController {
 
 	public static void startGame() {
 		MainController controller = new MainController();
-		mainGameThread.start();
+		gameTimerThread.start();
 
 	}
 
@@ -48,7 +48,7 @@ public class MainController {
 	protected static void tick() {
 		System.out.println("Tick");
 
-		if (mainGameThread.inMiniGame) {
+		if (gameTimerThread.inMiniGame) {
 			miniGame.update();
 			if (miniGame.isGameOver()) {
 				endMiniGame();
@@ -67,13 +67,13 @@ public class MainController {
 
 	public static void endGame() {
 		// TODO: This part isn't working as expected
-		mainGameThread.stopTick();
+		gameTimerThread.stopTick();
 		System.out.println("Game Over");
 		System.out.println("End Screen");
 	}
 
 	public static void launchMiniGame() {
-		mainGameThread.enterMiniGameMode();
+		gameTimerThread.enterMiniGameMode();
 		miniGame = new MiniGameModel();
 		System.out.println("MiniGame Launched...");
 		mainGameModel.setCaught(false);
@@ -81,7 +81,7 @@ public class MainController {
 	}
 
 	public static void endMiniGame() {
-		mainGameThread.exitMiniGameMode();
+		gameTimerThread.exitMiniGameMode();
 	}
 
 }

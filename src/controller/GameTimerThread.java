@@ -5,7 +5,7 @@ import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 import model.*;
 
-public class MainGameThread extends Thread implements Runnable {
+public class GameTimerThread extends Thread implements Runnable {
 	Timer timer;
 	boolean inMiniGame; // is the game tick being paused here? The timer
 						// displayed is independent of the game timer
@@ -13,7 +13,7 @@ public class MainGameThread extends Thread implements Runnable {
 	int gameLength; // in milliseconds
 	int currentTimeElapsed = 0; // in milliseconds
 
-	public MainGameThread(int gameLengthInSeconds, int tickPeriod) {
+	public GameTimerThread(int gameLengthInSeconds, int tickPeriod) {
 		// this.model = model;
 		this.timer = new Timer();
 		this.tickPeriod = tickPeriod;
