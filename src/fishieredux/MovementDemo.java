@@ -15,10 +15,15 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import acontroller.TestController;
+
 public class MovementDemo extends JPanel implements ActionListener, MouseMotionListener {
 	private String[] layerStrings = { "Yellow (0)", "Magenta (1)", "Cyan (2)", "Red (3)", "Green (4)", "Blue (5)" };
 	private Color[] layerColors = { Color.yellow, Color.magenta, Color.cyan, Color.red, Color.green, Color.blue };
 
+	//public TestController tc;
+	public int fishX;
+	public int fishY;
 	private JLayeredPane layeredPane;
 	private JLabel dukeLabel;
 	private JLabel bgLabel;
@@ -31,6 +36,9 @@ public class MovementDemo extends JPanel implements ActionListener, MouseMotionL
 	// private static String LAYER_COMMAND = "layer";
 
 	public MovementDemo() {
+		fishX = 0;
+		fishY = 0;
+		
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
 		// Create and load the duke icon.
@@ -85,6 +93,8 @@ public class MovementDemo extends JPanel implements ActionListener, MouseMotionL
 		add(Box.createRigidArea(new Dimension(0, 10)));
 		add(layeredPane);
 	}
+	
+	
 
 	/** Returns an ImageIcon, or null if the path was invalid. */
 	protected static ImageIcon createImageIcon(String path) {
@@ -133,6 +143,10 @@ public class MovementDemo extends JPanel implements ActionListener, MouseMotionL
 	// Make Duke follow the cursor.
 	public void mouseMoved(MouseEvent e) {
 		dukeLabel.setLocation(e.getX() - dukeLabel.getWidth() / 2, e.getY() - dukeLabel.getHeight() / 2);
+		TestController.fishXPos = e.getX();
+		TestController.fishYPos = e.getY();
+		System.out.println("hi");
+		//TestController.updateModel();
 	}
 
 	public void mouseDragged(MouseEvent e) {
@@ -173,14 +187,14 @@ public class MovementDemo extends JPanel implements ActionListener, MouseMotionL
 		frame.pack();
 		frame.setVisible(true);
 	}
-
-	public static void main(String[] args) {
-		// Schedule a job for the event-dispatching thread:
-		// creating and showing this application's GUI.
-		javax.swing.SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				createAndShowGUI();
-			}
-		});
+	
+	public static void activateView(){
+		createAndShowGUI();
 	}
+
+
+
+	
+
+	
 }
