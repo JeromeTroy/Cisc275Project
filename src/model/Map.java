@@ -1,10 +1,15 @@
 package model;
 
+import java.util.Vector;
+
 public class Map {
 
 	private int length; 			// total length of the map
 	private int height; 			// total height of the map
 	private int uniqueLength; 		// length of the map that is unique, beyond this will be periodic
+	private Vector position;
+	
+	
 	
 	public int getLength(){
 		return length;
@@ -35,5 +40,13 @@ public class Map {
 	
 	public void setUniqueLength(int u){
 		uniqueLength = u;
+	}
+	
+	public void getCenter(){
+		//TODO: implement
+	}
+	
+	public Vector getPosition(){
+		return position;
 	}
 }

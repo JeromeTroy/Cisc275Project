@@ -1,39 +1,87 @@
 package controller;
 
-
 //TODO: organize imports
 import model.*;
 import javax.swing.*;
 import view.TitleScreen;
+import java.util.*;
+import java.util.Timer;
 
 public class MainController {
+	// private static GameTimer timer;
+	public static MainGameModel mainGameModel;
+	private static GameTimerThread gameTimerThread;
+	public static MiniGameModel miniGame;
+	private static int tickPeriod = 30; // in milliseconds
 
-	private MainGameModel model;
-	
-	
-	public MainController(){
-		model = new MainGameModel();
-		
+	public MainController() {
+		mainGameModel = new MainGameModel();
+		// timer = new GameTimer(mainGameModel.getGameLengthSeconds(),
+		// tickPeriod);
+		gameTimerThread = new GameTimerThread(mainGameModel.getGameLengthSeconds(), tickPeriod);
+
 	}
-	
-	
+
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println("Starting Game...");
+		openGame();
+	}
+
+	public MainGameModel getModel() {
+		return mainGameModel;
+	}
+
+	public static void openGame() {
 		Runnable theGame = new RunGame();
 		javax.swing.SwingUtilities.invokeLater(theGame);
-		System.out.println("Ending game");
-		
-		MainController theController = new MainController();
-		System.out.println(theController.getModel().getFishy());
-		theController.getModel().getFishy().move(theController.getModel().getMap());
-		theController.getModel().getFishy().rotate(90);
-		System.out.println(theController.getModel().getFishy());
-		theController.getModel().getFishy().move(theController.getModel().getMap());
-		System.out.println(theController.getModel().getFishy());
 	}
 
-	public MainGameModel getModel(){
-		return model;
+	public static void startGame() {
+		MainController controller = new MainController();
+		gameTimerThread.start();
+
 	}
+
+	public static void startTutorial() {
+		System.out.println("Start Tutorial");
+	}
+
+	protected static void tick() {
+		System.out.println("Tick");
+
+		if (gameTimerThread.inMiniGame) {
+			miniGame.update();
+			if (miniGame.isGameOver()) {
+				endMiniGame();
+			}
+		} else {
+			mainGameModel.update();
+		}
+		if (mainGameModel.isGameOver()) {
+			endGame();
+		}
+		if (mainGameModel.getIsCaught()) {
+			launchMiniGame();
+		}
+
+	}
+
+	public static void endGame() {
+		// TODO: This part isn't working as expected
+		gameTimerThread.stopTick();
+		System.out.println("Game Over");
+		System.out.println("End Screen");
+	}
+
+	public static void launchMiniGame() {
+		gameTimerThread.enterMiniGameMode();
+		miniGame = new MiniGameModel();
+		System.out.println("MiniGame Launched...");
+		mainGameModel.setCaught(false);
+
+	}
+
+	public static void endMiniGame() {
+		gameTimerThread.exitMiniGameMode();
+	}
+
 }
