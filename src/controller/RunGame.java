@@ -12,7 +12,7 @@ public class RunGame implements Runnable {
 	public void run() {
 		// TODO Auto-generated method stub
 		TitleScreen.activateTitle();
-		GamePlayScreen.activateGamePlayScreen();
+		//GamePlayScreen.activateGamePlayScreen();
 	}
 
 }
