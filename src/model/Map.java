@@ -11,6 +11,9 @@ public class Map {
 	
 	private OurVector origin; 		// location of the origin of the map relative to the fish
 	
+	private int xpos;
+	//private int ypos;
+	
 	public int getLength(){
 		return length;
 	}
@@ -23,11 +26,15 @@ public class Map {
 		length = l;
 		height = h;
 		uniqueLength = ul;
+		xpos=0;
+		//ypos=0;
 	}
 	
 	public Map(int l, int h){
 		length = l;
 		height = h;
+		xpos=0;
+		//ypos=0;
 	}
 	
 	public void setLength(int l){
@@ -77,6 +84,10 @@ public class Map {
 			origin.setY((int) proposedY);		
 		}
 		return validMove;
+	}
+	
+	public void newMoveMap(){
+		xpos--;
 	}
 
 }

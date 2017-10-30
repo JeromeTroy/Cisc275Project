@@ -119,4 +119,9 @@ public class StuffInOcean implements Comparable<StuffInOcean>{
 		
 		
 	}
+	
+	public void move(){
+		int deltaX = 1;
+		position.setX(position.getX() - deltaX);
+	}
 }

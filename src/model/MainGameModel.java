@@ -193,6 +193,7 @@ public class MainGameModel {
 
 	public void update() {
 		//if (!isCaught) {
+		modelTick();
 			System.out.println("Update Game Model");
 		//}
 	}
@@ -204,17 +205,25 @@ public class MainGameModel {
 	 * Only allows movement based on map's moveMap method
 	 */
 	public void modelTick(){
-		if (theMap.moveMap(fishy)) {				// if move allowed
-			for (StuffInOcean crap : everyThing) {	// move everything
-				crap.move(fishy);
-			}
-		}
-		if (fishy.isCaught(everyThing.get(1))) {
-			// TODO: call minigame
-			
-			removeTrash();
-		}else {
-			accumulate();
+		theMap.newMoveMap();
+		System.out.println("Map moved");
+//		if (theMap.moveMap(fishy)) {				// if move allowed
+//			for (StuffInOcean crap : everyThing) {	// move everything
+//				crap.move(fishy);
+//				//System.out.println("Stuff is moved");
+//			}
+//		}
+//		if (fishy.isCaught(everyThing.get(1))) {
+//			// TODO: call minigame
+//			
+//			removeTrash();
+//		}else {
+//			accumulate();
+//		}
+		accumulate();
+		for (StuffInOcean crap : everyThing) {	// move everything
+			crap.move();
+			System.out.println("Stuff is moved");
 		}
 	}
 	

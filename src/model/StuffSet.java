@@ -19,7 +19,8 @@ public class StuffSet extends ArrayList<StuffInOcean> {
 		this.f = f;
 		//super.add(f);
 	}
-
+	
+	//May not need this constuctor
 	public StuffSet(FishCharacter f, int partitionDist) {
 		this.f = f;
 		this.partitionDist = partitionDist;
@@ -36,19 +37,19 @@ public class StuffSet extends ArrayList<StuffInOcean> {
 	 * addition was successful
 	 */
 	public boolean add(StuffInOcean s) {
-		if (f == null) {				// trying to add but fish not initialized
-			if (s.isFish()) {			// if it's a fish
-				// super.add(s);
-				this.f = (FishCharacter) s;		// assign to the fish position
-				return true;
-			}
-			else{						// why are we adding something with no fish yet?
-				System.out.println("Warning, no fish character assigned yet");
-				// TODO: better handling here
-				return false;
-			}
-			
-		}else{ 							// there is a fish
+//		if (f == null) {				// trying to add but fish not initialized
+//			if (s.isFish()) {			// if it's a fish
+//				// super.add(s);
+//				this.f = (FishCharacter) s;		// assign to the fish position
+//				return true;
+//			}
+//			else{						// why are we adding something with no fish yet?
+//				System.out.println("Warning, no fish character assigned yet");
+//				// TODO: better handling here
+//				return false;
+//			}
+//			
+//		}else{ 							// there is a fish
 			for (StuffInOcean item : this) {		// verify there is not a collision
 				if (s.isCollided(item)) {
 					return false;					// if collision, do not add
@@ -61,7 +62,7 @@ public class StuffSet extends ArrayList<StuffInOcean> {
 			Collections.sort(this, new DistToFishComparator(f));
 			//}
 			return true;
-		}
+//		}
 
 		// super.add(s);
 		// Collections.sort(this, new DistToFishComparator(f));
