@@ -103,9 +103,9 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		
 	}
 	@Override
-	public void mouseMoved(MouseEvent arg0) {
+	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		fishLabel.setLocation(e.getX() - fishLabel.getWidth() / 2, e.getY() - fishLabel.getHeight() / 2);
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
