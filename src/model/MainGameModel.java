@@ -13,9 +13,16 @@ public class MainGameModel {
 	private Map theMap; // the map
 	//private MiniGameModel miniGame; // mini game
 	
-	private int trashAccumulation = 2; // rate of increase of trash
+	private int trashAccumulation = 1; // rate of increase of trash
+	private int foodAccumulation = 1;  // rate of increase of food
 	private boolean gameOver;
 	protected boolean isCaught;
+	
+	// TODO: verify these are correct
+	private int accumulateXMin = 500;
+	private int accumulateXMax = 600;
+	private int accumulateYMin = 0;
+	private int accumulateYMax;
 
 	public MainGameModel() {
 		startGame();
@@ -29,6 +36,7 @@ public class MainGameModel {
 		everyThing.add(fishy);
 
 		theMap = new Map(1000, 100); // map 1000 units long, 100 units tall
+		accumulateYMax = theMap.getHeight();
 		isCaught = false;
 		
 		everyThing = new StuffSet();
@@ -140,9 +148,22 @@ public class MainGameModel {
 	 * between 0-set trashAccumulation places trash at random location of vector
 	 * <0-100,0-100> parameters - none input - none return - none output - none
 	 */
-	public void accumulateTrash() { // accumulate trash
+	public void accumulate() { // accumulate trash
 		trashAmount += trashAccumulation;
-		// TODO: set location of new trash and add to list
+		foodAmount += foodAccumulation;
+		Trash newTrash = new Trash(randInt(accumulateXMin, accumulateXMax),randInt(accumulateYMin, accumulateYMax));
+		Food newFood = new Food(randInt(accumulateXMin, accumulateXMax),randInt(accumulateYMin, accumulateYMax));
+		everyThing.add(newTrash);
+		everyThing.add(newFood);
+	}
+	
+	/*
+	 * helper function to calculate a random number in a range
+	 */
+	public static int randInt(int min, int max) {
+		Random rn = new Random();
+		int randNum = rn.nextInt(max - min + 1) + min;
+		return randNum;
 	}
 
 	/*
@@ -188,6 +209,7 @@ public class MainGameModel {
 				crap.move(fishy);
 			}
 		}
+		accumulate();
 	}
 	
 }
