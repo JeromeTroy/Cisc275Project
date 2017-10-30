@@ -6,14 +6,14 @@ public class MainGameModel {
 
 	private FishCharacter fishy; // the main character
 	private Timer timer; // countdown timer
-	private int trashAmount; // level of the trash around the main character
+	private int trashAmount = 0; // level of the trash around the main character
 	private int foodAmount; // level of food around the main character
 	private StuffSet everyThing; // all the stuff in the ocean
 	private int gameLengthSeconds;
 	private Map theMap; // the map
 	//private MiniGameModel miniGame; // mini game
 	
-	private int trashAccumulation = 2; // sets the accumulation of trash
+	private int trashAccumulation = 2; // rate of increase of trash
 	private boolean gameOver;
 	protected boolean isCaught;
 
@@ -141,22 +141,8 @@ public class MainGameModel {
 	 * <0-100,0-100> parameters - none input - none return - none output - none
 	 */
 	public void accumulateTrash() { // accumulate trash
-		int incTrash = (int) (Math.random() * 100 % trashAccumulation) + 1; // TODO:
-																			// how
-																			// much
-																			// trash
-																			// needs
-																			// to
-																			// be
-																			// generated
-																			// per
-																			// method
-																			// call
-		for (int i = 0; i < incTrash; i++) {
-			everyThing.add(new Trash((int) Math.random() * 100, (int) Math.random() * 100));
-			// TODO: replace randomly generated location with locally random
-			// location
-		}
+		trashAmount += trashAccumulation;
+		// TODO: set location of new trash and add to list
 	}
 
 	/*
