@@ -33,7 +33,7 @@ public class MainGameModelTest {
 		m.addStuff(new Trash(0,0));
 		
 		
-		assertEquals("Final Size of StuffSet", m.getStuff().size(),4);
+		assertEquals("Final Size of StuffSet", m.getStuff().size(),3);
 	}
 
 	@Test
@@ -59,15 +59,15 @@ public class MainGameModelTest {
 		m.addStuff(new Trash(1,2));
 		m.addStuff(new Trash(0,0));
 		m.addStuff(new Trash(50,50));
-		assertEquals("Initial Size of StuffSet", m.getStuff().size(),5);
+		assertEquals("Initial Size of StuffSet", m.getStuff().size(),4);
 		count();
-		assertEquals(numFood,2);
+		assertEquals(numFood,1);
 		assertEquals(numFish,1);
 		assertEquals(numTrash,2);
 		m.removeTrash();
-		assertEquals("Final Size of StuffSet", m.getStuff().size(),3);
+		assertEquals("Final Size of StuffSet", m.getStuff().size(),2);
 		count();
-		assertEquals(numFood,2);
+		assertEquals(numFood,1);
 		assertEquals(numFish,1);
 		assertEquals(numTrash,0);
 		
