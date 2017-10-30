@@ -10,7 +10,12 @@ import java.util.Timer;
 public class MainController {
 	// private static GameTimer timer;
 	public  MainGameModel mainGameModel;
+<<<<<<< HEAD
+	public GamePlayScreen gameScreen;
+	private  GameTimerThread gameTimerThread;
+=======
 	//private GameTimerThread gameTimerThread;
+>>>>>>> master
 	public  MiniGameModel miniGame;
 	private int tickPeriod = 30; // in milliseconds
 	boolean inMiniGame; // is the game tick being paused here? The timer
