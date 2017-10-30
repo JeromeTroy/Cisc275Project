@@ -16,7 +16,7 @@ public class MainGameModel {
 	private int trashAccumulation = 1; // rate of increase of trash
 	private int foodAccumulation = 1;  // rate of increase of food
 	private boolean gameOver;
-	protected boolean isCaught;
+	//protected boolean isCaught;
 	
 	// TODO: verify these are correct
 	private int accumulateXMin = 500;
@@ -72,9 +72,9 @@ public class MainGameModel {
 		return theMap;
 	}
 
-	public boolean getIsCaught() {
-		return isCaught;
-	}
+//	public boolean getIsCaught() {
+//		return isCaught;
+//	}
 
 	public int getGameLengthSeconds() {
 		return gameLengthSeconds;
@@ -116,9 +116,9 @@ public class MainGameModel {
 		this.gameLengthSeconds = gameLengthSeconds;
 	}
 
-	public void setCaught(boolean isCaught) {
-		this.isCaught = isCaught;
-	}
+//	public void setCaught(boolean isCaught) {
+//		fishy.isCaught = isCaught;
+//	}
 
 	public void setEveryThing(StuffSet everyThing) {
 		this.everyThing = everyThing;

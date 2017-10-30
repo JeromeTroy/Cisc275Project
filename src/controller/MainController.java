@@ -54,7 +54,7 @@ public class MainController {
 		if (mainGameModel.isGameOver()) {
 			endGame();
 		}
-		if (mainGameModel.getIsCaught()) {
+		if (mainGameModel.getFishy().getIsCaught()) {
 			launchMiniGame();
 		}
 
@@ -77,7 +77,7 @@ public class MainController {
 		inMiniGame = true;
 		miniGame = new MiniGameModel();
 		System.out.println("MiniGame Launched...");
-		mainGameModel.setCaught(false);
+		mainGameModel.getFishy().setCaught(false);
 
 	}
 

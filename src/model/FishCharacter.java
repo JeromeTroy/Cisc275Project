@@ -176,5 +176,8 @@ public class FishCharacter extends StuffInOcean{
 		return step;
 	}
 	
+	public void setCaught(boolean b){
+		isCaught = b;
+	}
 	
 }
