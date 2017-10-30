@@ -55,26 +55,26 @@ public class FishCharacter extends StuffInOcean{
 	 * 		None
 	 * moves the fish
 	 */
-	public void move(Map m) {
+	public void move() {
 		// moves the fish	
 		
 		// temporary storage
-		int prevX = position.getX();
-		int prevY = position.getY();
-		
-		// moving
-		int deltaX = (int) Math.cos(Math.toRadians(angle))*step;
-		int deltaY = (int) Math.sin(Math.toRadians(angle))*step;
-		position.setX(position.getX() + deltaX);
-		position.setY(position.getY() + deltaY);
-		
-		// bounds handling
-		if ((position.getX() > m.getLength()) || (position.getX() < 0)){
-			position.setX(prevX);
-		}
-		if ((position.getY() > m.getHeight()) || (position.getY() < 0)){
-			position.setY(prevY);
-		}
+//		int prevX = position.getX();
+//		int prevY = position.getY();
+//		
+//		// moving
+//		int deltaX = (int) Math.cos(Math.toRadians(angle))*step;
+//		int deltaY = (int) Math.sin(Math.toRadians(angle))*step;
+//		position.setX(position.getX() + deltaX);
+//		position.setY(position.getY() + deltaY);
+//		
+//		// bounds handling
+//		if ((position.getX() > m.getLength()) || (position.getX() < 0)){
+//			position.setX(prevX);
+//		}
+//		if ((position.getY() > m.getHeight()) || (position.getY() < 0)){
+//			position.setY(prevY);
+//		}
 	}
 	
 	public String getName(){
@@ -142,6 +142,13 @@ public class FishCharacter extends StuffInOcean{
 		return radius;
 	}
 	
+	public int getSpeed(){
+		return step;
+	}
+	
+	public int getAngle(){
+		return angle;
+	}
 	// setters
 	public void setStepSize(int l){
 		step = l;
@@ -159,9 +166,6 @@ public class FishCharacter extends StuffInOcean{
 		return isCaught;
 	}
 
-	public int getAngle() {
-		return angle;
-	}
 
 	public void setAngle(int a) {
 		angle = a;
@@ -171,5 +175,6 @@ public class FishCharacter extends StuffInOcean{
 	public int getStepSize() {
 		return step;
 	}
+	
 	
 }

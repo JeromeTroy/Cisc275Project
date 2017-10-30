@@ -10,8 +10,12 @@ import java.util.Timer;
 public class MainController {
 	// private static GameTimer timer;
 	public  MainGameModel mainGameModel;
+<<<<<<< HEAD
 	public GamePlayScreen gameScreen;
 	private  GameTimerThread gameTimerThread;
+=======
+	//private GameTimerThread gameTimerThread;
+>>>>>>> master
 	public  MiniGameModel miniGame;
 	private int tickPeriod = 30; // in milliseconds
 	boolean inMiniGame; // is the game tick being paused here? The timer
@@ -20,13 +24,10 @@ public class MainController {
 	public MainController() {
 	}
 
-	public MainGameModel getModel() {
-		return mainGameModel;
-	}
 
 	public void startGame() {
 		mainGameModel = new MainGameModel();
-		gameTimerThread = new GameTimerThread(mainGameModel.getGameLengthSeconds(), getTickPeriod(),this);		gameTimerThread.start();
+		//gameTimerThread = new GameTimerThread(mainGameModel.getGameLengthSeconds(), getTickPeriod(),this);		gameTimerThread.start();
 
 	}
 
@@ -55,7 +56,7 @@ public class MainController {
 	}
 
 	public void endGame() {
-		gameTimerThread.stopTick();
+		//gameTimerThread.stopTick();
 		System.out.println("Game Over");
 		System.out.println("End Screen");
 	}
@@ -86,6 +87,21 @@ public class MainController {
 	
 	public void setInMiniGame(boolean b){
 		inMiniGame = b;
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("Starting Game...");
+		Runnable theGame = new RunGame();
+		javax.swing.SwingUtilities.invokeLater(theGame);
+		System.out.println("Ending game");
+		
+		MainController theController = new MainController();
+		
+	}
+
+	public MainGameModel getModel(){
+		return mainGameModel;
 	}
 
 }
