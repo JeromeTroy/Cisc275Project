@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -33,18 +34,19 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 	private JLabel foodLabel;
 	private JLabel trashLabel;
 	private static MainController c;
-	//private JLabel bgLabel;
+	private JLabel bgLabel;
+	private int bgPos;
 	//private Image bgImage;
 	//private JCheckBox onTop;
 	//private JComboBox layerList;
 	
 	public GamePlayScreen(){
-		
+		bgPos = 0;
 		layeredPane = new JLayeredPane();
 		layeredPane.setPreferredSize(new Dimension(700, 500));
 		layeredPane.setBorder(BorderFactory.createTitledBorder("Move the Mouse to Move Fishie"));
 		layeredPane.addMouseMotionListener(this);
-		layeredPane.setLayout(new GridLayout(1, 1));
+		layeredPane.setLayout(new FlowLayout());
 		
 		// Create and load the duke icon.
 		final ImageIcon fishIcon = createImageIcon("images/fishie.png");
@@ -57,6 +59,16 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		
 		// Create and load the background image.
 		final ImageIcon bg = createImageIcon("images/bg.png");
+		
+		// Create and add the Duke label to the layered pane.
+				bgLabel = new JLabel(bg);
+				bgLabel.setBounds(0, 0, 2000, 500);
+				if (bg == null) {
+					System.err.println("Background not found; using blue rectangle instead.");
+					fishLabel.setOpaque(true);
+					fishLabel.setBackground(Color.BLUE);
+				}
+				layeredPane.add(bgLabel, new Integer(2), 0);
 		
 		// Create and add the Duke label to the layered pane.
 		fishLabel = new JLabel(fishIcon);
@@ -123,6 +135,8 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		//TODO: Make so fish character doesn't go out of bounds at all. Head should stop within frame. so should the tail.
 		if (!c.inMiniGame()){
 			fishLabel.setLocation(e.getX() - fishLabel.getWidth() / 2, e.getY() - fishLabel.getHeight() / 2);
+			bgPos--;
+			bgLabel.setLocation(bgPos, 0);
 		}
 	}
 	@Override
