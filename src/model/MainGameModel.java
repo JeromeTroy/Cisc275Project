@@ -209,7 +209,13 @@ public class MainGameModel {
 				crap.move(fishy);
 			}
 		}
-		accumulate();
+		if (fishy.isCaught(everyThing.get(1))) {
+			// TODO: call minigame
+			
+			removeTrash();
+		}else {
+			accumulate();
+		}
 	}
 	
 }
