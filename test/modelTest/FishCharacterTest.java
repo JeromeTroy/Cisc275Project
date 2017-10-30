@@ -38,16 +38,16 @@ public class FishCharacterTest {
 	
 	@Test
 	public void testMove() {
-		f2.move(m1);
+		f2.move();
 		assertEquals(f2.getPosition().toString(), "<11,10>");
-		f2.move(m1);
-		f2.move(m1);
-		f2.move(m1);
+		f2.move();
+		f2.move();
+		f2.move();
 		assertEquals(f2.getPosition().toString(), "<14,10>");
 		f2.setAngle(90);
-		f2.move(m1);
-		f2.move(m1);
-		f2.move(m1);
+		f2.move();
+		f2.move();
+		f2.move();
 		assertEquals(f2.getPosition().toString(), "<14,13>");
 	}
 	
