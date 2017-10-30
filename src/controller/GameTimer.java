@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 public class GameTimer implements Runnable {
 	Timer timer;
 	int gameLength; //in seconds
-	int currentTimeElapsed; //in milliseconds
+	int currentTimeElapsed = 0; //in milliseconds
 	
 	
 	public GameTimer(int gameLength){

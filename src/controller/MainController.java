@@ -13,11 +13,12 @@ public class MainController {
 	public static MainGameModel mainGameModel;
 	private static MainGameThread mainGameThread;
 	public static MiniGameModel miniGame;
+	private static int tickPeriod = 30; //in milliseconds
 	
 	public MainController(){
 		mainGameModel = new MainGameModel();
 		timer = new GameTimer(mainGameModel.getGameLengthSeconds());
-		mainGameThread = new MainGameThread();
+		mainGameThread = new MainGameThread(tickPeriod);
 		
 		}
 	
@@ -47,6 +48,7 @@ public class MainController {
 	
 	protected static void tick() {
 		System.out.println("Tick");
+		
 		if (mainGameThread.inMiniGame){
 			miniGame.update();
 			if (miniGame.isGameOver()){
@@ -66,7 +68,7 @@ public class MainController {
 	
 	public static void endGame(){
 		//TODO: This part isn't working as expected
-		mainGameThread.interrupt();
+		mainGameThread.stopTick();
 		System.out.println("Game Over");
 		System.out.println("End Screen");
 	}
@@ -82,5 +84,6 @@ public class MainController {
 	public static void endMiniGame(){
 		mainGameThread.exitMiniGameMode();
 	}
+	
 	
 }
