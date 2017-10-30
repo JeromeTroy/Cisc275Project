@@ -6,7 +6,7 @@ public class DistToFishComparator implements Comparator<StuffInOcean> {
 	
 		FishCharacter f;
 		
-		DistToFishComparator(FishCharacter f){
+		public DistToFishComparator(FishCharacter f){
 			this.f=f;
 		}
 		
