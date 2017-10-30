@@ -166,9 +166,6 @@ public class FishCharacter extends StuffInOcean{
 		return isCaught;
 	}
 
-	public int getAngle() {
-		return angle;
-	}
 
 	public void setAngle(int a) {
 		angle = a;

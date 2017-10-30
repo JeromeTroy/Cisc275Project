@@ -10,7 +10,7 @@ import java.util.Timer;
 public class MainController {
 	// private static GameTimer timer;
 	public  MainGameModel mainGameModel;
-	private  GameTimerThread gameTimerThread;
+	//private GameTimerThread gameTimerThread;
 	public  MiniGameModel miniGame;
 	private int tickPeriod = 30; // in milliseconds
 	boolean inMiniGame; // is the game tick being paused here? The timer
@@ -19,13 +19,10 @@ public class MainController {
 	public MainController() {
 	}
 
-	public MainGameModel getModel() {
-		return mainGameModel;
-	}
 
 	public void startGame() {
 		mainGameModel = new MainGameModel();
-		gameTimerThread = new GameTimerThread(mainGameModel.getGameLengthSeconds(), getTickPeriod(),this);		gameTimerThread.start();
+		//gameTimerThread = new GameTimerThread(mainGameModel.getGameLengthSeconds(), getTickPeriod(),this);		gameTimerThread.start();
 
 	}
 
