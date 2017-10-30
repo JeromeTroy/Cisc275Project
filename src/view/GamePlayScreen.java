@@ -20,6 +20,8 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import controller.MainController;
+
 //import fishieredux.MovementDemo;
 
 //import fishieredux.MovementDemo;
@@ -28,12 +30,14 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 	
 	private JLayeredPane layeredPane;
 	private JLabel fishLabel;
+	private static MainController c;
 	//private JLabel bgLabel;
 	//private Image bgImage;
 	//private JCheckBox onTop;
 	//private JComboBox layerList;
 	
 	public GamePlayScreen(){
+		
 		layeredPane = new JLayeredPane();
 		layeredPane.setPreferredSize(new Dimension(700, 500));
 		layeredPane.setBorder(BorderFactory.createTitledBorder("Move the Mouse to Move Fishie"));
@@ -97,7 +101,8 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		frame.pack();
 		frame.setVisible(true);
 	}
-	public static void activateGamePlayScreen() {
+	public static void activateGamePlayScreen(MainController co) {
+		c = co;
 		createAndShowGUI();
 	}
 	@Override
@@ -107,8 +112,10 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 	}
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		fishLabel.setLocation(e.getX() - fishLabel.getWidth() / 2, e.getY() - fishLabel.getHeight() / 2);
-		
+		//TODO: Make so fish character doesn't go out of bounds at all. Head should stop within frame. so should the tail.
+		if (!c.inMiniGame()){
+			fishLabel.setLocation(e.getX() - fishLabel.getWidth() / 2, e.getY() - fishLabel.getHeight() / 2);
+		}
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {

@@ -7,7 +7,7 @@ import model.*;
 
 public class GameTimerThread extends Thread implements Runnable {
 	Timer timer;
-	boolean inMiniGame; // is the game tick being paused here? The timer
+	//boolean inMiniGame; // is the game tick being paused here? The timer
 						// displayed is independent of the game timer
 	int tickPeriod;
 	int gameLength; // in milliseconds
@@ -34,13 +34,13 @@ public class GameTimerThread extends Thread implements Runnable {
 
 	}
 
-	public void enterMiniGameMode() {
-		inMiniGame = true;
-	}
-
-	public void exitMiniGameMode() {
-		inMiniGame = false;
-	}
+//	public void enterMiniGameMode() {
+//		c.setInMiniGame(true);
+//	}
+//
+//	public void exitMiniGameMode() {
+//		inMiniGame = false;
+//	}
 
 	public void stopTick() {
 		timer.cancel();
@@ -55,4 +55,6 @@ public class GameTimerThread extends Thread implements Runnable {
 		// );
 		return "time"; // TODO: return actual time
 	}
+	
 }
+

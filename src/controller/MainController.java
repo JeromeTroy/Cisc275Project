@@ -9,10 +9,12 @@ import java.util.Timer;
 
 public class MainController {
 	// private static GameTimer timer;
-	public static MainGameModel mainGameModel;
-	private static GameTimerThread gameTimerThread;
-	public static MiniGameModel miniGame;
+	public  MainGameModel mainGameModel;
+	private  GameTimerThread gameTimerThread;
+	public  MiniGameModel miniGame;
 	private int tickPeriod = 30; // in milliseconds
+	boolean inMiniGame; // is the game tick being paused here? The timer
+	// displayed is independent of the game timer
 
 	public MainController() {
 	}
@@ -31,10 +33,10 @@ public class MainController {
 		System.out.println("Start Tutorial");
 	}
 
-	protected static void tick() {
+	protected void tick() {
 		System.out.println("Tick");
 
-		if (gameTimerThread.inMiniGame) {
+		if (inMiniGame) {
 			miniGame.update();
 			if (miniGame.isGameOver()) {
 				endMiniGame();
@@ -51,22 +53,22 @@ public class MainController {
 
 	}
 
-	public static void endGame() {
+	public void endGame() {
 		gameTimerThread.stopTick();
 		System.out.println("Game Over");
 		System.out.println("End Screen");
 	}
 
-	public static void launchMiniGame() {
-		gameTimerThread.enterMiniGameMode();
+	public void launchMiniGame() {
+		inMiniGame = true;
 		miniGame = new MiniGameModel();
 		System.out.println("MiniGame Launched...");
 		mainGameModel.setCaught(false);
 
 	}
 
-	public static void endMiniGame() {
-		gameTimerThread.exitMiniGameMode();
+	public void endMiniGame() {
+		inMiniGame = false;
 	}
 
 	public int getTickPeriod() {
@@ -75,6 +77,14 @@ public class MainController {
 
 	public void setTickPeriod(int tickPeriod) {
 		this.tickPeriod = tickPeriod;
+	}
+	
+	public boolean inMiniGame(){
+		return  inMiniGame;
+	}
+	
+	public void setInMiniGame(boolean b){
+		inMiniGame = b;
 	}
 
 }
