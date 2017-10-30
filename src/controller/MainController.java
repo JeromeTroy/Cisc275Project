@@ -10,6 +10,7 @@ import java.util.Timer;
 public class MainController {
 	// private static GameTimer timer;
 	public  MainGameModel mainGameModel;
+	public GamePlayScreen gameScreen;
 	private  GameTimerThread gameTimerThread;
 	public  MiniGameModel miniGame;
 	private int tickPeriod = 30; // in milliseconds
