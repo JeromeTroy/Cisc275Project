@@ -1,7 +1,7 @@
 package model;
 
 import java.util.*;
-public abstract class StuffInOcean implements Comparable<StuffInOcean>{
+public class StuffInOcean implements Comparable<StuffInOcean>{
 	protected OurVector position; 	// position vector
 	protected int radius; 			// size of circle
 	
@@ -44,7 +44,9 @@ public abstract class StuffInOcean implements Comparable<StuffInOcean>{
 		return getName() + "located at " + position.toString();
 	}
 	
-	public abstract String getName();
+	public String getName(){
+		return "";
+	}
 	
 	// getters
 	public OurVector getPosition(){

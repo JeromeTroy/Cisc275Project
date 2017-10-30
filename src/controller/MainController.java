@@ -51,7 +51,7 @@ public class MainController {
 	}
 
 	public void endGame() {
-		gameTimerThread.stopTick();
+		//gameTimerThread.stopTick();
 		System.out.println("Game Over");
 		System.out.println("End Screen");
 	}
@@ -80,10 +80,10 @@ public class MainController {
 		return  inMiniGame;
 	}
 	
-<<<<<<< HEAD
 	public void setInMiniGame(boolean b){
 		inMiniGame = b;
-=======
+	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("Starting Game...");
@@ -96,8 +96,7 @@ public class MainController {
 	}
 
 	public MainGameModel getModel(){
-		return model;
->>>>>>> b2f38653bf57906637a81056d34a442cc025117c
+		return mainGameModel;
 	}
 
 }

@@ -5,7 +5,7 @@ import java.util.*;
 public class MainGameModel {
 
 	private FishCharacter fishy; // the main character
-	//private Timer timer; // countdown timer
+	private Timer timer; // countdown timer
 	private int trashAmount; // level of the trash around the main character
 	private int foodAmount; // level of food around the main character
 	private StuffSet everyThing; // all the stuff in the ocean
@@ -23,7 +23,6 @@ public class MainGameModel {
 		everyThing = new StuffSet();
 		trashAmount = 0;
 		foodAmount = 0;
-<<<<<<< HEAD
 		gameLengthSeconds = 180;
 
 		fishy = new FishCharacter();
@@ -31,7 +30,6 @@ public class MainGameModel {
 
 		theMap = new Map(1000, 100); // map 1000 units long, 100 units tall
 		isCaught = false;
-=======
 		
 		everyThing = new StuffSet();
 		// everyThing.add(fishy);
@@ -40,7 +38,6 @@ public class MainGameModel {
 		
 		theMap = new Map(1000, 100);		// map 1000 units long, 100 units tall
 		
->>>>>>> b2f38653bf57906637a81056d34a442cc025117c
 	}
 
 	// getters
@@ -156,7 +153,7 @@ public class MainGameModel {
 																			// method
 																			// call
 		for (int i = 0; i < incTrash; i++) {
-			addStuff(new Trash((int) Math.random() * 100, (int) Math.random() * 100));
+			everyThing.add(new Trash((int) Math.random() * 100, (int) Math.random() * 100));
 			// TODO: replace randomly generated location with locally random
 			// location
 		}
@@ -176,7 +173,6 @@ public class MainGameModel {
 
 		everyThing.removeAll(allTrash);
 	}
-<<<<<<< HEAD
 
 	public boolean endGame() {
 		gameOver = true;
@@ -194,7 +190,6 @@ public class MainGameModel {
 		//}
 	}
 
-=======
 	
 	// moving
 	/*
@@ -209,5 +204,4 @@ public class MainGameModel {
 		}
 	}
 	
->>>>>>> b2f38653bf57906637a81056d34a442cc025117c
 }
