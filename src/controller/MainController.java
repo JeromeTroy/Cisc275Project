@@ -10,22 +10,24 @@ import java.util.Timer;
 
 public class MainController {
 	private static GameTimer timer;
-	private static MainGameModel model;
-	private static MainGame mainGame;
-	private static Thread miniGame;
+	public static MainGameModel mainGameModel;
+	private static MainGameThread mainGameThread;
+	public static MiniGameModel miniGame;
 	
 	public MainController(){
-		model = new MainGameModel();
-		timer = new GameTimer(model.getGameLengthSeconds());
-		mainGame = new MainGame();
-	}
+		mainGameModel = new MainGameModel();
+		timer = new GameTimer(mainGameModel.getGameLengthSeconds());
+		mainGameThread = new MainGameThread();
+		
+		}
+	
 	
 	public static void main(String[] args) {
 		openGame();
 	}
 
 	public MainGameModel getModel(){
-		return model;
+		return mainGameModel;
 	}
 	
 	public static void openGame(){
@@ -35,7 +37,7 @@ public class MainController {
 	
 	public static void startGame(){
 		MainController controller = new MainController();
-		mainGame.start();
+		mainGameThread.start();
 		
 	
 }
@@ -45,17 +47,40 @@ public class MainController {
 	
 	protected static void tick() {
 		System.out.println("Tick");
-		model.update();
+		if (mainGameThread.inMiniGame){
+			miniGame.update();
+			if (miniGame.isGameOver()){
+				endMiniGame();
+			}
+		} else{
+			mainGameModel.update();
+			if (mainGameModel.isGameOver()){
+				endGame();
+			}
+		}
+		if (mainGameModel.getIsCaught()){
+			launchMiniGame();
+		}
 		
 	}
 	
 	public static void endGame(){
-		mainGame.interrupt();
+		//TODO: This part isn't working as expected
+		mainGameThread.interrupt();
+		System.out.println("Game Over");
+		System.out.println("End Screen");
 	}
 	
 	public static void launchMiniGame(){
-		mainGame.pause();
-		
+		mainGameThread.enterMiniGameMode();
+		miniGame = new MiniGameModel();
+		System.out.println("MiniGame Launched...");
+		mainGameModel.setCaught(false);
 		
 	}
+	
+	public static void endMiniGame(){
+		mainGameThread.exitMiniGameMode();
+	}
+	
 }

@@ -5,11 +5,11 @@ import java.util.TimerTask;
 
 import model.*;
 
-public class MainGame extends Thread implements Runnable {
+public class MainGameThread extends Thread implements Runnable {
 	Timer timer;
-	boolean isPaused; //is the game tick being paused here? The timer displayed is independent of the game timer
+	boolean inMiniGame; //is the game tick being paused here? The timer displayed is independent of the game timer
 
-	public MainGame() {
+	public MainGameThread() {
 		// this.model = model;
 		this.timer = new Timer();
 	}
@@ -19,19 +19,19 @@ public class MainGame extends Thread implements Runnable {
 		System.out.println("Main Game Run Begin");
 		timer.scheduleAtFixedRate(new TimerTask() {
 			public void run() {
-				if (!isPaused) {
+				
 					MainController.tick();
-				}
+				
 			}
-		}, 0, 30);
+		}, 0, 1000);
 
 	}
 	
-	public void pause(){
-		isPaused = true;
+	public void enterMiniGameMode(){
+		inMiniGame = true;
 	}
 	
-	public void unpause(){
-		isPaused = false;
+	public void exitMiniGameMode(){
+		inMiniGame = false;
 	}
 }

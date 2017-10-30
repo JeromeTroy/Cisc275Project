@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Vector;
+
 public class Map {
 
 	private int length; 			// total length of the map

@@ -46,5 +46,11 @@ public class MiniGameModel extends MainGameModel {
 		this.mapLength = mapLength;
 	}
 	
+	public void update() {
+		//if (!isCaught) {
+			System.out.println("Update MiniGame Model");
+		//}
+	}
+	
 	
 }

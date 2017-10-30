@@ -15,7 +15,7 @@ public class MainGameModel {
 	
 	private int trashAccumulation = 2; // sets the accumulation of trash
 	private boolean gameOver;
-	private boolean isCaught;
+	protected boolean isCaught;
 
 	public MainGameModel() {
 		startGame();
@@ -29,6 +29,7 @@ public class MainGameModel {
 		everyThing.add(fishy);
 
 		theMap = new Map(1000, 100); // map 1000 units long, 100 units tall
+		isCaught = false;
 	}
 
 	// getters
@@ -115,6 +116,10 @@ public class MainGameModel {
 	public void setTimer(Timer timer) {
 		this.timer = timer;
 	}
+	
+	public void setOver(boolean b){
+		this.gameOver = b;
+	}
 
 	// adders
 	public boolean addStuff(StuffInOcean s) {
@@ -172,9 +177,9 @@ public class MainGameModel {
 	}
 
 	public void update() {
-		if (!isCaught) {
+		//if (!isCaught) {
 			System.out.println("Update Game Model");
-		}
+		//}
 	}
 
 }
