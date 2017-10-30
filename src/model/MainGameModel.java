@@ -221,11 +221,13 @@ public class MainGameModel {
 //		}else {
 //			accumulate();
 //		}
-		accumulate();
+		//accumulate();
 		for (StuffInOcean crap : everyThing) {	// move everything
 			crap.move();
 			System.out.println("Stuff is moved");
 		}
 	}
+	
+	
 	
 }

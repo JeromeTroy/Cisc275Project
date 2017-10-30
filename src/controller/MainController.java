@@ -24,6 +24,7 @@ public class MainController {
 
 	public void startGame() {
 		mainGameModel = new MainGameModel();
+		gameScreen = new GamePlayScreen();
 		gameTimerThread = new GameTimerThread(mainGameModel.getGameLengthSeconds(), getTickPeriod(),this);		
 		gameTimerThread.start();
 
@@ -35,7 +36,7 @@ public class MainController {
 
 	protected void tick() {
 		System.out.println("Tick");
-
+		//gameScreen.moveView();
 		if (inMiniGame) {
 			miniGame.update();
 			if (miniGame.isGameOver()) {
@@ -43,7 +44,7 @@ public class MainController {
 			}
 		} else {
 			mainGameModel.update();
-			gameScreen.viewTick();
+			
 		}
 		if (mainGameModel.isGameOver()) {
 			endGame();

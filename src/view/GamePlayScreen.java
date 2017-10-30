@@ -161,8 +161,9 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		if (!c.inMiniGame()) {
 			fishLabel.setLocation(e.getX() - fishLabel.getWidth() / 2, e.getY() - fishLabel.getHeight() / 2);
 			//if(fishLabel.getLocation().getX()>300.0){
-			bgPos--;
-			bgLabel.setLocation(bgPos, 0);
+//			bgPos--;
+//			bgLabel.setLocation(bgPos, 0);
+			//moveView();
 			//}
 		}
 	}
@@ -173,11 +174,12 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 
 	}
 	
-	public void viewTick(){
-		//if(fishLabel.getLocation().getX()>300.0){
+	public void moveView(){
+		while(fishLabel.getLocation().getX()>300.0){
+		System.out.println("viewTick");
 		bgPos--;
 		bgLabel.setLocation(bgPos, 0);
-		//}
+		}
 	}
 	
 	
