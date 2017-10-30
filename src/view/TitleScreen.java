@@ -17,16 +17,22 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import controller.MainController;
 
 import javax.swing.JButton;
 
 
 public class TitleScreen extends JPanel implements ActionListener, MouseMotionListener {
-
+	
+	private MainController c;
+	
 	// attributes
 	private JLayeredPane layeredPane;
 	private JButton gameStart;
 	private JButton tutorial;
+	private JButton FishCaught;
+	private JButton MiniGameOver;
+	private JButton MainGameOver;
 	
 	private static String GO_TO_GAME = "goToGame";
 	private static String GO_TO_TUTORIAL = "goToTutorial";
@@ -35,6 +41,9 @@ public class TitleScreen extends JPanel implements ActionListener, MouseMotionLi
 	
 	// constructor
 	public TitleScreen(){
+		//invoke constructor
+		c = new MainController();
+		
 		// layout
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
@@ -62,10 +71,21 @@ public class TitleScreen extends JPanel implements ActionListener, MouseMotionLi
 		gameStart.addActionListener(this);
 		tutorial = createButton("Tutorial", GO_TO_TUTORIAL);
 		tutorial.addActionListener(this);
+		//TODO: remove
+		FishCaught = createButton("fishCaught", "fishCaught");
+		FishCaught.addActionListener(this);
+		MiniGameOver = createButton("miniGameOver", "miniGameOver");
+		MiniGameOver.addActionListener(this);
+		MainGameOver = createButton("mainGameOver", "mainGameOver");
+		MainGameOver.addActionListener(this);
 		
 		JPanel controls = new JPanel();
 		controls.add(gameStart);
 		controls.add(tutorial);
+		//TODO:remove
+		controls.add(FishCaught);
+		controls.add(MiniGameOver);
+		controls.add(MainGameOver);
 		controls.setBorder(BorderFactory.createTitledBorder("Choose"));
 		return controls;
 	}
@@ -86,7 +106,20 @@ public class TitleScreen extends JPanel implements ActionListener, MouseMotionLi
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		String cmd = e.getActionCommand();
-		System.out.println(cmd);
+		if (cmd == "goToGame"){
+			c.startGame();
+			GamePlayScreen.activateGamePlayScreen(c);
+			//TODO: need action to open game
+		} else if (cmd == "goToTutorial"){
+			c.startTutorial();
+			//TODO: get rid of below
+		} else if (cmd== "fishCaught"){
+			c.mainGameModel.setCaught(!c.mainGameModel.getIsCaught());
+		} else if (cmd == "miniGameOver"){
+			c.miniGame.setOver(true);
+		} else if (cmd == "mainGameOver"){
+			c.mainGameModel.setOver(true);
+		}
 		
 	}
 	

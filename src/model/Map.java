@@ -1,11 +1,23 @@
 package model;
+<<<<<<< HEAD
+
+import java.util.Vector;
+
+=======
 import java.util.*;
+>>>>>>> b2f38653bf57906637a81056d34a442cc025117c
 public class Map {
 
 	private int length; 			// total length of the map
 	private int height; 			// total height of the map
 	private int uniqueLength; 		// length of the map that is unique, beyond this will be periodic
+<<<<<<< HEAD
+	private OurVector position;
+	
+	
+=======
 	private OurVector origin; 		// location of the origin of the map relative to the fish
+>>>>>>> b2f38653bf57906637a81056d34a442cc025117c
 	
 	public int getLength(){
 		return length;
@@ -38,6 +50,16 @@ public class Map {
 		uniqueLength = u;
 	}
 	
+<<<<<<< HEAD
+	public void getCenter(){
+		int segment = Math.floorDiv(position.getX(), uniqueLength);
+		//return new OurVector((segment*uniqueLength)+0.5*uniqueLength);
+	}
+	
+//	public Vector getPosition(){
+//		return position;
+//	}
+=======
 	
 	/*
 	 * Moving the map's origin
@@ -65,4 +87,5 @@ public class Map {
 		return validMove;
 	}
 	
+>>>>>>> b2f38653bf57906637a81056d34a442cc025117c
 }

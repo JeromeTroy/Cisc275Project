@@ -20,7 +20,9 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
-import fishieredux.MovementDemo;
+import controller.MainController;
+
+//import fishieredux.MovementDemo;
 
 //import fishieredux.MovementDemo;
 
@@ -28,12 +30,16 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 	
 	private JLayeredPane layeredPane;
 	private JLabel fishLabel;
+	private JLabel foodLabel;
+	private JLabel trashLabel;
+	private static MainController c;
 	//private JLabel bgLabel;
 	//private Image bgImage;
 	//private JCheckBox onTop;
 	//private JComboBox layerList;
 	
 	public GamePlayScreen(){
+		
 		layeredPane = new JLayeredPane();
 		layeredPane.setPreferredSize(new Dimension(700, 500));
 		layeredPane.setBorder(BorderFactory.createTitledBorder("Move the Mouse to Move Fishie"));
@@ -41,11 +47,20 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		layeredPane.setLayout(new GridLayout(1, 1));
 		
 		// Create and load the duke icon.
-				final ImageIcon icon = createImageIcon("images/fishie.png");
+		final ImageIcon fishIcon = createImageIcon("images/fishie.png");
+		
+		//Create and load food icon
+		final ImageIcon foodIcon = createImageIcon("images/food.jpg");
+		
+		//Create and load trash icon
+		final ImageIcon trashIcon = createImageIcon("images/fishie.png");
+		
+		// Create and load the background image.
+		final ImageIcon bg = createImageIcon("images/bg.png");
 		
 		// Create and add the Duke label to the layered pane.
-		fishLabel = new JLabel(icon);
-		if (icon == null) {
+		fishLabel = new JLabel(fishIcon);
+		if (fishIcon == null) {
 			System.err.println("Fishie icon not found; using blue rectangle instead.");
 			fishLabel.setOpaque(true);
 			fishLabel.setBackground(Color.BLUE);
@@ -61,7 +76,7 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 	
 	/** Returns an ImageIcon, or null if the path was invalid. */
 	protected static ImageIcon createImageIcon(String path) {
-		java.net.URL imgURL = MovementDemo.class.getResource(path);
+		java.net.URL imgURL = GamePlayScreen.class.getResource(path);
 		if (imgURL != null) {
 			return new ImageIcon(imgURL);
 		} else {
@@ -94,8 +109,9 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		frame.pack();
 		frame.setVisible(true);
 	}
-	public static void activateGamePlayScreen() {
-		//createAndShowGUI();
+	public static void activateGamePlayScreen(MainController co) {
+		c = co;
+		createAndShowGUI();
 	}
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
@@ -103,22 +119,24 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		
 	}
 	@Override
-	public void mouseMoved(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
+	public void mouseMoved(MouseEvent e) {
+		//TODO: Make so fish character doesn't go out of bounds at all. Head should stop within frame. so should the tail.
+		if (!c.inMiniGame()){
+			fishLabel.setLocation(e.getX() - fishLabel.getWidth() / 2, e.getY() - fishLabel.getHeight() / 2);
+		}
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
-	public static void main(String[] args) {
-		// Schedule a job for the event-dispatching thread:
-		// creating and showing this application's GUI.
-		javax.swing.SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				createAndShowGUI();
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		// Schedule a job for the event-dispatching thread:
+//		// creating and showing this application's GUI.
+//		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+//			public void run() {
+//				createAndShowGUI();
+//			}
+//		});
+//	}
 }
