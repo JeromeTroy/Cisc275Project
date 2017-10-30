@@ -1,6 +1,7 @@
 package model;
 
-public abstract class StuffInOcean implements Comparable<StuffInOcean>{
+import java.util.*;
+public class StuffInOcean implements Comparable<StuffInOcean>{
 	protected OurVector position; 	// position vector
 	protected int radius; 			// size of circle
 	
@@ -43,7 +44,9 @@ public abstract class StuffInOcean implements Comparable<StuffInOcean>{
 		return getName() + "located at " + position.toString();
 	}
 	
-	public abstract String getName();
+	public String getName(){
+		return "";
+	}
 	
 	// getters
 	public OurVector getPosition(){
@@ -98,5 +101,22 @@ public abstract class StuffInOcean implements Comparable<StuffInOcean>{
 		int separation = position.distFrom(s.getPosition());
 		int radiiSum = this.getRadius() + s.getRadius();
 		return (separation <= radiiSum*radiiSum);
+	}
+	
+	/*
+	 * Moving
+	 * Everything will move relative to the fish
+	 */
+	public void move(FishCharacter fish){
+		int speed = -fish.getSpeed();
+		int angle = fish.getAngle();
+		
+		int deltaX = (int) (speed*Math.cos(Math.toRadians(angle)));
+		int deltaY = (int) (speed*Math.sin(Math.toRadians(angle)));
+		
+		position.setX(position.getX() + deltaX);
+		position.setY(position.getY() + deltaY);
+		
+		
 	}
 }

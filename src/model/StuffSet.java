@@ -17,11 +17,11 @@ public class StuffSet extends ArrayList<StuffInOcean> {
 
 	public StuffSet(FishCharacter f) {
 		this.f = f;
-		super.add(f);
+		//super.add(f);
 	}
 
 	public StuffSet(FishCharacter f, int partitionDist) {
-		this(f);
+		this.f = f;
 		this.partitionDist = partitionDist;
 	}
 
@@ -29,31 +29,39 @@ public class StuffSet extends ArrayList<StuffInOcean> {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see java.util.ArrayList#add(java.lang.Object) Addition Tests if the
+	 * @see java.util.ArrayList#add(java.lang.Object) 
+	 * Addition Tests if the
 	 * addition of the object would cause a collision If so then does not add
 	 * the object Input: o Object object to be added Output: boolean if the
 	 * addition was successful
 	 */
 	public boolean add(StuffInOcean s) {
-		if (f == null) {
-			if (s.isFish()) {
-				super.add(s);
-				this.f = (FishCharacter) s;
+		if (f == null) {				// trying to add but fish not initialized
+			if (s.isFish()) {			// if it's a fish
+				// super.add(s);
+				this.f = (FishCharacter) s;		// assign to the fish position
 				return true;
 			}
-		}
-
-		for (StuffInOcean item : this) {
-			if (s.isCollided(item)) {
+			else{						// why are we adding something with no fish yet?
+				System.out.println("Warning, no fish character assigned yet");
+				// TODO: better handling here
 				return false;
 			}
-		}
-
-		super.add(s);
-		if (f != null) {
+			
+		}else{ 							// there is a fish
+			for (StuffInOcean item : this) {		// verify there is not a collision
+				if (s.isCollided(item)) {
+					return false;					// if collision, do not add
+				}
+			}
+			// supposing there has not been a collision:
+			super.add(s);
+			
+			// if (f != null) { // redundant
 			Collections.sort(this, new DistToFishComparator(f));
+			//}
+			return true;
 		}
-		return true;
 
 		// super.add(s);
 		// Collections.sort(this, new DistToFishComparator(f));
