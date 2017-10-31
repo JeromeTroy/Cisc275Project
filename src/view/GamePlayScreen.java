@@ -220,8 +220,8 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		System.out.println(c.getModel().getFishy());
 	}
 	
-	public static void updateFishPosition(){
-		c.getModel().getFishy().getPosition().setX(MouseInfo.getPointerInfo().getLocation().x);
-		c.getModel().getFishy().getPosition().setY(MouseInfo.getPointerInfo().getLocation().y);
-	}
+//	public static void updateFishPosition(){
+//		c.getModel().getFishy().getPosition().setX(MouseInfo.getPointerInfo().getLocation().x);
+//		c.getModel().getFishy().getPosition().setY(MouseInfo.getPointerInfo().getLocation().y);
+//	}
 }
