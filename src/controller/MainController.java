@@ -11,7 +11,7 @@ public class MainController {
 	// private static GameTimer timer;
 	private  MainGameModel mainGameModel;
 	private GamePlayScreen gameScreen;
-	private  GameTimerThread gameTimerThread;
+	private  GameTimer gameTimer;
 	private  MiniGameModel miniGame;
 	private int tickPeriod = 30; // in milliseconds
 	boolean inMiniGame;
@@ -24,8 +24,8 @@ public class MainController {
 	 */
 	public void startGame() {
 		mainGameModel = new MainGameModel();
-		gameTimerThread = new GameTimerThread(mainGameModel.getGameLengthSeconds(), getTickPeriod(),this);		
-		gameTimerThread.start();
+		//gameTimerThread = new GameTimerThread(mainGameModel.getGameLengthSeconds(), getTickPeriod(),this);		
+		//gameTimerThread.start();
 
 	}
 	
@@ -50,7 +50,7 @@ public class MainController {
 			}
 		} else {
 			mainGameModel.update();
-			GamePlayScreen.paint();
+			//GamePlayScreen.paint();
 		}
 		if (mainGameModel.isGameOver()) {
 			endGame();
@@ -66,7 +66,7 @@ public class MainController {
 	 * 
 	 */
 	public void endGame() {
-		gameTimerThread.stopTick();
+		//gameTimer.stopTimer();
 		System.out.println("Game Over");
 		System.out.println("End Screen");
 	}
@@ -112,6 +112,10 @@ public class MainController {
 	
 	public void setGamePlayScreen(GamePlayScreen g){
 		gameScreen = g;
+	}
+	
+	public GamePlayScreen getGamePlayScreen(){
+		return gameScreen;
 	}
 
 }

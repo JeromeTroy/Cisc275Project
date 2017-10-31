@@ -83,10 +83,10 @@ public class TitleScreen extends JPanel implements ActionListener, MouseMotionLi
 		controls.add(gameStart);
 		controls.add(tutorial);
 		//TODO:remove
-//		controls.add(FishCaught);
-//		controls.add(MiniGameOver);
-//		controls.add(MainGameOver);
-//		controls.setBorder(BorderFactory.createTitledBorder("Choose"));
+		controls.add(FishCaught);
+		controls.add(MiniGameOver);
+		controls.add(MainGameOver);
+		controls.setBorder(BorderFactory.createTitledBorder("Choose"));
 		return controls;
 	}
 	

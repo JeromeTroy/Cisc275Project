@@ -22,6 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import controller.GameTimer;
 import controller.MainController;
 
 //import fishieredux.MovementDemo;
@@ -43,9 +44,12 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 	// private Image bgImage;
 	// private JCheckBox onTop;
 	// private JComboBox layerList;
+	
+	GameTimer timer;
 
 	public GamePlayScreen() {
 		c.setGamePlayScreen(this);
+		timer = new GameTimer(c);
 		bgPos = 0;
 		layeredPane = new JLayeredPane();
 		layeredPane.setPreferredSize(new Dimension(700, 500));
@@ -109,6 +113,9 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		// add(createControlPanel());
 		add(Box.createRigidArea(new Dimension(0, 10)));
 		add(layeredPane);
+		
+		//start timer
+		timer.start();
 	}
 
 	/** Returns an ImageIcon, or null if the path was invalid. */
@@ -146,6 +153,7 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		// Display the window.
 		frame.pack();
 		frame.setVisible(true);
+		
 	}
 
 	public static void activateGamePlayScreen(MainController co) {
@@ -187,7 +195,7 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 	// });
 	// }
 	
-	public static void paint(){
+	public static void paintScreen(){
 //		//map move
 //		bgPos--;
 //		bgLabel.setLocation(bgPos, 0);
@@ -205,6 +213,7 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 //			layeredPane.add(tmp, new Integer(3), 0);
 //		}
 		
-		System.out.println("paint");
+		System.out.println("Paint fish (test):");
+		System.out.println(c.getModel().getFishy());
 	}
 }
