@@ -20,6 +20,7 @@ public class GameTimer extends Thread implements Runnable {
 		    public void actionPerformed(ActionEvent e) {
 		        c.getGamePlayScreen().paintScreen();
 		        c.tick();
+		        //c.getGamePlayScreen().updateFishPosition();
 		        }
 		});
 		this.tickPeriod = c.getTickPeriod();

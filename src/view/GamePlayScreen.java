@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.MouseInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -177,6 +178,8 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 			bgLabel.setLocation(bgPos, 0);
 			trashLabel.setLocation(bgPos+500,250);
 			foodLabel.setLocation(bgPos+900,400);
+			c.getModel().getFishy().getPosition().setX(e.getX());
+			c.getModel().getFishy().getPosition().setY(e.getY());
 		}
 	}
 
@@ -215,5 +218,10 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		
 		System.out.println("Paint fish (test):");
 		System.out.println(c.getModel().getFishy());
+	}
+	
+	public static void updateFishPosition(){
+		c.getModel().getFishy().getPosition().setX(MouseInfo.getPointerInfo().getLocation().x);
+		c.getModel().getFishy().getPosition().setY(MouseInfo.getPointerInfo().getLocation().y);
 	}
 }
