@@ -48,7 +48,7 @@ public class TutorialScreen extends JPanel{
 		private static void createAndShowGUI() {
 			// window
 			JFrame frame = new JFrame("Tutorial");
-	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			
 			// content
 	        JComponent newContentPane = new TutorialScreen();
