@@ -112,6 +112,7 @@ public class TitleScreen extends JPanel implements ActionListener, MouseMotionLi
 			//TODO: need action to open game
 		} else if (cmd == "goToTutorial"){
 			c.startTutorial();
+			TutorialScreen.activateTutorial();
 			//TODO: get rid of below
 		} else if (cmd== "fishCaught"){
 			c.getModel().getFishy().setCaught(!c.getModel().getFishy().getIsCaught());
