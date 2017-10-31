@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -36,11 +37,16 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 	private static MainController c;
 	private JLabel bgLabel;
 	private int bgPos;
+	private ArrayList<JLabel> stuff;
+	final ImageIcon foodIcon;
+	final ImageIcon trashIcon;
+	
 	// private Image bgImage;
 	// private JCheckBox onTop;
 	// private JComboBox layerList;
 
 	public GamePlayScreen() {
+		c.setGamePlayScreen(this);
 		bgPos = 0;
 		layeredPane = new JLayeredPane();
 		layeredPane.setPreferredSize(new Dimension(700, 500));
@@ -52,10 +58,10 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		final ImageIcon fishIcon = createImageIcon("images/fishie.png");
 
 		// Create and load food icon
-		final ImageIcon foodIcon = createImageIcon("images/foodsmall.png");
+		foodIcon = createImageIcon("images/foodsmall.png");
 
 		// Create and load trash icon
-		final ImageIcon trashIcon = createImageIcon("images/trashsmall.png");
+		trashIcon = createImageIcon("images/trashsmall.png");
 
 		// Create and load the background image.
 		final ImageIcon bg = createImageIcon("images/bg.png");
@@ -182,6 +188,45 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		}
 	}
 	
+	public static void paint(){
+//		//map move
+//		bgPos--;
+//		bgLabel.setLocation(bgPos, 0);
+//		JLabel tmp;
+//		
+//		//stuff.clear();
+//		
+//		for (int i=0; i<c.getModel().getStuff().size(); i++){
+//			if (c.getModel().getStuff().get(i).isTrash()){
+//				tmp = new JLabel(trashIcon);
+//			} else{
+//				tmp = new JLabel(foodIcon);
+//			}
+//			tmp.setLocation(c.getModel().getStuff().get(i).getPosition().getX(),c.getModel().getStuff().get(i).getPosition().getX());
+//			layeredPane.add(tmp, new Integer(3), 0);
+//		}
+		
+		System.out.println("paint");
+	}
+	
+//	public void animate() {	
+//		JFrame frame = new JFrame();
+//		frame.getContentPane().add(new OrcView());
+//		frame.setBackground(Color.gray);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.setSize(frameWidth, frameHeight);
+//		frame.setVisible(true);
+//		for (int i = 0; i < 1000; i++) {
+//			frame.repaint();
+//			controller.updateData();
+//			try {
+//				Thread.sleep(100);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//	}
+	
 	
 	// public static void main(String[] args) {
 	// // Schedule a job for the event-dispatching thread:
@@ -192,4 +237,8 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 	// }
 	// });
 	// }
+	
+	public String toString(){
+		return "OUR GAME";
+	}
 }
