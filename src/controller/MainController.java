@@ -50,6 +50,7 @@ public class MainController {
 			}
 		} else {
 			mainGameModel.update();
+			GamePlayScreen.paint();
 		}
 		if (mainGameModel.isGameOver()) {
 			endGame();
@@ -107,6 +108,10 @@ public class MainController {
 	
 	public MainGameModel getMiniGame(){
 		return miniGame;
+	}
+	
+	public void setGamePlayScreen(GamePlayScreen g){
+		gameScreen = g;
 	}
 
 }
