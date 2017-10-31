@@ -43,7 +43,7 @@ public class StuffSetTest {
 	
 	@Test
 	public void testAdd() {
-		assertEquals(s.size(),4);
+		assertEquals(s.size(),5);
 		assertTrue(s.get(0) == f);
 		assertFalse(s.add(new Food(0,0)));
 		Food f1 = new Food(100,100);

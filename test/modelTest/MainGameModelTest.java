@@ -44,7 +44,7 @@ public class MainGameModelTest {
 		assertEquals(numFood,0);
 		assertEquals(numFish,1);
 		assertEquals(numTrash,0);
-		m.accumulateTrash();
+		m.accumulate();
 		assertTrue((initialSize<m.getStuff().size()));
 		count();
 		assertEquals(numFood,0);
