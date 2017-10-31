@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -34,10 +35,11 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 	private JLabel foodLabel;
 	private JLabel trashLabel;
 	private static MainController c;
-	private JLabel bgLabel;
-	private int bgPos;
+	private static JLabel bgLabel;
+	private static int bgPos;
 	final ImageIcon foodIcon;
 	final ImageIcon trashIcon;
+	private static ArrayList<JLabel> stuff;
 	// private Image bgImage;
 	// private JCheckBox onTop;
 	// private JComboBox layerList;
@@ -165,6 +167,8 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 			fishLabel.setLocation(e.getX() - fishLabel.getWidth() / 2, e.getY() - fishLabel.getHeight() / 2);
 			bgPos--;
 			bgLabel.setLocation(bgPos, 0);
+			trashLabel.setLocation(bgPos+500,250);
+			foodLabel.setLocation(bgPos+900,400);
 		}
 	}
 
@@ -189,7 +193,7 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 //		bgLabel.setLocation(bgPos, 0);
 //		JLabel tmp;
 //		
-//		//stuff.clear();
+		//stuff.clear();
 //		
 //		for (int i=0; i<c.getModel().getStuff().size(); i++){
 //			if (c.getModel().getStuff().get(i).isTrash()){
