@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.MouseInfo;
@@ -10,8 +11,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
@@ -41,12 +46,13 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 	private static int bgPos;
 	final ImageIcon foodIcon;
 	final ImageIcon trashIcon;
-	private static ArrayList<JLabel> stuff;
+	private ArrayList<JLabel> stuff;
 	// private Image bgImage;
 	// private JCheckBox onTop;
 	// private JComboBox layerList;
 	
 	GameTimer timer;
+	static JFrame frame;
 
 	public GamePlayScreen() {
 		c.setGamePlayScreen(this);
@@ -117,6 +123,9 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		
 		//start timer
 		timer.start();
+		
+		//initialize stuff array
+		stuff = new ArrayList<>();
 	}
 
 	/** Returns an ImageIcon, or null if the path was invalid. */
@@ -143,7 +152,7 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 	 */
 	private static void createAndShowGUI() {
 		// Create and set up the window.
-		JFrame frame = new JFrame("Eel Quest");
+		frame = new JFrame("Eel Quest");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// Create and set up the content pane.
@@ -152,6 +161,7 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		frame.setContentPane(newContentPane);
 
 		// Display the window.
+		frame.invalidate();
 		frame.pack();
 		frame.setVisible(true);
 		
@@ -198,30 +208,62 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 	// });
 	// }
 	
-	public static void paintScreen(){
+	public void paintScreen(){
 //		//map move
-//		bgPos--;
-//		bgLabel.setLocation(bgPos, 0);
-//		JLabel tmp;
-//		
-		//stuff.clear();
-//		
-//		for (int i=0; i<c.getModel().getStuff().size(); i++){
-//			if (c.getModel().getStuff().get(i).isTrash()){
-//				tmp = new JLabel(trashIcon);
-//			} else{
-//				tmp = new JLabel(foodIcon);
-//			}
-//			tmp.setLocation(c.getModel().getStuff().get(i).getPosition().getX(),c.getModel().getStuff().get(i).getPosition().getX());
-//			layeredPane.add(tmp, new Integer(3), 0);
-//		}
+		bgPos--;
+		bgLabel.setLocation(bgPos, 0);
+		JLabel tmp;
 		
+		System.out.println(c.getModel().newStuff.size());
+		for (int i=0; i<c.getModel().newStuff.size(); i++){
+			System.out.println(c.getModel().newStuff.get(i).isTrash());
+			if (c.getModel().newStuff.get(i).isTrash()){
+				tmp = new JLabel(trashIcon);
+			} else{
+				tmp = new JLabel(foodIcon);
+			}
+			tmp.setBounds(0, 0, 20, 20);
+			tmp.setLocation(500+bgPos,250);
+			//tmp.setLocation(c.getModel().getStuff().get(i).getPosition().getX(),c.getModel().getStuff().get(i).getPosition().getX());
+			stuff.add(tmp);
+			System.out.println(c.getModel().getStuff().get(i).getPosition());
+			layeredPane.add(tmp, new Integer(20), 0);
+		}
+		//add(layeredPane);
+		System.out.println(stuff.size());
 		System.out.println("Paint fish (test):");
 		System.out.println(c.getModel().getFishy());
+		//updatePositions();
+		frame.revalidate();
+		frame.setVisible(true);
+		
 	}
 	
-//	public static void updateFishPosition(){
+  public void updatePositions(){
 //		c.getModel().getFishy().getPosition().setX(MouseInfo.getPointerInfo().getLocation().x);
 //		c.getModel().getFishy().getPosition().setY(MouseInfo.getPointerInfo().getLocation().y);
+	
+		for (JLabel j: stuff){
+			j.setLocation(bgPos+500,250);
+		}
+	}
+  
+//  private BufferedImage createImage(String dir) {
+//		BufferedImage bufferedImage;
+//		try {
+//			bufferedImage = ImageIO.read(new File("images/food.png"));
+//			return bufferedImage;
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		return null;
+//	}
+//	
+//	public void paint(Graphics g) {
+//		//iterate the picture number so the animation uses different frames of the orcImage
+//		
+//		//draw the image
+//		g.drawImage(pics[orcImageNum][picNum], xCoord, yCoord, Color.gray, this);
+//
 //	}
 }

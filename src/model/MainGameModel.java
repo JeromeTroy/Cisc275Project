@@ -11,6 +11,8 @@ public class MainGameModel {
 	private StuffSet everyThing; // all the stuff in the ocean
 	private int gameLengthSeconds;
 	private Map theMap; // the map
+	private int numTicks=0;
+	public ArrayList<StuffInOcean> newStuff;
 	//private MiniGameModel miniGame; // mini game
 	
 	private int trashAccumulation = 1; // rate of increase of trash
@@ -19,10 +21,10 @@ public class MainGameModel {
 	//protected boolean isCaught;
 	
 	// TODO: verify these are correct
-	private int accumulateXMin = 500;
-	private int accumulateXMax = 600;
+	private int accumulateXMin = 0;
+	private int accumulateXMax = 500;
 	private int accumulateYMin = 0;
-	private int accumulateYMax;
+	private int accumulateYMax = 700;
 
 	public MainGameModel() {
 		startGame();
@@ -46,7 +48,8 @@ public class MainGameModel {
 		timer = new Timer(); 				// fix this	
 		theMap = new Map(1000, 100);		// map 1000 units long, 100 units tall
 		
-	}
+		newStuff = new ArrayList<>();
+		}
 
 	// getters
 	public FishCharacter getFishy() {
@@ -149,12 +152,28 @@ public class MainGameModel {
 	 * <0-100,0-100> parameters - none input - none return - none output - none
 	 */
 	public void accumulate() { // accumulate trash
-		trashAmount += trashAccumulation;
-		foodAmount += foodAccumulation;
-		Trash newTrash = new Trash(randInt(accumulateXMin, accumulateXMax),randInt(accumulateYMin, accumulateYMax));
-		Food newFood = new Food(randInt(accumulateXMin, accumulateXMax),randInt(accumulateYMin, accumulateYMax));
-		everyThing.add(newTrash);
-		everyThing.add(newFood);
+		//initialize trash
+		Trash newTrash;
+		Food newFood;
+		newStuff.clear();
+		
+		//generate new trash 
+		for (int i=0; i<trashAccumulation; i++){
+			newTrash = new Trash(randInt(accumulateXMin, accumulateXMax),randInt(accumulateYMin, accumulateYMax));
+			if (everyThing.add(newTrash)){ //add trash and increment food amount if trash is added
+				trashAmount++;
+				newStuff.add(newTrash);
+			}
+		}
+		
+		//generate new food
+		for (int i=0; i<foodAccumulation; i++){
+			newFood = new Food(randInt(accumulateXMin, accumulateXMax),randInt(accumulateYMin, accumulateYMax));
+			if (everyThing.add(newFood)){ //add food and increment food amount if trash is added
+				foodAmount++;
+				newStuff.add(newFood);
+			}
+		}
 	}
 	
 	/*
@@ -192,9 +211,12 @@ public class MainGameModel {
 	}
 
 	public void update() {
-		//if (!isCaught) {
 			System.out.println("Update Game Model");
-		//}
+			numTicks++;
+			if (numTicks%300==0){
+				accumulate();
+			}
+			System.out.println(everyThing.size());
 	}
 
 	
@@ -211,11 +233,14 @@ public class MainGameModel {
 		}
 		if (fishy.isCaught(everyThing.get(1))) {
 			// TODO: call minigame
-			
 			removeTrash();
 		}else {
 			accumulate();
 		}
+	}
+	
+	public String toString(){
+		return fishy.toString()+" Food items: "+foodAmount+" Trash Amount "+trashAmount;
 	}
 	
 	

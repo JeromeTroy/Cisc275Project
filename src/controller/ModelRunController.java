@@ -1,26 +1,34 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.*;
 import model.*;
 
 public class ModelRunController {
-	
+	static ArrayList<OurVector> positions; 
 	
 	public static void main(String[] args){
-			
+		
 		
 		MainGameModel m = new MainGameModel();
 		FishCharacter f = m.getFishy();
-		int xInc = 1;
 		
+		positions = new ArrayList<>();
+		
+		for (int i = 0; i<100000; i++){
+			positions.add(new OurVector((int) Math.random()*1000, (int) Math.random()*1000));
+		}
+		
+		m.startGame();
+		for (int i = 0; i<100000; i++){
+			m.update();
+			f.getPosition().setX(positions.get(i).getX());
+			f.getPosition().setY(positions.get(i).getY());
+			System.out.println(m);
+		}
 		
 		
 		
 	}
 	
-	public void autoMoveFish(FishCharacter f, int xInc){
-		int currX = f.getPosition().getX();
-		
-		f.getPosition().setX(currX+xInc);
-		f.getPosition().setY((int) Math.sin(currX+xInc));
-	}
 }
