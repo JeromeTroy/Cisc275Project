@@ -19,9 +19,9 @@ public class MainGameModel {
 	private int accumulateYMax = 700;
 	private int trashAmount = 0; 		// level of the trash around the main character
 	private int foodAmount; 			// level of food around the main character
-	private StuffSet everyThing; 		// all the stuff in the ocean
+	protected StuffSet everyThing; 		// all the stuff in the ocean
 	
-	private Map theMap; 				// the map
+	protected Map theMap; 				// the map
 	
 	private int gameLengthSeconds;		// alotted time for the game
 	private Timer timer; 				// countdown timer	

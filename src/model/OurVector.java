@@ -2,7 +2,9 @@ package model;
 
 public class OurVector implements Comparable<OurVector>{
 
-	// Vector for collision detection
+	/*
+	 *  Vector for collision detection and location tracking
+	 */
 	private int x; 		// x position
 	private int y;		// y position
 
@@ -74,7 +76,7 @@ public class OurVector implements Comparable<OurVector>{
 	 * Output:	
 	 * 		int 	dot product 	x1*x2 + y1*y2
 	 */
-	public int dotWith(OurVector v){
+	private int dotWith(OurVector v){
 		return v.getX()*x + v.getY()*y;
 	}
 
