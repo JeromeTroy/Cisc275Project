@@ -214,7 +214,8 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		bgLabel.setLocation(bgPos, 0);
 		JLabel tmp;
 		
-		System.out.println(c.getModel().newStuff.size());
+		/*
+		 * System.out.println(c.getModel().newStuff.size());
 		for (int i=0; i<c.getModel().newStuff.size(); i++){
 			System.out.println(c.getModel().newStuff.get(i).isTrash());
 			if (c.getModel().newStuff.get(i).isTrash()){
@@ -229,6 +230,7 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 			System.out.println(c.getModel().getStuff().get(i).getPosition());
 			layeredPane.add(tmp, new Integer(20), 0);
 		}
+		*/
 		//add(layeredPane);
 		System.out.println(stuff.size());
 		System.out.println("Paint fish (test):");

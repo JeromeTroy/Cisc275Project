@@ -15,15 +15,28 @@ public class MainController {
 	private  MiniGameModel miniGame;
 	private int tickPeriod = 30; // in milliseconds
 	boolean inMiniGame;
+	
+	private boolean useView;
+	// private mainView gameView;
 
-	public MainController() {
+	public static void main(String[] args) {
+		MainController game = new MainController(false);
+		System.out.println(game.mainGameModel);
+	}
+	
+	public MainController(boolean b) {
+		mainGameModel = new MainGameModel();
+		if (useView) {
+			gameScreen = new GamePlayScreen();
+		}
+		inMiniGame = false;
+		
 	}
 
 	/* startGame() - begins game play
 	 * 				 creates instance of MainGameModel and the gametimer and starts the game timer
 	 */
 	public void startGame() {
-		mainGameModel = new MainGameModel();
 		//gameTimerThread = new GameTimerThread(mainGameModel.getGameLengthSeconds(), getTickPeriod(),this);		
 		//gameTimerThread.start();
 
@@ -45,14 +58,16 @@ public class MainController {
 		//controls state of the game
 		if (inMiniGame) {
 			miniGame.update();
-			if (miniGame.isGameOver()) {
+			if (miniGame.getGameOver()) {
 				endMiniGame();
 			}
 		} else {
 			mainGameModel.update();
-			//GamePlayScreen.paint();
+			if (useView) {
+				//GamePlayScreen.paint();
+			}
 		}
-		if (mainGameModel.isGameOver()) {
+		if (mainGameModel.getGameOver()) {
 			endGame();
 		}
 		if (mainGameModel.getFishy().getIsCaught()) {
