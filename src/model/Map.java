@@ -22,12 +22,14 @@ public class Map {
 		length = l;
 		height = h;
 		uniqueLength = ul;
+		origin = new OurVector();
 	}
 	
 	// for given only a length and a height
 	public Map(int l, int h){
 		length = l;
 		height = h;
+		origin = new OurVector();
 	}
 	
 	// getters
