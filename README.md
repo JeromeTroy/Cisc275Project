@@ -7,9 +7,9 @@ Key: D = done, I = in progress
 
 Goals:
 
-    rename fishCharacter to mainCharacter -I
+    rename fishCharacter to mainCharacter -D
     
-    toString()
+    toString() -I
     
     Toggle for fish speed
     
