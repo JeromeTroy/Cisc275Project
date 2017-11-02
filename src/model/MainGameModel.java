@@ -211,12 +211,16 @@ public class MainGameModel {
 	// TODO: reconcile this and modelTick()
 	public void update() {
 		if (theMap.moveMap(fishy)) {				// if move allowed
+			System.out.println("Move allowed");
 			for (StuffInOcean crap : everyThing) {	// move everything
 				crap.move(fishy);
 				if (!(fishy.getIsCaught())) {
 					fishy.isCaught(crap);
 				}
 			}
+		}
+		else {
+			System.out.println("Invalid move");
 		}
 		if (fishy.getIsCaught()) {
 			// TODO: call minigame
