@@ -89,4 +89,14 @@ public class Map {
 		return validMove;									// return if the move was valid
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 * printing
+	 */
+	public String toString() {
+		String mapString = "Length: " + length + ", height: " + height + "unique length: " + uniqueLength;
+		mapString += "\n Origin at " + origin.toString();
+		return mapString;
+	}
 }

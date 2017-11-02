@@ -245,7 +245,12 @@ public class MainGameModel {
 	// print the game
 	//TODO: make me more detailed
 	public String toString(){
-		return fishy.toString()+" Food items: "+foodAmount+" Trash Amount "+trashAmount;
+		String modelString = "Fish: ";
+		modelString += fishy.toString();
+		modelString += "\n Map: " + theMap.toString();
+		modelString += "\n Current trash: " + trashAmount + " current food: " + foodAmount + "\n";
+		modelString += "\n Stuff: " + everyThing.toString();
+		return modelString;
 	}
 	
 	
