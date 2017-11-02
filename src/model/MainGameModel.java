@@ -210,22 +210,6 @@ public class MainGameModel {
 
 	// TODO: reconcile this and modelTick()
 	public void update() {
-		System.out.println("Update Game Model");
-		numTicks++;
-		if (numTicks%300==0){
-			accumulate();
-		}
-		System.out.println(everyThing.size());
-	}
-
-	
-	// moving
-	/*
-	 * Moves everything
-	 * Only allows movement based on map's moveMap method
-	 */
-	// TODO: reconcile this and update()
-	public void modelTick(){
 		if (theMap.moveMap(fishy)) {				// if move allowed
 			for (StuffInOcean crap : everyThing) {	// move everything
 				crap.move(fishy);
@@ -238,9 +222,16 @@ public class MainGameModel {
 			// TODO: call minigame
 			removeTrash();
 		}else {
-			accumulate();
+			System.out.println("Update Game Model");
+			numTicks++;
+			if (numTicks%300==0){
+				accumulate();
+			}
 		}
 	}
+
+	
+	// moving
 	
 	// print the game
 	//TODO: make me more detailed
@@ -253,6 +244,10 @@ public class MainGameModel {
 		return modelString;
 	}
 	
+	public void update(int dtheta) {
+		fishy.rotate(dtheta);
+		update();
+	}
 	
 	
 }

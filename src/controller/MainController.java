@@ -22,6 +22,12 @@ public class MainController {
 	public static void main(String[] args) {
 		MainController game = new MainController(false);
 		System.out.println(game.mainGameModel);
+		game.gameTimer = new GameTimer(game);
+		//TODO: get input and then iterate through game
+		while (!game.getModel().getGameOver()) {
+			game.tick();
+			System.out.println(game.mainGameModel);
+		}
 	}
 	
 	public MainController(boolean b) {
@@ -30,7 +36,6 @@ public class MainController {
 			gameScreen = new GamePlayScreen();
 		}
 		inMiniGame = false;
-		
 	}
 
 	/* startGame() - begins game play
@@ -53,8 +58,7 @@ public class MainController {
 	 * 
 	 */
 	protected void tick() {
-		System.out.println("Tick");
-		
+		/*System.out.println("Tick");
 		//controls state of the game
 		if (inMiniGame) {
 			miniGame.update();
@@ -72,6 +76,21 @@ public class MainController {
 		}
 		if (mainGameModel.getFishy().getIsCaught()) {
 			launchMiniGame();
+		}
+		*/
+		if (useView) {
+			// TODO: stuff from view?
+			mainGameModel.update();
+		}else {
+			Scanner sc = new Scanner(System.in);
+			String angle = sc.nextLine();
+			int deltaTheta;
+			try {
+				deltaTheta = Integer.parseInt(angle);
+			}catch(NumberFormatException ex) {
+				deltaTheta = 0;
+			}
+			mainGameModel.update(deltaTheta);
 		}
 
 	}
