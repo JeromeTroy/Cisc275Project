@@ -10,17 +10,17 @@ public class StuffSet extends ArrayList<StuffInOcean> {
 	// --fix to center of corner
 
 	int partitionDist;
-	FishCharacter f;
+	MainCharacter f;
 
 	public StuffSet() {
 	}
 
-	public StuffSet(FishCharacter f) {
+	public StuffSet(MainCharacter f) {
 		this.f = f;
 		//super.add(f);
 	}
 
-	public StuffSet(FishCharacter f, int partitionDist) {
+	public StuffSet(MainCharacter f, int partitionDist) {
 		this.f = f;
 		this.partitionDist = partitionDist;
 	}

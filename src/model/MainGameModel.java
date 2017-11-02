@@ -8,7 +8,7 @@ public class MainGameModel {
 	 * The main model for the game
 	 * Will be the only thing from the model that the controller can see
 	 */
-	private FishCharacter fishy; 		// the main character
+	private MainCharacter fishy; 		// the main character
 	
 	private int trashAccumulation = 1; // rate of increase of trash
 	private int foodAccumulation = 1;  // rate of increase of food
@@ -40,7 +40,7 @@ public class MainGameModel {
 	public MainGameModel() {
 		startGame();							// start the game
 		gameOver = false;						// not currently game over
-		fishy = new FishCharacter();			// create the main character
+		fishy = new MainCharacter();			// create the main character
 		everyThing = new StuffSet(fishy);		// create the set of stuff, and give it the fish for comparisons
 		trashAmount = 0;						// amount of trash
 		foodAmount = 0;							// amount of food
@@ -58,7 +58,7 @@ public class MainGameModel {
 //	}
 
 	// getters
-	public FishCharacter getFishy() {
+	public MainCharacter getFishy() {
 		return fishy;
 	}
 

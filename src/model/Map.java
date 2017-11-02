@@ -73,7 +73,7 @@ public class Map {
 	 * Note:
 	 * 		if the move was valid it moves the origin
 	 */
-	public boolean moveMap(FishCharacter fishy){
+	public boolean moveMap(MainCharacter fishy){
 		int speed = -fishy.getSpeed();						// fish's speed and orientation
 		int angle = fishy.getAngle();
 															// proposed move

@@ -2,7 +2,7 @@ package model;
 
 import java.util.*;
 import java.math.*;
-public class FishCharacter extends StuffInOcean{
+public class MainCharacter extends StuffInOcean{
 	
 	/*
 	 * This is the main character, which can be both the main fish and the scuba diver
@@ -32,7 +32,7 @@ public class FishCharacter extends StuffInOcean{
 	 * 		new FishCharacter
 	 * Sets location, score
 	 */
-	public FishCharacter(){	// TODO implement view parameters through controller
+	public MainCharacter(){	// TODO implement view parameters through controller
 		
 		position = new OurVector(10,10); //TODO: changed initial location from 5,5 to 10,10
 		//radius = step;
@@ -56,7 +56,7 @@ public class FishCharacter extends StuffInOcean{
 	 * Currently prevents the fish from moving
 	 */
 	@Override
-	public void move(FishCharacter fishy) {
+	public void move(MainCharacter fishy) {
 		// TODO: discuss and determine how it will move
 	}
 	

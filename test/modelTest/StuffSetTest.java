@@ -11,7 +11,7 @@ import model.*;
 
 public class StuffSetTest {
 	StuffSet s;
-	FishCharacter f;
+	MainCharacter f;
 	
 	@Before
 	public void buildStuffSet(){
@@ -22,7 +22,7 @@ public class StuffSetTest {
 		Food f2 = new Food(1,2);
 		Food f3 = new Food (0,0);
 		Trash t3 = new Trash(3,5);
-		f = new FishCharacter();
+		f = new MainCharacter();
 		s = new StuffSet(f);
 		
 		s.add(t1);

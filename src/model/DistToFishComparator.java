@@ -9,13 +9,13 @@ public class DistToFishComparator implements Comparator<StuffInOcean> {
 	 */
 	
 	// attributes
-	FishCharacter f; 		// the actual fish character that will be used for comparisons
+	MainCharacter f; 		// the actual fish character that will be used for comparisons
 	
 	/*
 	 * Constructor
 	 * Assigns the fish character for comparisons to the input value
 	 */
-	public DistToFishComparator(FishCharacter f){
+	public DistToFishComparator(MainCharacter f){
 		this.f=f;
 	}
 	

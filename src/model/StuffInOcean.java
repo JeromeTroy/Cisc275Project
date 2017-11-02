@@ -120,7 +120,7 @@ public class StuffInOcean implements Comparable<StuffInOcean>{
 	 * Moving
 	 * Everything will move relative to the fish
 	 */
-	public void move(FishCharacter fish){
+	public void move(MainCharacter fish){
 		int speed = -fish.getSpeed();
 		int angle = fish.getAngle();
 		

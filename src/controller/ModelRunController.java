@@ -11,7 +11,7 @@ public class ModelRunController {
 		
 		
 		MainGameModel m = new MainGameModel();
-		FishCharacter f = m.getFishy();
+		MainCharacter f = m.getFishy();
 		
 		positions = new ArrayList<>();
 		
