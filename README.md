@@ -9,7 +9,11 @@ Goals:
 
     rename fishCharacter to mainCharacter -D
     
-    toString() -I
+    toString() -D
+    
+    (At this point I need to tackle the controller to allow for a 
+        toggle to use or do not use the view)
+    Will also fix any errors along the way
     
     Toggle for fish speed
     
