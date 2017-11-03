@@ -4,52 +4,58 @@ import java.util.*;
 
 public class MainGameModel {
 
-	private FishCharacter fishy; // the main character
-	private Timer timer; // countdown timer
-	private int trashAmount = 0; // level of the trash around the main character
-	private int foodAmount; // level of food around the main character
-	private StuffSet everyThing; // all the stuff in the ocean
-	private int gameLengthSeconds;
-	private Map theMap; // the map
-	private int numTicks=0;
-	public ArrayList<StuffInOcean> newStuff;
-	//private MiniGameModel miniGame; // mini game
+	/*
+	 * The main model for the game
+	 * Will be the only thing from the model that the controller can see
+	 */
+	private FishCharacter fishy; 		// the main character
 	
 	private int trashAccumulation = 1; // rate of increase of trash
 	private int foodAccumulation = 1;  // rate of increase of food
-	private boolean gameOver;
-	//protected boolean isCaught;
-	
 	// TODO: verify these are correct
 	private int accumulateXMin = 0;
 	private int accumulateXMax = 500;
 	private int accumulateYMin = 0;
 	private int accumulateYMax = 700;
-
-	public MainGameModel() {
-		startGame();
-		gameOver = false;
-		fishy = new FishCharacter();
-		everyThing = new StuffSet(fishy);
-		trashAmount = 0;
-		foodAmount = 0;
-		gameLengthSeconds = 180;
-
+	private int trashAmount = 0; 		// level of the trash around the main character
+	private int foodAmount; 			// level of food around the main character
+	protected StuffSet everyThing; 		// all the stuff in the ocean
 	
-		//everyThing.add(fishy);
+	protected Map theMap; 				// the map
+	
+	private int gameLengthSeconds;		// alotted time for the game
+	private Timer timer; 				// countdown timer	
+	private int numTicks=0;				// TODO: WTF
+	//public ArrayList<StuffInOcean> newStuff;
+	//private MiniGameModel miniGame; // mini game
+	
+	private boolean gameOver;
+	//protected boolean isCaught;
+	
 
-		theMap = new Map(1000, 100); // map 1000 units long, 100 units tall
-		accumulateYMax = theMap.getHeight();
-		//isCaught = false;
-		
-		//everyThing = new StuffSet();
-		// everyThing.add(fishy);
-		
-		timer = new Timer(); 				// fix this	
-		theMap = new Map(1000, 100);		// map 1000 units long, 100 units tall
-		
-		newStuff = new ArrayList<>();
+	/*
+	 * Constructor
+	 * Creates the model and initializes all requirements
+	 */
+	public MainGameModel() {
+		startGame();							// start the game
+		gameOver = false;						// not currently game over
+		fishy = new FishCharacter();			// create the main character
+		everyThing = new StuffSet(fishy);		// create the set of stuff, and give it the fish for comparisons
+		trashAmount = 0;						// amount of trash
+		foodAmount = 0;							// amount of food
+		gameLengthSeconds = 180;				// length of game //TODO: subject to change
+
+		theMap = new Map(1000, 100); 			// map 1000 units long, 100 units tall //TODO: subject to change
+		accumulateYMax = theMap.getHeight();	// maximum y value that we can put trash at
+				
+		timer = new Timer(); 					// Establish timer //TODO: fix this	
 		}
+
+
+//	public MiniGameModel getMiniGame() {
+//		return miniGame;
+//	}
 
 	// getters
 	public FishCharacter getFishy() {
@@ -59,10 +65,6 @@ public class MainGameModel {
 	public StuffSet getStuff() {
 		return everyThing;
 	}
-
-//	public MiniGameModel getMiniGame() {
-//		return miniGame;
-//	}
 
 	public int getTrashAmount() {
 		return trashAmount;
@@ -76,10 +78,6 @@ public class MainGameModel {
 		return theMap;
 	}
 
-//	public boolean getIsCaught() {
-//		return isCaught;
-//	}
-
 	public int getGameLengthSeconds() {
 		return gameLengthSeconds;
 	}
@@ -88,7 +86,7 @@ public class MainGameModel {
 		return trashAccumulation;
 	}
 
-	public boolean isGameOver() {
+	public boolean getGameOver() {
 		return gameOver;
 	}
 
@@ -120,10 +118,6 @@ public class MainGameModel {
 		this.gameLengthSeconds = gameLengthSeconds;
 	}
 
-//	public void setCaught(boolean isCaught) {
-//		fishy.isCaught = isCaught;
-//	}
-
 	public void setEveryThing(StuffSet everyThing) {
 		this.everyThing = everyThing;
 	}
@@ -136,7 +130,7 @@ public class MainGameModel {
 //		this.timer = timer;
 //	}
 	
-	public void setOver(boolean b){
+	public void setGameOver(boolean b){
 		this.gameOver = b;
 	}
 
@@ -147,31 +141,29 @@ public class MainGameModel {
 	}
 
 	/*
-	 * accumulateTrash() - accumulate trash randomly generates amount of trash
-	 * between 0-set trashAccumulation places trash at random location of vector
+	 * accumulateTrash() - accumulate trash and food randomly 
+	 * generates amount of trash between 0 andtrashAccumulation places trash at random location of vector
 	 * <0-100,0-100> parameters - none input - none return - none output - none
 	 */
+	//TODO: verify the proper amount of trash is added and in the right location.  Verify ALL needed trash is added
 	public void accumulate() { // accumulate trash
-		//initialize trash
+		//initialize trash and food
 		Trash newTrash;
 		Food newFood;
-		newStuff.clear();
 		
 		//generate new trash 
 		for (int i=0; i<trashAccumulation; i++){
 			newTrash = new Trash(randInt(accumulateXMin, accumulateXMax),randInt(accumulateYMin, accumulateYMax));
 			if (everyThing.add(newTrash)){ //add trash and increment food amount if trash is added
 				trashAmount++;
-				newStuff.add(newTrash);
 			}
 		}
-		
 		//generate new food
 		for (int i=0; i<foodAccumulation; i++){
 			newFood = new Food(randInt(accumulateXMin, accumulateXMax),randInt(accumulateYMin, accumulateYMax));
 			if (everyThing.add(newFood)){ //add food and increment food amount if trash is added
 				foodAmount++;
-				newStuff.add(newFood);
+				//newStuff.add(newFood);
 			}
 		}
 	}
@@ -190,33 +182,40 @@ public class MainGameModel {
 	 * none input - none return - none output - none
 	 */
 	public void removeTrash() {
-		ArrayList<Trash> allTrash = new ArrayList<>();
+		ArrayList<Trash> allTrash = new ArrayList<Trash>(); 		// initialize a list of all the trash
 		for (StuffInOcean s : everyThing) {
 			if (s.isTrash()) {
-				allTrash.add((Trash) s);
+				allTrash.add((Trash)s);								// get all the trash
 			}
 		}
-
-		everyThing.removeAll(allTrash);
+		everyThing.removeAll(allTrash);								// remove anything that is trash
 	}
 
+	/*
+	 * Execute on the game ending
+	 * TODO: ???
+	 */
 	public boolean endGame() {
 		gameOver = true;
 		System.out.println("Game Over");
 		return true;
 	}
 
+	/*
+	 * Start up the game
+	 */
 	public void startGame() {
 		System.out.println("Game Start...");
 	}
 
+	// TODO: reconcile this and modelTick()
 	public void update() {
-			System.out.println("Update Game Model");
-			numTicks++;
-			if (numTicks%300==0){
-				accumulate();
-			}
-			System.out.println(everyThing.size());
+		System.out.println("Update Game Model");
+		numTicks++;
+		if (numTicks%300==0){
+			accumulate();
+		}
+		System.out.println(everyThing.size());
 	}
 
 	
@@ -225,13 +224,17 @@ public class MainGameModel {
 	 * Moves everything
 	 * Only allows movement based on map's moveMap method
 	 */
+	// TODO: reconcile this and update()
 	public void modelTick(){
 		if (theMap.moveMap(fishy)) {				// if move allowed
 			for (StuffInOcean crap : everyThing) {	// move everything
 				crap.move(fishy);
+				if (!(fishy.getIsCaught())) {
+					fishy.isCaught(crap);
+				}
 			}
 		}
-		if (fishy.isCaught(everyThing.get(1))) {
+		if (fishy.getIsCaught()) {
 			// TODO: call minigame
 			removeTrash();
 		}else {
@@ -239,6 +242,8 @@ public class MainGameModel {
 		}
 	}
 	
+	// print the game
+	//TODO: make me more detailed
 	public String toString(){
 		return fishy.toString()+" Food items: "+foodAmount+" Trash Amount "+trashAmount;
 	}

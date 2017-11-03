@@ -4,6 +4,10 @@ import java.util.Vector;
 
 import java.util.*;
 public class Map {
+	/*
+	 * The map of the game
+	 * No real detailed information other than the size of the map
+	 */
 
 	private int length; 			// total length of the map
 	private int height; 			// total height of the map
@@ -11,6 +15,22 @@ public class Map {
 	
 	private OurVector origin; 		// location of the origin of the map relative to the fish
 	
+	// Constructors
+	
+	// for given length, height, uniqueLength
+	public Map(int l, int h, int ul){
+		length = l;
+		height = h;
+		uniqueLength = ul;
+	}
+	
+	// for given only a length and a height
+	public Map(int l, int h){
+		length = l;
+		height = h;
+	}
+	
+	// getters
 	public int getLength(){
 		return length;
 	}
@@ -19,17 +39,7 @@ public class Map {
 		return height;
 	}
 	
-	public Map(int l, int h, int ul){
-		length = l;
-		height = h;
-		uniqueLength = ul;
-	}
-	
-	public Map(int l, int h){
-		length = l;
-		height = h;
-	}
-	
+	// setters
 	public void setLength(int l){
 		length = l;
 	}
@@ -64,19 +74,19 @@ public class Map {
 	 * 		if the move was valid it moves the origin
 	 */
 	public boolean moveMap(FishCharacter fishy){
-		int speed = -fishy.getSpeed();
+		int speed = -fishy.getSpeed();						// fish's speed and orientation
 		int angle = fishy.getAngle();
-		
-		double proposedX = origin.getX() + speed*Math.cos(Math.toRadians(angle));
+															// proposed move
+		double proposedX = origin.getX() + speed*Math.cos(Math.toRadians(angle));		
 		double proposedY = origin.getY() + speed*Math.sin(Math.toRadians(angle));
 		
-		boolean validMove = ((0 <= proposedY) && (proposedY <= height));
+		boolean validMove = ((0 <= proposedY) && (proposedY <= height));		// is the move valid
 		
-		if (validMove){
+		if (validMove){										// if so, execute
 			origin.setX((int) proposedX);
 			origin.setY((int) proposedY);		
 		}
-		return validMove;
+		return validMove;									// return if the move was valid
 	}
 
 }

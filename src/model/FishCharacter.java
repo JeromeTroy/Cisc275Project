@@ -3,18 +3,23 @@ package model;
 import java.util.*;
 import java.math.*;
 public class FishCharacter extends StuffInOcean{
-	protected int radius = 1;
-	// Attributes //TODO: remove comments
 	
-	private int step = 1;
+	/*
+	 * This is the main character, which can be both the main fish and the scuba diver
+	 * In the minigame
+	 */
 	
-	// orientations
-	private int angle; 					// angle (counterclockwise) from east facing
+	// attributes
+	protected int radius = 1; 		// size of the fish
+	private int step = 1;			// speed of the fish
+	private int angle; 				// angle (counterclockwise) from east facing
+	private int score;				// player's score
+	private boolean isCaught; 		// whether the fish is caught in trash
 	
-	private int score;			// player's score
+	// list of orientations Strings for printing
 	private ArrayList<String> possibleOrientations = new ArrayList<String>();
 	
-	private boolean isCaught; 		// whether the fish is caught in trash
+	
 	
 	
 	// Methods
@@ -47,40 +52,31 @@ public class FishCharacter extends StuffInOcean{
 	}
 	
 	/*
-	 * Moving the fish
-	 * This method DOES NOT handle bounds, this is dealt with at the caller
-	 * Input:
-	 * 		None
-	 * Output:
-	 * 		None
-	 * moves the fish
+	 * Moving (overriding StuffInOcean move()
+	 * Currently prevents the fish from moving
 	 */
-	public void move() {
-		// moves the fish	
-		
-		// temporary storage
-//		int prevX = position.getX();
-//		int prevY = position.getY();
-//		
-//		// moving
-//		int deltaX = (int) Math.cos(Math.toRadians(angle))*step;
-//		int deltaY = (int) Math.sin(Math.toRadians(angle))*step;
-//		position.setX(position.getX() + deltaX);
-//		position.setY(position.getY() + deltaY);
-//		
-//		// bounds handling
-//		if ((position.getX() > m.getLength()) || (position.getX() < 0)){
-//			position.setX(prevX);
-//		}
-//		if ((position.getY() > m.getHeight()) || (position.getY() < 0)){
-//			position.setY(prevY);
-//		}
+	@Override
+	public void move(FishCharacter fishy) {
+		// TODO: discuss and determine how it will move
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see model.StuffInOcean#getName()
+	 * Getting the name of the character
+	 * Overrides StuffInOcean so we can see who's who
+	 */
+	@Override
 	public String getName(){
 		return "Fish ";
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see model.StuffInOcean#isFish()
+	 * Tells the computer that this is the fish
+	 */
+	@Override
 	public boolean isFish(){
 		return true;
 	}
@@ -93,24 +89,39 @@ public class FishCharacter extends StuffInOcean{
 	 * 		degrees		int 		degrees to rotate COUNTERCLOCKWISE
 	 * Output:
 	 * 		None
+	 * The angle must be in the range [0,360), 
+	 * this method ensures that
 	 */
 	public void rotate(int degrees){
-		angle += degrees;
+		angle += degrees;				// change angle
 		if (angle < 0){
-			rotate(360);
+			rotate(360);				// negative angle, normalize
 		}else if (angle >= 360){
-			rotate(-360);
+			rotate(-360);				// angle too high, normalize to [0,360)
 		}
 	}
 	
 	// TODO verify this implementation of contact and getting caught
 	
-	public boolean isCaught(StuffInOcean s){
-		return (s.isTrash() && isCollided(s));
+	/*
+	 * Is the fish caught
+	 * Input:
+	 * 		StuffInOcean s
+	 * Output:
+	 * 		N/A
+	 * assigns caught value to isCaught parameter
+	 */
+	public void isCaught(StuffInOcean s){
+		isCaught = (s.isTrash() && isCollided(s));
 	}
 	
 	// TODO bounds handling
 	
+	/*
+	 * For printing:
+	 * getting the orientation of the fish
+	 * to the nearest cardinal direction
+	 */
 	public String getOrientation(){
 		String orient = "";
 		if ((angle >= 45/2) && (angle <= (180-45/2))){
@@ -126,6 +137,12 @@ public class FishCharacter extends StuffInOcean{
 		return orient;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see model.StuffInOcean#toString()
+	 * Printing the fish itself
+	 */
+	@Override
 	public String toString() {
 		String location = "The fish is at "+ position.toString() + " facing ";
 		location += getOrientation();
@@ -166,10 +183,8 @@ public class FishCharacter extends StuffInOcean{
 		return isCaught;
 	}
 
-
 	public void setAngle(int a) {
-		angle = a;
-		
+		angle = a;	
 	}
 
 	public int getStepSize() {

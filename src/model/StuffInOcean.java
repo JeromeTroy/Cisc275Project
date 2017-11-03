@@ -2,32 +2,42 @@ package model;
 
 import java.util.*;
 public class StuffInOcean implements Comparable<StuffInOcean>{
+	/*
+	 * Super class for the fish, food and trash
+	 */
+	
 	protected OurVector position; 	// position vector
-	protected int radius; 			// size of circle
+	protected int radius; 			// size of object
 	
 	// Constructors
+	// default
 	public StuffInOcean(){
 		position = new OurVector();
 	}
 	
+	// given position
 	public StuffInOcean(int xval, int yval){
 		position = new OurVector(xval,yval);
 	}
 	
+	// given position vector
 	public StuffInOcean(OurVector v){
 		position = v;
 	}
 	
+	// given position and size
 	public StuffInOcean(int xval, int yval, int rad){
 		position = new OurVector(xval,yval);
 		radius = rad;
 	}
 	
+	// given position vector and size
 	public StuffInOcean(OurVector v, int rad){
 		position = v;
 		radius = rad;
 	}
 	
+	// given only size
 	public StuffInOcean(int rad){
 		radius = rad;
 	}
@@ -42,8 +52,10 @@ public class StuffInOcean implements Comparable<StuffInOcean>{
 	 */
 	public String toString(){
 		return getName() + "located at " + position.toString();
+		// getName() is polymorphic and so will allow us to see each name of  every object
 	}
 	
+	// method to get the name of the object (fish, food, trash)
 	public String getName(){
 		return "";
 	}
@@ -81,9 +93,10 @@ public class StuffInOcean implements Comparable<StuffInOcean>{
 	 *  	int 	value of comparison
 	 */
 //	changed natural compare to for stuffInOcean
-//	public int compareTo(StuffInOcean o){
-//		return position.compareTo(((StuffInOcean)o).getPosition());
+//	public int compareTo(StuffInOcean s){
+//		return position.compareTo(s.getPosition());
 //	}
+	// TODO; verify this implementation
 	public int compareTo(StuffInOcean s){
 		return this.getPosition().distFrom(s.getPosition());
 	}

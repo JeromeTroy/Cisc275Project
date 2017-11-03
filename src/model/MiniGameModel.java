@@ -1,16 +1,14 @@
 package model;
 
 public class MiniGameModel extends MainGameModel {
-	int mapHeight = 20;
-	int mapLength = 20;
-	
+	/*
+	 * The mini game, which is based on the main game
+	 */
+		
 	public MiniGameModel(){
 		//TODO: update actual parameters;
-		super();
-		setTrashAmount(10);
-		getMap().setHeight(mapHeight);
-		getMap().setLength(mapLength);
-		getMap().setUniqueLength(mapLength);
+		super();						// create the instance
+		setTrashAmount(10);				// preset amount of trash	;
 		setTrashAccumulation(0);
 		setGameLengthSeconds(20);
 		
@@ -18,32 +16,28 @@ public class MiniGameModel extends MainGameModel {
 	
 	public MiniGameModel(int mapHeight, int mapLength){
 		this();
-		this.mapHeight = mapHeight;
-		this.mapLength = mapLength;
-		getMap().setHeight(mapHeight);
-		getMap().setLength(mapLength);
-		getMap().setUniqueLength(mapLength);
+		theMap = new Map(mapLength, mapHeight, mapLength);
 	}
 	
 	@Override
 	public boolean addStuff(StuffInOcean s){
-		return getEveryThing().add(s);
+		return everyThing.add(s);
 	}
 
 	public int getMapHeight() {
-		return mapHeight;
+		return theMap.getHeight();
 	}
 
 	public void setMapHeight(int mapHeight) {
-		this.mapHeight = mapHeight;
+		theMap.setHeight(mapHeight);
 	}
 
 	public int getMapLength() {
-		return mapLength;
+		return theMap.getLength();
 	}
 
 	public void setMapLength(int mapLength) {
-		this.mapLength = mapLength;
+		theMap.setLength(mapLength);
 	}
 	
 	public void update() {
