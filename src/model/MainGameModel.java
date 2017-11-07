@@ -40,7 +40,7 @@ public class MainGameModel {
 	public MainGameModel() {
 		startGame();							// start the game
 		gameOver = false;						// not currently game over
-		fishy = new MainCharacter();			// create the main character
+		fishy = new MainCharacter();	// create the main character
 		everyThing = new StuffSet(fishy);		// create the set of stuff, and give it the fish for comparisons
 		trashAmount = 0;						// amount of trash
 		foodAmount = 0;							// amount of food
@@ -50,9 +50,27 @@ public class MainGameModel {
 		accumulateYMax = theMap.getHeight();	// maximum y value that we can put trash at
 				
 		timer = new Timer(); 					// Establish timer //TODO: fix this	
-		}
+	}
 
+	/**
+	 * Constructor
+	 * Creates the model and initializes all requirements
+	 * @param fishSpeed 		speed of the fish
+	 */
+	public MainGameModel(int fishSpeed) {
+		startGame();							// start the game
+		gameOver = false;						// not currently game over
+		fishy = new MainCharacter(fishSpeed);	// create the main character
+		everyThing = new StuffSet(fishy);		// create the set of stuff, and give it the fish for comparisons
+		trashAmount = 0;						// amount of trash
+		foodAmount = 0;							// amount of food
+		gameLengthSeconds = 180;				// length of game //TODO: subject to change
 
+		theMap = new Map(1000, 100); 			// map 1000 units long, 100 units tall //TODO: subject to change
+		accumulateYMax = theMap.getHeight();	// maximum y value that we can put trash at
+				
+		timer = new Timer(); 					// Establish timer //TODO: fix this	
+	}
 //	public MiniGameModel getMiniGame() {
 //		return miniGame;
 //	}

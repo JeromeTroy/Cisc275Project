@@ -20,7 +20,7 @@ public class MainController {
 	// private mainView gameView;
 
 	public static void main(String[] args) {
-		MainController game = new MainController(false);
+		MainController game = new MainController(false,10);
 		System.out.println(game.mainGameModel);
 		game.gameTimer = new GameTimer(game);
 		//TODO: get input and then iterate through game
@@ -32,6 +32,13 @@ public class MainController {
 	
 	public MainController(boolean b) {
 		mainGameModel = new MainGameModel();
+		if (useView) {
+			gameScreen = new GamePlayScreen();
+		}
+		inMiniGame = false;
+	}
+	public MainController(boolean b, int speed) {
+		mainGameModel = new MainGameModel(speed);
 		if (useView) {
 			gameScreen = new GamePlayScreen();
 		}

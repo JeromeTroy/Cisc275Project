@@ -47,6 +47,15 @@ public class MainCharacter extends StuffInOcean{
 		possibleOrientations.add("northeast");
 	}
 	
+	/**
+	 * Constructor
+	 * @param fishSpeed speed of the fish
+	 */
+	public MainCharacter(int fishSpeed) {
+		this();
+		setSpeed(fishSpeed);
+	}
+
 	/** (non-Javadoc)
 	 * @see model.StuffInOcean#move(model.MainCharacter)
 	 * @see model.MainCharacter
