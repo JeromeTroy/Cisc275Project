@@ -86,7 +86,7 @@ public class OurVector implements Comparable<OurVector>{
 		return v.norm2() + norm2() - 2*dotWith(v);
 	}
 	
-	private int distFrom(int x, int y) {
+	public int distFrom(int x, int y) {
 		OurVector v = new OurVector(x,y);
 		return distFrom(v);
 	}

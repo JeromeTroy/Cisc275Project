@@ -108,6 +108,17 @@ public class MainCharacter{
 	}
 	
 	/**
+	 * Determines if the fish is in contact with another object
+	 * @param v 		position of the object
+	 * @param size 		size of the object
+	 * @return 			if the fish ran into the object
+	 */
+	public boolean isContacting(int[] v, int size) {
+		boolean contact = (position.distFrom(v[0], v[1]) <= radius + size);
+		boolean inFront = (v[0] < position.getX());
+		return (contact && inFront);
+	}
+	/**
 	 * (non-Javadoc)
 	 * @see model.StuffInOcean#toString()
 	 * @see model.MainCharacter#getOrientation()
