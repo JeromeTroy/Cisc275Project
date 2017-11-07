@@ -15,15 +15,16 @@ public class OurVector implements Comparable<OurVector>{
 	 * @param xval 	int 	x value for position
 	 * @param yval 	int 	y value for position
 	 */
-	public OurVector(int xval, int yval){
+	private OurVector(int xval, int yval){
 		x = xval;
 		y = yval;
 	}
 	
+	
 	/**
-	 * default constructor (zero vector)
+	 * Default constructor
 	 */
-	public OurVector(){
+	public OurVector() {
 		x = 0;
 		y = 0;
 	}
@@ -70,6 +71,10 @@ public class OurVector implements Comparable<OurVector>{
 	private int dotWith(OurVector v){
 		return v.getX()*x + v.getY()*y;
 	}
+	
+	private int dotWith(int xval, int yval) {
+		return x*xval + y*yval;
+	}
 
 	/**
 	 * determine the distance between 2 vectors
@@ -77,10 +82,19 @@ public class OurVector implements Comparable<OurVector>{
 	 * @param v 		Vector 		vector to calculate distance from
 	 * @return int 		distance^2  from the vector 
 	 */
-	public int distFrom(OurVector v){
+	private int distFrom(OurVector v){
 		return v.norm2() + norm2() - 2*dotWith(v);
 	}
+	
+	private int distFrom(int x, int y) {
+		OurVector v = new OurVector(x,y);
+		return distFrom(v);
+	}
 
+	public static int distBetween(int x1, int y1, int x2, int y2) {
+		OurVector v1 = new OurVector(x1,y1);
+		return v1.distFrom(x2, y2);
+	}
 	/**
 	 * (non-Javadoc)
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)

@@ -30,7 +30,7 @@ public class MainCharacter extends StuffInOcean{
 	 */
 	public MainCharacter(){	// TODO implement view parameters through controller
 		
-		position = new OurVector(10,10); //TODO: changed initial location from 5,5 to 10,10
+		position = new OurVector(); //TODO: changed initial location from 5,5 to 10,10
 		//radius = step;
 		score = 0; 			// set score
 		
