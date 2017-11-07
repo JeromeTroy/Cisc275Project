@@ -68,6 +68,23 @@ public class StuffSet extends ArrayList {
 		return goodAdd;
 	}
 	
+	/**
+	 * Moving all stuff
+	 * Stuff moves left to right
+	 * @param fishy 		fish that everything is moving relative to
+	 */
+	public void move(MainCharacter fishy) {
+		int speed = fishy.getSpeed();
+		int angle = fishy.getAngle();
+		int deltaX = (int) (-speed * Math.cos(Math.toRadians(angle)));
+		for (int[] coord : allFood) {
+			coord[0] += deltaX;
+		}
+		for (int[] coord : allTrash) {
+			coord[0] += deltaX;
+		}
+	}
+	
 	public String toString() {
 		String str = "Food size: " + foodSize + ", food locations: \n" + allFood.toString();
 		str += "\nTrash size: " + trashSize + ", trash locations: \n" + allTrash.toString();

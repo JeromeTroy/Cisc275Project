@@ -42,6 +42,14 @@ public class Map {
 		length = l;
 		height = h;
 		origin = new OurVector();
+		uniqueLength = length;
+	}
+	
+	public Map() {
+		length = 100;
+		height = 100;
+		uniqueLength = length;
+		origin = new OurVector();
 	}
 	
 	// getters

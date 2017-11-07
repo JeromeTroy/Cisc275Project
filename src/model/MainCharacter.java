@@ -58,9 +58,8 @@ public class MainCharacter{
 	}
 
 	/** (non-Javadoc)
-	 * @see model.MainCharacter
-	 * MainCharacterMoving (overriding StuffInOcean move()
-	 * Currently prevents the fish from moving
+	 * MainCharacter Moving
+	 * fish moves up and down 
 	 */
 	public void move() {
 		int deltaY = (int) (speed * Math.sin(Math.toRadians(angle)));
