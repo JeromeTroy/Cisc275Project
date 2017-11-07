@@ -2,7 +2,7 @@ package model;
 
 import java.util.*;
 import java.math.*;
-public class MainCharacter extends StuffInOcean{
+public class MainCharacter{
 	
 	/*
 	 * This is the main character, which can be both the main fish and the scuba diver
@@ -15,6 +15,7 @@ public class MainCharacter extends StuffInOcean{
 	private int angle; 				// angle (counterclockwise) from east facing
 	private int score;				// player's score
 	private boolean isCaught; 		// whether the fish is caught in trash
+	private OurVector position;
 	
 	// list of orientations Strings for printing
 	private ArrayList<String> possibleOrientations = new ArrayList<String>();
@@ -57,42 +58,15 @@ public class MainCharacter extends StuffInOcean{
 	}
 
 	/** (non-Javadoc)
-	 * @see model.StuffInOcean#move(model.MainCharacter)
 	 * @see model.MainCharacter
-	 * @param fishy 	
 	 * MainCharacterMoving (overriding StuffInOcean move()
 	 * Currently prevents the fish from moving
 	 */
-	@Override
-	public void move(MainCharacter fishy) {
-		// TODO: discuss and determine how it will move
+	public void move() {
+		int deltaY = (int) (speed * Math.sin(Math.toRadians(angle)));
+		position.setY(position.getY() + deltaY);
 	}
-	
-	/**
-	 * (non-Javadoc)
-	 * @see model.StuffInOcean#getName()
-	 * @see model.StuffInOcean#tostring()
-	 * @see model.MainCharacter#toString()
-	 * Getting the name of the character
-	 * Overrides StuffInOcean so we can see who's who
-	 */
-	@Override
-	public String getName(){
-		return "Fish ";
-	}
-	
-	/**
-	 * (non-Javadoc)
-	 * @see model.StuffInOcean#isFish()
-	 * Tells the computer that this is the fish
-	 */
-	@Override
-	public boolean isFish(){
-		return true;
-	}
-	
-	
-	
+		
 	/**
 	 * Rotations of the fish
 	 * @param degrees 	int 		degrees to rotate COUNTERCLOCKWISE
@@ -110,14 +84,6 @@ public class MainCharacter extends StuffInOcean{
 	
 	// TODO verify this implementation of contact and getting caught
 	
-	/**
-	 * @param s 		StuffInOcean
-	 * assigns caught value to isCaught parameter
-	 * @see model.MainCharacter #isCaught
-	 */
-	public void isCaught(StuffInOcean s){
-		isCaught = (s.isTrash() && isCollided(s));
-	}
 	
 	// TODO bounds handling
 	
