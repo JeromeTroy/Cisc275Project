@@ -15,6 +15,8 @@ Goals:
         toggle to use or do not use the view)
     Will also fix any errors along the way
     
+    -D  :-)
+    
     Toggle for fish speed
     
     proper movement
