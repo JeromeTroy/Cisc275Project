@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Random;
+
 /**
  * @author jerome
  * MainModel class, simplified using flyWeight
@@ -9,6 +11,8 @@ public class MainModel {
 	private MainCharacter fishy;
 	private StuffSet everyThing;
 	private Map map;
+	
+	private int accumulationDist = 400;
 	
 	/**
 	 * Constructor
@@ -56,6 +60,9 @@ public class MainModel {
 		else {
 			System.out.println("Invalid move, not moving");
 		}
+		if (everyThing.shouldAccumulate()) {
+			accumulate();
+		}
 	}
 	
 	
@@ -79,6 +86,29 @@ public class MainModel {
 		update(deltaTheta);
 	}
 	
+	/**
+	 * accumulation of trash and food
+	 */
+	public void accumulate() {
+		boolean trashAdded = false;
+		boolean foodAdded = false;
+		int[] trashLoc = {accumulationDist, 0};
+		int[] foodLoc = {accumulationDist, 0};
+		while (!trashAdded) {
+			trashLoc[1] = randint(0, map.getHeight());
+			trashAdded = everyThing.add(trashLoc, "trash");
+		}
+		while (!foodAdded) {
+			foodLoc[1] = randint(0,map.getHeight());
+			foodAdded = everyThing.add(foodLoc, "food");
+		}
+	}
+	
+	/**
+	 * Printing
+	 *  (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString() {
 		String str = fishy.toString();
 		str += "\n" + everyThing.toString();
@@ -86,4 +116,19 @@ public class MainModel {
 		return str;
 	}
 	
+	/**
+	 * Determine a random integer between 2 numbers
+	 * @param min 		minimum value
+	 * @param max 		maximum value
+	 * @return 			number between min and max
+	 */
+	private int randint(int min, int max) {
+		Random rn = new Random();
+		int val = min + rn.nextInt()%(max-min);
+		return val;
+	}
+	
+	public void setAccumulationDistance(int dist) {
+		accumulationDist = dist;
+	}
 }

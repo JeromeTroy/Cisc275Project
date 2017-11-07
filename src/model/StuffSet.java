@@ -16,6 +16,9 @@ public class StuffSet extends ArrayList {
 	private int foodSize;
 	private int trashSize;
 	
+	private int accumulationTimer = 0;
+	private int accumulationValue = 300;
+	
 	
 	/**
 	 * Default constructor
@@ -45,25 +48,26 @@ public class StuffSet extends ArrayList {
 	 */
 	public boolean add(int[] coords, String type) {
 		boolean goodAdd = true;
-		ArrayList<int[]> testArray;
-		if (type == "food") {
-			testArray = allFood;
-		}else if (type == "trash") {
-			testArray = allTrash;
-		}else {
-			testArray = null;
-			goodAdd = false;
+		for (int[] v : allFood) {
+			if (OurVector.distBetween(coords[0], coords[1], v[0], v[1]) <= foodSize) {
+				goodAdd = false;
+				break;
+			}
 		}
 		if (goodAdd) {
-			for (int[] v : testArray) {
+			for (int[] v : allTrash) {
 				if (OurVector.distBetween(coords[0], coords[1], v[0], v[1]) <= foodSize) {
 					goodAdd = false;
 					break;
 				}
 			}
 		}
-		if (goodAdd) {
-			testArray.add(coords);
+		if ((type == "food") && (goodAdd)){
+			allFood.add(coords);
+		}else if ((type == "trash") && (goodAdd)){
+			allTrash.add(coords);
+		}else {
+			goodAdd = false;
 		}
 		return goodAdd;
 	}
@@ -83,11 +87,40 @@ public class StuffSet extends ArrayList {
 		for (int[] coord : allTrash) {
 			coord[0] += deltaX;
 		}
+		accumulationTimer = (accumulationTimer + 1)%accumulationValue;
 	}
 	
+	/**
+	 * Helper function to generate a random integer
+	 * @param min 		minimum value
+	 * @param max 		maximum value
+	 * @return 			random number between min and max
+	 */
+	private int randInt(int min, int max) {
+		Random rn = new Random();
+		int val = min + (rn.nextInt())%(max - min);
+		return val;
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.util.AbstractCollection#toString()
+	 * Prints the collection
+	 */
 	public String toString() {
 		String str = "Food size: " + foodSize + ", food locations: \n" + allFood.toString();
 		str += "\nTrash size: " + trashSize + ", trash locations: \n" + allTrash.toString();
 		return str;
+	}
+	
+	/**
+	 * Tells whether it is time to add more trash
+	 * @return 		if should accumulate
+	 */
+	public boolean shouldAccumulate() {
+		return (accumulationTimer == 0);
+	}
+	
+	public void setAccumulationValue(int val) {
+		accumulationValue = val;
 	}
 }
