@@ -17,15 +17,12 @@ Goals:
     
     -D  :-)
     
-    Toggle for fish speed
+    Toggle for fish speed -D
     
-    proper movement
-        main game
+    proper movement in main game -I
             fish will move up and down on screen only
             map will move left to right on screen only
-        minigame
-            scuba diver will be the only thing moving
-    
+        
     Allow controller to access vector components
         This will allow for easy determination of vector
             from mouse to fish
