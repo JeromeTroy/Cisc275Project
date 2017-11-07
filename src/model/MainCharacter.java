@@ -13,7 +13,7 @@ public class MainCharacter{
 	protected int radius = 1; 		// size of the fish
 	private int speed = 1;			// speed of the fish
 	private int angle; 				// angle (counterclockwise) from east facing
-	private int score;				// player's score
+	
 	private boolean isCaught; 		// whether the fish is caught in trash
 	private OurVector position;
 	
@@ -33,7 +33,6 @@ public class MainCharacter{
 		
 		position = new OurVector(); //TODO: changed initial location from 5,5 to 10,10
 		//radius = step;
-		score = 0; 			// set score
 		
 		// set orientation
 		isCaught = false;
@@ -133,11 +132,7 @@ public class MainCharacter{
 		return location;
 	}
 	
-	
 	// getters
-	public int getScore(){
-		return score;
-	}
 	
 	public int getRadius(){
 		return radius;

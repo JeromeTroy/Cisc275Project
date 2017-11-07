@@ -14,6 +14,9 @@ public class MainModel {
 	
 	private int accumulationDist = 400;
 	
+	private int score = 0;
+	private int foodScore = 10;
+	
 	/**
 	 * Constructor
 	 */
@@ -62,6 +65,12 @@ public class MainModel {
 		}
 		if (everyThing.shouldAccumulate()) {
 			accumulate();
+		}
+		String collision = everyThing.whatCollided(fishy);
+		if (collision.equals("trash")) {
+			// TODO: execute minigame
+		}else if (collision.equals("food")) {
+			score += foodScore;
 		}
 	}
 	

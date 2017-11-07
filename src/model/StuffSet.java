@@ -120,7 +120,50 @@ public class StuffSet extends ArrayList {
 		return (accumulationTimer == 0);
 	}
 	
+	/**
+	 * Determines what if anything the fish has contacted
+	 * @param fishy 		the fish character
+	 * @return 				what the fish has collided with ("food" or "trash")
+	 */
+	public String whatCollided(MainCharacter fishy) {
+		String what = "";
+		for (int[] v : allTrash) {
+			if (fishy.isContacting(v, trashSize)) {
+				what = "trash";
+				remove(v,"food");
+				break;
+			}
+		}
+		if (what.equals("")) {
+			for (int[] v: allFood) {
+				if (fishy.isContacting(v, foodSize)) {
+					what = "food";
+					remove(v,"food");
+					break;
+				}
+			}
+		}
+		return what;
+	}
 	public void setAccumulationValue(int val) {
 		accumulationValue = val;
+	}
+	
+	/**
+	 * Removes object that was collided
+	 * @param v 			coordinates to remove
+	 * @param type 			type of object to remove
+	 * @return 				whether the removal was successful
+	 */
+	public boolean remove(int[] v, String type) {
+		if (type.equals("food")) {
+			return allFood.remove(v);
+		}
+		else if (type.equals("trash")) {
+			return allTrash.remove(v);
+		}
+		else {
+			return false;
+		}
 	}
 }
