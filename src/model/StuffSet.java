@@ -3,6 +3,10 @@ package model;
 import java.util.*;
 
 public class StuffSet extends ArrayList<StuffInOcean> {
+	
+	/**
+	 * List to hold all the objects in the ocean
+	 */
 	// sort method update to sort by distance
 	// compareTo for adding
 	// add elements off screen 45 degree angle arc
@@ -12,29 +16,45 @@ public class StuffSet extends ArrayList<StuffInOcean> {
 	int partitionDist;
 	MainCharacter f;
 
+	// Constructors
+	
+	/**
+	 * Constructor
+	 */
 	public StuffSet() {
 	}
 
+	/**
+	 * Constructor
+	 * @param f 	MainCharacter
+	 */
 	public StuffSet(MainCharacter f) {
 		this.f = f;
 		//super.add(f);
 	}
 
+	/**
+	 * Constructor
+	 * @param f 		MainCharacter
+	 * @param partitionDist 	partition distance
+	 */
 	public StuffSet(MainCharacter f, int partitionDist) {
 		this.f = f;
 		this.partitionDist = partitionDist;
 	}
 
-	@Override
-	/*
+	
+	/**
 	 * (non-Javadoc)
-	 * 
 	 * @see java.util.ArrayList#add(java.lang.Object) 
 	 * Addition Tests if the
 	 * addition of the object would cause a collision If so then does not add
 	 * the object Input: o Object object to be added Output: boolean if the
 	 * addition was successful
+	 * @param s 		StuffInOcean
+	 * @return 	boolean 	indicating if add was valid
 	 */
+	@Override
 	public boolean add(StuffInOcean s) {
 //		if (f == null) {				// trying to add but fish not initialized
 //			if (s.isFish()) {			// if it's a fish

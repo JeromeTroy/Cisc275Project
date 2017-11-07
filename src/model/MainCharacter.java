@@ -11,7 +11,7 @@ public class MainCharacter extends StuffInOcean{
 	
 	// attributes
 	protected int radius = 1; 		// size of the fish
-	private int step = 1;			// speed of the fish
+	private int speed = 1;			// speed of the fish
 	private int angle; 				// angle (counterclockwise) from east facing
 	private int score;				// player's score
 	private boolean isCaught; 		// whether the fish is caught in trash
@@ -24,12 +24,8 @@ public class MainCharacter extends StuffInOcean{
 	
 	// Methods
 	
-	/*
+	/**
 	 * Constructor
-	 * Input:
-	 * 		none
-	 * Output:
-	 * 		new FishCharacter
 	 * Sets location, score
 	 */
 	public MainCharacter(){	// TODO implement view parameters through controller
@@ -51,8 +47,11 @@ public class MainCharacter extends StuffInOcean{
 		possibleOrientations.add("northeast");
 	}
 	
-	/*
-	 * Moving (overriding StuffInOcean move()
+	/** (non-Javadoc)
+	 * @see model.StuffInOcean#move(model.MainCharacter)
+	 * @see model.MainCharacter
+	 * @param fishy 	
+	 * MainCharacterMoving (overriding StuffInOcean move()
 	 * Currently prevents the fish from moving
 	 */
 	@Override
@@ -60,9 +59,11 @@ public class MainCharacter extends StuffInOcean{
 		// TODO: discuss and determine how it will move
 	}
 	
-	/*
+	/**
 	 * (non-Javadoc)
 	 * @see model.StuffInOcean#getName()
+	 * @see model.StuffInOcean#tostring()
+	 * @see model.MainCharacter#toString()
 	 * Getting the name of the character
 	 * Overrides StuffInOcean so we can see who's who
 	 */
@@ -71,7 +72,7 @@ public class MainCharacter extends StuffInOcean{
 		return "Fish ";
 	}
 	
-	/*
+	/**
 	 * (non-Javadoc)
 	 * @see model.StuffInOcean#isFish()
 	 * Tells the computer that this is the fish
@@ -83,14 +84,11 @@ public class MainCharacter extends StuffInOcean{
 	
 	
 	
-	/*
+	/**
 	 * Rotations of the fish
-	 * Input:
-	 * 		degrees		int 		degrees to rotate COUNTERCLOCKWISE
-	 * Output:
-	 * 		None
+	 * @param degrees 	int 		degrees to rotate COUNTERCLOCKWISE
 	 * The angle must be in the range [0,360), 
-	 * this method ensures that
+	 * this method ensures the same
 	 */
 	public void rotate(int degrees){
 		angle += degrees;				// change angle
@@ -103,13 +101,10 @@ public class MainCharacter extends StuffInOcean{
 	
 	// TODO verify this implementation of contact and getting caught
 	
-	/*
-	 * Is the fish caught
-	 * Input:
-	 * 		StuffInOcean s
-	 * Output:
-	 * 		N/A
+	/**
+	 * @param s 		StuffInOcean
 	 * assigns caught value to isCaught parameter
+	 * @see model.MainCharacter #isCaught
 	 */
 	public void isCaught(StuffInOcean s){
 		isCaught = (s.isTrash() && isCollided(s));
@@ -117,10 +112,11 @@ public class MainCharacter extends StuffInOcean{
 	
 	// TODO bounds handling
 	
-	/*
+	/**
 	 * For printing:
 	 * getting the orientation of the fish
 	 * to the nearest cardinal direction
+	 * @return 	string 		orient 		orientation of the fish
 	 */
 	public String getOrientation(){
 		String orient = "";
@@ -137,10 +133,13 @@ public class MainCharacter extends StuffInOcean{
 		return orient;
 	}
 	
-	/*
+	/**
 	 * (non-Javadoc)
 	 * @see model.StuffInOcean#toString()
+	 * @see model.MainCharacter#getOrientation()
+	 * @see model.MainCharacter#getName()
 	 * Printing the fish itself
+	 * @return location string of the fish
 	 */
 	@Override
 	public String toString() {
@@ -160,15 +159,15 @@ public class MainCharacter extends StuffInOcean{
 	}
 	
 	public int getSpeed(){
-		return step;
+		return speed;
 	}
 	
 	public int getAngle(){
 		return angle;
 	}
 	// setters
-	public void setStepSize(int l){
-		step = l;
+	public void setSpeed(int l){
+		speed = l;
 	}
 	
 	public void setRadius(int r){
@@ -185,10 +184,6 @@ public class MainCharacter extends StuffInOcean{
 
 	public void setAngle(int a) {
 		angle = a;	
-	}
-
-	public int getStepSize() {
-		return step;
 	}
 	
 	public void setCaught(boolean b){

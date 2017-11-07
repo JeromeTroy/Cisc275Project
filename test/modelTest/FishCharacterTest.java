@@ -108,7 +108,7 @@ public class FishCharacterTest {
 	@Test
 	public void testStepSize() {
 		assertEquals(f5.getStepSize(), 1);
-		f5.setStepSize(10);
+		f5.setSpeed(10);
 		assertEquals(f5.getStepSize(), 10);
 	}
 

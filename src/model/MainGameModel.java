@@ -4,7 +4,7 @@ import java.util.*;
 
 public class MainGameModel {
 
-	/*
+	/**
 	 * The main model for the game
 	 * Will be the only thing from the model that the controller can see
 	 */
@@ -33,7 +33,7 @@ public class MainGameModel {
 	//protected boolean isCaught;
 	
 
-	/*
+	/**
 	 * Constructor
 	 * Creates the model and initializes all requirements
 	 */
@@ -134,13 +134,17 @@ public class MainGameModel {
 		this.gameOver = b;
 	}
 
-	// adders
+	/**
+	 * Add stuff to the StuffSet
+	 * @param s 		object to add
+	 * @return 	boolean indicating if add was allowed
+	 */
 	public boolean addStuff(StuffInOcean s) {
 		// TODO: modify method for arc
 		return everyThing.add(s);
 	}
 
-	/*
+	/**
 	 * accumulateTrash() - accumulate trash and food randomly 
 	 * generates amount of trash between 0 andtrashAccumulation places trash at random location of vector
 	 * <0-100,0-100> parameters - none input - none return - none output - none
@@ -168,8 +172,11 @@ public class MainGameModel {
 		}
 	}
 	
-	/*
+	/**
 	 * helper function to calculate a random number in a range
+	 * @param 	min 		minimum number
+	 * @param 	max 		maximum number
+	 * @return 	random int between min and max
 	 */
 	public static int randInt(int min, int max) {
 		Random rn = new Random();
@@ -177,9 +184,8 @@ public class MainGameModel {
 		return randNum;
 	}
 
-	/*
-	 * removeTrash() - removes all of the trash from the stuffSet parameters -
-	 * none input - none return - none output - none
+	/**
+	 * removes all of the trash from the stuffSet parameters -
 	 */
 	public void removeTrash() {
 		ArrayList<Trash> allTrash = new ArrayList<Trash>(); 		// initialize a list of all the trash
@@ -191,9 +197,8 @@ public class MainGameModel {
 		everyThing.removeAll(allTrash);								// remove anything that is trash
 	}
 
-	/*
+	/**s
 	 * Execute on the game ending
-	 * TODO: ???
 	 */
 	public boolean endGame() {
 		gameOver = true;
@@ -201,14 +206,17 @@ public class MainGameModel {
 		return true;
 	}
 
-	/*
+	/**
 	 * Start up the game
 	 */
 	public void startGame() {
 		System.out.println("Game Start...");
 	}
 
-	// TODO: reconcile this and modelTick()
+	/**
+	 * Updating the model
+	 * 
+	 */
 	public void update() {
 		if (theMap.moveMap(fishy)) {				// if move allowed
 			System.out.println("Move allowed");
@@ -237,8 +245,11 @@ public class MainGameModel {
 	
 	// moving
 	
-	// print the game
-	//TODO: make me more detailed
+	/** (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 * Print the MainCharacter
+	 * 		then the map, followed by the other StuffInOcean
+	 */
 	public String toString(){
 		String modelString = "Fish: ";
 		modelString += fishy.toString();
@@ -248,6 +259,12 @@ public class MainGameModel {
 		return modelString;
 	}
 	
+	
+	/**
+	 * Updating model
+	 * @param dtheta 		angle to rotate fish
+	 * @see model.MainGameModel#update()
+	 */
 	public void update(int dtheta) {
 		fishy.rotate(dtheta);
 		update();

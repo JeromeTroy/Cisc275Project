@@ -3,8 +3,9 @@ package model;
 import java.util.Vector;
 
 import java.util.*;
+
 public class Map {
-	/*
+	/**
 	 * The map of the game
 	 * No real detailed information other than the size of the map
 	 */
@@ -17,7 +18,13 @@ public class Map {
 	
 	// Constructors
 	
-	// for given length, height, uniqueLength
+	
+	/**
+	 * Constructor
+	 * @param l		int 		length (total)
+	 * @param h		int 		height 
+	 * @param ul 	int 		unique length
+	 */
 	public Map(int l, int h, int ul){
 		length = l;
 		height = h;
@@ -25,7 +32,12 @@ public class Map {
 		origin = new OurVector();
 	}
 	
-	// for given only a length and a height
+	
+	/**
+	 * Constructor
+	 * @param l	 	int 		length (both total and unique)
+	 * @param h		int 		height
+	 */
 	public Map(int l, int h){
 		length = l;
 		height = h;
@@ -65,13 +77,11 @@ public class Map {
 //		return position;
 //	}
 	
-	/*
+	/**
 	 * Moving the map's origin
 	 * Checks if the move is valid, and if it is it moves
-	 * Input:
-	 * 		FishCharacter fishy
-	 * Output:
-	 * 		boolean indicating if the move was valid
+	 * @param fishy 	MainCharacter
+	 * @return boolean 	if the move is valid
 	 * Note:
 	 * 		if the move was valid it moves the origin
 	 */
@@ -91,10 +101,12 @@ public class Map {
 		return validMove;									// return if the move was valid
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 * @see java.lang.Object#toString()
-	 * printing
+	 * printing the map
+	 * @see model.OurVector#toString()
+	 * @return description of the map
 	 */
 	public String toString() {
 		String mapString = "Length: " + length + ", height: " + height + "unique length: " + uniqueLength;

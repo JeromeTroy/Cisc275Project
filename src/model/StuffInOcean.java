@@ -1,8 +1,9 @@
 package model;
 
 import java.util.*;
+
 public class StuffInOcean implements Comparable<StuffInOcean>{
-	/*
+	/**
 	 * Super class for the fish, food and trash
 	 */
 	
@@ -10,44 +11,63 @@ public class StuffInOcean implements Comparable<StuffInOcean>{
 	protected int radius; 			// size of object
 	
 	// Constructors
-	// default
+	/**
+	 * Default constructor
+	 */
 	public StuffInOcean(){
 		position = new OurVector();
 	}
 	
-	// given position
+	/**
+	 * Constructor
+	 * @param xval 		x location of object
+	 * @param yval 		y location
+	 */
 	public StuffInOcean(int xval, int yval){
 		position = new OurVector(xval,yval);
 	}
 	
-	// given position vector
+	/**
+	 * Constructor
+	 * @param v 		OurVector for position
+	 */
 	public StuffInOcean(OurVector v){
 		position = v;
 	}
 	
-	// given position and size
+	/**
+	 * Constructor 
+	 * @param xval 		x location
+	 * @param yval 		y location
+	 * @param rad 		size
+	 */
 	public StuffInOcean(int xval, int yval, int rad){
 		position = new OurVector(xval,yval);
 		radius = rad;
 	}
 	
-	// given position vector and size
+	/**
+	 * Constructor
+	 * @param v 		OurVector for position
+	 * @param rad	 	size
+	 */
 	public StuffInOcean(OurVector v, int rad){
 		position = v;
 		radius = rad;
 	}
 	
-	// given only size
+	/**
+	 * Constructor
+	 * @param rad 		size
+	 */
 	public StuffInOcean(int rad){
 		radius = rad;
 	}
 	
-	/*
-	 * printing(non-Javadoc)
+	/**
+	 * (non-Javadoc)
 	 * @see java.lang.Object#toString()
-	 * Input:
-	 * 		None
-	 * Output:
+	 * @return description of object
 	 * 		<Type> located at <x,y>
 	 */
 	public String toString(){
@@ -55,7 +75,12 @@ public class StuffInOcean implements Comparable<StuffInOcean>{
 		// getName() is polymorphic and so will allow us to see each name of  every object
 	}
 	
-	// method to get the name of the object (fish, food, trash)
+	/**
+	 * @return Empty string
+	 * @see model.Food#getName()
+	 * @see model.Trash#getName()
+	 * @see model.MainCharacter#getName()
+	 */
 	public String getName(){
 		return "";
 	}
@@ -81,16 +106,12 @@ public class StuffInOcean implements Comparable<StuffInOcean>{
 		return radius;
 	}
 	
-	/*
+	/**
 	 * (non-Javadoc)
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
-	 * 
-	 *  For comparing
+	 * @param s 		StuffInOcean to compare to
 	 *  compares based on position vector
-	 *  Input:
-	 *  	o 		Object 		object to be compared to
-	 *  Output:
-	 *  	int 	value of comparison
+	 * @return 	int 	value of comparison
 	 */
 //	changed natural compare to for stuffInOcean
 //	public int compareTo(StuffInOcean s){
@@ -102,13 +123,11 @@ public class StuffInOcean implements Comparable<StuffInOcean>{
 	}
 	
 	
-	/*
+	/**
 	 * Collision detection
 	 * Uses radii compared to separation distances
-	 * Input:
-	 * 		s 		StuffInOcean 		stuff to see if collided
-	 * Output:
-	 * 		boolean 	whether the 2 objects are collided
+	 * @param s 		StuffInOcean 		stuff to see if collided
+	 * @return boolean 	whether the 2 objects are collided
 	 */
 	public boolean isCollided(StuffInOcean s){
 		int separation = position.distFrom(s.getPosition());
@@ -116,9 +135,10 @@ public class StuffInOcean implements Comparable<StuffInOcean>{
 		return (separation <= radiiSum*radiiSum);
 	}
 	
-	/*
+	/**
 	 * Moving
 	 * Everything will move relative to the fish
+	 * @param fish 		MainCharacter
 	 */
 	public void move(MainCharacter fish){
 		int speed = -fish.getSpeed();
