@@ -102,7 +102,7 @@ public class StuffSet extends ArrayList {
 		return val;
 	}
 	
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see java.util.AbstractCollection#toString()
 	 * Prints the collection
 	 */
@@ -167,6 +167,11 @@ public class StuffSet extends ArrayList {
 		}
 	}
 	
+	/**
+	 * Printing arraylists of numbers
+	 * @param lst 		list to print
+	 * @return 			string version of list
+	 */
 	public String printList(ArrayList<int[]> lst) {
 		String str = "{" ;
 		for (int[] v : lst) {

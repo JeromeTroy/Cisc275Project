@@ -9,8 +9,8 @@ import java.util.Random;
 public class MainModel {
 
 	private MainCharacter fishy;
-	private StuffSet everyThing;
-	private Map map;
+	protected StuffSet everyThing;
+	protected Map map;
 	
 	private int accumulationDist = 400;
 	
@@ -18,14 +18,20 @@ public class MainModel {
 	private int foodScore = 10;
 	
 	private boolean gameOver;
+	private boolean inMiniGame;
+	
+	private MiniGame miniGame;
+	
 	
 	/**
 	 * Constructor
 	 */
 	public MainModel() {
-		fishy = new MainCharacter();
+		gameOver = false;
+		inMiniGame = false;
 		everyThing = new StuffSet();
 		map = new Map();
+		fishy = new MainCharacter(map);
 	}
 	
 	/**
@@ -35,9 +41,10 @@ public class MainModel {
 	 */
 	public MainModel(int length, int height) {
 		gameOver = false;
-		fishy = new MainCharacter();
+		inMiniGame = false;
 		everyThing = new StuffSet();
 		map = new Map(length,height);
+		fishy = new MainCharacter(map);
 	}
 	
 	/**
@@ -47,9 +54,11 @@ public class MainModel {
 	 * @param unlen			unique length of the map
 	 */
 	public MainModel(int length, int height, int unlen) {
-		fishy = new MainCharacter();
+		gameOver = false;
+		inMiniGame = false;
 		everyThing = new StuffSet();
 		map = new Map(length, height, unlen);
+		fishy = new MainCharacter(map);
 	}
 	
 	
@@ -58,22 +67,27 @@ public class MainModel {
 	 * Only updates if move is allowed
 	 */
 	public void update() {
-		if (map.moveMap(fishy)) {
-			System.out.println("Valid move");
-			everyThing.move(fishy);
-			fishy.move();
-		}
-		else {
-			System.out.println("Invalid move, not moving");
-		}
-		if (everyThing.shouldAccumulate()) {
-			accumulate();
-		}
-		String collision = everyThing.whatCollided(fishy);
-		if (collision.equals("trash")) {
-			// TODO: execute minigame
-		}else if (collision.equals("food")) {
-			score += foodScore;
+		if (!inMiniGame) {
+			if (map.moveMap(fishy)) {
+				System.out.println("Valid move");
+				everyThing.move(fishy);
+				fishy.move();
+			}
+			else {
+				System.out.println("Invalid move, not moving");
+			}
+			if (everyThing.shouldAccumulate()) {
+				accumulate();
+			}
+			String collision = everyThing.whatCollided(fishy);
+			if (collision.equals("trash")) {
+				miniGame = new MiniGame();
+				inMiniGame = true;
+			}else if (collision.equals("food")) {
+				score += foodScore;
+			}
+		}else {
+			miniGame.update();
 		}
 	}
 	
@@ -134,7 +148,7 @@ public class MainModel {
 	 * @param max 		maximum value
 	 * @return 			number between min and max
 	 */
-	private int randint(int min, int max) {
+	protected static int randint(int min, int max) {
 		Random rn = new Random();
 		int val = min + Math.abs(rn.nextInt()%(max-min));
 		return val;

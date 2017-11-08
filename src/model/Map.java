@@ -30,6 +30,7 @@ public class Map {
 		height = h;
 		uniqueLength = ul;
 		origin = new OurVector();
+		origin.setY(-height/2);
 	}
 	
 	
@@ -43,6 +44,7 @@ public class Map {
 		height = h;
 		origin = new OurVector();
 		uniqueLength = length;
+		origin.setY(-height/2);
 	}
 	
 	public Map() {
@@ -50,6 +52,7 @@ public class Map {
 		height = 100;
 		uniqueLength = length;
 		origin = new OurVector();
+		origin.setY(-height/2);
 	}
 	
 	// getters
@@ -74,16 +77,7 @@ public class Map {
 		uniqueLength = u;
 	}
 	
-	/*
-	public void getCenter(){
-		int segment = Math.floorDiv(origin.getX(), uniqueLength);
-		//return new OurVector((segment*uniqueLength)+0.5*uniqueLength);
-	}
-	*/
-	
-//	public Vector getPosition(){
-//		return position;
-//	}
+
 	
 	/**
 	 * Moving the map's origin
@@ -100,7 +94,7 @@ public class Map {
 		double proposedX = origin.getX() + speed*Math.cos(Math.toRadians(angle));		
 		double proposedY = origin.getY() + speed*Math.sin(Math.toRadians(angle));
 		
-		boolean validMove = ((0 <= proposedY) && (proposedY <= height));		// is the move valid
+		boolean validMove = ((0 >= proposedY) && (proposedY >= -height));		// is the move valid
 		
 		if (validMove){										// if so, execute
 			origin.setX((int) proposedX);

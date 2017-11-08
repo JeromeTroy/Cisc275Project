@@ -47,13 +47,9 @@ public class MainCharacter{
 		possibleOrientations.add("northeast");
 	}
 	
-	/**
-	 * Constructor
-	 * @param fishSpeed speed of the fish
-	 */
-	public MainCharacter(int fishSpeed) {
+	public MainCharacter(Map map) {
 		this();
-		setSpeed(fishSpeed);
+		position.setY(map.getHeight()/2);
 	}
 
 	/** (non-Javadoc)
