@@ -8,7 +8,7 @@ import java.util.Random;
  */
 public class MainModel {
 
-	private MainCharacter fishy;
+	protected MainCharacter fishy;
 	protected StuffSet everyThing;
 	protected Map map;
 	
@@ -61,13 +61,15 @@ public class MainModel {
 		fishy = new MainCharacter(map);
 	}
 	
-	
 	/**
-	 * Updating the model
-	 * Only updates if move is allowed
+	 * Updating model by rotating fish and changing its speed
+	 * @param newSpeed 			new speed for the fish
+	 * @param deltaTheta		angle to rotate the fish
 	 */
-	public void update() {
+	public void update(int newSpeed, int deltaTheta) {
 		if (!inMiniGame) {
+			fishy.setSpeed(newSpeed);
+			fishy.rotate(deltaTheta);
 			if (map.moveMap(fishy)) {
 				System.out.println("Valid move");
 				everyThing.move(fishy);
@@ -89,29 +91,8 @@ public class MainModel {
 				score += foodScore;
 			}
 		}else {
-			miniGame.update();
-		}
-	}
-	
-	
-	/**
-	 * Updating the model by rotating fish
-	 * @param deltaTheta 		angle to rotate the fish
-	 */
-	public void update(int deltaTheta) {
-		fishy.rotate(deltaTheta);
-		update();
-	}
-	
-	
-	/**
-	 * Updating model by rotating fish and changing its speed
-	 * @param newSpeed 			new speed for the fish
-	 * @param deltaTheta		angle to rotate the fish
-	 */
-	public void update(int newSpeed, int deltaTheta) {
-		fishy.setSpeed(newSpeed);
-		update(deltaTheta);
+			miniGame.update(newSpeed, deltaTheta);
+		}	
 	}
 	
 	/**

@@ -97,7 +97,7 @@ public class MainController {
 		*/
 		if (useView) {
 			// TODO: stuff from view?
-			model.update();
+			//model.update();
 		}else {
 			Scanner sc = new Scanner(System.in);
 			String angle = sc.nextLine();
@@ -106,18 +106,16 @@ public class MainController {
 			int newSpeed;
 			try {
 				deltaTheta = Integer.parseInt(angle);
-				newSpeed = Integer.parseInt(speed);
 			}catch(NumberFormatException ex) {
 				deltaTheta = 0;
+			}
+			try {
+				newSpeed = Integer.parseInt(speed);
+			}catch(NumberFormatException ex) {
 				newSpeed = 0;
 			}
-			if (newSpeed == 0) {
-				model.update(deltaTheta);
-			}else {
-				model.update(newSpeed, deltaTheta);
-			}
+			model.update(newSpeed,deltaTheta);
 		}
-
 	}
 
 	/* endGame() - end the GamePlay

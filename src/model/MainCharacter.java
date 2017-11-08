@@ -11,11 +11,11 @@ public class MainCharacter{
 	
 	// attributes
 	protected int radius = 1; 		// size of the fish
-	private int speed = 1;			// speed of the fish
-	private int angle; 				// angle (counterclockwise) from east facing
+	protected int speed = 1;			// speed of the fish
+	protected int angle; 				// angle (counterclockwise) from east facing
 	
 	private boolean isCaught; 		// whether the fish is caught in trash
-	private OurVector position;
+	protected OurVector position;
 	
 	// list of orientations Strings for printing
 	private ArrayList<String> possibleOrientations = new ArrayList<String>();
@@ -143,7 +143,9 @@ public class MainCharacter{
 	}
 	// setters
 	public void setSpeed(int l){
-		speed = l;
+		if (l != 0) {
+			speed = l;
+		}
 	}
 	
 	public void setRadius(int r){

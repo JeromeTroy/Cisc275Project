@@ -7,11 +7,13 @@ package model;
 public class MiniGame extends MainModel{
 
 	private int startingTrash = 10;
+	
 	/**
 	 * Constructor
 	 */
 	public MiniGame() {
 		super();
+		fishy = new MiniMainCharacter(map);
 		accumulateAll();
 	}
 	
