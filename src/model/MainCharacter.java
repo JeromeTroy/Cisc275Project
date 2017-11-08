@@ -109,8 +109,8 @@ public class MainCharacter{
 	 * @return 			if the fish ran into the object
 	 */
 	public boolean isContacting(int[] v, int size) {
-		boolean contact = (position.distFrom(v[0], v[1]) <= radius + size);
-		boolean inFront = (v[0] < position.getX());
+		boolean contact = (position.distFrom(v[0], v[1]) <= Math.pow(radius + size,2));
+		boolean inFront = (v[0] > position.getX());
 		return (contact && inFront);
 	}
 	/**

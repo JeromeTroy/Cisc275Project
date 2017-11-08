@@ -80,6 +80,8 @@ public class MainModel {
 				accumulate();
 			}
 			String collision = everyThing.whatCollided(fishy);
+			System.out.println("Checking collisions");
+			System.out.println("Collisions: " + collision);
 			if (collision.equals("trash")) {
 				miniGame = new MiniGame();
 				inMiniGame = true;
