@@ -9,10 +9,10 @@ import java.util.Timer;
 
 public class MainController {
 	// private static GameTimer timer;
-	private  MainGameModel mainGameModel;
+	private  MainModel model;
 	private GamePlayScreen gameScreen;
 	private  GameTimer gameTimer;
-	private  MiniGameModel miniGame;
+	//private  MiniGameModel miniGame;
 	private int tickPeriod = 30; // in milliseconds
 	boolean inMiniGame;
 	
@@ -20,29 +20,39 @@ public class MainController {
 	// private mainView gameView;
 
 	public static void main(String[] args) {
-		MainController game = new MainController(false,10);
-		System.out.println(game.mainGameModel);
-		game.gameTimer = new GameTimer(game);
+		MainController game = new MainController(false);
+		System.out.println(game.getModel());
+		//game.gameTimer = new GameTimer(game);
 		//TODO: get input and then iterate through game
 		while (!game.getModel().getGameOver()) {
 			game.tick();
-			System.out.println(game.mainGameModel);
+			System.out.println(game.getModel());
 		}
 	}
 	
 	public MainController(boolean b) {
-		mainGameModel = new MainGameModel();
+		useView = b;
+		model = new MainModel();
 		if (useView) {
 			gameScreen = new GamePlayScreen();
 		}
 		inMiniGame = false;
 	}
-	public MainController(boolean b, int speed) {
-		mainGameModel = new MainGameModel(speed);
+	public MainController(boolean b, int len, int hgt) {
+		useView = b;
+		model = new MainModel(len, hgt);
 		if (useView) {
 			gameScreen = new GamePlayScreen();
 		}
 		inMiniGame = false;
+	}
+	
+	public MainController(boolean b, int len, int hgt, int ulg) {
+		useView = b;
+		model = new MainModel(len,hgt,ulg);
+		if (useView) {
+			gameScreen = new GamePlayScreen();
+		}
 	}
 
 	/* startGame() - begins game play
@@ -87,17 +97,25 @@ public class MainController {
 		*/
 		if (useView) {
 			// TODO: stuff from view?
-			mainGameModel.update();
+			model.update();
 		}else {
 			Scanner sc = new Scanner(System.in);
 			String angle = sc.nextLine();
+			String speed = sc.nextLine();
 			int deltaTheta;
+			int newSpeed;
 			try {
 				deltaTheta = Integer.parseInt(angle);
+				newSpeed = Integer.parseInt(speed);
 			}catch(NumberFormatException ex) {
 				deltaTheta = 0;
+				newSpeed = 0;
 			}
-			mainGameModel.update(deltaTheta);
+			if (newSpeed == 0) {
+				model.update(deltaTheta);
+			}else {
+				model.update(newSpeed, deltaTheta);
+			}
 		}
 
 	}
@@ -114,7 +132,7 @@ public class MainController {
 
 	/* launchMiniGame() - initializes minigame launches miniGame
 	 * 
-	 */
+	 *
 	public void launchMiniGame() {
 		inMiniGame = true;
 		miniGame = new MiniGameModel();
@@ -126,7 +144,7 @@ public class MainController {
 	public void endMiniGame() {
 		inMiniGame = false;
 	}
-
+	*/
 	public int getTickPeriod() {
 		return tickPeriod;
 	}
@@ -143,13 +161,14 @@ public class MainController {
 		inMiniGame = b;
 	}
 
-	public MainGameModel getModel(){
-		return mainGameModel;
+	public MainModel getModel(){
+		return model;
 	}
-	
+	/*
 	public MainGameModel getMiniGame(){
 		return miniGame;
 	}
+	*/
 	
 	public void setGamePlayScreen(GamePlayScreen g){
 		gameScreen = g;

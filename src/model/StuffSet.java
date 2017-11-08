@@ -13,11 +13,11 @@ public class StuffSet extends ArrayList {
 	private ArrayList<int[]> allFood;
 	private ArrayList<int[]> allTrash;
 	
-	private int foodSize;
-	private int trashSize;
+	private int foodSize = 1;
+	private int trashSize = 1;
 	
 	private int accumulationTimer = 0;
-	private int accumulationValue = 300;
+	private int accumulationValue = 3;
 	
 	
 	/**
@@ -107,8 +107,8 @@ public class StuffSet extends ArrayList {
 	 * Prints the collection
 	 */
 	public String toString() {
-		String str = "Food size: " + foodSize + ", food locations: \n" + allFood.toString();
-		str += "\nTrash size: " + trashSize + ", trash locations: \n" + allTrash.toString();
+		String str = "Food size: " + foodSize + ", food locations: \n" + printList(allFood);
+		str += "\nTrash size: " + trashSize + ", trash locations: \n" + printList(allTrash);
 		return str;
 	}
 	
@@ -165,5 +165,14 @@ public class StuffSet extends ArrayList {
 		else {
 			return false;
 		}
+	}
+	
+	public String printList(ArrayList<int[]> lst) {
+		String str = "{" ;
+		for (int[] v : lst) {
+			str += "{" + v[0] + ", " + v[1] + "} ";
+		}
+		str += "}";
+		return str;
 	}
 }

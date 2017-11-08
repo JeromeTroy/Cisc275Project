@@ -17,6 +17,8 @@ public class MainModel {
 	private int score = 0;
 	private int foodScore = 10;
 	
+	private boolean gameOver;
+	
 	/**
 	 * Constructor
 	 */
@@ -32,6 +34,7 @@ public class MainModel {
 	 * @param height		height of the map
 	 */
 	public MainModel(int length, int height) {
+		gameOver = false;
 		fishy = new MainCharacter();
 		everyThing = new StuffSet();
 		map = new Map(length,height);
@@ -133,11 +136,19 @@ public class MainModel {
 	 */
 	private int randint(int min, int max) {
 		Random rn = new Random();
-		int val = min + rn.nextInt()%(max-min);
+		int val = min + Math.abs(rn.nextInt()%(max-min));
 		return val;
 	}
 	
 	public void setAccumulationDistance(int dist) {
 		accumulationDist = dist;
+	}
+	
+	public boolean getGameOver() {
+		return gameOver;
+	}
+	
+	public void setGameOver(boolean b) {
+		gameOver = b;
 	}
 }
