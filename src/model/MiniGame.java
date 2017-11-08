@@ -17,14 +17,17 @@ public class MiniGame extends MainModel{
 		accumulateAll();
 	}
 	
+	/**
+	 * Constructor - sets amount of trash
+	 * @param num 	amount of trash to start with
+	 */
 	public MiniGame(int num) {
-		super();
+		this();
 		startingTrash = num;
 		accumulateAll();
 	}
 	
 	/** (non-Javadoc)
-	 * @see model.MainModel#accumulate()
 	 * Presets all the trash
 	 */
 	public void accumulateAll() {
