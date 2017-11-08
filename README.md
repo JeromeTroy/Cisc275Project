@@ -19,7 +19,9 @@ Goals:
     
     Toggle for fish speed -D
     
-    proper movement in main game -I
+    Simplify all code to reduce class instances -I
+    
+    proper movement in main game 
             fish will move up and down on screen only
             map will move left to right on screen only
         
