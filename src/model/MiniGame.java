@@ -7,7 +7,7 @@ package model;
 public class MiniGame extends MainModel{
 
 	// amount of trash to start with
-	private int startingTrash = 1;
+	private int startingTrash = 2;
 	
 	
 	// methods
@@ -131,7 +131,7 @@ public class MiniGame extends MainModel{
 	 * Determines if the minigame is over
 	 * @return 			whether the minigame is over
 	 */
-	public boolean miniGameOver() {
+	public boolean getMiniGameOver() {
 		return (getStartingTrash() == 0);
 	}
 	

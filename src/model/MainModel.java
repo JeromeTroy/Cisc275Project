@@ -138,7 +138,7 @@ public class MainModel {
 			getMiniGame().update(newSpeed, deltaTheta);
 			
 			// check if we should still be in the minigame
-			setInMiniGame(getMiniGame().miniGameOver());
+			setInMiniGame(!getMiniGame().getMiniGameOver());
 			
 			// minigame is over
 			if (!getInMiniGame()) {
