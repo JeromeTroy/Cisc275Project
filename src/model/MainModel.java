@@ -81,6 +81,7 @@ public class MainModel {
 			if (everyThing.shouldAccumulate()) {
 				accumulate();
 			}
+			System.out.println(this);
 			String collision = everyThing.whatCollided(fishy);
 			System.out.println("Checking collisions");
 			System.out.println("Collisions: " + collision);

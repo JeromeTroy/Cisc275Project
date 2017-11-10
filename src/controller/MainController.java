@@ -21,12 +21,10 @@ public class MainController {
 
 	public static void main(String[] args) {
 		MainController game = new MainController(false);
-		System.out.println(game.getModel());
 		//game.gameTimer = new GameTimer(game);
 		//TODO: get input and then iterate through game
 		while (!game.getModel().getGameOver()) {
 			game.tick();
-			System.out.println(game.getModel());
 		}
 	}
 	

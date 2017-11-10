@@ -48,4 +48,15 @@ public class MiniGame extends MainModel{
 	 */
 	@Override
 	public void accumulate() {/* do nothing */}
+	
+	/** (non-Javadoc)
+	 * @see model.MainModel#toString()
+	 * Prints out the minigame, with the tag mini game in front
+	 */
+	@Override
+	public String toString() {
+		String str = "Mini game: \n";
+		str += super.toString();
+		return str;
+	}
 }

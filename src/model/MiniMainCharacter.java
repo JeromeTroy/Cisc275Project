@@ -2,11 +2,21 @@ package model;
 
 public class MiniMainCharacter extends MainCharacter{
 
+	/**
+	 * Constructor
+	 * @param map 		current minigame map
+	 * Sets the position of the main character
+	 */
 	public MiniMainCharacter(Map map) {
-		super();
+		super(map);
 		position.setX(map.getLength()/2);
 	}
 	
+	/** (non-Javadoc)
+	 * @see model.MainCharacter#move()
+	 * Moves the character in y direction via super.move()
+	 * And then moves in x and y since the map won't move
+	 */
 	@Override
 	public void move() {
 		super.move();

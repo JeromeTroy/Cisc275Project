@@ -130,7 +130,7 @@ public class StuffSet extends ArrayList {
 		for (int[] v : allTrash) {
 			if (fishy.isContacting(v, trashSize)) {
 				what = "trash";
-				remove(v,"food");
+				remove(v,"trash");
 				break;
 			}
 		}
