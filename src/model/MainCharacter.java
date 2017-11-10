@@ -67,8 +67,8 @@ public class MainCharacter{
 	 * fish moves up and down 
 	 */
 	public void move() {
-		int deltaY = (int) (speed * Math.sin(Math.toRadians(angle)));
-		getPosition().setY(position.getY() + deltaY);
+		double deltaY =  speed * Math.sin(Math.toRadians(angle));
+		getPosition().setY((int) (position.getY() + deltaY));
 	}
 		
 	
@@ -100,7 +100,7 @@ public class MainCharacter{
 	 */
 	public boolean isContacting(int[] v, int size) {
 		boolean contact = (getPosition().distFrom(v[0], v[1]) <= Math.pow(getRadius() + size,2));
-		boolean inFront = (v[0] > getPosition().getX());
+		boolean inFront = (v[0] >= getPosition().getX());
 		return (contact && inFront);
 	}
 	
