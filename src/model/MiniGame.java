@@ -13,6 +13,7 @@ public class MiniGame extends MainModel{
 	 */
 	public MiniGame() {
 		super();
+		everyThing = new MiniStuffSet();
 		fishy = new MiniMainCharacter(map);
 		accumulateAll();
 	}
@@ -23,6 +24,7 @@ public class MiniGame extends MainModel{
 	 */
 	public MiniGame(int num) {
 		this();
+		everyThing = new MiniStuffSet();
 		startingTrash = num;
 		accumulateAll();
 	}

@@ -8,6 +8,7 @@ public class Map {
 	/**
 	 * The map of the game
 	 * No real detailed information other than the size of the map
+	 * Note: the default size will be the size of the minigame
 	 */
 
 	private int length; 			// total length of the map
@@ -111,7 +112,7 @@ public class Map {
 	 * @return description of the map
 	 */
 	public String toString() {
-		String mapString = "Length: " + length + ", height: " + height + "unique length: " + uniqueLength;
+		String mapString = "Length: " + length + ", height: " + height + " unique length: " + uniqueLength;
 		mapString += "\n Origin at " + origin.toString();
 		return mapString;
 	}
