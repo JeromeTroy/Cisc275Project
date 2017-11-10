@@ -11,11 +11,17 @@ public class Map {
 	 * Note: the default size will be the size of the minigame
 	 */
 
+	// dimensions
 	private int length; 			// total length of the map
 	private int height; 			// total height of the map
 	private int uniqueLength; 		// length of the map that is unique, beyond this will be periodic	
 	
+	// location tracking
 	private OurVector origin; 		// location of the origin of the map relative to the fish
+	
+	
+	// methods
+	
 	
 	// Constructors
 	
@@ -27,11 +33,11 @@ public class Map {
 	 * @param ul 	int 		unique length
 	 */
 	public Map(int l, int h, int ul){
-		length = l;
-		height = h;
-		uniqueLength = ul;
+		setLength(l);
+		setHeight(h);
+		setUniqueLength(ul);
 		origin = new OurVector();
-		origin.setY(-height/2);
+		origin.setY(-getHeight()/2);
 	}
 	
 	
@@ -41,45 +47,30 @@ public class Map {
 	 * @param h		int 		height
 	 */
 	public Map(int l, int h){
-		length = l;
-		height = h;
+		setLength(l);
+		setHeight(h);
 		origin = new OurVector();
-		uniqueLength = length;
-		origin.setY(-height/2);
+		setUniqueLength(getLength());
+		origin.setY(-getHeight()/2);
 	}
 	
+	
+	// default
+	/**
+	 * Default constructor, sets default sizes
+	 * Default sizes will also be the size of the minigame
+	 */
 	public Map() {
-		length = 100;
-		height = 100;
-		uniqueLength = length;
+		// TODO: verify these numbers
+		setLength(100);
+		setHeight(100);
+		setUniqueLength(getLength());
 		origin = new OurVector();
-		origin.setY(-height/2);
+		origin.setY(-getHeight()/2);
 	}
 	
-	// getters
-	public int getLength(){
-		return length;
-	}
 	
-	public int getHeight(){
-		return height;
-	}
-	
-	// setters
-	public void setLength(int l){
-		length = l;
-	}
-	
-	public void setHeight(int h){
-		height = h;
-	}
-	
-	public void setUniqueLength(int u){
-		uniqueLength = u;
-	}
-	
-
-	
+	// moving
 	/**
 	 * Moving the map's origin
 	 * Checks if the move is valid, and if it is it moves
@@ -92,18 +83,20 @@ public class Map {
 		int speed = -fishy.getSpeed();						// fish's speed and orientation
 		int angle = fishy.getAngle();
 															// proposed move
-		double proposedX = origin.getX() + speed*Math.cos(Math.toRadians(angle));		
-		double proposedY = origin.getY() + speed*Math.sin(Math.toRadians(angle));
+		double proposedX = getOrigin().getX() + speed*Math.cos(Math.toRadians(angle));		
+		double proposedY = getOrigin().getY() + speed*Math.sin(Math.toRadians(angle));
 		
-		boolean validMove = ((0 >= proposedY) && (proposedY >= -height));		// is the move valid
+		boolean validMove = ((0 >= proposedY) && (proposedY >= -getHeight()));		// is the move valid
 		
 		if (validMove){										// if so, execute
-			origin.setX((int) proposedX);
-			origin.setY((int) proposedY);		
+			getOrigin().setX((int) proposedX);
+			getOrigin().setY((int) proposedY);		
 		}
 		return validMove;									// return if the move was valid
 	}
-
+	
+	
+	// printing
 	/**
 	 * (non-Javadoc)
 	 * @see java.lang.Object#toString()
@@ -112,8 +105,62 @@ public class Map {
 	 * @return description of the map
 	 */
 	public String toString() {
-		String mapString = "Length: " + length + ", height: " + height + " unique length: " + uniqueLength;
-		mapString += "\n Origin at " + origin.toString();
+		String mapString = "Length: " + getLength() + ", height: " + getHeight() + " unique length: " + getUniqueLength();
+		mapString += "\n Origin at " + getOrigin().toString();
 		return mapString;
 	}
+	
+	
+	// getters
+	
+	
+	// length
+	public int getLength(){
+		return length;
+	}
+	
+	
+	// height
+	public int getHeight(){
+		return height;
+	}
+	
+	
+	// uniquelength
+	public int getUniqueLength() {
+		return uniqueLength;
+	}
+	
+	
+	// origin
+	public OurVector getOrigin() {
+		return origin;
+	}
+	
+	
+	// setters
+	
+	
+	// length
+	public void setLength(int l){
+		length = l;
+	}
+	
+	
+	// height
+	public void setHeight(int h){
+		height = h;
+	}
+	
+	
+	// unique length
+	public void setUniqueLength(int u){
+		uniqueLength = u;
+	}
+	
+	
+	
+	
+
+	
 }

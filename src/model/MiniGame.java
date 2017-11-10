@@ -6,8 +6,17 @@ package model;
  */
 public class MiniGame extends MainModel{
 
+	// amount of trash to start with
 	private int startingTrash = 1;
 	
+	
+	// methods
+	
+	
+	// constructors
+	
+	
+	// default
 	/**
 	 * Constructor
 	 */
@@ -18,6 +27,8 @@ public class MiniGame extends MainModel{
 		accumulateAll();
 	}
 	
+	
+	// set amount of starting trash
 	/**
 	 * Constructor - sets amount of trash
 	 * @param num 	amount of trash to start with
@@ -25,25 +36,32 @@ public class MiniGame extends MainModel{
 	public MiniGame(int num) {
 		this();
 		everyThing = new MiniStuffSet();
-		startingTrash = num;
+		setStartingTrash(num);
 		accumulateAll();
 	}
 	
+	
+	// trash and food accumulation
+	
+	
+	// initial setting
 	/** (non-Javadoc)
 	 * Presets all the trash
 	 */
 	public void accumulateAll() {
-		for (int i=0; i<startingTrash; i++) {
+		for (int i=0; i<getStartingTrash(); i++) {
 			boolean trashAdded = false;
 			int[] trashLoc = {0, 0};
 			while (!trashAdded) {
-				trashLoc[0] = MainModel.randint(0, map.getLength());
-				trashLoc[1] = MainModel.randint(0, map.getHeight());
-				trashAdded = everyThing.add(trashLoc,"trash");
+				trashLoc[0] = MainModel.randint(0, getMap().getLength());
+				trashLoc[1] = MainModel.randint(0, getMap().getHeight());
+				trashAdded = getStuffSet().add(trashLoc,"trash");
 			}
 		}
 	}
 	
+	
+	// in game accumulation
 	/** (non-Javadoc)
 	 * @see model.MainModel#accumulate()
 	 * This prevents the minigame from accumulating more trash
@@ -51,6 +69,9 @@ public class MiniGame extends MainModel{
 	@Override
 	public void accumulate() {/* do nothing */}
 	
+	
+	
+	// printing
 	/** (non-Javadoc)
 	 * @see model.MainModel#toString()
 	 * Prints out the minigame, with the tag mini game in front
@@ -62,29 +83,77 @@ public class MiniGame extends MainModel{
 		return str;
 	}
 	
+	
+	// updater
+	/** (non-Javadoc)
+	 * @see model.MainModel#update(int, int)
+	 * Update the position of all objects
+	 */
 	@Override
 	public void update(int newSpeed, int deltaTheta) {
-		fishy.setSpeed(newSpeed);
-		fishy.rotate(deltaTheta);
-		if (map.moveMap(fishy)) {
+		// setup
+		getMainCharacter().setSpeed(newSpeed);
+		getMainCharacter().rotate(deltaTheta);
+		
+		// if move is allowed
+		if (getMap().moveMap(getMainCharacter())) {
+			// move everything
 			System.out.println("Valid move");
-			everyThing.move(fishy);
-			fishy.move();
+			getStuffSet().move(getMainCharacter());
+			getMainCharacter().move();
 		}
+		
+		// move not allowed
 		else {
 			System.out.println("Invalid move, not moving");
 		}
+		
+		// display the state of the world
 		System.out.println(this);
-		String collision = everyThing.whatCollided(fishy);
+		
+		// check collisions
+		String collision = getStuffSet().whatCollided(getMainCharacter());
 		System.out.println("Checking collisions");
 		System.out.println("Collisions: " + collision);
+		
+		// collision detected
 		if (collision.equals("trash")) {
-			// do nothing 
-			// TODO: anything?
+			setStartingTrash(getStartingTrash() - 1);
 		}
 	}
 	
+	
+	// getters
+	
+	
+	// mini gameover
+	/**
+	 * Determines if the minigame is over
+	 * @return 			whether the minigame is over
+	 */
 	public boolean miniGameOver() {
-		return (everyThing.getTrash().size() == 0);
+		return (getStartingTrash() == 0);
 	}
+	
+	
+	// trash initialization
+	/**
+	 * Trash initialization amount
+	 * @return 		 initial amount of trash
+	 */
+	public int getStartingTrash() {
+		return startingTrash;
+	}
+	
+	
+	// setters
+	/**
+	 * Set starting amount of trash
+	 * @param num 		amount of starting trash
+	 */
+	public void setStartingTrash(int num) {
+		startingTrash = num;
+	}
+	
+	
 }

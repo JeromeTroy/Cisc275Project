@@ -2,6 +2,11 @@ package model;
 
 public class MiniMainCharacter extends MainCharacter{
 
+	
+	// methods
+	
+	
+	// constructor
 	/**
 	 * Constructor
 	 * @param map 		current minigame map
@@ -9,9 +14,11 @@ public class MiniMainCharacter extends MainCharacter{
 	 */
 	public MiniMainCharacter(Map map) {
 		super(map);
-		position.setX(map.getLength()/2);
+		getPosition().setX(map.getLength()/2);
 	}
 	
+	
+	// mover
 	/** (non-Javadoc)
 	 * @see model.MainCharacter#move()
 	 * Moves the character in y direction via super.move()
@@ -20,16 +27,18 @@ public class MiniMainCharacter extends MainCharacter{
 	@Override
 	public void move() {
 		super.move();
-		int deltaX = (int) (speed * Math.cos(Math.toRadians(angle)));
-		position.setX(position.getX() + deltaX);
+		int deltaX = (int) (getSpeed() * Math.cos(Math.toRadians(getAngle())));
+		getPosition().setX(getPosition().getX() + deltaX);
 	}
 	
+	
+	// contact
 	/** (non-Javadoc)
 	 * @see model.MainCharacter#isContacting(int[], int)
 	 * Removes check for in front of character
 	 */
 	@Override 
 	public boolean isContacting(int[] v, int size) {
-		return (position.distFrom(v[0], v[1]) <= Math.pow(radius + size, 2));
+		return (getPosition().distFrom(v[0], v[1]) <= Math.pow(getRadius() + size, 2));
 	}
 }
