@@ -1,144 +1,48 @@
 # Cisc275Project
 Group Project for CISC 275
 
-Each of us will pull this from the repo, then add your name to this file.
-After that push it back up to the repo.  Doing this ensures each of us can pull and push from github.
+This branch is soley for editing the model
 
-Names:
-Jerome Troy,
-Matt Collins,
-Evie Boyd,
-Alani Johnson
+Key: D = done, I = in progress
 
+Goals:
 
-
-
-MVC design pattern
-
-
-
-Classes Needed:
-
-Model
-
-    tutorial model
-
-    main model
-
-        map
-
-        unique part
-
-        repeats
-
-        timer
-
-        local trash amounts
-
-    trash
-
-        locations
-
-        motion
-
-    food 
-
-        locations
-
-        motion
-
-        effects
-
-    mini model
-
-        map
-
-        timer
-
-    fish character
-
-        location
-
-        actions
-
-    diver character
-
-        location
-
-        actions
-        
-        
+    rename fishCharacter to mainCharacter -D
     
-
-View
-
-    title screen
-
-    tutorial - main game
-
-    tutorial - mini game
-
-    main game
-
-        main map
-
-        local scene
-
-    mini game
-
-        map
-
-        scene
-
-    trash
-
-    food
-
-    fish character
-
-        directions
-
-        actions
-
-            swim
-
-            eat
-
-            get stuck
-
-    diver character
-
-        directions
-
-        actions
-
-            swim
-
-            grab
-
-            drop
-
-    losing scene
-
-    winning scene
-
+    toString() -D
     
-
-
-Controller
-
-    main
-        call title
-        call tutorial
-        call main game
-        wait for get stuck 
-            call mini game tutorial
-            call mini game
-            exit mini game
-            incurr effects on main game
-        at finish
-            if timer ran out   
-                call losing scene
-            if got to finish line
-                call winning scene
+    (At this point I need to tackle the controller to allow for a 
+        toggle to use or do not use the view)
+    Will also fix any errors along the way
+    
+    -D  :-)
+    
+    Toggle for fish speed -D
+    
+    Simplify all code to reduce class instances -I
+    
+    proper movement in main game 
+            fish will move up and down on screen only
+            map will move left to right on screen only
         
+    Allow controller to access vector components
+        This will allow for easy determination of vector
+            from mouse to fish
+            to determine the fish direction
+    proper collision handling
+    
+    sorting
+   
+    Toggle for tick rate
+    Synchronize all ticks
+    
+    benefits of eating foo
+    
+    game over methods
+        winning
+        losing
+    
+    minigame
+        literally everything
+    
+    random perturbations to trash movement

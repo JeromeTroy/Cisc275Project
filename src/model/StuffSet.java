@@ -2,89 +2,290 @@ package model;
 
 import java.util.*;
 
-public class StuffSet extends ArrayList<StuffInOcean> {
-	// sort method update to sort by distance
-	// compareTo for adding
-	// add elements off screen 45 degree angle arc
-	// -- pull screen size from controller
-	// --fix to center of corner
+/**
+ * @author jerome
+ * List to hold all the locations of objects in the ocean
+ */
 
-	int partitionDist;
-	FishCharacter f;
+public class StuffSet {
+	
 
-	public StuffSet() {
-	}
-
-	public StuffSet(FishCharacter f) {
-		this.f = f;
-		//super.add(f);
-	}
-
-	public StuffSet(FishCharacter f, int partitionDist) {
-		this.f = f;
-		this.partitionDist = partitionDist;
-	}
-
-	@Override
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.ArrayList#add(java.lang.Object) 
-	 * Addition Tests if the
-	 * addition of the object would cause a collision If so then does not add
-	 * the object Input: o Object object to be added Output: boolean if the
-	 * addition was successful
+	// lists of food and trash
+	private ArrayList<int[]> allFood; 		// food
+	protected ArrayList<int[]> allTrash; 	// trash
+	
+	// sizes
+	private int foodSize = 1; 				// food size
+	private int trashSize = 1;				// trash size
+	
+	// accumulation of stuff
+	private int accumulationTimer = 0;		// timer
+	private int accumulationValue = 3;		// signal value
+	
+	
+	// methods
+	
+	
+	// constructors
+	/**
+	 * Default constructor
+	 * Initialize lists to empty
 	 */
-	public boolean add(StuffInOcean s) {
-		if (f == null) {				// trying to add but fish not initialized
-			if (s.isFish()) {			// if it's a fish
-				// super.add(s);
-				this.f = (FishCharacter) s;		// assign to the fish position
-				return true;
+	public StuffSet() {
+		allFood = new ArrayList<int[]>();
+		allTrash = new ArrayList<int[]>();
+	}
+	
+	
+	/**
+	 * Constructor
+	 * @param fs 		size of food
+	 * @param ts 		size of trash
+	 */
+	public StuffSet(int fs, int ts) {
+		super(); 			// empty initialization
+		// set sizes
+		setFoodSize(fs); 	
+		setTrashSize(ts);
+	}
+	
+	
+	// editing objects in list
+	
+	
+	// adder
+	/**
+	 * Adder of objects
+	 * @param coords 		location of object
+	 * @param type			trash or food
+	 * @return 				boolean if add was allowed
+	 */
+	public boolean add(int[] coords, String type) {
+		boolean goodAdd = true; 		// assume can add
+		for (int[] v : getFood()) {
+			// for all food, make sure there are no collisions
+			if (OurVector.distBetween(coords[0], coords[1], v[0], v[1]) <= Math.pow(2*getFoodSize(),2)) {
+				goodAdd = false; 		// on collision, we cannot add
+				break;
 			}
-			else{						// why are we adding something with no fish yet?
-				System.out.println("Warning, no fish character assigned yet");
-				// TODO: better handling here
-				return false;
-			}
-			
-		}else{ 							// there is a fish
-			for (StuffInOcean item : this) {		// verify there is not a collision
-				if (s.isCollided(item)) {
-					return false;					// if collision, do not add
+		}
+		// passed test for food
+		if (goodAdd) {
+			for (int[] v : getTrash()) {
+				// for all trash, make sure there are no collisions
+				if (OurVector.distBetween(coords[0], coords[1], v[0], v[1]) <= getTrashSize()) {
+					goodAdd = false; 		// on collision, do not add
+					break;
 				}
 			}
-			// supposing there has not been a collision:
-			super.add(s);
-			
-			// if (f != null) { // redundant
-			Collections.sort(this, new DistToFishComparator(f));
-			//}
-			return true;
 		}
-
-		// super.add(s);
-		// Collections.sort(this, new DistToFishComparator(f));
-		// int currIndex = indexOf(s);
-		// boolean goodAdd = true;
-		//
-		// try {
-		// StuffInOcean ahead = (StuffInOcean) get(currIndex - 1);
-		// goodAdd = !s.isCollided(ahead);
-		// } catch (IndexOutOfBoundsException e) {
-		// goodAdd = true;
-		// }
-		//
-		// try {
-		// StuffInOcean behind = (StuffInOcean) get(currIndex + 1);
-		// goodAdd = !s.isCollided(behind);
-		// } catch (IndexOutOfBoundsException e) {
-		// }
-		//
-		// if (!goodAdd) {
-		// remove(s);
-		// }
-		// return goodAdd;
+		// if can add and is food, add to food list
+		if ((type == "food") && (goodAdd)){
+			getFood().add(coords);
+		}
+		// if can add and is trash, add to trash list
+		else if ((type == "trash") && (goodAdd)){
+			getTrash().add(coords);
+		}
+		// invalid type string
+		else {
+			goodAdd = false;
+		}
+		return goodAdd;
 	}
+	
+	
+	// remover
+	/**
+	 * Removes object that was collided
+	 * @param v 			coordinates to remove
+	 * @param type 			type of object to remove
+	 * @return 				whether the removal was successful
+	 */
+	public boolean remove(int[] v, String type) {
+		// removal of food
+		if (type.equals("food")) {
+			return getFood().remove(v);
+		}
+		// removal of trash
+		else if (type.equals("trash")) {
+			return getTrash().remove(v);
+		}
+		// invalid type
+		else {
+			return false;
+		}
+	}
+	
+	
+	// deleting all trash
+	public void removeAllTrash() {
+		allTrash.clear();
+	}
+	
+	
+	// mover
+	/**
+	 * Moving all stuff
+	 * Stuff moves left to right
+	 * @param fishy 		fish that everything is moving relative to
+	 */
+	public void move(MainCharacter fishy) {
+		// get the speed and angle
+		int speed = fishy.getSpeed();
+		int angle = fishy.getAngle();
+		
+		// standard case: stuff moves left, right relative to fish
+		int deltaX = (int) (-speed * Math.cos(Math.toRadians(angle)));
+		
+		// move every object individually
+		
+		// food moving
+		for (int[] coord : getFood()) {
+			coord[0] += deltaX; 
+		}
+		
+		// trash moving
+		for (int[] coord : getTrash()) {
+			coord[0] += deltaX;
+		}
+		
+		// one time step has passed
+		accumulationTimer = (accumulationTimer + 1)%accumulationValue;
+	}
+	
+	
+	// collision detection
+	/**
+	 * Determines what if anything the fish has contacted
+	 * @param fishy 		the fish character
+	 * @return 				what the fish has collided with ("food" or "trash")
+	 */
+	public String whatCollided(MainCharacter fishy) {
+		String what = ""; 		// empty string to determine collision
+		
+		// trash detection
+		for (int[] v : getTrash()) {
+			// is it contacting?
+			if (fishy.isContacting(v, getTrashSize())) {
+				what = "trash";
+				remove(v,"trash"); 		// remove contacted object
+				break;
+			}
+		}
+		
+		// no trash collisions
+		if (what.equals("")) {
+			// food detection
+			for (int[] v: getFood()) {
+				// is it contacting
+				if (fishy.isContacting(v, getFoodSize())) {
+					what = "food";
+					remove(v,"food"); 		// remove contacted object
+					break;
+				}
+			}
+		}
+		// which object was contacted: "food", "trash", ""
+		return what;
+	}
+	
+	
+	// printing
+	
+	
+	// helper function: printing arrayList of int[]
+	/**
+	 * Printing arraylists of numbers
+	 * @param lst 		list to print
+	 * @return 			string version of list
+	 */
+	public String printList(ArrayList<int[]> lst) {
+		String str = "{" ;
+		for (int[] v : lst) {
+			str += "{" + v[0] + ", " + v[1] + "} ";
+		}
+		str += "}";
+		return str;
+	}
+	
+	
+	// printing
+	/** (non-Javadoc)
+	 * @see java.util.AbstractCollection#toString()
+	 * Prints the collection
+	 */
+	public String toString() {
+		String str = "Food size: " + getFoodSize() + ", food locations: \n" + printList(getFood());
+		str += "\nTrash size: " + getTrashSize() + ", trash locations: \n" + printList(getTrash());
+		return str;
+	}
+	
+	
+	// accumulation detection
+	/**
+	 * Tells whether it is time to add more trash
+	 * @return 		if should accumulate
+	 */
+	public boolean shouldAccumulate() {
+		// if the accumulation timer has hit the flag value, it resets to zero
+		return (accumulationTimer == 0);
+	}
+	
+	
+	// getters
 
+	
+	// lists
+	
+	
+	public ArrayList<int[]> getTrash(){
+		return allTrash;
+	}
+	
+	
+	public ArrayList<int[]> getFood(){
+		return allFood;
+	}
+	
+	
+	// sizes
+	
+	
+	public int getFoodSize() {
+		return foodSize;
+	}
+	
+	
+	public int getTrashSize() {
+		return trashSize;
+	}
+	
+	
+	// setters
+	
+	
+	// sizes
+	
+	
+	public void setTrashSize(int s) {
+		trashSize = s;
+	}
+	
+	
+	public void setFoodSize(int s) {
+		foodSize = s;
+	}
+	
+	
+	// accumulation flag
+	
+	
+	public void setAccumulationValue(int val) {
+		accumulationValue = val;
+	}
+	
+	
+	
+	
 }

@@ -3,13 +3,20 @@ package view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.MouseInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
@@ -21,6 +28,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import controller.GameTimer;
 import controller.MainController;
 
 //import fishieredux.MovementDemo;
@@ -34,13 +42,21 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 	private JLabel foodLabel;
 	private JLabel trashLabel;
 	private static MainController c;
-	private JLabel bgLabel;
-	private int bgPos;
+	private static JLabel bgLabel;
+	private static int bgPos;
+	final ImageIcon foodIcon;
+	final ImageIcon trashIcon;
+	private ArrayList<JLabel> stuff;
 	// private Image bgImage;
 	// private JCheckBox onTop;
 	// private JComboBox layerList;
+	
+	GameTimer timer;
+	static JFrame frame;
 
 	public GamePlayScreen() {
+		c.setGamePlayScreen(this);
+		timer = new GameTimer(c);
 		bgPos = 0;
 		layeredPane = new JLayeredPane();
 		layeredPane.setPreferredSize(new Dimension(700, 500));
@@ -52,10 +68,10 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		final ImageIcon fishIcon = createImageIcon("images/fishie.png");
 
 		// Create and load food icon
-		final ImageIcon foodIcon = createImageIcon("images/foodsmall.png");
+		foodIcon = createImageIcon("images/foodsmall.png");
 
 		// Create and load trash icon
-		final ImageIcon trashIcon = createImageIcon("images/trashsmall.png");
+		trashIcon = createImageIcon("images/trashsmall.png");
 
 		// Create and load the background image.
 		final ImageIcon bg = createImageIcon("images/bg.png");
@@ -104,6 +120,12 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		// add(createControlPanel());
 		add(Box.createRigidArea(new Dimension(0, 10)));
 		add(layeredPane);
+		
+		//start timer
+		timer.start();
+		
+		//initialize stuff array
+		stuff = new ArrayList<>();
 	}
 
 	/** Returns an ImageIcon, or null if the path was invalid. */
@@ -130,7 +152,7 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 	 */
 	private static void createAndShowGUI() {
 		// Create and set up the window.
-		JFrame frame = new JFrame("Eel Quest");
+		frame = new JFrame("Eel Quest");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// Create and set up the content pane.
@@ -139,8 +161,10 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		frame.setContentPane(newContentPane);
 
 		// Display the window.
+		frame.invalidate();
 		frame.pack();
 		frame.setVisible(true);
+		
 	}
 
 	public static void activateGamePlayScreen(MainController co) {
@@ -162,6 +186,10 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 			fishLabel.setLocation(e.getX() - fishLabel.getWidth() / 2, e.getY() - fishLabel.getHeight() / 2);
 			bgPos--;
 			bgLabel.setLocation(bgPos, 0);
+			trashLabel.setLocation(bgPos+500,250);
+			foodLabel.setLocation(bgPos+900,400);
+			c.getModel().getFishy().getPosition().setX(e.getX());
+			c.getModel().getFishy().getPosition().setY(e.getY());
 		}
 	}
 
@@ -179,4 +207,65 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 	// }
 	// });
 	// }
+	
+	public void paintScreen(){
+//		//map move
+		bgPos--;
+		bgLabel.setLocation(bgPos, 0);
+		JLabel tmp;
+		
+		/*
+		 * System.out.println(c.getModel().newStuff.size());
+		for (int i=0; i<c.getModel().newStuff.size(); i++){
+			System.out.println(c.getModel().newStuff.get(i).isTrash());
+			if (c.getModel().newStuff.get(i).isTrash()){
+				tmp = new JLabel(trashIcon);
+			} else{
+				tmp = new JLabel(foodIcon);
+			}
+			tmp.setBounds(0, 0, 20, 20);
+			tmp.setLocation(500+bgPos,250);
+			//tmp.setLocation(c.getModel().getStuff().get(i).getPosition().getX(),c.getModel().getStuff().get(i).getPosition().getX());
+			stuff.add(tmp);
+			System.out.println(c.getModel().getStuff().get(i).getPosition());
+			layeredPane.add(tmp, new Integer(20), 0);
+		}
+		*/
+		//add(layeredPane);
+		System.out.println(stuff.size());
+		System.out.println("Paint fish (test):");
+		System.out.println(c.getModel().getFishy());
+		//updatePositions();
+		frame.revalidate();
+		frame.setVisible(true);
+		
+	}
+	
+  public void updatePositions(){
+//		c.getModel().getFishy().getPosition().setX(MouseInfo.getPointerInfo().getLocation().x);
+//		c.getModel().getFishy().getPosition().setY(MouseInfo.getPointerInfo().getLocation().y);
+	
+		for (JLabel j: stuff){
+			j.setLocation(bgPos+500,250);
+		}
+	}
+  
+//  private BufferedImage createImage(String dir) {
+//		BufferedImage bufferedImage;
+//		try {
+//			bufferedImage = ImageIO.read(new File("images/food.png"));
+//			return bufferedImage;
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		return null;
+//	}
+//	
+//	public void paint(Graphics g) {
+//		//iterate the picture number so the animation uses different frames of the orcImage
+//		
+//		//draw the image
+//		g.drawImage(pics[orcImageNum][picNum], xCoord, yCoord, Color.gray, this);
+//
+//	}
 }

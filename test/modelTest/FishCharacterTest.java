@@ -8,21 +8,21 @@ import org.junit.Test;
 import model.*;
 
 public class FishCharacterTest {
-	static FishCharacter f1;
-	static FishCharacter f2;
-	static FishCharacter f3;
-	static FishCharacter f4;
-	static FishCharacter f5;
+	static MainCharacter f1;
+	static MainCharacter f2;
+	static MainCharacter f3;
+	static MainCharacter f4;
+	static MainCharacter f5;
 	static Map m1;
 	
 	
 	@BeforeClass
 	public static void setUp() throws Exception {
-		f1 = new FishCharacter();
-		f2 = new FishCharacter();
-		f3 = new FishCharacter();
-		f4 = new FishCharacter();
-		f5 = new FishCharacter();
+		f1 = new MainCharacter();
+		f2 = new MainCharacter();
+		f3 = new MainCharacter();
+		f4 = new MainCharacter();
+		f5 = new MainCharacter();
 		m1 = new Map(100,100);
 		System.out.println(f1.getPossibleOrientations());
 	}
@@ -108,7 +108,7 @@ public class FishCharacterTest {
 	@Test
 	public void testStepSize() {
 		assertEquals(f5.getStepSize(), 1);
-		f5.setStepSize(10);
+		f5.setSpeed(10);
 		assertEquals(f5.getStepSize(), 10);
 	}
 

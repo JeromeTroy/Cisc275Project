@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.1" icons="true" automaticImage="PNG" always-add-relationships="true" generalizations="true" 
+  realizations="true" associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="controller.RunGame" project="Cisc275Project" 
+    file="/Cisc275Project/src/controller/RunGame.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="95" width="89" x="396" y="325"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="model.Map" project="Cisc275Project" file="/Cisc275Project/src/model/Map.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="257" width="193" x="696" y="2647"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="view.TitleScreen" project="Cisc275Project" 
+    file="/Cisc275Project/src/view/TitleScreen.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="347" width="242" x="350" y="460"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="controller.GameTimerThread" project="Cisc275Project" 
+    file="/Cisc275Project/src/controller/GameTimerThread.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="203" width="225" x="200" y="1549"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="model.StuffSet" project="Cisc275Project" 
+    file="/Cisc275Project/src/model/StuffSet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="149" width="157" x="499" y="2647"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="6" language="java" name="" project="Cisc275Project" file="/Cisc275Project/src" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="46" width="104" x="527" y="37"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="7" language="java" name="main" project="Cisc275Project" file="/Cisc275Project/src/main.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="113" width="114" x="350" y="172"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="model.MainGameModel" project="Cisc275Project" 
+    file="/Cisc275Project/src/model/MainGameModel.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="779" width="189" x="646" y="1549"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="model.FishOutOfBoundsException" project="Cisc275Project" 
+    file="/Cisc275Project/src/model/FishOutOfBoundsException.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="95" width="182" x="41" y="172"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="model.Food" project="Cisc275Project" file="/Cisc275Project/src/model/Food.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="221" width="124" x="807" y="3484"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="11" language="java" name="view.images" project="Cisc275Project" file="/Cisc275Project/src/view/images" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="46" width="104" x="383" y="37"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="12" language="java" name="model.OutOfBoundsException" project="Cisc275Project" 
+    file="/Cisc275Project/src/model/OutOfBoundsException.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="95" width="158" x="41" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="13" language="java" name="model" project="Cisc275Project" file="/Cisc275Project/src/model" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="46" width="104" x="239" y="37"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="14" language="java" name="view.GamePlayScreen" project="Cisc275Project" 
+    file="/Cisc275Project/src/view/GamePlayScreen.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="293" width="251" x="378" y="847"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="model.DistToFishComparator" project="Cisc275Project" 
+    file="/Cisc275Project/src/model/DistToFishComparator.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="95" width="222" x="488" y="2944"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="model.MiniGameModel" project="Cisc275Project" 
+    file="/Cisc275Project/src/model/MiniGameModel.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="239" width="179" x="446" y="2368"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="model.OurVector" project="Cisc275Project" 
+    file="/Cisc275Project/src/model/OurVector.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="293" width="155" x="952" y="4015"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="model.StuffInOcean" project="Cisc275Project" 
+    file="/Cisc275Project/src/model/StuffInOcean.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="365" width="185" x="425" y="3079"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="model.Trash" project="Cisc275Project" file="/Cisc275Project/src/model/Trash.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="221" width="128" x="236" y="3484"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="controller.MainController" project="Cisc275Project" 
+    file="/Cisc275Project/src/controller/MainController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="329" width="183" x="446" y="1180"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="controller.ModelRunController" project="Cisc275Project" 
+    file="/Cisc275Project/src/controller/ModelRunController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="113" width="210" x="910" y="1180"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="22" language="java" name="controller" project="Cisc275Project" file="/Cisc275Project/src/controller" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="46" width="104" x="546" y="325"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="23" language="java" name="view" project="Cisc275Project" file="/Cisc275Project/src/view" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="46" width="104" x="567" y="172"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="24" language="java" name="model.FishCharacter" project="Cisc275Project" 
+    file="/Cisc275Project/src/model/FishCharacter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="491" width="342" x="425" y="3484"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <dependency id="25">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <association id="26">    
+    <bendpoint x="394" y="3484"/>    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="27" name="position">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="28" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="29">    
+    <bendpoint x="659" y="847"/>    
+    <bendpoint x="659" y="1180"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <association id="30">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="31" name="gameTimerThread">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="32" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="33">    
+    <bendpoint x="536" y="172"/>    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="22"/>  
+  </dependency>  
+  <generalization id="34">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <dependency id="35">    
+    <bendpoint x="919" y="1549"/>    
+    <bendpoint x="919" y="2368"/>    
+    <bendpoint x="919" y="2647"/>    
+    <bendpoint x="919" y="2944"/>    
+    <bendpoint x="919" y="3079"/>    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="24"/>  
+  </dependency>  
+  <dependency id="36">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="24"/>  
+  </dependency>  
+  <association id="37">    
+    <bendpoint x="640" y="3079"/>    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="38" name="f">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="39" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="40">    
+    <bendpoint x="373" y="2368"/>    
+    <bendpoint x="373" y="2647"/>    
+    <bendpoint x="373" y="2944"/>    
+    <bendpoint x="373" y="3079"/>    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="19"/>  
+  </dependency>  
+  <dependency id="41">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <dependency id="42">    
+    <bendpoint x="494" y="172"/>    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="43">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <dependency id="44">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="24"/>  
+  </dependency>  
+  <dependency id="45">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="24"/>  
+  </dependency>  
+  <dependency id="46">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="22"/>  
+  </dependency>  
+  <dependency id="47">    
+    <bendpoint x="359" y="325"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <association id="48">    
+    <bendpoint x="347" y="847"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="49" name="c">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="50" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="51">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="18"/>  
+  </generalization>  
+  <dependency id="52">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="24"/>  
+  </dependency>  
+  <dependency id="53">    
+    <bendpoint x="457" y="2944"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <dependency id="54">    
+    <bendpoint x="515" y="172"/>    
+    <bendpoint x="515" y="325"/>    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="55">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="24"/>  
+  </dependency>  
+  <dependency id="56">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <dependency id="57">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <dependency id="58">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="24"/>  
+  </dependency>  
+  <dependency id="59">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="22"/>  
+  </dependency>  
+  <dependency id="60">    
+    <bendpoint x="898" y="2368"/>    
+    <bendpoint x="940" y="2647"/>    
+    <bendpoint x="961" y="2944"/>    
+    <bendpoint x="961" y="3079"/>    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="10"/>  
+  </dependency>  
+  <association id="61">    
+    <bendpoint x="940" y="2944"/>    
+    <bendpoint x="982" y="3079"/>    
+    <bendpoint x="982" y="3484"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="62" name="origin">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="63" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="64">    
+    <bendpoint x="1003" y="1549"/>    
+    <bendpoint x="1003" y="2368"/>    
+    <bendpoint x="1003" y="2647"/>    
+    <bendpoint x="1003" y="2944"/>    
+    <bendpoint x="1003" y="3079"/>    
+    <bendpoint x="1003" y="3484"/>    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <dependency id="65">    
+    <bendpoint x="680" y="325"/>    
+    <bendpoint x="680" y="460"/>    
+    <bendpoint x="680" y="847"/>    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="20"/>  
+  </dependency>  
+  <association id="66">    
+    <bendpoint x="455" y="1549"/>    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="67" name="miniGame">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="68" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="69">    
+    <bendpoint x="655" y="2368"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="70" name="everyThing">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="71" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="72">    
+    <bendpoint x="940" y="3079"/>    
+    <bendpoint x="961" y="3484"/>    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <dependency id="73">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="22"/>  
+  </dependency>  
+  <generalization id="74">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="18"/>  
+  </generalization>  
+  <dependency id="75">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="76">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="23"/>  
+  </dependency>  
+  <dependency id="77">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="22"/>  
+  </dependency>  
+  <generalization id="78">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="18"/>  
+  </generalization>  
+  <generalization id="79">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="12"/>  
+  </generalization>  
+  <dependency id="80">    
+    <bendpoint x="436" y="2647"/>    
+    <bendpoint x="436" y="2944"/>    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <dependency id="81">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <association id="82">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="83" name="c">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="84" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="85">    
+    <bendpoint x="622" y="460"/>    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="14"/>  
+  </dependency>  
+  <dependency id="86">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <association id="87">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="88" name="gameScreen">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="89" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="90">    
+    <bendpoint x="740" y="2944"/>    
+    <bendpoint x="740" y="3079"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="91" name="f">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="92" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="93">    
+    <bendpoint x="701" y="172"/>    
+    <bendpoint x="701" y="325"/>    
+    <bendpoint x="701" y="460"/>    
+    <bendpoint x="701" y="847"/>    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="20"/>  
+  </dependency>  
+  <dependency id="94">    
+    <bendpoint x="415" y="2368"/>    
+    <bendpoint x="415" y="2647"/>    
+    <bendpoint x="415" y="2944"/>    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <association id="95">    
+    <bendpoint x="394" y="2368"/>    
+    <bendpoint x="394" y="2647"/>    
+    <bendpoint x="394" y="2944"/>    
+    <bendpoint x="394" y="3079"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="96" name="fishy">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="97" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="98">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="99" name="mainGameModel">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="100" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="101">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <dependency id="102">    
+    <bendpoint x="761" y="2944"/>    
+    <bendpoint x="761" y="3079"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="24"/>  
+  </dependency>  
+  <dependency id="103">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="104">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="14"/>  
+  </dependency>  
+  <dependency id="105">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <association id="106">    
+    <bendpoint x="680" y="2368"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="107" name="theMap">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="108" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="109">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="23"/>  
+  </dependency>  
+  <association id="110">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="111" name="c">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="112" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

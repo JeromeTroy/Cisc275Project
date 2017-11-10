@@ -5,12 +5,12 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import model.FishCharacter;
+import model.MainCharacter;
 import model.Food;
 import model.StuffInOcean;
 
 public class DistToFishComparatorTest  {
-	static FishCharacter f;
+	static MainCharacter f;
 	static StuffInOcean s1;
 	static StuffInOcean s2;
 	static StuffInOcean s3;
