@@ -93,6 +93,11 @@ public class MainModel {
 			}
 		}else {
 			miniGame.update(newSpeed, deltaTheta);
+			inMiniGame = miniGame.miniGameOver();
+			if (!inMiniGame) {
+				System.out.println("Mini game over");
+				everyThing.removeAllTrash();
+			}
 		}	
 	}
 	

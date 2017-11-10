@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 /**
  * @author jerome
  * The minigame's StuffSet
@@ -13,5 +15,9 @@ public class MiniStuffSet extends StuffSet{
 	@Override
 	public void move(MainCharacter fishy) {
 		// Do nothing: nothing moves in the minigame except for the fish
+	}
+	
+	public ArrayList<int[]> getTrash(){
+		return allTrash;
 	}
 }

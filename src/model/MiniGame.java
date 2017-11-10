@@ -6,7 +6,7 @@ package model;
  */
 public class MiniGame extends MainModel{
 
-	private int startingTrash = 10;
+	private int startingTrash = 1;
 	
 	/**
 	 * Constructor
@@ -60,5 +60,31 @@ public class MiniGame extends MainModel{
 		String str = "Mini game: \n";
 		str += super.toString();
 		return str;
+	}
+	
+	@Override
+	public void update(int newSpeed, int deltaTheta) {
+		fishy.setSpeed(newSpeed);
+		fishy.rotate(deltaTheta);
+		if (map.moveMap(fishy)) {
+			System.out.println("Valid move");
+			everyThing.move(fishy);
+			fishy.move();
+		}
+		else {
+			System.out.println("Invalid move, not moving");
+		}
+		System.out.println(this);
+		String collision = everyThing.whatCollided(fishy);
+		System.out.println("Checking collisions");
+		System.out.println("Collisions: " + collision);
+		if (collision.equals("trash")) {
+			// do nothing 
+			// TODO: anything?
+		}
+	}
+	
+	public boolean miniGameOver() {
+		return (everyThing.getTrash().size() == 0);
 	}
 }

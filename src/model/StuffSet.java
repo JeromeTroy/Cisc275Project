@@ -11,7 +11,7 @@ public class StuffSet extends ArrayList {
 	
 
 	private ArrayList<int[]> allFood;
-	private ArrayList<int[]> allTrash;
+	protected ArrayList<int[]> allTrash;
 	
 	private int foodSize = 1;
 	private int trashSize = 1;
@@ -179,5 +179,13 @@ public class StuffSet extends ArrayList {
 		}
 		str += "}";
 		return str;
+	}
+	
+	public ArrayList<int[]> getTrash(){
+		return allTrash;
+	}
+	
+	public void removeAllTrash() {
+		allTrash.clear();
 	}
 }

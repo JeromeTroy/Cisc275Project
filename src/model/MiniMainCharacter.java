@@ -23,4 +23,13 @@ public class MiniMainCharacter extends MainCharacter{
 		int deltaX = (int) (speed * Math.cos(Math.toRadians(angle)));
 		position.setX(position.getX() + deltaX);
 	}
+	
+	/** (non-Javadoc)
+	 * @see model.MainCharacter#isContacting(int[], int)
+	 * Removes check for in front of character
+	 */
+	@Override 
+	public boolean isContacting(int[] v, int size) {
+		return (position.distFrom(v[0], v[1]) <= Math.pow(radius + size, 2));
+	}
 }
