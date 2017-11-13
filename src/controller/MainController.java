@@ -8,170 +8,132 @@ import java.util.*;
 import java.util.Timer;
 
 public class MainController {
-	// private static GameTimer timer;
-	private  MainModel model;
-	private GamePlayScreen gameScreen;
-	private  GameTimer gameTimer;
-	//private  MiniGameModel miniGame;
-	private int tickPeriod = 30; // in milliseconds
-	boolean inMiniGame;
-	
-	private boolean useView;
-	// private mainView gameView;
 
+	private ModelController modelControl; 		// the model controller
+	//private ViewController viewControl;		// the view controller
+	private boolean usingView; 					// flag of whether the view is in use
+	
+	
+	// methods
+	
+	
+	
+	/**
+	 * running the whole game
+	 * @param args 
+	 */
 	public static void main(String[] args) {
 		MainController game = new MainController(false);
-		//game.gameTimer = new GameTimer(game);
-		//TODO: get input and then iterate through game
-		while (!game.getModel().getGameOver()) {
-			game.tick();
+		game.initializeModel();
+		while (!game.getModelController().getModel().getGameOver()) {
+			game.updateModel();
 		}
 	}
 	
+
+	// constructors
+	
+	
+	/**
+	 * default - no view 
+	 */
+	public MainController() {
+		setUsingView(false);
+		modelControl = new ModelController();
+	}
+	
+	
+	
+	/**
+	 * sets whether the view is in use
+	 * @param b 		is the view in use
+	 */
 	public MainController(boolean b) {
-		useView = b;
-		model = new MainModel();
-		if (useView) {
-			gameScreen = new GamePlayScreen();
-		}
-		inMiniGame = false;
-	}
-	public MainController(boolean b, int len, int hgt) {
-		useView = b;
-		model = new MainModel(len, hgt);
-		if (useView) {
-			gameScreen = new GamePlayScreen();
-		}
-		inMiniGame = false;
+		this();
+		setUsingView(b);
+		modelControl = new ModelController();
+		// TODO: if usingView, initialize it and the model parameters from it
 	}
 	
-	public MainController(boolean b, int len, int hgt, int ulg) {
-		useView = b;
-		model = new MainModel(len,hgt,ulg);
-		if (useView) {
-			gameScreen = new GamePlayScreen();
-		}
-	}
-
-	/* startGame() - begins game play
-	 * 				 creates instance of MainGameModel and the gametimer and starts the game timer
+	
+	
+	// methods
+	
+	
+	/**
+	 * Initialize the model
 	 */
-	public void startGame() {
-		//gameTimerThread = new GameTimerThread(mainGameModel.getGameLengthSeconds(), getTickPeriod(),this);		
-		//gameTimerThread.start();
-
+	private void initializeModel() {
+		int fishySize;
+		int trashSize;
+		int foodSize;
+		int mapHeight;
+		int mapLength;
+		int mapUnique;
+		if (isUsingView()) {
+			// TODO: replace these placeholder values
+			fishySize = 1; trashSize = 1; foodSize = 1;
+			mapHeight = 1; mapLength = 1; mapUnique = 1;
+		}else {
+			fishySize = 1; trashSize = 1; foodSize = 1;
+			mapHeight = 100; mapLength = 100; mapUnique = 100;
+		}
+		getModelController().setup(fishySize, foodSize, trashSize, mapHeight, mapLength, mapUnique);
 	}
 	
-	/* StartTutorial() -  POTENTIALLY DELETABLE
-	 * 					  currently just prints to console
+	
+	
+	/**
+	 * Update the model
 	 */
-	public void startTutorial() {
-		System.out.println("Start Tutorial");
-	}
-
-	/* tick() - controls the model and view updating at each tick
-	 * 
-	 */
-	protected void tick() {
-		/*System.out.println("Tick");
-		//controls state of the game
-		if (inMiniGame) {
-			miniGame.update();
-			if (miniGame.getGameOver()) {
-				endMiniGame();
-			}
-		} else {
-			mainGameModel.update();
-			if (useView) {
-				//GamePlayScreen.paint();
-			}
-		}
-		if (mainGameModel.getGameOver()) {
-			endGame();
-		}
-		if (mainGameModel.getFishy().getIsCaught()) {
-			launchMiniGame();
-		}
-		*/
-		if (useView) {
-			// TODO: stuff from view?
-			//model.update();
+	private void updateModel() {
+		int newSpeed;
+		int deltaTheta;
+		if (isUsingView()) {
+			// TODO: get view params to update values
+			newSpeed = 0;
+			deltaTheta = 0;
 		}else {
 			Scanner sc = new Scanner(System.in);
 			String angle = sc.nextLine();
 			String speed = sc.nextLine();
-			int deltaTheta;
-			int newSpeed;
 			try {
-				deltaTheta = Integer.parseInt(angle);
+				getModelController().setDeltaTheta(Integer.parseInt(angle));
 			}catch(NumberFormatException ex) {
-				deltaTheta = 0;
+				getModelController().setDeltaTheta(0);
 			}
 			try {
-				newSpeed = Integer.parseInt(speed);
+				getModelController().setNewSpeed(Integer.parseInt(speed));
 			}catch(NumberFormatException ex) {
-				newSpeed = 0;
+				getModelController().setNewSpeed(0);
 			}
-			model.update(newSpeed,deltaTheta);
 		}
+		getModelController().tick();
 	}
-
-	/* endGame() - end the GamePlay
-	 * 			   //TODO: needs to fire some sort of end score in view
-	 * 
+	
+	
+	// getters
+	
+	
+	public ModelController getModelController() {
+		return modelControl;
+	}
+	
+	
+	
+	/**
+	 * get if the view is being used
+	 * @return
 	 */
-	public void endGame() {
-		//gameTimer.stopTimer();
-		System.out.println("Game Over");
-		System.out.println("End Screen");
+	public boolean isUsingView() {
+		return usingView;
 	}
 
-	/* launchMiniGame() - initializes minigame launches miniGame
-	 * 
-	 *
-	public void launchMiniGame() {
-		inMiniGame = true;
-		miniGame = new MiniGameModel();
-		System.out.println("MiniGame Launched...");
-		mainGameModel.getFishy().setCaught(false);
 
-	}
-
-	public void endMiniGame() {
-		inMiniGame = false;
-	}
-	*/
-	public int getTickPeriod() {
-		return tickPeriod;
-	}
-
-	public void setTickPeriod(int tickPeriod) {
-		this.tickPeriod = tickPeriod;
-	}
+	// setters
 	
-	public boolean inMiniGame(){
-		return inMiniGame;
-	}
 	
-	public void setInMiniGame(boolean b){
-		inMiniGame = b;
+	public void setUsingView(boolean b) {
+		usingView = b;
 	}
-
-	public MainModel getModel(){
-		return model;
-	}
-	/*
-	public MainGameModel getMiniGame(){
-		return miniGame;
-	}
-	*/
-	
-	public void setGamePlayScreen(GamePlayScreen g){
-		gameScreen = g;
-	}
-	
-	public GamePlayScreen getGamePlayScreen(){
-		return gameScreen;
-	}
-
 }
