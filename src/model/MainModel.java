@@ -16,16 +16,23 @@ public class MainModel {
 	
 	// value for adding trash (distance away)
 	// TODO: verify
-	private int accumulationDist = 400;
+	private int accumulationDist = 1000;
 	
 	// flags for game control
 	private boolean gameOver; 			// game still going on
 	private boolean inMiniGame; 		// activate minigame
+	private boolean hasWon;				// winning the game
 	
 	// scoring
 	private int playerScore = 0; 		// the player's score
 	private int foodScore = 10; 		// change in score from eating food
 	private int trashScore = 5; 		// change in score form eating trash
+	
+	// timing (all in ms)
+	private int tickLength = 30; 						// time period of a single tick
+	private int maxAllowedTime = 5*60*1000; 		// maximum allowed time for the game
+	private int remainingTime;						// remaining time time
+	
 	
 	
 	// methods
@@ -44,6 +51,7 @@ public class MainModel {
 		everyThing = new StuffSet();
 		map = new Map();
 		fishy = new MainCharacter(map);
+		remainingTime = maxAllowedTime;
 	}
 	
 		
@@ -131,6 +139,9 @@ public class MainModel {
 			
 			// check if game over
 			setGameOver(getMainCharacter().getPosition().getX() >= getMap().getLength());
+			if (getGameOver()) {
+				setHasWon(true);
+			}
 		}
 		// in the minigame
 		else {
@@ -145,7 +156,15 @@ public class MainModel {
 				System.out.println("Mini game over");
 				getStuffSet().removeAllTrash(); 			// eliminate all trash in the main game
 			} 
-		}	
+		}
+		// time updating
+		timeIncr();
+		if (!getGameOver()) {
+			setGameOver(getRemainingTime() <= 0);
+			if (getGameOver()) {
+				setHasWon(false);
+			}
+		}
 	}
 	
 	
@@ -200,9 +219,20 @@ public class MainModel {
 		String str = fishy.toString();
 		str += "\n" + everyThing.toString();
 		str += "\n" + map.toString();
+		str += "\n" + timeString();
 		return str;
 	}
 	
+	public String timeString() {
+		String str = "Time remaining: ";
+		//long ms = remainingTime % 1000 / 10;
+		long second = (remainingTime / 1000) % 60;
+		long minute = (remainingTime / (1000 * 60)) % 60;
+		//String time = String.format("%02d:%02d:%02d", minute, second, ms);
+		String time = String.format("%02d:%02d", minute, second);
+		str += time;
+		return str;
+	}
 	
 	// scoring
 	
@@ -218,6 +248,11 @@ public class MainModel {
 		setPlayerScore(getPlayerScore() - getTrashScore());
 	}
 	
+	
+	// timing
+	private void timeIncr() {
+		remainingTime -= tickLength;
+	}
 	
 	// getters
 	
@@ -280,6 +315,20 @@ public class MainModel {
 	}
 	
 	
+	public int getTickLength() {
+		return tickLength;
+	}
+	
+	public int getRemainingTime() {
+		return remainingTime;
+	}
+	
+	
+	public boolean getHasWon() {
+		return hasWon;
+	}
+	
+	
 	// setters
 	
 	
@@ -310,6 +359,13 @@ public class MainModel {
 		playerScore = a;
 	}
 	
+	public void setTickLength(int a) {
+		tickLength = a;
+	}
+	
+	private void setHasWon(boolean b) {
+		hasWon = b;
+	}
 	
 	
 	
