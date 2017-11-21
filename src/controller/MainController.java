@@ -15,11 +15,50 @@ public class MainController {
 	//private  MiniGameModel miniGame;
 	private int tickPeriod = 30; // in milliseconds
 	boolean inMiniGame;
+	private static TitleScreen titleScreen;
+	private static TutorialScreen tutorialScreen;
+	private static Window window;
+	private static JPanel currScreen;
+	private MainModel tutorial;
+	private final String foodURL = "src/view/images/foodsmall.png";
+	private final String trashURL = "src/view/images/trashsmall.png";
+	private final String bgURL = "src/view/images/bg.png";
+	private final String humanURL = "";
+	private final String fishURL = "src/view/images/fishie.png";
 	
 	private boolean useView;
 	// private mainView gameView;
 
 	public static void main(String[] args) {
+		if (args.length == 0){
+			openView();
+		} else {
+			openConsole();
+		}
+	}
+	
+	
+	/**
+	 * openView - opens the titlescreen
+	 * 
+	 */
+	private static void openView() {
+		window = new Window();
+		
+		Runnable theGame = new RunGame();
+		javax.swing.SwingUtilities.invokeLater(new Runnable(){
+			public void run() {
+				titleScreen = TitleScreen.activateTitle(window);
+				currScreen = titleScreen;
+				//GamePlayScreen.activateGamePlayScreen();
+			}
+		});
+	}
+	
+	/** 
+	 * openConsole - runs the game from the console
+	 */
+	private static void openConsole(){
 		MainController game = new MainController(false);
 		//game.gameTimer = new GameTimer(game);
 		//TODO: get input and then iterate through game
@@ -28,46 +67,55 @@ public class MainController {
 		}
 	}
 	
+	/**
+	 * MainController(boolean) - constructor
+	 * @param b - should the view be used?
+	 */
 	public MainController(boolean b) {
 		useView = b;
 		model = new MainModel();
-		if (useView) {
-			gameScreen = new GamePlayScreen();
-		}
 		inMiniGame = false;
+		
+		
 	}
 	public MainController(boolean b, int len, int hgt) {
 		useView = b;
 		model = new MainModel(len, hgt);
-		if (useView) {
-			gameScreen = new GamePlayScreen();
-		}
 		inMiniGame = false;
+		
 	}
 	
 	public MainController(boolean b, int len, int hgt, int ulg) {
 		useView = b;
 		model = new MainModel(len,hgt,ulg);
-		if (useView) {
-			gameScreen = new GamePlayScreen();
-		}
+		inMiniGame = false;
+		
 	}
 
-	/* startGame() - begins game play
+
+	/**
+	 * startGame() - begins game play
 	 * 				 creates instance of MainGameModel and the gametimer and starts the game timer
 	 */
 	public void startGame() {
-		//gameTimerThread = new GameTimerThread(mainGameModel.getGameLengthSeconds(), getTickPeriod(),this);		
-		//gameTimerThread.start();
+		System.out.println("Start Game");
+		if (useView) {
+			//gameScreen = new GamePlayScreen();
+		}
 
 	}
 	
-	/* StartTutorial() -  POTENTIALLY DELETABLE
-	 * 					  currently just prints to console
+	
+	/**
+	 * startTutorial - initializes the tutorial window
 	 */
 	public void startTutorial() {
 		System.out.println("Start Tutorial");
+		tutorial = new MainModel();
+		tutorialScreen = TutorialScreen.activateTutorial(this, window);
+		currScreen = tutorialScreen;
 	}
+	
 
 	/* tick() - controls the model and view updating at each tick
 	 * 
@@ -124,6 +172,25 @@ public class MainController {
 		//gameTimer.stopTimer();
 		System.out.println("Game Over");
 		System.out.println("End Screen");
+		showTitleScreen();
+	}
+	
+	
+	public void showTitleScreen(){
+		switchScreen(titleScreen);
+	}
+	
+
+	public void showTutorialScreen(){
+		switchScreen(tutorialScreen);
+	}
+	
+	
+	public void switchScreen(JPanel a){
+		System.out.println(a);
+		window.setContentPane(a);
+		window.revalidate();
+		//window.repaint();
 	}
 
 	/* launchMiniGame() - initializes minigame launches miniGame
@@ -173,5 +240,32 @@ public class MainController {
 	public GamePlayScreen getGamePlayScreen(){
 		return gameScreen;
 	}
+
+
+	public String getFoodURL() {
+		return foodURL;
+	}
+
+
+	public String getTrashURL() {
+		return trashURL;
+	}
+
+
+	public String getBgURL() {
+		return bgURL;
+	}
+
+
+	public String getHumanURL() {
+		return humanURL;
+	}
+
+
+	public String getFishURL() {
+		return fishURL;
+	}
+	
+	
 
 }

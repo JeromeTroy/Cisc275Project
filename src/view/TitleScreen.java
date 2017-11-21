@@ -48,7 +48,7 @@ public class TitleScreen extends JPanel implements ActionListener, MouseMotionLi
 		// layered pane
 		layeredPane = new JLayeredPane();
 		layeredPane.setPreferredSize(new Dimension(300,300));
-		layeredPane.setBorder(BorderFactory.createTitledBorder("Title Screen"));
+		layeredPane.setBorder(BorderFactory.createTitledBorder("Title Screen")); //TODO: remove
 		
 		layeredPane.addMouseMotionListener(this);
 		
@@ -104,13 +104,15 @@ public class TitleScreen extends JPanel implements ActionListener, MouseMotionLi
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		String cmd = e.getActionCommand();
+		MainController c = new MainController(true);
 		if (cmd == "goToGame"){
+			System.out.println("game");
 			//c.startGame();
-			//GamePlayScreen.activateGamePlayScreen(c);
+			//c.showTitleScreen(true);
 			//TODO: need action to open game
 		} else if (cmd == "goToTutorial"){
-			//c.startTutorial();
-			TutorialScreen.activateTutorial();
+			System.out.println("Tutorial Pressed");
+			c.startTutorial();
 			//TODO: get rid of below
 		} else if (cmd== "fishCaught"){
 			//c.getModel().getFishy().setCaught(!c.getModel().getFishy().getIsCaught());
@@ -123,10 +125,10 @@ public class TitleScreen extends JPanel implements ActionListener, MouseMotionLi
 	}
 	
 	
-	private static void createAndShowGUI() {
+	private static TitleScreen createAndShowGUI(Window frame) {
 		// window
-		JFrame frame = new JFrame("TitleScreen");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//JFrame frame = new JFrame("TitleScreen");
+        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// content
         JComponent newContentPane = new TitleScreen();
@@ -136,11 +138,13 @@ public class TitleScreen extends JPanel implements ActionListener, MouseMotionLi
 		// display
         frame.pack();
         frame.setVisible(true);
+        
+        return (TitleScreen) newContentPane;
 	}
 	
 	
-	public static void activateTitle() {
-		createAndShowGUI();
+	public static TitleScreen activateTitle(Window w) {
+		return createAndShowGUI(w);
 	}
 	
 

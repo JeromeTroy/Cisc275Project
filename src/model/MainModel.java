@@ -46,7 +46,7 @@ public class MainModel {
 		fishy = new MainCharacter(map);
 	}
 	
-	
+		
 	// map length and height
 	/**
 	 * Constructor

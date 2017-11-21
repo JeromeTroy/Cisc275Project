@@ -80,6 +80,7 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		bgLabel = new JLabel(bg);
 		bgLabel.setBounds(0, 0, 2000, 500);
 		if (bg == null) {
+			
 			System.err.println("Background not found; using blue rectangle instead.");
 			fishLabel.setOpaque(true);
 			fishLabel.setBackground(Color.BLUE);
