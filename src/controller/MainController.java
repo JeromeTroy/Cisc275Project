@@ -22,7 +22,7 @@ public class MainController {
 	private MainModel tutorial;
 	private final String foodURL = "src/view/images/foodsmall.png";
 	private final String trashURL = "src/view/images/trashsmall.png";
-	private final String bgURL = "src/view/images/bg.png";
+	private final String bgURL = "src/view/images/bg2.png";
 	private final String humanURL = "";
 	private final String fishURL = "src/view/images/fishie.png";
 	
@@ -112,8 +112,9 @@ public class MainController {
 	public void startTutorial() {
 		System.out.println("Start Tutorial");
 		tutorial = new MainModel();
-		tutorialScreen = TutorialScreen.activateTutorial(this, window);
+		TutorialScreen.activateTutorial(this, window); //setTitleScreen
 		currScreen = tutorialScreen;
+		
 	}
 	
 
@@ -265,6 +266,48 @@ public class MainController {
 	public String getFishURL() {
 		return fishURL;
 	}
+
+
+	public GamePlayScreen getGameScreen() {
+		return gameScreen;
+	}
+
+
+	public void setGameScreen(GamePlayScreen gameScreen) {
+		this.gameScreen = gameScreen;
+	}
+
+
+	public static TitleScreen getTitleScreen() {
+		return titleScreen;
+	}
+
+
+	public static void setTitleScreen(TitleScreen titleScreen) {
+		MainController.titleScreen = titleScreen;
+	}
+
+
+	public static TutorialScreen getTutorialScreen() {
+		return tutorialScreen;
+	}
+
+
+	public static void setTutorialScreen(TutorialScreen tutorialScreen) {
+		MainController.tutorialScreen = tutorialScreen;
+	}
+
+
+	public static Window getWindow() {
+		return window;
+	}
+
+
+	public static void setWindow(Window window) {
+		MainController.window = window;
+	}
+	
+	
 	
 	
 
