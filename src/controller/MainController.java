@@ -35,6 +35,7 @@ public class MainController {
 		} else {
 			openConsole();
 		}
+		
 	}
 	
 	
@@ -100,7 +101,7 @@ public class MainController {
 	public void startGame() {
 		System.out.println("Start Game");
 		if (useView) {
-			//gameScreen = new GamePlayScreen();
+			GamePlayScreen.activateGamePlayScreen(this, window);
 		}
 
 	}

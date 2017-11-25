@@ -27,6 +27,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import controller.GameTimer;
 import controller.MainController;
@@ -42,21 +43,23 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 	private JLabel foodLabel;
 	private JLabel trashLabel;
 	private static MainController c;
+	private static Window window;
 	private static JLabel bgLabel;
 	private static int bgPos;
 	final ImageIcon foodIcon;
 	final ImageIcon trashIcon;
 	private ArrayList<JLabel> stuff;
+	private static Timer timer;
 	// private Image bgImage;
 	// private JCheckBox onTop;
 	// private JComboBox layerList;
 	
-	GameTimer timer;
+	//GameTimer timer;
 	static JFrame frame;
 
 	public GamePlayScreen() {
 		c.setGamePlayScreen(this);
-		timer = new GameTimer(c);
+		//timer = new GameTimer(c);
 		bgPos = 0;
 		layeredPane = new JLayeredPane();
 		layeredPane.setPreferredSize(new Dimension(700, 500));
@@ -123,7 +126,7 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		add(layeredPane);
 		
 		//start timer
-		timer.start();
+		//timer.start();
 		
 		//initialize stuff array
 		stuff = new ArrayList<>();
@@ -151,10 +154,10 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 	 * Create the GUI and show it. For thread safety, this method should be
 	 * invoked from the event-dispatching thread.
 	 */
-	private static void createAndShowGUI() {
+	private static void createAndShowGUI(Window frame) {
 		// Create and set up the window.
-		frame = new JFrame("Eel Quest");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame = new JFrame("Eel Quest");
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// Create and set up the content pane.
 		JComponent newContentPane = new GamePlayScreen();
@@ -162,15 +165,31 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		frame.setContentPane(newContentPane);
 
 		// Display the window.
-		frame.invalidate();
+		//frame.invalidate();
 		frame.pack();
 		frame.setVisible(true);
 		
+		//create Timer
+		//create Swing timer with actionListener
+				timer = new Timer(40, new ActionListener(){
+				    public void actionPerformed(ActionEvent e) {
+				    	//update();
+				    	newContentPane.repaint();
+				        newContentPane.revalidate();
+				        System.out.println("game paint");
+				        //c.getGamePlayScreen().updateFishPosition();
+				        }
+				});
+				
+		window.addTimer(timer);		
+		timer.start();
+		
 	}
 
-	public static void activateGamePlayScreen(MainController co) {
+	public static void activateGamePlayScreen(MainController co, Window w) {
 		c = co;
-		createAndShowGUI();
+		GamePlayScreen.window = w;
+		createAndShowGUI(w);
 	}
 
 	@Override
@@ -189,8 +208,8 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 			bgLabel.setLocation(bgPos, 0);
 			trashLabel.setLocation(bgPos+500,250);
 			foodLabel.setLocation(bgPos+900,400);
-			c.getModel().getFishy().getPosition().setX(e.getX());
-			c.getModel().getFishy().getPosition().setY(e.getY());
+			c.getModel().getMainCharacter().getPosition().setX(e.getX());
+			c.getModel().getMainCharacter().getPosition().setY(e.getY());
 		}
 	}
 
@@ -235,7 +254,7 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		//add(layeredPane);
 		System.out.println(stuff.size());
 		System.out.println("Paint fish (test):");
-		System.out.println(c.getModel().getFishy());
+		System.out.println(c.getModel().getMainCharacter());
 		//updatePositions();
 		frame.revalidate();
 		frame.setVisible(true);
