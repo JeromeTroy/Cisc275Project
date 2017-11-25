@@ -26,21 +26,37 @@ import controller.MainController;
 
 import javax.swing.JButton;
 
+/**
+ * TutorialScreen is a JPanel for the game tutorial intended to fill a window
+ * mapImage must be cyclic
+ * @author Team4
+ *
+ */
 public class TutorialScreen extends JPanel implements ActionListener, MouseMotionListener {
+	
+	//Swing components
 	private static JLabel instructions;
-	private static MainController c; // the controller operating the game
 	private JButton gameStart;
 	private JButton titleScreen;
 	private static Window window;
+	static Timer timer;
+	
+	//Images
 	private BufferedImage fishImage;
 	private BufferedImage foodImage;
 	private BufferedImage bgImage1;
-	private BufferedImage bgImage2;
-	private BufferedImage trashImage;
-	private final int mapHeight = 592;
-	private final static int mapLength = 5728;
+	private final int bgHeight = 592;
+	private final static int bgLength = 5728;
+	//windowHeght is based on the desired height of the tutorial screen window based on background image size
 	private final static int windowHeight = 592;
 	private final static int windowLength = 2000;
+	//private BufferedImage bgImage2;
+	private BufferedImage trashImage;
+	
+	//controller
+	private static MainController c; // the controller operating the game
+	
+	//Tutorial Screen Settings
 	private static int[] foodxLocation;
 	private static int[] foodyLocation;
 	private static int[] trashxLocation;
@@ -51,42 +67,41 @@ public class TutorialScreen extends JPanel implements ActionListener, MouseMotio
 	private static int numTrash = 25;
 	private static boolean dispFood = true;
 	private static boolean dispTrash = false;
-	static Timer timer;
-	private static int j = 20;
+	
+	private static int autoscrolldpt = 20; //autoscroll x distance per tick (positive objects travel to left)
 	private static int bg1xpos;
 	private static int bg2xpos;
+	
 	private static String mode;
 	private static String text;
 	private static boolean pauseMovement;
 	private int tick;
 
 	// constructor
-	public TutorialScreen() {
+	public TutorialScreen() { //TODO: update mouselistener to limit fish movement boundaries
 		// layout
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
 		// layered pane
 		JLayeredPane layeredPane = new JLayeredPane(); // create
 		layeredPane.setPreferredSize(new Dimension(windowLength, windowHeight)); // resize
-		layeredPane.setBorder(BorderFactory.createTitledBorder("Tutorial")); // TODO:
-																				// Remove
+		//layeredPane.setBorder(BorderFactory.createTitledBorder("Tutorial")); // TODO: Remove
 		// layeredPane.addMouseMotionListener(this); // add mouse listener
-
-		// add Mouse Motion
-		addMouseMotionListener(this);
 		add(Box.createRigidArea(new Dimension(0, 10)));
 		add(Box.createRigidArea(new Dimension(50, 50)));
 		add(layeredPane);
 		add(createControlPanel());
 		instructions = new JLabel("Use mouse to move the fish. Eat food, don't eat trash");
 		add(instructions);
+		
+		// add Mouse Motion
+		addMouseMotionListener(this);
 
-		// create buffered images
-		// Create and load the duke icon.
+		// create buffered images:
+		// Create and load the fish icon.
 		try {
 			fishImage = ImageIO.read(new File(c.getFishURL()));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -94,7 +109,6 @@ public class TutorialScreen extends JPanel implements ActionListener, MouseMotio
 		try {
 			foodImage = ImageIO.read(new File(c.getFoodURL()));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -102,22 +116,19 @@ public class TutorialScreen extends JPanel implements ActionListener, MouseMotio
 		try {
 			trashImage = ImageIO.read(new File(c.getTrashURL()));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		// Create and load the background image.hjtreuessaw3i7754
+		// Create and load the background image
 		try {
 			bgImage1 = ImageIO.read(new File(c.getBgURL()));
-			bgImage2 = bgImage1;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		// create map locations
 		bg1xpos = 0;
-		bg2xpos = mapLength;
+		bg2xpos = bgLength;
 
 		// generate food locations
 		foodxLocation = new int[numFood];
@@ -137,12 +148,22 @@ public class TutorialScreen extends JPanel implements ActionListener, MouseMotio
 
 	}
 
+	/**
+	 * Creates the Buttons in the panel
+	 * @param label	text for button Label
+	 * @param actionCommand	actionCommand associated with button click
+	 * @return JButton - created button
+	 */
 	private JButton createButton(String label, String actionCommand) {
 		JButton b = new JButton(label);
 		b.setActionCommand(actionCommand);
 		return b;
 	}
 
+	/**
+	 * Develops a control panel for game buttons
+	 * @return JPanel panel to be on screen
+	 */
 	private JPanel createControlPanel() {
 		gameStart = createButton("Start Game", "goToGame");
 		gameStart.addActionListener(this);
@@ -156,22 +177,16 @@ public class TutorialScreen extends JPanel implements ActionListener, MouseMotio
 	}
 
 	@Override
-	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
+	public void mouseDragged(MouseEvent e) {}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
 		fishxLocation = e.getX();
 		fishyLocation = e.getY();
-
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		String cmd = e.getActionCommand();
 		MainController c = new MainController(true);
 		if (cmd == "goToGame") {
@@ -198,18 +213,15 @@ public class TutorialScreen extends JPanel implements ActionListener, MouseMotio
 		frame.pack();
 		frame.setVisible(true);
 
-		System.out.println("disp"); // TODO: remove
-		// create Timer
+		//System.out.println("disp"); // TODO: remove
+		// create Timer - updates and paints
 		// create Swing timer with actionListener
 		timer = new Timer(40, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// paintImmediat();
-				// i+=400;
 				update();
 				newContentPane.repaint();
 				newContentPane.revalidate();
-				System.out.println("paint tut");
-				// c.getGamePlayScreen().updateFishPosition();
+				//System.out.println("paint tut"); //TODO: remove
 			}
 		});
 		frame.addTimer(timer);;
@@ -227,16 +239,15 @@ public class TutorialScreen extends JPanel implements ActionListener, MouseMotio
 		super.paintComponent(g);
 
 		// disp map
-		bg1xpos -= j;
-		bg2xpos -= j;
-		//System.out.println(bg1xpos); //TODO: remove
+		bg1xpos -= autoscrolldpt;
+		bg2xpos -= autoscrolldpt;
 		g.drawImage(bgImage1, bg1xpos, 50, this);
-		g.drawImage(bgImage2, bg2xpos, 50, this);
+		g.drawImage(bgImage1, bg2xpos, 50, this);
 
 		// disp objects
 		if (dispFood) {
 			for (int i = 0; i < numFood; i++) {
-				foodxLocation[i] -= j;
+				foodxLocation[i] -= autoscrolldpt;
 				g.drawImage(foodImage, foodxLocation[i], foodyLocation[i] + 50, this);
 				// System.out.println((foodxLocation[i]-j)+" "+
 				// foodyLocation[i]);
@@ -245,7 +256,7 @@ public class TutorialScreen extends JPanel implements ActionListener, MouseMotio
 		}
 		if (dispTrash) {
 			for (int i = 0; i < numTrash; i++) {
-				trashxLocation[i] -= j;
+				trashxLocation[i] -= autoscrolldpt;
 				g.drawImage(trashImage, trashxLocation[i], trashyLocation[i] + 50, this);
 			}
 		}
@@ -254,9 +265,12 @@ public class TutorialScreen extends JPanel implements ActionListener, MouseMotio
 		g.drawImage(fishImage, fishxLocation, fishyLocation, this);
 
 		// display instructions
-
+		//TODO: add game intruction tutorial mode
 	}
 
+	/**
+	 * updates positions
+	 */
 	public static void update() {
 		// push items to back end of screen
 		System.out.println("update");
@@ -275,10 +289,10 @@ public class TutorialScreen extends JPanel implements ActionListener, MouseMotio
 		}
 
 		// relocateMap
-		if (bg1xpos < bg2xpos && bg1xpos < (-mapLength)) {
-			bg1xpos = bg2xpos + (mapLength);
-		} else if (bg1xpos > bg2xpos && bg2xpos < (-mapLength)) {
-			bg2xpos = bg1xpos + (mapLength);
+		if (bg1xpos < bg2xpos && bg1xpos < (-bgLength)) {
+			bg1xpos = bg2xpos + (bgLength);
+		} else if (bg1xpos > bg2xpos && bg2xpos < (-bgLength)) {
+			bg2xpos = bg1xpos + (bgLength);
 		}
 
 		// update mode
