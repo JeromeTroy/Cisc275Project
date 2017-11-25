@@ -8,32 +8,44 @@ import java.util.*;
 import java.util.Timer;
 
 public class MainController {
-	// private static GameTimer timer;
+	//Model
 	private  MainModel model;
+	private MainModel tutorial;
+	
+	//Views
 	private GamePlayScreen gameScreen;
-	private  GameTimer gameTimer;
-	//private  MiniGameModel miniGame;
-	private int tickPeriod = 30; // in milliseconds
-	boolean inMiniGame;
 	private static TitleScreen titleScreen;
 	private static TutorialScreen tutorialScreen;
 	private static Window window;
 	private static JPanel currScreen;
-	private MainModel tutorial;
 	private final String foodURL = "src/view/images/foodsmall.png";
 	private final String trashURL = "src/view/images/trashsmall.png";
 	private final String bgURL = "src/view/images/bg2.png";
 	private final String humanURL = "";
 	private final String fishURL = "src/view/images/fishie.png";
 	
-	private boolean useView;
+	
+	//Timer
+	private  GameTimer gameTimer;
+	private int gameLength; //in milliseconds
+	
+	//Settings
+	private int tickPeriod = 30; // in milliseconds
+	boolean inMiniGame;
+	private static boolean useView;
 	// private mainView gameView;
 
+	
+	
 	public static void main(String[] args) {
+		//allows the program to be run with args to set the program to use the view or not
 		if (args.length == 0){
+			useView = true;
 			openView();
 		} else {
+			useView = false;
 			openConsole();
+			
 		}
 		
 	}
@@ -100,8 +112,14 @@ public class MainController {
 	 */
 	public void startGame() {
 		System.out.println("Start Game");
+		//start timer to update model
+		gameTimer = new GameTimer(this);
+		gameTimer.start();
+		
+		
 		if (useView) {
 			GamePlayScreen.activateGamePlayScreen(this, window);
+			window.addTimer(gameTimer.getSwingTimer());
 		}
 
 	}
@@ -118,35 +136,37 @@ public class MainController {
 		
 	}
 	
-
+	//controls state of the game
+//	if (inMiniGame) {
+//		miniGame.update();
+//		if (miniGame.getGameOver()) {
+//			endMiniGame();
+//		}
+//	} else {
+//		mainGameModel.update();
+//		if (useView) {
+//			//GamePlayScreen.paint();
+//		}
+//	}
+//	if (mainGameModel.getGameOver()) {
+//		endGame();
+//	}
+//	if (mainGameModel.getFishy().getIsCaught()) {
+//		launchMiniGame();
+//	}
+//	
+	
 	/* tick() - controls the model and view updating at each tick
 	 * 
 	 */
 	protected void tick() {
-		/*System.out.println("Tick");
-		//controls state of the game
-		if (inMiniGame) {
-			miniGame.update();
-			if (miniGame.getGameOver()) {
-				endMiniGame();
-			}
-		} else {
-			mainGameModel.update();
-			if (useView) {
-				//GamePlayScreen.paint();
-			}
-		}
-		if (mainGameModel.getGameOver()) {
-			endGame();
-		}
-		if (mainGameModel.getFishy().getIsCaught()) {
-			launchMiniGame();
-		}
-		*/
+
 		if (useView) {
-			// TODO: stuff from view?
-			//model.update();
+			System.out.println("View Tick"); //TODO: remove
+			//model.getMainCharacter();
+			model.update(0,0);
 		}else {
+			System.out.println("Console Tick"); //TODO: remove
 			Scanner sc = new Scanner(System.in);
 			String angle = sc.nextLine();
 			String speed = sc.nextLine();
@@ -171,7 +191,7 @@ public class MainController {
 	 * 
 	 */
 	public void endGame() {
-		//gameTimer.stopTimer();
+		gameTimer.stopTimer();
 		System.out.println("Game Over");
 		System.out.println("End Screen");
 		showTitleScreen();
@@ -306,6 +326,11 @@ public class MainController {
 
 	public static void setWindow(Window window) {
 		MainController.window = window;
+	}
+
+
+	public int getGameLength() {
+		return gameLength;
 	}
 	
 	

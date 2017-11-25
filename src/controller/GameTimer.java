@@ -10,23 +10,24 @@ public class GameTimer extends Thread implements Runnable {
 	Timer timer; 
 	private int tickPeriod; //in milliseconds
 	private int gameLength; // in milliseconds
-	private int currentTimeElapsed = 0; // in milliseconds
+	private int timeElapsed = 0; // in milliseconds
 	//private MainController c;  
 	//TODO: implement miniGame timer
 	
 	public GameTimer(MainController c) {
+		this.tickPeriod = c.getTickPeriod();
+		this.gameLength = c.getGameLength();
+		
 		//create Swing timer with actionListener
-		this.timer = new Timer(40, new ActionListener(){
+		this.timer = new Timer(tickPeriod, new ActionListener(){
 		    public void actionPerformed(ActionEvent e) {
-		        c.getGamePlayScreen().paintScreen();
 		        c.tick();
 		        //c.getGamePlayScreen().updateFishPosition();
 		        }
 		});
-		this.tickPeriod = c.getTickPeriod();
-		this.gameLength = c.getModel().getGameLengthSeconds() * 1000;
-		currentTimeElapsed+=tickPeriod;
-		//this.c =c;
+		
+		timeElapsed+=tickPeriod;
+		
 	}
 	
 	//start the timer
@@ -43,6 +44,11 @@ public class GameTimer extends Thread implements Runnable {
 			e.printStackTrace();
 		}
 	}	
+	
+	//get timer
+	public Timer getSwingTimer(){
+		return timer;
+	}
 
 	
 	/* toString() - returns the remaining time in the game in min:second format
@@ -51,12 +57,9 @@ public class GameTimer extends Thread implements Runnable {
 	 */
 	@Override
 	public String toString() {
-		// String.format("%2d min, %02d sec",
-		// TimeUnit.MILLISECONDS.toMinutes(millis),
-		// TimeUnit.MILLISECONDS.toSeconds(millis) -
-		// TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis))
-		// );
-		return "time"; // TODO: return actual time
+		int millis = gameLength - timeElapsed;
+		return String.format("%2d min, %02d sec", TimeUnit.MILLISECONDS.toMinutes(millis), TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)));
+		//return  // TODO: return actual time
 	}
 	
 }

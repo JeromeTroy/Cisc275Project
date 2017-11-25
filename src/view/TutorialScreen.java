@@ -88,7 +88,7 @@ public class TutorialScreen extends JPanel implements ActionListener, MouseMotio
 		//layeredPane.setBorder(BorderFactory.createTitledBorder("Tutorial")); // TODO: Remove
 		// layeredPane.addMouseMotionListener(this); // add mouse listener
 		add(Box.createRigidArea(new Dimension(0, 10)));
-		add(Box.createRigidArea(new Dimension(50, 50)));
+		//add(Box.createRigidArea(new Dimension(50, 50)));
 		add(layeredPane);
 		add(createControlPanel());
 		instructions = new JLabel("Use mouse to move the fish. Eat food, don't eat trash");
@@ -239,8 +239,6 @@ public class TutorialScreen extends JPanel implements ActionListener, MouseMotio
 		super.paintComponent(g);
 
 		// disp map
-		bg1xpos -= autoscrolldpt;
-		bg2xpos -= autoscrolldpt;
 		g.drawImage(bgImage1, bg1xpos, 50, this);
 		g.drawImage(bgImage1, bg2xpos, 50, this);
 
@@ -272,6 +270,10 @@ public class TutorialScreen extends JPanel implements ActionListener, MouseMotio
 	 * updates positions
 	 */
 	public static void update() {
+		//update background position
+		bg1xpos -= autoscrolldpt;
+		bg2xpos -= autoscrolldpt;
+		
 		// push items to back end of screen
 		System.out.println("update");
 		for (int i = 0; i < numFood; i++) {

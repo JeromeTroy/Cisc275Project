@@ -54,11 +54,10 @@ public class MainModel {
 	 * @param height		height of the map
 	 */
 	public MainModel(int length, int height) {
-		setGameOver(false);
-		setInMiniGame(false);
-		everyThing = new StuffSet();
-		map = new Map(length,height);
-		fishy = new MainCharacter(map);
+		this();
+		map.setHeight(height);
+		map.setLength(length);
+		
 	}
 	
 	
@@ -70,13 +69,14 @@ public class MainModel {
 	 * @param unlen			unique length of the map
 	 */
 	public MainModel(int length, int height, int unlen) {
-		setGameOver(false);
-		setInMiniGame(false);
-		everyThing = new StuffSet();
-		map = new Map(length, height, unlen);
-		fishy = new MainCharacter(map);
+		this(length,height);
+		map.setUniqueLength(unlen);
+		
 	}
 	
+	public void update(){
+		
+	}
 	
 	// updating
 	/**
