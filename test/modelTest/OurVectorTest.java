@@ -13,8 +13,12 @@ public class OurVectorTest {
 	
 	@Before
 	public void setUp() throws Exception {
-	ov1 = new OurVector(2,5);	
-	ov2 = new OurVector(4,1);
+	ov1 = new OurVector();	
+	ov2 = new OurVector();
+	ov1.setX(2);
+	ov1.setY(5);
+	ov2.setX(4);
+	ov2.setY(1);
 	}
 
 	@Test
@@ -41,22 +45,23 @@ public class OurVectorTest {
 	}
 	
 	@Test
+	public void testDistBetween() {
+		assertEquals(ov1.distBetween(ov1.getX(), ov1.getY(), 3, 6), 2);
+		assertEquals(ov2.distBetween(ov2.getX(), ov2.getY(), 3, 6), 42);
+	}
+	
+	@Test
 	public void testToString() {
 		System.out.println(ov1.getX());
 		assertEquals(ov1.toString(), "<2,5>");
 		assertEquals(ov2.toString(), "<4,1>");
 	}
 	
-	@Test
-	public void testDotWith() {
-		assertEquals(ov1.dotWith(ov2), 13);
-		assertEquals(ov2.dotWith(ov1), 13);
-	}
 	
 	@Test
 	public void tesDistFrom() {
-		assertEquals(ov1.distFrom(ov2), 20);
-		assertEquals(ov2.distFrom(ov1), 20);
+		assertEquals(ov1.distFrom(4,1), 20);
+		assertEquals(ov2.distFrom(2,5), 20);
 	}
 	
 	@Test
