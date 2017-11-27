@@ -51,14 +51,17 @@ public class TutorialScreen extends JPanel implements ActionListener {
 	private BufferedImage minibgImage;
 	private BufferedImage trashImage;
 	private BufferedImage bgImage1;
-	private int bgHeight = 592;
-	private static int bgLength = 5728;
+	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	private static int windowWidth = (int) screenSize.getWidth();
+	private static int windowHeight = (int) screenSize.getHeight();
+	private int bgHeight = windowHeight;
+	private static int bgLength = windowWidth;
 	// windowHeght is based on the desired height of the tutorial screen window
 	// based on background image size
-	private static int playHeight = 592;
-	private final static int playLength = 2000;
-	private final int controlpanelHeight = 100;
-	private final int instructionsHeight = 150;
+	private final static int playLength = windowWidth;
+	private final static int controlpanelHeight = 100;
+	private final static int instructionsHeight = 150;
+	private  static int playHeight = windowHeight - controlpanelHeight - instructionsHeight;
 	private String dir;
 
 	// controller
@@ -240,7 +243,7 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		c.setTutorialScreen((TutorialScreen) newContentPane);
 
 		// display
-		frame.pack();
+		frame.setSize(windowWidth,windowHeight);
 		frame.setVisible(true);
 
 		// System.out.println("disp"); // TODO: remove
