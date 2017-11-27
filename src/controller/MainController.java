@@ -23,6 +23,11 @@ public class MainController {
 	private final String bgURL = "src/view/images/bg.png";
 	private final String humanURL = "";
 	private final String fishURL = "src/view/images/fishie.png";
+	private final String minibgURL = "src/view/images/bg_minigame.png";
+	private final String endbg_goodURL = "src/view/images/bg_goodend.png";
+	private final String endbg_badURL = "src/view/images/bg_badend.png";
+	private final String diverURL = "src/view/images/diver.png";
+	private final String diverdarkURL = "src/view/images/diver2.png";
 	
 	
 	//Timer
@@ -165,6 +170,7 @@ public class MainController {
 			//System.out.println("View Tick"); //TODO: remove
 			//model.getMainCharacter();
 			model.update(0,0);
+			
 		}else {
 			//System.out.println("Console Tick"); //TODO: remove
 			Scanner sc = new Scanner(System.in);
@@ -331,6 +337,31 @@ public class MainController {
 
 	public int getGameLength() {
 		return gameLength;
+	}
+
+
+	public String getMinibgURL() {
+		return minibgURL;
+	}
+
+
+	public String getEndbg_goodURL() {
+		return endbg_goodURL;
+	}
+
+
+	public String getEndbg_badURL() {
+		return endbg_badURL;
+	}
+
+
+	public String getDiverURL() {
+		return diverURL;
+	}
+
+
+	public String getDiverdarkURL() {
+		return diverdarkURL;
 	}
 	
 	

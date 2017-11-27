@@ -46,6 +46,8 @@ public class TutorialScreen extends JPanel implements ActionListener {
 	//Images
 	private BufferedImage fishImage;
 	private BufferedImage foodImage;
+	private BufferedImage diverImage;
+	private BufferedImage minibgImage;
 	private BufferedImage bgImage1;
 	private int bgHeight = 592;
 	private static int bgLength = 5728;
@@ -95,6 +97,12 @@ public class TutorialScreen extends JPanel implements ActionListener {
 
 				// Create and load trash icon
 				trashImage = createBufferedImage(c.getTrashURL());
+				
+				// Create and load the diver image
+				diverImage = createBufferedImage(c.getDiverURL());
+				
+				// Create and load the background image
+				minibgImage = createBufferedImage(c.getMinibgURL());
 
 				// Create and load the background image
 				bgImage1 = createBufferedImage(c.getBgURL());
@@ -240,7 +248,7 @@ public class TutorialScreen extends JPanel implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				//update();
 				gamePanel.update();
-				boolean b = false;
+				boolean b = true;
 				if (b){
 					mgs.update();
 				} else {
@@ -287,7 +295,7 @@ public class TutorialScreen extends JPanel implements ActionListener {
 //		}
 //
 //		// disp fish
-		g.drawImage(fishImage, 0, 0, gamePanel);
+		//g.drawImage(fishImage, 0, 0, gamePanel);
 
 		// display instructions
 		//TODO: add game intruction tutorial mode
@@ -485,7 +493,6 @@ public class TutorialScreen extends JPanel implements ActionListener {
 	}
 	
 	private class MiniGameScreen extends JPanel{
-		BufferedImage fishImage;
 
 	    public MiniGameScreen(int x, int y, int width, int height) {
 	        this.setBounds(x, y, width, height);
@@ -496,17 +503,8 @@ public class TutorialScreen extends JPanel implements ActionListener {
 
 	    @Override
 	    public void paintComponent(Graphics g) {
-	    	BufferedImage bi = createBufferedImage("src/view/images/foodsmall.png");
 	        super.paintComponent(g);
-	        Graphics2D g2d = (Graphics2D) g;
-	        g2d.setRenderingHint(
-	            RenderingHints.KEY_ANTIALIASING,
-	            RenderingHints.VALUE_ANTIALIAS_ON);
-	        //g2d.setColor(color);
-	        g2d.fillRoundRect(0, 0, getWidth(), getHeight(), 10, 10);
-	        //g2d.setColor(Color.black);
-	        //g2d.drawString(String.valueOf(n), 5, getHeight() - 5);
-	        g2d.drawImage(bi, 20, 20, this);
+	        //g.drawImage(minibgImage, 0, 0, observer)
 	    }
 
 	    public void update() {
