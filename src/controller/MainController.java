@@ -139,6 +139,19 @@ public class MainController {
 		TutorialScreen.activateTutorial(this, window); //setTitleScreen
 		currScreen = tutorialScreen;
 		
+		// TODO: condition for continuing
+		// TODO: get newspeed and angle
+		int newSpeed = 0;
+		int deltaTheta = 0;
+		tutorial.update(newSpeed, deltaTheta);
+		if (tutorial.getContactedFood()) {
+			// TODO: exeecute contacted food display
+			tutorial.setContactedFood(false); // reset to stop displaying
+		}
+		if (tutorial.getContactedTrash()) {
+			// TODO: execute contacted trash display
+			tutorial.setContactedTrash(false); 
+		}
 	}
 	
 	//controls state of the game

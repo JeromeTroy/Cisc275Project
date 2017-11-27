@@ -25,7 +25,13 @@ fix locations of food and trash
 
 controller:
 
-nothing?
+update
+
+get messages
+
+display view components
+
+exiting
 
 
 view:

@@ -38,6 +38,14 @@ public class Tutorial extends MiniGame{
 		}
 	}
 	
+	public void setContactedFood(boolean b) {
+		contactedFood = b;
+	}
+	
+	public void setContactedTrash(boolean b) {
+		contactedTrash = b;
+	}
+	
 	public boolean getContactedTrash() {
 		return contactedTrash;
 	}
