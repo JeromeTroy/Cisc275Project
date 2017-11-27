@@ -8,6 +8,7 @@ public class MiniGame extends MainModel{
 
 	// amount of trash to start with
 	private int startingTrash = 2;
+	private int startingFood = 0;
 	
 	
 	// methods
@@ -145,6 +146,10 @@ public class MiniGame extends MainModel{
 		return startingTrash;
 	}
 	
+	public int getStartingFood() {
+		return startingFood;
+	}
+	
 	
 	// setters
 	/**
@@ -155,5 +160,7 @@ public class MiniGame extends MainModel{
 		startingTrash = num;
 	}
 	
-	
+	public void setStartingFood(int num) {
+		startingFood = num;
+	}
 }

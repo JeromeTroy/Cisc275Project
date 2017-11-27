@@ -10,7 +10,7 @@ import java.util.Timer;
 public class MainController {
 	//Model
 	private  MainModel model;
-	private MainModel tutorial;
+	private Tutorial tutorial;
 	
 	//Views
 	private GamePlayScreen gameScreen;
@@ -135,7 +135,7 @@ public class MainController {
 	 */
 	public void startTutorial() {
 		System.out.println("Start Tutorial");
-		tutorial = new MainModel();
+		tutorial = new Tutorial();
 		TutorialScreen.activateTutorial(this, window); //setTitleScreen
 		currScreen = tutorialScreen;
 		
@@ -364,8 +364,10 @@ public class MainController {
 		return diverdarkURL;
 	}
 	
-	public int foodHypontenuse(){
-	}
+	//public int foodHypontenuse(){
+	//}
+	
+	
 	
 	
 	
