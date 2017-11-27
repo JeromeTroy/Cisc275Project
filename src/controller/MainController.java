@@ -364,6 +364,9 @@ public class MainController {
 		return diverdarkURL;
 	}
 	
+	public int foodHypontenuse(){
+	}
+	
 	
 	
 	
