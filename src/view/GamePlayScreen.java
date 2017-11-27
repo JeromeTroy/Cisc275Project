@@ -3,7 +3,9 @@ package view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.MouseInfo;
@@ -19,7 +21,9 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -32,29 +36,31 @@ import javax.swing.Timer;
 import controller.GameTimer;
 import controller.MainController;
 
-public class GamePlayScreen extends JPanel implements ActionListener, MouseMotionListener {
+public class GamePlayScreen extends JPanel implements ActionListener {
 
 	// Swing Components
 	private JLayeredPane layeredPane;
-	private JLabel fishLabel;
-	private JLabel foodLabel;
-	private JLabel trashLabel;
+	private JButton quit;
+	// private JButton titleScreen;
 	private static Window window;
-	private static JLabel bgLabel;
-	private static int bgPos;
-	private static Timer timer;
+	static Timer timer;
+	private static MiniGameScreen mgs;
+	private static PlayScreen gamePanel;
 
 	// Images
 	private BufferedImage fishImage;
-	private BufferedImage foodImage;
 	private BufferedImage trashImage;
+	private BufferedImage foodImage;
+	private BufferedImage diverImage;
+	private BufferedImage minibgImage;
 	private BufferedImage bgImage1;
 	private int bgHeight = 592;
 	private static int bgLength = 5728;
 	// windowHeght is based on the desired height of the tutorial screen window
 	// based on background image size
-	private final static int windowHeight = 592;
-	private final static int windowLength = 2000;
+	private static int playHeight = 592;
+	private final static int playLength = 2000;
+	private final int controlpanelHeight = 100;
 
 	// controller
 	private static MainController c;
@@ -66,120 +72,97 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 	// settings
 	private static int bg1xpos;
 	private static int bg2xpos;
+	private static int autoscrolldpt = 20;
 	private static int dx;
 	private static int dy;
-	private static int[] shift = {0,0}; //difference between map origin and window origin
+	// private static int[] shift = {0,0}; //difference between map origin and
+	// window origin
 
 	public GamePlayScreen() {
-
-		// layout
-		layeredPane = new JLayeredPane();
-		layeredPane.setPreferredSize(new Dimension(2000, 500));
-		// layeredPane.setBorder(BorderFactory.createTitledBorder("Move the
-		// Mouse to Move Fishie"));
-		// add mouse listener
-		layeredPane.addMouseMotionListener(this);
-		layeredPane.setLayout(new FlowLayout());
-		// Add control pane and layered pane to this JPanel.
-		add(Box.createRigidArea(new Dimension(0, 10)));
-		// add(createControlPanel());
-		add(Box.createRigidArea(new Dimension(0, 10)));
-		add(layeredPane);
-
-		// create buffered images: TODO: use create buffered image
+		// create buffered images:
 		// Create and load the fish icon.
-		try {
-			fishImage = ImageIO.read(new File(c.getFishURL()));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		fishImage = createBufferedImage(c.getFishURL());
 
 		// Create and load food icon
-		try {
-			foodImage = ImageIO.read(new File(c.getFoodURL()));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		foodImage = createBufferedImage(c.getFoodURL());
 
 		// Create and load trash icon
-		try {
-			trashImage = ImageIO.read(new File(c.getTrashURL()));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		trashImage = createBufferedImage(c.getTrashURL());
+
+		// Create and load the diver image
+		diverImage = createBufferedImage(c.getDiverURL());
 
 		// Create and load the background image
-		try {
-			bgImage1 = ImageIO.read(new File(c.getBgURL()));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		//set size of background
-		bgLength = bgImage1.getWidth();
+		minibgImage = createBufferedImage(c.getMinibgURL());
+
+		// Create and load the background image
+		bgImage1 = createBufferedImage(c.getBgURL());
+
+		// resize
+		// set size of background
+		bgLength = playLength;
+		bgHeight = playHeight;
+
+		// layout
+		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+
+		// add game panel
+		gamePanel = new PlayScreen();
+		gamePanel.setSize(new Dimension(playLength, playHeight));
+		// gamePanel.addMouseMotionListener(this);
+		// add(gamePanel);
+
+		// add layered pane for minigame
+		JLayeredPane layeredPane = new JLayeredPane(); // create
+		// mgs = new
+		// MiniGameScreen(playLength*(1/4),playHeight*(1/4),playLength*7/8,
+		// playHeight*7/8);
+		mgs = new MiniGameScreen(500, 100, playLength * 7 / 8, playHeight * 7 / 8);
+		layeredPane.add(mgs);
+		layeredPane.setPreferredSize(new Dimension(playLength, playHeight + controlpanelHeight)); // resize
+		gamePanel.add(layeredPane, new Integer(300));
+		add(gamePanel);
+
+		add(createControlPanel());
 
 		// create map locations
-		bg1xpos = c.getModel().getMap().getOrigin().getX();
-		bg2xpos = bg1xpos+bgLength;
+		bg1xpos = 0;
+		bg2xpos = bgLength;
 
-		// // Create and load the duke icon.
-		// final ImageIcon fishIcon = createImageIcon("images/fishie.png");
-		//
-		// // Create and load food icon
-		// foodIcon = createImageIcon("images/foodsmall.png");
-		//
-		// // Create and load trash icon
-		// trashIcon = createImageIcon("images/trashsmall.png");
-		//
-		// // Create and load the background image.
-		// final ImageIcon bg = createImageIcon("images/bg.png");
-		//
-		// // Create and add the Duke label to the layered pane.
-		// bgLabel = new JLabel(bg);
-		// bgLabel.setBounds(0, 0, 2000, 500);
-		// if (bg == null) {
-		//
-		// System.err.println("Background not found; using blue rectangle
-		// instead.");
-		// fishLabel.setOpaque(true);
-		// fishLabel.setBackground(Color.BLUE);
-		// }
-		// layeredPane.add(bgLabel, new Integer(0), 0);
-		//
-		// // Create and add the trash label to the layered pane.
-		// trashLabel = new JLabel(trashIcon);
-		// // bgLabel.setBounds(0, 0, 20, 20);
-		// if (trashIcon == null) {
-		// System.err.println("Background not found; using blue rectangle
-		// instead.");
-		// fishLabel.setOpaque(true);
-		// fishLabel.setBackground(Color.BLUE);
-		// }
-		// layeredPane.add(trashLabel, new Integer(1), 0);
-		//
-		// // Create and add the food label to the layered pane.
-		// foodLabel = new JLabel(foodIcon);
-		// foodLabel.setBounds(0, 0, 20, 20);
-		// if (bg == null) {
-		// System.err.println("Background not found; using blue rectangle
-		// instead.");
-		// fishLabel.setOpaque(true);
-		// fishLabel.setBackground(Color.BLUE);
-		// }
-		// layeredPane.add(foodLabel, new Integer(3), 0);
-		//
-		// // Create and add the Duke label to the layered pane.
-		// fishLabel = new JLabel(fishIcon);
-		// if (fishIcon == null) {
-		// System.err.println("Fishie icon not found; using blue rectangle
-		// instead.");
-		// fishLabel.setOpaque(true);
-		// fishLabel.setBackground(Color.BLUE);
-		// }
-		// layeredPane.add(fishLabel, new Integer(2), 0);
-		//
-		// // initialize stuff array
-		// stuff = new ArrayList<>();
+	}
+	
+	public BufferedImage createBufferedImage(String fileLocation) {
+		BufferedImage img;
+		try {
+			img = ImageIO.read(new File(fileLocation));
+			return img;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	/**
+	 * Creates the Buttons in the panel
+	 * 
+	 * @param label
+	 *            text for button Label
+	 * @param actionCommand
+	 *            actionCommand associated with button click
+	 * @return JButton - created button
+	 */
+	private JButton createButton(String label, String actionCommand) {
+		JButton b = new JButton(label);
+		b.setActionCommand(actionCommand);
+		return b;
+	}
+	
+	private JPanel createControlPanel() {
+		quit = createButton("Quit", "quitGame");
+		quit.addActionListener(this);
+		JPanel controls = new JPanel();
+		controls.add(quit);
+		return controls;
 	}
 
 	/** Returns an ImageIcon, or null if the path was invalid. */
@@ -214,7 +197,15 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		// create Swing timer with actionListener
 		timer = new Timer(40, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				update();
+				//update();
+				gamePanel.update();
+				boolean b = false;
+				if (b) {
+					mgs.update();
+				} else {
+					mgs.setVisible(false);
+				}		
+				
 				newContentPane.repaint();
 				newContentPane.revalidate();
 				System.out.println("game paint");
@@ -229,25 +220,24 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 
 	protected static void update() {
 		// update background position
-		//bg1xpos -= 20;
-		//bg2xpos -= 20;
-		
-		
+		// bg1xpos -= 20;
+		// bg2xpos -= 20;
+
 		// relocate maps
 		if (bg1xpos < bg2xpos && bg1xpos < (-bgLength)) {
 			bg1xpos = bg2xpos + (bgLength);
 		} else if (bg1xpos > bg2xpos && bg2xpos < (-bgLength)) {
 			bg2xpos = bg1xpos + (bgLength);
 		}
-		
-		//set fish location
-		if(!c.inMiniGame()){ //main game
+
+		// set fish location
+		if (!c.inMiniGame()) { // main game
 			int dx = c.getModel().getMainCharacter().getPosition().getX();
 			int dy = c.getModel().getMainCharacter().getPosition().getY();
-			
+
 		}
-		
-		//set scuba location
+
+		// set scuba location
 
 	}
 
@@ -257,74 +247,12 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		createAndShowGUI(w);
 	}
 
-	@Override
-	public void mouseDragged(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseMoved(MouseEvent e) {
-		// TODO: Make so fish character doesn't go out of bounds at all. Head
-		// should stop within frame. so should the tail.
-		if (!c.inMiniGame()) {
-			//calcuate change in dx & dy
-			dx = e.getX() - cursorx;
-			dy = e.getY() - cursory;
-			
-			//move map
-			int xinc = ((cursorx<e.getX())? e.getX()-cursorx : 0);
-			shift[0]+= xinc;
-			
-			//set location of cursor
-			cursorx = e.getX();
-			cursory = e.getY();
-		}
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 
 	}
 
-	// public static void main(String[] args) {
-	// // Schedule a job for the event-dispatching thread:
-	// // creating and showing this application's GUI.
-	// javax.swing.SwingUtilities.invokeLater(new Runnable() {
-	// public void run() {
-	// createAndShowGUI();
-	// }
-	// });
-	// }
-
-	// public void paintScreen() {
-	// // //map move
-	// bgPos--;
-	// bgLabel.setLocation(bgPos, 0);
-	// JLabel tmp;
-	//
-	// /*
-	// * System.out.println(c.getModel().newStuff.size()); for (int i=0;
-	// * i<c.getModel().newStuff.size(); i++){
-	// * System.out.println(c.getModel().newStuff.get(i).isTrash()); if
-	// * (c.getModel().newStuff.get(i).isTrash()){ tmp = new
-	// * JLabel(trashIcon); } else{ tmp = new JLabel(foodIcon); }
-	// * tmp.setBounds(0, 0, 20, 20); tmp.setLocation(500+bgPos,250);
-	// * //tmp.setLocation(c.getModel().getStuff().get(i).getPosition().getX()
-	// * ,c.getModel().getStuff().get(i).getPosition().getX());
-	// * stuff.add(tmp);
-	// * System.out.println(c.getModel().getStuff().get(i).getPosition());
-	// * layeredPane.add(tmp, new Integer(20), 0); }
-	// */
-	// // add(layeredPane);
-	// System.out.println(stuff.size());
-	// System.out.println("Paint fish (test):");
-	// System.out.println(c.getModel().getMainCharacter());
-	// // updatePositions();
-	// // frame.revalidate();
-	// // frame.setVisible(true);
-	//
-	// }
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -334,23 +262,19 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		g.drawImage(bgImage1, bg2xpos, 0, this);
 
 		// disp objects
-		for (int[] loc :c.getModel().getStuffSet().getFood()){
-			g.drawImage(foodImage, loc[0]-shift[0], loc[1], this);
+		for (int[] loc : c.getModel().getStuffSet().getFood()) {
+			g.drawImage(foodImage, loc[0], loc[1], this);
 		}
 
 		// disp fish
 		int fishx = c.getModel().getMainCharacter().getPosition().getX();
 		int fishy = c.getModel().getMainCharacter().getPosition().getY();
-		g.drawImage(fishImage, cursorx, cursory, this); //where cursor is
-		g.drawImage(fishImage, fishx, fishy, this); //where the fish is on the map
+		g.drawImage(fishImage, cursorx, cursory, this); // where cursor is
+		g.drawImage(fishImage, fishx, fishy, this); // where the fish is on the
+													// map
 
 	}
 
-	public void updatePositions() {
-		for (JLabel j : stuff) {
-			j.setLocation(bgPos + 500, 250);
-		}
-	}
 
 	private BufferedImage createImage(String dir) {
 		BufferedImage bufferedImage;
@@ -362,12 +286,118 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		}
 		return null;
 	}
-	
-	public int getdx(){
+
+	public int getdx() {
 		return dx;
 	}
-	
-	public int getdy(){
+
+	public int getdy() {
 		return dy;
 	}
+	
+	
+	
+	//classes
+	
+	private class PlayScreen extends JPanel implements MouseMotionListener {
+
+		PlayScreen() {
+			addMouseMotionListener(PlayScreen.this);
+		}
+
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+
+			// disp map
+			g.drawImage(bgImage1, bg1xpos, 0, playLength, playHeight, this);
+			g.drawImage(bgImage1, bg2xpos, 0, playLength, playHeight, this);
+
+			// disp objects
+			for (int[] loc : c.getModel().getStuffSet().getFood()) {
+				g.drawImage(foodImage, loc[0], loc[1], this);
+			}
+
+			// disp fish
+			int fishx = c.getModel().getMainCharacter().getPosition().getX();
+			int fishy = c.getModel().getMainCharacter().getPosition().getY();
+			g.drawImage(fishImage, cursorx, cursory, this); // where cursor is
+			g.drawImage(fishImage, fishx, fishy, this); // where the fish is on the
+														// map
+		}
+
+		/**
+		 * updates positions
+		 */
+		public void update() {
+			// update background position
+			bg1xpos -= autoscrolldpt;
+			bg2xpos -= autoscrolldpt;
+
+			// relocateMap
+			if (bg1xpos < bg2xpos && bg1xpos < (-bgLength)) {
+				bg1xpos = bg2xpos + (bgLength);
+			} else if (bg1xpos > bg2xpos && bg2xpos < (-bgLength)) {
+				bg2xpos = bg1xpos + (bgLength);
+			}
+
+		}
+
+		@Override
+		public void mouseMoved(MouseEvent e) {
+			// TODO: Make so fish character doesn't go out of bounds at all. Head
+			// should stop within frame. so should the tail.
+			if (!c.inMiniGame()) {
+				// calcuate change in dx & dy
+				dx = e.getX() - cursorx;
+				dy = e.getY() - cursory;
+
+				// move map
+				int xinc = ((cursorx < e.getX()) ? e.getX() - cursorx : 0);
+
+				// set location of cursor
+				cursorx = e.getX();
+				cursory = e.getY();
+			}
+		}
+
+		@Override
+		public void mouseDragged(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+
+		}
+	}
+	
+	private class MiniGameScreen extends JPanel {
+
+		public MiniGameScreen(int x, int y, int width, int height) {
+			this.setBounds(x, y, width, height);
+			this.setBackground(Color.RED);
+			this.setBorder(BorderFactory.createRaisedBevelBorder());
+			// this.addMouseListener(new MouseHandler(this));
+		}
+
+		@Override
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			// g.drawImage(minibgImage, 0, 0, observer)
+		}
+
+		public void update() {
+			// color = new Color(r.nextInt());
+			repaint();
+		}
+
+		public BufferedImage createBufferedImage(String fileLocation) {
+			BufferedImage img;
+			try {
+				img = ImageIO.read(new File(fileLocation));
+				return img;
+			} catch (IOException e) {
+				e.printStackTrace();
+				return null;
+			}
+		}
+	}
+
+	
 }
