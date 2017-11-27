@@ -7,8 +7,8 @@ import org.junit.Test;
 
 import model.*;
 
-public class MainGameModelTest {
-	MainGameModel m;
+public class MainModelTest {
+	MainModel m;
 	int numFood;
 	int numTrash;
 	int numFish;
@@ -16,7 +16,7 @@ public class MainGameModelTest {
 	public void setUp() throws Exception {
 		
 		//create MainGameModel
-		m = new MainGameModel();
+		m = new MainModel();
 		
 		//count items in stuffSet
 		count();
@@ -24,7 +24,7 @@ public class MainGameModelTest {
 
 	@Test
 	public void testAddStuff() {
-		assertEquals("Inititial Size of StuffSet",m.getStuff().size(),1);
+		assertEquals("Inititial Size of StuffSet",m.getStuffSet().size(),1);
 		
 		//add more items to stuff set
 		m.addStuff(new Food(1,2));
@@ -33,19 +33,19 @@ public class MainGameModelTest {
 		m.addStuff(new Trash(0,0));
 		
 		
-		assertEquals("Final Size of StuffSet", m.getStuff().size(),3);
+		assertEquals("Final Size of StuffSet", m.getStuffSet().size(),3);
 	}
 
 	@Test
 	public void testAccumulate() {
-		assertEquals(m.getStuff().size(),1);
-		int initialSize = m.getStuff().size();
+		assertEquals(m.getStuffSet().size(),1);
+		int initialSize = m.getStuffSet().size();
 		int initialTrash = numTrash;
 		assertEquals(numFood,0);
 		assertEquals(numFish,1);
 		assertEquals(numTrash,0);
 		m.accumulate();
-		assertTrue((initialSize<m.getStuff().size()));
+		assertTrue((initialSize<m.getStuffSet().size()));
 		count();
 		assertEquals(numFood,0);
 		assertEquals(numFish,1);
@@ -59,13 +59,13 @@ public class MainGameModelTest {
 		m.addStuff(new Trash(1,2));
 		m.addStuff(new Trash(0,0));
 		m.addStuff(new Trash(50,50));
-		assertEquals("Initial Size of StuffSet", m.getStuff().size(),4);
+		assertEquals("Initial Size of StuffSet", m.getStuffSet().size(),4);
 		count();
 		assertEquals(numFood,1);
 		assertEquals(numFish,1);
 		assertEquals(numTrash,2);
 		m.removeTrash();
-		assertEquals("Final Size of StuffSet", m.getStuff().size(),2);
+		assertEquals("Final Size of StuffSet", m.getStuffSet().size(),2);
 		count();
 		assertEquals(numFood,1);
 		assertEquals(numFish,1);
@@ -79,7 +79,7 @@ public class MainGameModelTest {
 		this.numFood=0;
 		this.numTrash=0;
 		this.numFish=0;
-		for (StuffInOcean s: m.getStuff()){
+		for (StuffInOcean s: m.getStuffSet()){
 			if (s.isFish()){
 				numFish++;
 			} else if (s.isFood()){
@@ -91,5 +91,3 @@ public class MainGameModelTest {
 	}
 
 	}
-
-

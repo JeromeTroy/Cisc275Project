@@ -7,12 +7,16 @@ import org.junit.Test;
 
 import model.*;
 
-public class FishCharacterTest {
+public class MainCharacterTest {
 	static MainCharacter f1;
 	static MainCharacter f2;
 	static MainCharacter f3;
 	static MainCharacter f4;
 	static MainCharacter f5;
+	static MainCharacter f6;
+	static MainCharacter f7;
+	static MainCharacter f8;
+	static MainCharacter f9;
 	static Map m1;
 	
 	
@@ -24,31 +28,56 @@ public class FishCharacterTest {
 		f4 = new MainCharacter();
 		f5 = new MainCharacter();
 		m1 = new Map(100,100);
-		System.out.println(f1.getPossibleOrientations());
+		f6 = new MainCharacter(m1);
+		f7 = new MainCharacter(m1, 10, 5);
+		f8 = new MainCharacter();
+		f9 = new MainCharacter();
 	}
 
 	@Test
 	public void testConstructor() {
-		assertEquals(f1.getPosition().toString(), "<10,10>");
-		assertEquals(f1.getScore(), 0);
-		assertEquals(f1.getIsCaught(), false);
+		assertEquals(f1.getPosition().toString(), "<0,0>");
 		assertEquals(f1.getAngle(), 0);
-		assertEquals(f1.getPossibleOrientations().toString(), "[north, northwest, west, southwest, south, southeast, east, northeast]");
+	}
+	
+	@Test
+	public void testMapConstructor() {
+		assertEquals(f6.getPosition().getY(), m1.getHeight()/2);
+	}
+	
+	@Test
+	public void testConstructorThree() {
+		assertEquals(f7.getRadius(), 10);
+		assertEquals(f7.getSpeed(), 5);
 	}
 	
 	@Test
 	public void testMove() {
-		f2.move();
-		assertEquals(f2.getPosition().toString(), "<11,10>");
-		f2.move();
+		assertEquals(f2.getPosition().toString(), "<0,0>");
 		f2.move();
 		f2.move();
-		assertEquals(f2.getPosition().toString(), "<14,10>");
+		assertEquals(f2.getPosition().toString(), "<0,0>");
 		f2.setAngle(90);
 		f2.move();
 		f2.move();
 		f2.move();
-		assertEquals(f2.getPosition().toString(), "<14,13>");
+		assertEquals(f2.getPosition().toString(), "<0,3>");
+		f2.setAngle(270);;
+		f2.move();
+		f2.move();
+		assertEquals(f2.getPosition().toString(), "<0,1>");
+	}
+	
+	@Test
+	public void testIsContacting() {
+		int[] a = {0,0};
+		int[] b = {25,25};
+		int[] c = {-1,0};
+		int[] d = {-25,25};
+		assertEquals(f8.isContacting(a, 4), true);
+		assertEquals(f8.isContacting(b, 4), false);
+		assertEquals(f8.isContacting(c, 4), false);
+		assertEquals(f8.isContacting(d, 4), false);
 	}
 	
 	@Test
@@ -82,34 +111,4 @@ public class FishCharacterTest {
 		f4.setAngle(45);
 		assertEquals(f4.getOrientation(), "northeast");
 	}
-	
-	@Test
-	public void testToString() {
-		assertEquals(f5.toString(), "The fish is at <10,10> facing east");
-	}
-	
-	@Test
-	public void testGetName() {
-		assertEquals(f5.getName(), "Fish ");
-	}
-	
-	@Test
-	public void testIsFish() {
-		assertEquals(f5.isFish(), true);
-	}
-	
-	@Test
-	public void testRadius() {
-		assertEquals(f5.getRadius(), 1);
-		f5.setRadius(10);
-		assertEquals(f5.getRadius(), 10);
-	}
-	
-	@Test
-	public void testStepSize() {
-		assertEquals(f5.getStepSize(), 1);
-		f5.setSpeed(10);
-		assertEquals(f5.getStepSize(), 10);
-	}
-
 }
