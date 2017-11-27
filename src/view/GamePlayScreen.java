@@ -32,10 +32,6 @@ import javax.swing.Timer;
 import controller.GameTimer;
 import controller.MainController;
 
-//import fishieredux.MovementDemo;
-
-//import fishieredux.MovementDemo;
-
 public class GamePlayScreen extends JPanel implements ActionListener, MouseMotionListener {
 
 	// Swing Components
@@ -46,8 +42,6 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 	private static Window window;
 	private static JLabel bgLabel;
 	private static int bgPos;
-	// final ImageIcon foodIcon;
-	// final ImageIcon trashIcon;
 	private static Timer timer;
 
 	// Images
@@ -55,8 +49,8 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 	private BufferedImage foodImage;
 	private BufferedImage trashImage;
 	private BufferedImage bgImage1;
-	private final int bgHeight = 592;
-	private final static int bgLength = 5728;
+	private int bgHeight = 592;
+	private static int bgLength = 5728;
 	// windowHeght is based on the desired height of the tutorial screen window
 	// based on background image size
 	private final static int windowHeight = 592;
@@ -120,10 +114,13 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		//set size of background
+		bgLength = bgImage1.getWidth();
 
 		// create map locations
-		bg1xpos = 0;
-		bg2xpos = bgLength;
+		bg1xpos = c.getModel().getMap().getOrigin().getX();
+		bg2xpos = bg1xpos+bgLength;
 
 		// // Create and load the duke icon.
 		// final ImageIcon fishIcon = createImageIcon("images/fishie.png");
@@ -248,8 +245,6 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 			int dx = c.getModel().getMainCharacter().getPosition().getX();
 			int dy = c.getModel().getMainCharacter().getPosition().getY();
 			
-			//c.getModel().getMainCharacter().getPosition().setX(cursorx+currx);
-			
 		}
 		
 		//set scuba location
@@ -277,27 +272,13 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 			dx = e.getX() - cursorx;
 			dy = e.getY() - cursory;
 			
-			
 			//move map
 			int xinc = ((cursorx<e.getX())? e.getX()-cursorx : 0);
-			bg1xpos-=xinc;
-			bg2xpos-=xinc;
 			shift[0]+= xinc;
 			
 			//set location of cursor
 			cursorx = e.getX();
 			cursory = e.getY();
-			
-			
-			
-			
-//			fishLabel.setLocation(e.getX() - fishLabel.getWidth() / 2, e.getY() - fishLabel.getHeight() / 2);
-//			bgPos--;
-//			bgLabel.setLocation(bgPos, 0);
-//			trashLabel.setLocation(bgPos + 500, 250);
-//			foodLabel.setLocation(bgPos + 900, 400);
-//			c.getModel().getMainCharacter().getPosition().setX(e.getX());
-//			c.getModel().getMainCharacter().getPosition().setY(e.getY());
 		}
 	}
 
@@ -349,8 +330,8 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		super.paintComponent(g);
 
 		// disp map
-		g.drawImage(bgImage1, bg1xpos, 50, this);
-		g.drawImage(bgImage1, bg2xpos, 50, this);
+		g.drawImage(bgImage1, bg1xpos, 0, this);
+		g.drawImage(bgImage1, bg2xpos, 0, this);
 
 		// disp objects
 		for (int[] loc :c.getModel().getStuffSet().getFood()){
@@ -366,9 +347,6 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 	}
 
 	public void updatePositions() {
-		// c.getModel().getFishy().getPosition().setX(MouseInfo.getPointerInfo().getLocation().x);
-		// c.getModel().getFishy().getPosition().setY(MouseInfo.getPointerInfo().getLocation().y);
-
 		for (JLabel j : stuff) {
 			j.setLocation(bgPos + 500, 250);
 		}
@@ -384,15 +362,6 @@ public class GamePlayScreen extends JPanel implements ActionListener, MouseMotio
 		}
 		return null;
 	}
-	//
-	// public void paint(Graphics g) {
-	// //iterate the picture number so the animation uses different frames of
-	// the orcImage
-	//
-	// //draw the image
-	// g.drawImage(pics[orcImageNum][picNum], xCoord, yCoord, Color.gray, this);
-	//
-	// }
 	
 	public int getdx(){
 		return dx;

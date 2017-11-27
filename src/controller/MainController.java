@@ -20,7 +20,7 @@ public class MainController {
 	private static JPanel currScreen;
 	private final String foodURL = "src/view/images/foodsmall.png";
 	private final String trashURL = "src/view/images/trashsmall.png";
-	private final String bgURL = "src/view/images/bg2.png";
+	private final String bgURL = "src/view/images/bg.png";
 	private final String humanURL = "";
 	private final String fishURL = "src/view/images/fishie.png";
 	
@@ -162,11 +162,11 @@ public class MainController {
 	protected void tick() {
 
 		if (useView) {
-			System.out.println("View Tick"); //TODO: remove
+			//System.out.println("View Tick"); //TODO: remove
 			//model.getMainCharacter();
 			model.update(0,0);
 		}else {
-			System.out.println("Console Tick"); //TODO: remove
+			//System.out.println("Console Tick"); //TODO: remove
 			Scanner sc = new Scanner(System.in);
 			String angle = sc.nextLine();
 			String speed = sc.nextLine();
