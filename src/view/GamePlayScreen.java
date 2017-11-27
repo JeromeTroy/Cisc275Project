@@ -137,7 +137,6 @@ public class GamePlayScreen extends GodView {
 		int mapUnique = bgImage1.getWidth();
 		int mapLength = mapUnique * 3;
 		
-		
 		MainModel.setup(c.getModel(), mainCharRad, foodSize, trashSize, mapHeight, mapLength, mapUnique);
 
 	}
