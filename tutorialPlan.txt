@@ -1,0 +1,43 @@
+no sidescrolling
+
+instance of minigame?
+
+pop up messages for touching food and trash
+	"don't touch trash - explain minigame"
+	"food increases time"
+
+pop up explanations?
+
+1 food and 1 trash @ fixed locations
+
+pop up saying to get to the end before the time is up
+
+
+
+model:
+
+create tutorial class, extending minigame class
+
+export signals for messages - touched trash and food
+
+fix locations of food and trash
+
+
+controller:
+
+nothing?
+
+
+view:
+
+show food, trash, background, fish guy
+
+messages
+	get to the end in the time
+	touching food
+	touching trash
+	time running out
+
+button to exit
+
+non-sidescrolling
