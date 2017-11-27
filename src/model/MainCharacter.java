@@ -100,8 +100,9 @@ public class MainCharacter{
 	 */
 	public boolean isContacting(int[] v, int size) {
 		boolean contact = (getPosition().distFrom(v[0], v[1]) <= Math.pow(getRadius() + size,2));
-		boolean inFront = (v[0] >= getPosition().getX());
-		return (contact && inFront);
+		//boolean inFront = (v[0] >= getPosition().getX());
+		//return (contact && inFront);
+		return contact;
 	}
 	
 	

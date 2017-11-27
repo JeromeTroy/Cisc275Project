@@ -20,7 +20,7 @@ public class StuffSet {
 	
 	// accumulation of stuff
 	private int accumulationTimer = 0;		// timer
-	private int accumulationValue = 3;		// signal value
+	private int accumulationValue = 20;		// signal value
 	
 	
 	// methods
