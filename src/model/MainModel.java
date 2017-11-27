@@ -97,7 +97,7 @@ public class MainModel {
 			
 			// setup
 			getMainCharacter().setSpeed(newSpeed);
-			getMainCharacter().rotate(deltaTheta);
+			getMainCharacter().setAngle(deltaTheta);
 			
 			// if move allowed
 			if (getMap().moveMap(getMainCharacter())) {

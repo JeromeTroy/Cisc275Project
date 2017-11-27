@@ -62,8 +62,8 @@ public class Map {
 	 */
 	public Map() {
 		// TODO: verify these numbers
-		setLength(100);
-		setHeight(100);
+		setLength(10000);
+		setHeight(1000);
 		setUniqueLength(getLength());
 		origin = new OurVector();
 		origin.setY(-getHeight()/2);

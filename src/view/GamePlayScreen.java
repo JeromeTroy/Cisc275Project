@@ -36,7 +36,7 @@ import javax.swing.Timer;
 import controller.GameTimer;
 import controller.MainController;
 
-public class GamePlayScreen extends GodView implements ActionListener {
+public class GamePlayScreen extends GodView {
 
 	// Swing Components
 	private JLayeredPane layeredPane;
@@ -180,7 +180,7 @@ public class GamePlayScreen extends GodView implements ActionListener {
 	 * Create the GUI and show it. For thread safety, this method should be
 	 * invoked from the event-dispatching thread.
 	 */
-	private static void createAndShowGUI(Window frame) {
+	private static JComponent createAndShowGUI(Window frame) {
 		// Create and set up the content pane.
 		JComponent newContentPane = new GamePlayScreen();
 		newContentPane.setOpaque(true); // content panes must be opaque
@@ -215,7 +215,8 @@ public class GamePlayScreen extends GodView implements ActionListener {
 
 		window.addTimer(timer);
 		timer.start();
-
+		
+		return newContentPane;
 	}
 
 	protected static void update() {
@@ -241,10 +242,10 @@ public class GamePlayScreen extends GodView implements ActionListener {
 
 	}
 
-	public static void activateGamePlayScreen(MainController co, Window w) {
+	public static JComponent activateGamePlayScreen(MainController co, Window w) {
 		c = co;
 		GamePlayScreen.window = w;
-		createAndShowGUI(w);
+		return createAndShowGUI(w);
 	}
 
 
@@ -254,7 +255,7 @@ public class GamePlayScreen extends GodView implements ActionListener {
 	}
 
 
-	public void paintComponent(Graphics g) {
+	/*public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
 		// disp map
@@ -269,11 +270,12 @@ public class GamePlayScreen extends GodView implements ActionListener {
 		// disp fish
 		int fishx = c.getModel().getMainCharacter().getPosition().getX();
 		int fishy = c.getModel().getMainCharacter().getPosition().getY();
+		//System.out.println("\n " +fishx + ", " + fishy + "\n");
 		g.drawImage(fishImage, cursorx, cursory, this); // where cursor is
 		g.drawImage(fishImage, fishx, fishy, this); // where the fish is on the
 													// map
 
-	}
+	}*/
 
 
 	private BufferedImage createImage(String dir) {
@@ -299,7 +301,7 @@ public class GamePlayScreen extends GodView implements ActionListener {
 	
 	//classes
 	
-	private class PlayScreen extends JPanel implements MouseMotionListener {
+	private class PlayScreen extends GodView implements MouseMotionListener {
 
 		PlayScreen() {
 			addMouseMotionListener(PlayScreen.this);
@@ -318,9 +320,21 @@ public class GamePlayScreen extends GodView implements ActionListener {
 			}
 
 			// disp fish
-			int fishx = c.getModel().getMainCharacter().getPosition().getX();
-			int fishy = c.getModel().getMainCharacter().getPosition().getY();
-			g.drawImage(fishImage, cursorx, cursory, this); // where cursor is
+			int mouseX = cursorx;
+			int mouseY = cursory;
+			
+			
+			System.out.println("mouse at <" + mouseX + ", " + mouseY + ">");
+			double newSpeed = c.getModel().getMainCharacter().getPosition().distFrom(mouseX, mouseY);
+			int deltaTheta = c.getModel().getMainCharacter().getPosition().angleBetween(mouseX, mouseY);
+			System.out.println(deltaTheta);
+			c.getModel().update(0,deltaTheta);
+			
+			double tmpx = c.getModel().getMainCharacter().getPosition().getX();
+			double tmpy = c.getModel().getMainCharacter().getPosition().getY();
+			int fishx = (int) tmpx;
+			int fishy = (int) tmpy;
+			//g.drawImage(fishImage, cursorx, cursory, this); // where cursor is
 			g.drawImage(fishImage, fishx, fishy, this); // where the fish is on the
 														// map
 		}
@@ -398,6 +412,15 @@ public class GamePlayScreen extends GodView implements ActionListener {
 			}
 		}
 	}
+	
+	public int getCursorX() {
+		return cursorx;
+	}
+	
+	public int getCursorY() {
+		return cursory;
+	}
+	
 
 	
 }

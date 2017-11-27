@@ -22,7 +22,7 @@ import controller.MainController;
 import javax.swing.JButton;
 
 
-public class TitleScreen extends JPanel implements ActionListener, MouseMotionListener {
+public class TitleScreen extends GodView implements MouseMotionListener {
 	
 	
 	// attributes
@@ -36,12 +36,15 @@ public class TitleScreen extends JPanel implements ActionListener, MouseMotionLi
 	private static String GO_TO_GAME = "goToGame";
 	private static String GO_TO_TUTORIAL = "goToTutorial";
 	
+	private MainController game;
+	
 	// methods
 	
 	// constructor
-	public TitleScreen(){
+	public TitleScreen(MainController c){
 		//invoke constructor
 		
+		game = c;
 		// layout
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
@@ -104,15 +107,14 @@ public class TitleScreen extends JPanel implements ActionListener, MouseMotionLi
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		String cmd = e.getActionCommand();
-		MainController c = new MainController(true);
 		if (cmd == "goToGame"){
 			System.out.println("game");
-			c.startGame();
+			game.startGame();
 			//c.showTitleScreen(true);
 			//TODO: need action to open game
 		} else if (cmd == "goToTutorial"){
 			System.out.println("Tutorial Pressed");
-			c.startTutorial();
+			game.startTutorial();
 			//TODO: get rid of below
 		} else if (cmd== "fishCaught"){
 			//c.getModel().getFishy().setCaught(!c.getModel().getFishy().getIsCaught());
@@ -125,13 +127,13 @@ public class TitleScreen extends JPanel implements ActionListener, MouseMotionLi
 	}
 	
 	
-	private static TitleScreen createAndShowGUI(Window frame) {
+	private static TitleScreen createAndShowGUI(Window frame, MainController c) {
 		// window
 		//JFrame frame = new JFrame("TitleScreen");
         //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// content
-        JComponent newContentPane = new TitleScreen();
+        JComponent newContentPane = new TitleScreen(c);
         newContentPane.setOpaque(true); //content panes must be opaque
         frame.setContentPane(newContentPane);
 		
@@ -143,8 +145,8 @@ public class TitleScreen extends JPanel implements ActionListener, MouseMotionLi
 	}
 	
 	
-	public static TitleScreen activateTitle(Window w) {
-		return createAndShowGUI(w);
+	public static TitleScreen activateTitle(Window w, MainController c) {
+		return createAndShowGUI(w, c);
 	}
 	
 

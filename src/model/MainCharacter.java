@@ -11,7 +11,7 @@ public class MainCharacter{
 	
 	// attributes
 	private int radius = 1; 		// size of the fish
-	private int speed = 1;			// speed of the fish
+	private int speed = 5;			// speed of the fish
 	private int angle; 				// angle (counterclockwise) from east facing
 	
 	// location

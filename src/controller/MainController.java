@@ -17,7 +17,7 @@ public class MainController {
 	private static TitleScreen titleScreen;
 	private static TutorialScreen tutorialScreen;
 	private static Window window;
-	private static JPanel currScreen;
+	private JComponent currScreen;
 	private final String foodURL = "src/view/images/foodsmall.png";
 	private final String trashURL = "src/view/images/trashsmall.png";
 	private final String bgURL = "src/view/images/bg.png";
@@ -37,21 +37,26 @@ public class MainController {
 	//Settings
 	private int tickPeriod = 30; // in milliseconds
 	boolean inMiniGame;
-	private static boolean useView;
+	public static boolean useView;
 	// private mainView gameView;
 
 	
 	
 	public static void main(String[] args) {
 		//allows the program to be run with args to set the program to use the view or not
-		if (args.length == 0){
-			useView = true;
-			openView();
+		MainController game = new MainController(true);
+		if (game.useView){
+			game.openView();
 		} else {
-			useView = false;
-			openConsole();
-			
+			game.openConsole();
 		}
+		//game.gameTimer = new GameTimer(game);
+		//TODO: get input and then iterate through game
+		while (!game.getModel().getGameOver()) {
+			game.tick();
+		}
+		
+		
 		
 	}
 	
@@ -60,15 +65,15 @@ public class MainController {
 	 * openView - opens the titlescreen
 	 * 
 	 */
-	private static void openView() {
+	private void openView() {
 		window = new Window();
 		
 		Runnable theGame = new RunGame();
+		MainController tmp = this;
 		javax.swing.SwingUtilities.invokeLater(new Runnable(){
 			public void run() {
-				titleScreen = TitleScreen.activateTitle(window);
+				titleScreen = TitleScreen.activateTitle(window, tmp);
 				currScreen = titleScreen;
-				//GamePlayScreen.activateGamePlayScreen();
 			}
 		});
 	}
@@ -76,13 +81,8 @@ public class MainController {
 	/** 
 	 * openConsole - runs the game from the console
 	 */
-	private static void openConsole(){
-		MainController game = new MainController(false);
-		//game.gameTimer = new GameTimer(game);
-		//TODO: get input and then iterate through game
-		while (!game.getModel().getGameOver()) {
-			game.tick();
-		}
+	private void openConsole(){
+		
 	}
 	
 	/**
@@ -120,10 +120,10 @@ public class MainController {
 		//start timer to update model
 		gameTimer = new GameTimer(this);
 		gameTimer.start();
-		
+		currScreen = gameScreen;
 		
 		if (useView) {
-			GamePlayScreen.activateGamePlayScreen(this, window);
+			currScreen = gameScreen.activateGamePlayScreen(this, window);
 			window.addTimer(gameTimer.getSwingTimer());
 		}
 
@@ -138,6 +138,14 @@ public class MainController {
 		tutorial = new MainModel();
 		TutorialScreen.activateTutorial(this, window); //setTitleScreen
 		currScreen = tutorialScreen;
+		
+		int cx = tutorialScreen.getCursorX();
+		int cy = tutorialScreen.getCursorY();
+		
+		double dist = tutorial.getMainCharacter().getPosition().distFrom(cx, cy);
+		int angle = tutorial.getMainCharacter().getPosition().angleBetween(cx, cy);
+		
+		tutorial.update(0, angle - tutorial.getMainCharacter().getAngle());
 		
 	}
 	
@@ -167,9 +175,7 @@ public class MainController {
 	protected void tick() {
 
 		if (useView) {
-			//System.out.println("View Tick"); //TODO: remove
-			//model.getMainCharacter();
-			model.update(0,0);
+			GamePlayScreen gameView = (GamePlayScreen) currScreen;
 			
 		}else {
 			//System.out.println("Console Tick"); //TODO: remove
@@ -364,8 +370,8 @@ public class MainController {
 		return diverdarkURL;
 	}
 	
-	public int foodHypontenuse(){
-	}
+	//public int foodHypontenuse(){
+	//}
 	
 	
 	

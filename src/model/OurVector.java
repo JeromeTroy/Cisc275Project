@@ -7,8 +7,8 @@ public class OurVector {
 	 */
 	
 	// positions
-	private int x; 		// x position
-	private int y;		// y position
+	private double x; 		// x position
+	private double y;		// y position
 
 	
 	// methods
@@ -22,7 +22,7 @@ public class OurVector {
 	 * @param xval 	int 	x value for position
 	 * @param yval 	int 	y value for position
 	 */
-	private OurVector(int xval, int yval){
+	private OurVector(double xval, double yval){
 		setX(xval);
 		setY(yval);
 	}
@@ -46,7 +46,7 @@ public class OurVector {
 	 * uses pythagorean theorem c^2 = a^2 + b^2
 	 * @return int 	length^2
 	 */
-	public int norm2(){
+	public double norm2(){
 		return getX()*getX() + getY()*getY();
 	}
 
@@ -57,7 +57,7 @@ public class OurVector {
 	 * @param v 		Vector 		vector to calculate dot product with
 	 * @return int 		dot product 	x1*x2 + y1*y2
 	 */
-	private int dotWith(OurVector v){
+	private double dotWith(OurVector v){
 		return v.getX()*getX() + v.getY()*getY();
 	}
 	
@@ -72,7 +72,7 @@ public class OurVector {
 	 * @param v 		Vector 		vector to calculate distance from
 	 * @return int 		distance^2  from the vector 
 	 */
-	private int distFrom(OurVector v){
+	private double distFrom(OurVector v){
 		return v.norm2() + norm2() - 2*dotWith(v);
 	}
 	
@@ -84,7 +84,7 @@ public class OurVector {
 	 * @param y 		y position
 	 * @return 			distance^2
 	 */
-	public int distFrom(int x, int y) {
+	public double distFrom(double x, double y) {
 		OurVector v = new OurVector(x,y);
 		return distFrom(v);
 	}
@@ -99,20 +99,20 @@ public class OurVector {
 	 * @param y2			y position 2nd point
 	 * @return 				distance^2 from p1 to p2
 	 */
-	public static int distBetween(int x1, int y1, int x2, int y2) {
+	public static double distBetween(double x1, double y1, double x2, double y2) {
 		OurVector v1 = new OurVector(x1,y1);
 		return v1.distFrom(x2, y2);
 	}
 	
 	
-	public static int angleBetween(int x1, int y1, int x2, int y2) {
+	public static double angleBetween(double x1, double y1, double x2, double y2) {
 		OurVector v1 = new OurVector(x1,y1);
 		return v1.angleBetween(x2,y2);
 	}
 	
-	public int angleBetween(int x, int y) {
-		int newX = x - getX();
-		int newY = y - getY();
+	public int angleBetween(double x, double y) {
+		double newX = x - getX();
+		double newY = y - getY();
 		if (newX == 0) {
 			if (newY > 0) {
 				return 90;
@@ -146,13 +146,13 @@ public class OurVector {
 	
 	
 	// x
-	public int getX(){
+	public double getX(){
 		return x;
 	}
 	
 	
 	// y
-	public int getY(){
+	public double getY(){
 		return y;
 	}
 		
@@ -161,13 +161,13 @@ public class OurVector {
 	
 	
 	// x
-	public void setX(int xval){
+	public void setX(double xval){
 		x = xval;
 	}
 	
 	
 	// y
-	public void setY(int yval){
+	public void setY(double yval){
 		y = yval;
 	}
 		

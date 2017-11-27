@@ -93,7 +93,7 @@ public class MiniGame extends MainModel{
 	public void update(int newSpeed, int deltaTheta) {
 		// setup
 		getMainCharacter().setSpeed(newSpeed);
-		getMainCharacter().rotate(deltaTheta);
+		getMainCharacter().setAngle(deltaTheta);
 		
 		// if move is allowed
 		if (getMap().moveMap(getMainCharacter())) {
