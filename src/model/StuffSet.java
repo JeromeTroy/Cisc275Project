@@ -149,7 +149,7 @@ public class StuffSet {
 		for (int[] coord : getTrash()) {
 			coord[0] += deltaX;
 		}
-		
+		removePassedStuff(fishy);
 		// one time step has passed
 		accumulationTimer = (accumulationTimer + 1)%accumulationValue;
 	}
@@ -232,6 +232,20 @@ public class StuffSet {
 		return (accumulationTimer == 0);
 	}
 	
+	
+	public void removePassedStuff(MainCharacter fishy) {
+		for (int[] v : allTrash) {
+			if (v[0] < -fishy.getRadius()) {
+				remove(v, "trash");
+			}
+		}
+		
+		for (int[] v : allFood) {
+			if (v[0] < -fishy.getRadius()) {
+				remove(v,"food");
+			}
+		}
+	}
 	
 	// getters
 
