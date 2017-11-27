@@ -128,14 +128,13 @@ public class TutorialScreen extends JPanel implements ActionListener {
 				
 				//add layered pane for minigame
 				JLayeredPane layeredPane = new JLayeredPane(); // create
+				mgs = new MiniGameScreen(playLength*(1/4),playHeight*(1/4),playLength*7/8, playHeight*7/8);
+				layeredPane.add(mgs);
 				layeredPane.setPreferredSize(new Dimension(playLength, playHeight+controlpanelHeight)); // resize
 				gamePanel.add(layeredPane,new Integer(300));
 				add(gamePanel);
 				
 				add(createControlPanel());
-				
-				mgs = new MiniGameScreen(playLength*(1/4),playHeight*(1/4),playLength*7/8, playHeight*7/8);
-				layeredPane.add(mgs);
 		
 	
 
@@ -288,7 +287,7 @@ public class TutorialScreen extends JPanel implements ActionListener {
 //		}
 //
 //		// disp fish
-		g.drawImage(fishImage, fishxLocation, fishyLocation, gamePanel);
+		g.drawImage(fishImage, 0, 0, gamePanel);
 
 		// display instructions
 		//TODO: add game intruction tutorial mode
@@ -369,10 +368,9 @@ public class TutorialScreen extends JPanel implements ActionListener {
 	}
 	
 	private class PlayScreen extends JPanel implements MouseMotionListener{
-		BufferedImage fishImage;
 		
 		PlayScreen(){
-			addMouseMotionListener(this);
+			addMouseMotionListener(PlayScreen.this);
 		}
 	    
 	    public void paintComponent(Graphics g) {
@@ -528,10 +526,5 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		}
 	}
 
-	@Override
-	public void mouseMoved(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }
