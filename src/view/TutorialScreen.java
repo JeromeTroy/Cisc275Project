@@ -54,14 +54,14 @@ public class TutorialScreen extends JPanel implements ActionListener {
 	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private static int windowWidth = (int) screenSize.getWidth();
 	private static int windowHeight = (int) screenSize.getHeight();
-	private int bgHeight = windowHeight;
+	private int bgHeight = windowHeight - controlpanelHeight - instructionsHeight;
 	private static int bgLength = windowWidth;
 	// windowHeght is based on the desired height of the tutorial screen window
 	// based on background image size
 	private final static int playLength = windowWidth;
 	private final static int controlpanelHeight = 100;
 	private final static int instructionsHeight = 150;
-	private  static int playHeight = windowHeight - controlpanelHeight - instructionsHeight;
+	private  static int playHeight = windowHeight;
 	private String dir;
 
 	// controller
@@ -121,20 +121,24 @@ public class TutorialScreen extends JPanel implements ActionListener {
 
 		// layout
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		//setSize(new Dimension(windowWidth,windowHeight));
 
 		// add instructions panel
 		instructionsPanel = new JPanel();
-		instructionsPanel.setSize(new Dimension(playLength, instructionsHeight));
+		instructionsPanel.setBorder(BorderFactory.createLineBorder(Color.green));
+		instructionsPanel.setMaximumSize(new Dimension(playLength, instructionsHeight));
 		dir = "Estuary Adventure Tutorial Mode";
 		instructions = new JLabel(dir);
 		instructions.setFont(new Font("Arial", Font.PLAIN, 40));
 		instructions.setSize(50, instructionsHeight);
 		instructionsPanel.add(instructions);
 		add(instructionsPanel);
+		
 
 		// add game panel
 		gamePanel = new PlayScreen();
 		gamePanel.setSize(new Dimension(playLength, playHeight));
+		gamePanel.setBorder(BorderFactory.createLineBorder(Color.red));
 		// gamePanel.addMouseMotionListener(this);
 		// add(gamePanel);
 
@@ -146,8 +150,10 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		mgs = new MiniGameScreen(500, 100, playLength * 7 / 8, playHeight * 7 / 8);
 		layeredPane.add(mgs);
 		layeredPane.setPreferredSize(new Dimension(playLength, playHeight + controlpanelHeight)); // resize
-		gamePanel.add(layeredPane, new Integer(300));
+		//gamePanel.add(layeredPane, new Integer(300));
 		add(gamePanel);
+		
+		mgs.setVisible(false);
 
 		add(createControlPanel());
 
@@ -202,8 +208,10 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		titleScreen.addActionListener(this);
 
 		JPanel controls = new JPanel();
+		controls.setBorder(BorderFactory.createLineBorder(Color.blue));
 		controls.add(gameStart);
 		controls.add(titleScreen);
+		controls.setMaximumSize(new Dimension(windowWidth,controlpanelHeight));
 		return controls;
 	}
 
@@ -416,7 +424,7 @@ public class TutorialScreen extends JPanel implements ActionListener {
 
 			// disp fish
 			g.drawImage(fishImage, fishxLocation, fishyLocation, this);
-			g2d.drawImage(fishImage, fishxLocation, fishyLocation, this);
+			//g2d.drawImage(fishImage, fishxLocation, fishyLocation, this);
 			// display instructions
 			// TODO: add game intruction tutorial mode
 		}
