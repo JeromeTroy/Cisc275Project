@@ -15,8 +15,8 @@ public class StuffSet {
 	protected ArrayList<int[]> allTrash; 	// trash
 	
 	// sizes
-	private int foodSize = 1; 				// food size
-	private int trashSize = 1;				// trash size
+	private int foodSize = 10; 				// food size
+	private int trashSize = 10;				// trash size
 	
 	// accumulation of stuff
 	private int accumulationTimer = 0;		// timer
