@@ -35,7 +35,7 @@ public class Window extends JFrame {
 					//System.out.println("Timer Stopped");
 				}
 				//close program
-				System.exit(0);
+				//System.exit(0);
 			}
 		});
 
