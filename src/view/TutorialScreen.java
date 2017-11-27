@@ -34,7 +34,7 @@ import javax.swing.JButton;
  * @author Team4
  *
  */
-public class TutorialScreen extends JPanel implements ActionListener {
+public class TutorialScreen extends GodView {
 
 	// Swing components
 	private static JLabel instructions;

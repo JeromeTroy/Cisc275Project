@@ -36,7 +36,7 @@ import javax.swing.Timer;
 import controller.GameTimer;
 import controller.MainController;
 
-public class GamePlayScreen extends JPanel implements ActionListener {
+public class GamePlayScreen extends GodView implements ActionListener {
 
 	// Swing Components
 	private JLayeredPane layeredPane;
