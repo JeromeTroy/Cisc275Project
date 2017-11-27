@@ -105,6 +105,32 @@ public class OurVector {
 	}
 	
 	
+	public static int angleBetween(int x1, int y1, int x2, int y2) {
+		OurVector v1 = new OurVector(x1,y1);
+		return v1.angleBetween(x2,y2);
+	}
+	
+	public int angleBetween(int x, int y) {
+		int newX = x - getX();
+		int newY = y - getY();
+		if (newX == 0) {
+			if (newY > 0) {
+				return 90;
+			}else if (newY < 0) {
+				return -90;
+			}else {
+				return 0;
+			}
+		}else {
+			double phi = Math.atan(newY/newX);
+			int theta = (int) (180/Math.PI * phi);
+			if (newX < 0) {
+				theta += 180;
+			}
+			return theta;
+		}
+	}
+	
 	// printing
 	/**
 	 * (non-Javadoc)
