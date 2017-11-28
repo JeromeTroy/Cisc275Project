@@ -14,6 +14,7 @@ public class Tutorial extends MiniGame{
 		accumulateAll();
 		contactedTrash = false;
 		contactedFood = false;
+		inMiniGame = true;
 	}
 	
 	public void accumulateAll() {

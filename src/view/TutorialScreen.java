@@ -69,16 +69,12 @@ public class TutorialScreen extends JPanel implements ActionListener {
 	private static MainController c; // the controller operating the game
 
 	// Tutorial Screen Settings
-	private static int[] foodxLocation;
-	private static int[] foodyLocation;
-	private static int[] trashxLocation;
-	private static int[] trashyLocation;
 	private int cursorx;
 	private int cursory;
 	private static int numFood = 10;
 	private static int numTrash = 25;
 	private static boolean dispFood = true;
-	private static boolean dispTrash = false;
+	private static boolean dispTrash = true;
 
 	private static int autoscrolldpt = 0; // autoscroll x distance per tick
 											// (positive objects travel to left)
@@ -165,21 +161,6 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		bg1xpos = 0;
 		bg2xpos = bgLength;
 
-		// generate food locations
-		foodxLocation = new int[numFood];
-		foodyLocation = new int[numFood];
-		for (int i = 0; i < numFood; i++) {
-			foodxLocation[i] = (int) (Math.random() * playLength);
-			foodyLocation[i] = (int) (Math.random() * playHeight);
-		}
-
-		// generate trash locations
-		trashxLocation = new int[numTrash];
-		trashyLocation = new int[numTrash];
-		for (int i = 0; i < numTrash; i++) {
-			trashxLocation[i] = (int) (Math.random() * playLength);
-			trashyLocation[i] = (int) (Math.random() * playHeight);
-		}
 
 		cursorx = 0;
 		cursory = 0;
@@ -320,31 +301,22 @@ public class TutorialScreen extends JPanel implements ActionListener {
 			Graphics2D g2d = (Graphics2D) g;
 
 			// disp objects
-			if (dispFood) {
-				for (int i = 0; i < numFood; i++) {
-					foodxLocation[i] -= autoscrolldpt;
-					g.drawImage(foodImage, foodxLocation[i], foodyLocation[i] + 50, this);
-					// System.out.println((foodxLocation[i]-j)+" "+
-					// foodyLocation[i]);
-					// g.drawImage(foodImage, 1000, 250, this);
-				}
+			for (int[] loc : c.getTutorial().getStuffSet().getFood()) {
+				g.drawImage(foodImage, loc[0], loc[1], this);
 			}
-			if (dispTrash) {
-				for (int i = 0; i < numTrash; i++) {
-					trashxLocation[i] -= autoscrolldpt;
-					g.drawImage(trashImage, trashxLocation[i], trashyLocation[i] + 50, this);
-				}
+			for (int[] loc : c.getTutorial().getStuffSet().getTrash()) {
+				g.drawImage(trashImage, loc[0], loc[1], this);
 			}
 
 			// disp fish
 			
-			double newSpeed = c.getModel().getMainCharacter().getPosition().distFrom(cursorx, cursory);
-			int deltaTheta = c.getModel().getMainCharacter().getPosition().angleBetween(cursorx, cursory);
+			double newSpeed = c.getTutorial().getMainCharacter().getPosition().distFrom(cursorx, cursory);
+			int deltaTheta = c.getTutorial().getMainCharacter().getPosition().angleBetween(cursorx, cursory);
 			System.out.println(deltaTheta);
-			c.getModel().update(0,deltaTheta);
+			c.getTutorial().update(0,deltaTheta);
 			
-			double tmpx = c.getModel().getMainCharacter().getPosition().getX();
-			double tmpy = c.getModel().getMainCharacter().getPosition().getY();
+			double tmpx = c.getTutorial().getMainCharacter().getPosition().getX();
+			double tmpy = c.getTutorial().getMainCharacter().getPosition().getY();
 			int fishx = (int) tmpx;
 			int fishy = (int) tmpy;
 			g.drawImage(fishImage, fishx, fishy, this);
@@ -365,19 +337,6 @@ public class TutorialScreen extends JPanel implements ActionListener {
 
 			// push items to back end of screen
 			// System.out.println("update");
-			for (int i = 0; i < numFood; i++) {
-				if (foodxLocation[i] <= 0) {
-					foodxLocation[i] = playLength + 100;
-					foodyLocation[i] = (int) (Math.random() * playHeight);
-				}
-			}
-
-			for (int i = 0; i < numTrash; i++) {
-				if (trashxLocation[i] <= 0) {
-					trashxLocation[i] = playLength + 100;
-					trashyLocation[i] = (int) (Math.random() * playHeight);
-				}
-			}
 
 			// relocateMap
 			if (bg1xpos < bg2xpos && bg1xpos < (-bgLength)) {

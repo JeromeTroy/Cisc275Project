@@ -22,6 +22,7 @@ public class MiniGame extends MainModel{
 	 */
 	public MiniGame() {
 		super();
+		inMiniGame = true;
 		everyThing = new MiniStuffSet();
 		fishy = new MiniMainCharacter(map);
 		accumulateAll();
@@ -96,17 +97,17 @@ public class MiniGame extends MainModel{
 		getMainCharacter().setAngle(deltaTheta);
 		
 		// if move is allowed
-		if (getMap().moveMap(getMainCharacter())) {
-			// move everything
-			System.out.println("Valid move");
-			getStuffSet().move(getMainCharacter());
-			getMainCharacter().move();
-		}
+//		if (getMap().moveMap(getMainCharacter())) {
+//			// move everything
+//			System.out.println("Valid move");
+//			//getStuffSet().move(getMainCharacter());
+//			getMainCharacter().move();
+//		}
 		
 		// move not allowed
-		else {
-			System.out.println("Invalid move, not moving");
-		}
+//		else {
+//			System.out.println("Invalid move, not moving");
+//		}
 		
 		// display the state of the world
 		System.out.println(this);

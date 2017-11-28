@@ -20,7 +20,7 @@ public class MainModel {
 	
 	// flags for game control
 	private boolean gameOver; 			// game still going on
-	private boolean inMiniGame; 		// activate minigame
+	protected boolean inMiniGame; 		// activate minigame
 	private boolean hasWon;				// winning the game
 	
 	// scoring

@@ -135,20 +135,27 @@ public class MainController {
 	 */
 	public void startTutorial() {
 		System.out.println("Start Tutorial");
-		tutorial = new MainModel();
+		tutorial = new Tutorial();
 		TutorialScreen.activateTutorial(this, window); //setTitleScreen
 		currScreen = tutorialScreen;
 		
-		int cx = tutorialScreen.getCursorX();
-		int cy = tutorialScreen.getCursorY();
 		
-		
-		
-		double dist = tutorial.getMainCharacter().getPosition().distFrom(cx, cy);
-		int angle = tutorial.getMainCharacter().getPosition().angleBetween(cx, cy);
-		
-		tutorial.update(0, angle - tutorial.getMainCharacter().getAngle());
-		
+//		while(currScreen == tutorialScreen){
+//			int cx = tutorialScreen.getCursorX();
+//			int cy = tutorialScreen.getCursorY();
+//		
+//			double dist = tutorial.getMainCharacter().getPosition().distFrom(cx, cy);
+//			int angle = tutorial.getMainCharacter().getPosition().angleBetween(cx, cy);
+//		
+//			tutorial.update(0, angle - tutorial.getMainCharacter().getAngle());
+//			
+//			try {
+//				Thread.sleep(100);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
 	}
 	
 	//controls state of the game
@@ -266,6 +273,11 @@ public class MainController {
 	public MainModel getModel(){
 		return model;
 	}
+	
+	public MainModel getTutorial(){
+		return model;
+	}
+	
 	/*
 	public MainGameModel getMiniGame(){
 		return miniGame;
