@@ -190,6 +190,7 @@ public class GamePlayScreen extends GodView {
 	 */
 	private JButton createButton(String label, String actionCommand) {
 		JButton b = new JButton(label);
+		b.setFont(new Font("Arial", Font.PLAIN, 40));
 		b.setActionCommand(actionCommand);
 		return b;
 	}
@@ -202,7 +203,8 @@ public class GamePlayScreen extends GodView {
 		clock = new JLabel(c.getTimeString());
 		//clock.setBackground(Color.BLUE);
 		clock.setLocation(0, 0);
-		clock.setSize(400,400);
+		//clock.setPreferredSize(new Dimension(400,400));
+		clock.setFont(new Font("Arial", Font.PLAIN, 40));
 		clock.setOpaque(true);
 		controls.add(quit);
 		controls.add(clock);
