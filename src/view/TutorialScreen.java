@@ -231,15 +231,15 @@ public class TutorialScreen extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String cmd = e.getActionCommand();
-		MainController c = new MainController(true);
+		//MainController c = new MainController(true);
 		if (cmd == "goToGame") {
 //			window.stopAndRemoveTimer(timer);
 //			c.startGame();
 			setUseMGS(!useMSG);
 			
-		} else if (cmd == "goToTitle") {
+		} else if (cmd == "goTo") {
 			window.stopAndRemoveTimer(timer);
-			c.showTitleScreen();
+			this.c.showTitleScreen();
 
 		}
 	}
@@ -471,14 +471,14 @@ public class TutorialScreen extends JPanel implements ActionListener {
 	/**
 	 * @return	cursorx - cursor x position relative to the top left corner of the play screen
 	 */
-	public int getCursorx(){
+	public int getCursorX(){
 		return cursorx;
 	}
 	
 	/**
 	 * @return	cursory - cursor y position relative to the top left corner of the play screen
 	 */
-	public int getCursory(){
+	public int getCursorY(){
 		return cursory;
 	}
 	

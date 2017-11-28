@@ -233,8 +233,8 @@ public class GamePlayScreen extends GodView {
 
 		// set fish location
 		if (!c.inMiniGame()) { // main game
-			int dx = c.getModel().getMainCharacter().getPosition().getX();
-			int dy = c.getModel().getMainCharacter().getPosition().getY();
+			int dx = (int) c.getModel().getMainCharacter().getPosition().getX();
+			int dy = (int) c.getModel().getMainCharacter().getPosition().getY();
 
 		}
 
@@ -250,8 +250,13 @@ public class GamePlayScreen extends GodView {
 
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
+		String cmd = e.getActionCommand();
+		if (cmd == "quitGame") {
+			window.stopAndRemoveTimer(timer);
+			c.showTitleScreen();
 
+		}
 	}
 
 
@@ -317,6 +322,9 @@ public class GamePlayScreen extends GodView {
 			// disp objects
 			for (int[] loc : c.getModel().getStuffSet().getFood()) {
 				g.drawImage(foodImage, loc[0], loc[1], this);
+			}
+			for (int[] loc : c.getModel().getStuffSet().getTrash()) {
+				g.drawImage(trashImage, loc[0], loc[1], this);
 			}
 
 			// disp fish

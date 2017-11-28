@@ -30,4 +30,5 @@ public class GodView extends JPanel implements ActionListener{
 	public int getCursorY() {
 		return cursory;
 	}
+	
 }
