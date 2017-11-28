@@ -53,7 +53,8 @@ public class GamePlayScreen extends GodView {
 	static Timer timer;
 	private static MiniGameScreen mgs;
 	private static PlayScreen gamePanel;
-	private JLabel clock;
+	private static JPanel controlPanel;
+	private static JLabel clock;
 	private JLabel miniclock;
 
 	// Images
@@ -144,7 +145,8 @@ public class GamePlayScreen extends GodView {
 		gamePanel.revalidate();
 		add(gamePanel);
 
-		add(createControlPanel());
+		controlPanel = createControlPanel();
+		add(controlPanel);
 
 		// create map locations
 		bg1xpos = 0;
@@ -195,8 +197,8 @@ public class GamePlayScreen extends GodView {
 		quit.addActionListener(this);
 		JPanel controls = new JPanel();
 		controls.setMinimumSize(new Dimension(playLength, controlpanelHeight));
-		clock = new JLabel("clock");
-		clock.setBackground(Color.BLUE);
+		clock = new JLabel(c.getTimeString());
+		//clock.setBackground(Color.BLUE);
 		clock.setLocation(0, 0);
 		clock.setSize(400,400);
 		clock.setOpaque(true);
@@ -245,11 +247,15 @@ public class GamePlayScreen extends GodView {
 					c.getModel().getMiniGame().getMainCharacter().setRadius((int) Math.sqrt(Math.pow(diverImage.getHeight(),2) + Math.pow(diverImage.getWidth(), 2))-50);
 					mgs.update();
 					mgs.repaint();
-					System.out.println("MGS PANEL");
+					//System.out.println("MGS PANEL");
 				} else {
 					gamePanel.update();
 					gamePanel.repaint();
-					System.out.println("GAME PANEL");
+
+					//System.out.println("GAME PANEL");
+
+					clock.setText(c.getTimeString());
+					controlPanel.repaint();
 				}		
 				
 				newContentPane.repaint();
