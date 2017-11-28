@@ -249,6 +249,7 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		// display
 		frame.setSize(windowWidth,windowHeight);
 		frame.setVisible(true);
+		frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 
 		// System.out.println("disp"); // TODO: remove
 		// create Timer - updates and paints
