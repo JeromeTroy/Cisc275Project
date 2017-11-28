@@ -72,8 +72,8 @@ public class TutorialScreen extends JPanel implements ActionListener {
 	private static int[] foodyLocation;
 	private static int[] trashxLocation;
 	private static int[] trashyLocation;
-	private static int fishxLocation;
-	private static int fishyLocation;
+	private static int cursorx;
+	private static int cursory;
 	private static int numFood = 10;
 	private static int numTrash = 25;
 	private static boolean dispFood = true;
@@ -423,7 +423,7 @@ public class TutorialScreen extends JPanel implements ActionListener {
 			}
 
 			// disp fish
-			g.drawImage(fishImage, fishxLocation, fishyLocation, this);
+			g.drawImage(fishImage, cursorx, cursory, this);
 			//g2d.drawImage(fishImage, fishxLocation, fishyLocation, this);
 			// display instructions
 			// TODO: add game intruction tutorial mode
@@ -496,8 +496,8 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		@Override
 		public void mouseMoved(MouseEvent e) {
 			System.out.println(e.getX() + " " + e.getY());
-			fishxLocation = e.getX();
-			fishyLocation = e.getY();
+			cursorx = e.getX();
+			cursory = e.getY();
 		}
 
 		@Override
@@ -537,6 +537,20 @@ public class TutorialScreen extends JPanel implements ActionListener {
 				return null;
 			}
 		}
+	}
+	
+	/**
+	 * @return	cursorx - cursor x position relative to the top left corner of the play screen
+	 */
+	public int getCursorx(){
+		return cursorx;
+	}
+	
+	/**
+	 * @return	cursory - cursor y position relative to the top left corner of the play screen
+	 */
+	public int getCursory(){
+		return cursory;
 	}
 
 }
