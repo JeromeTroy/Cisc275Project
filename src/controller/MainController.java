@@ -142,6 +142,8 @@ public class MainController {
 		int cx = tutorialScreen.getCursorX();
 		int cy = tutorialScreen.getCursorY();
 		
+		
+		
 		double dist = tutorial.getMainCharacter().getPosition().distFrom(cx, cy);
 		int angle = tutorial.getMainCharacter().getPosition().angleBetween(cx, cy);
 		

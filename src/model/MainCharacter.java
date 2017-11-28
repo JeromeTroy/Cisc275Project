@@ -10,7 +10,7 @@ public class MainCharacter{
 	 */
 	
 	// attributes
-	private int radius = 1; 		// size of the fish
+	private int radius = 10; 		// size of the fish
 	private int speed = 5;			// speed of the fish
 	private int angle; 				// angle (counterclockwise) from east facing
 	
@@ -68,7 +68,9 @@ public class MainCharacter{
 	 */
 	public void move() {
 		double deltaY =  speed * Math.sin(Math.toRadians(angle));
-		getPosition().setY((int) (position.getY() + deltaY));
+		double deltaX = speed * Math.cos(Math.toRadians(angle));
+		getPosition().setY(position.getY() + deltaY);
+		getPosition().setX(position.getX() + deltaX);
 	}
 		
 	

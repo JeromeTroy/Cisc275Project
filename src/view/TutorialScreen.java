@@ -80,7 +80,7 @@ public class TutorialScreen extends JPanel implements ActionListener {
 	private static boolean dispFood = true;
 	private static boolean dispTrash = false;
 
-	private static int autoscrolldpt = 20; // autoscroll x distance per tick
+	private static int autoscrolldpt = 0; // autoscroll x distance per tick
 											// (positive objects travel to left)
 	private static int bg1xpos;
 	private static int bg2xpos;
@@ -336,12 +336,22 @@ public class TutorialScreen extends JPanel implements ActionListener {
 			}
 
 			// disp fish
-			g.drawImage(fishImage, cursorx, cursory, this);
+			
+			double newSpeed = c.getModel().getMainCharacter().getPosition().distFrom(cursorx, cursory);
+			int deltaTheta = c.getModel().getMainCharacter().getPosition().angleBetween(cursorx, cursory);
+			System.out.println(deltaTheta);
+			c.getModel().update(0,deltaTheta);
+			
+			double tmpx = c.getModel().getMainCharacter().getPosition().getX();
+			double tmpy = c.getModel().getMainCharacter().getPosition().getY();
+			int fishx = (int) tmpx;
+			int fishy = (int) tmpy;
+			g.drawImage(fishImage, fishx, fishy, this);
 			//g2d.drawImage(fishImage, fishxLocation, fishyLocation, this);
 			// display instructions
 			// TODO: add game intruction tutorial mode
 			
-			System.out.println("PAINT "+cursorx+" "+cursory);
+			System.out.println("PAINT "+fishx+" "+fishy);
 		}
 
 		/**
