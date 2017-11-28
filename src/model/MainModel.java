@@ -33,7 +33,8 @@ public class MainModel {
 	private int maxAllowedTime = 5*60*1000; 		// maximum allowed time for the game
 	private int remainingTime;						// remaining time time
 	
-	
+	private int miniHeight;
+	private int miniWidth;
 	
 	// methods
 	
@@ -64,6 +65,13 @@ public class MainModel {
 		m.getMap().setHeight(mapHeight);
 		m.getMap().setLength(mapLength);
 		m.getMap().setUniqueLength(mapUnique);
+	}
+	
+	public static void setup(MainModel m, int mainCharRad, int foodSize, int trashSize, 
+			int mapHeight, int mapLength, int mapUnique, int miniwidth, int miniheight) {
+		setup(m, mainCharRad, foodSize, trashSize, mapHeight, mapLength, mapUnique);
+		m.setMiniHeight(miniheight);
+		m.setMiniWidth(miniwidth);
 	}
 	
 		
@@ -141,7 +149,7 @@ public class MainModel {
 			// collision with trash
 			if (collision.equals("trash")) {
 				decreaseScore(); 				// lose points
-				miniGame = new MiniGame(); 		// start minigame
+				miniGame = new MiniGame(200,200); 		// start minigame
 				setInMiniGame(true);
 			}
 			// collision with food
@@ -377,6 +385,22 @@ public class MainModel {
 	
 	private void setHasWon(boolean b) {
 		hasWon = b;
+	}
+
+	public int getMiniHeight() {
+		return miniHeight;
+	}
+
+	public void setMiniHeight(int miniHeight) {
+		this.miniHeight = miniHeight;
+	}
+
+	public int getMiniWidth() {
+		return miniWidth;
+	}
+
+	public void setMiniWidth(int miniWidth) {
+		this.miniWidth = miniWidth;
 	}
 	
 	

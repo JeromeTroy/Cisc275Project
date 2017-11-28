@@ -7,7 +7,7 @@ package model;
 public class MiniGame extends MainModel{
 
 	// amount of trash to start with
-	private int startingTrash = 2;
+	private int startingTrash = 10;
 	private int startingFood = 0;
 	
 	// methods
@@ -41,6 +41,11 @@ public class MiniGame extends MainModel{
 		accumulateAll();
 	}
 	
+	public MiniGame(int width, int height){
+		this();
+		this.map = new Map(width, height);
+	}
+	
 	
 	// trash and food accumulation
 	
@@ -57,6 +62,7 @@ public class MiniGame extends MainModel{
 				trashLoc[0] = MainModel.randint(0, getMap().getLength());
 				trashLoc[1] = MainModel.randint(0, getMap().getHeight());
 				trashAdded = getStuffSet().add(trashLoc,"trash");
+				System.out.println("trash"+trashLoc[0]+"/"+getMap().getLength());
 			}
 		}
 	}

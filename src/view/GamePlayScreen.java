@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -52,6 +53,8 @@ public class GamePlayScreen extends GodView {
 	static Timer timer;
 	private static MiniGameScreen mgs;
 	private static PlayScreen gamePanel;
+	private JLabel clock;
+	private JLabel miniclock;
 
 	// Images
 	private BufferedImage fishImage;
@@ -69,7 +72,7 @@ public class GamePlayScreen extends GodView {
 	// based on background image size
 	private static int playHeight = windowHeight;
 	private final static int playLength = windowWidth;
-	private final static int controlpanelHeight = 100;
+	private final static int controlpanelHeight = 600;
 
 	// controller
 	private static MainController c;
@@ -122,6 +125,13 @@ public class GamePlayScreen extends GodView {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gamePanel.setPreferredSize(new Dimension(playLength, playHeight));
 		gamePanel.setBorder(BorderFactory.createLineBorder(Color.red));
+		
+		// add clock
+		
+		GridBagConstraints gc = new GridBagConstraints();
+	
+        gc.anchor = GridBagConstraints.NORTHWEST;
+    
 
 		// add layered pane for minigame
 		layeredPane = new JLayeredPane(); // create
@@ -180,7 +190,14 @@ public class GamePlayScreen extends GodView {
 		quit = createButton("Quit", "quitGame");
 		quit.addActionListener(this);
 		JPanel controls = new JPanel();
+		controls.setMinimumSize(new Dimension(playLength, controlpanelHeight));
+		clock = new JLabel("clock");
+		clock.setBackground(Color.BLUE);
+		clock.setLocation(0, 0);
+		clock.setSize(400,400);
+		clock.setOpaque(true);
 		controls.add(quit);
+		controls.add(clock);
 		return controls;
 	}
 
@@ -437,6 +454,7 @@ public class GamePlayScreen extends GodView {
 			//draw trash and food
 			for (int[] loc : c.getModel().getMiniGame().getStuffSet().getTrash()) {
 				g.drawImage(trashImage, loc[0], loc[1], this);
+				System.out.println(loc[0]+" "+ loc[1]);
 			}
 			for (int[] loc : c.getModel().getMiniGame().getStuffSet().getTrash()) {
 				g.drawImage(trashImage, loc[0], loc[1], this);
