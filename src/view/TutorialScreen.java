@@ -38,6 +38,7 @@ import javax.swing.JButton;
 public class TutorialScreen extends JPanel implements ActionListener {
 
 	// Swing components
+	private JLayeredPane layeredPane;
 	private static JLabel instructions;
 	private JButton gameStart;
 	private JButton titleScreen;
@@ -97,6 +98,8 @@ public class TutorialScreen extends JPanel implements ActionListener {
 	// constructor
 	public TutorialScreen() { // TODO: update mouselistener to limit fish
 								// movement boundaries
+		
+		//TODO: remove flashing that occurs when opening tutorial
 		// create buffered images:
 		// Create and load the fish icon.
 		fishImage = createBufferedImage(c.getFishURL());
@@ -121,6 +124,7 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		// set size of background
 		bgLength = playLength;
 		bgHeight = playHeight;
+		
 
 		// layout
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -131,10 +135,10 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		instructionsPanel.setBorder(BorderFactory.createLineBorder(Color.green));
 		instructionsPanel.setMaximumSize(new Dimension(playLength, instructionsHeight));
 		dir = "Estuary Adventure Tutorial Mode";
-		instructions = new JLabel(dir);
-		instructions.setFont(new Font("Arial", Font.PLAIN, 40));
-		instructions.setSize(50, instructionsHeight);
-		instructionsPanel.add(instructions);
+		setInstructions(new JLabel(dir));
+		getInstructions().setFont(new Font("Arial", Font.PLAIN, 40));
+		getInstructions().setSize(50, instructionsHeight);
+		instructionsPanel.add(getInstructions());
 		add(instructionsPanel);
 		
 
@@ -146,18 +150,19 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		gamePanel.setBorder(BorderFactory.createLineBorder(Color.red));
 
 		// add layered pane for minigame
-		JLayeredPane layeredPane = new JLayeredPane(); // create
+		layeredPane = new JLayeredPane(); // create
 
-		mgs = new MiniGameScreen(gamePanel.getWidth() / 2, gamePanel.getHeight() / 2, playLength / 2, playHeight / 2);
-		layeredPane.add(mgs);
+		mgs = new MiniGameScreen( playLength, playHeight);
+		layeredPane.add(mgs, gbc);
 		layeredPane.setPreferredSize(new Dimension(playLength / 2, playHeight / 2)); // resize
 		gamePanel.add(layeredPane, gbc);
-		gamePanel.revalidate();
+		//gamePanel.revalidate();
 		add(gamePanel);
 		
 		//mgs.setVisible(true);
 
 		add(createControlPanel());
+		
 
 		// create map locations
 		bg1xpos = 0;
@@ -254,10 +259,11 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		c.setTutorialScreen((TutorialScreen) newContentPane);
 
 		// display
-		frame.setSize(windowWidth,windowHeight);
-		frame.setVisible(true);
+		frame.pack();
+		//frame.setSize(windowWidth,windowHeight);
 		frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
-
+		frame.setVisible(true);
+		
 		// System.out.println("disp"); // TODO: remove
 		// create Timer - updates and paints
 		// create Swing timer with actionListener
@@ -272,13 +278,13 @@ public class TutorialScreen extends JPanel implements ActionListener {
 					gamePanel.update();
 					gamePanel.repaint();
 				}
-				//newContentPane.repaint();
+				newContentPane.repaint();
 				newContentPane.revalidate();
 				// System.out.println("paint tut"); //TODO: remove
 			}
 		});
 		frame.addTimer(timer);
-		;
+		
 		timer.start();
 
 	}
@@ -289,9 +295,9 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		createAndShowGUI(w);
 	}
 
-	public void paintComponent(Graphics g) {
-
-	}
+//	public void paintComponent(Graphics g) {
+//
+//	}
 
 	
 	public static void runTutorial() {
@@ -415,19 +421,19 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		@Override
 		public void mouseMoved(MouseEvent e) {
 			if (!useMSG){
-			//System.out.println("PLAY SCREEN "+e.getX() + " " + e.getY());
-			cursorx = e.getX();
-			cursory = e.getY();
-			} else {
-				//System.out.println("MGS SCREEN "+e.getX() + " " + e.getY());
-				Point p = SwingUtilities.convertPoint(gamePanel, e.getPoint(), mgs);
-				if (mgs.contains(e.getPoint())){
-					System.out.println(p);
-					cursorx = (int) p.getX();
-					cursory = (int) p.getY();
+				//System.out.println("PLAY SCREEN "+e.getX() + " " + e.getY());
+				cursorx = e.getX();
+				cursory = e.getY();
+				} else {
+					//System.out.println("MGS SCREEN "+e.getX() + " " + e.getY());
+					Point p = SwingUtilities.convertPoint(gamePanel, e.getPoint(), layeredPane);
+					if (layeredPane.contains(p)){
+						System.out.println(p);
+						cursorx = (int) p.getX();
+						cursory = (int) p.getY();
+					}
+					
 				}
-				
-			}
 		}
 
 		@Override
@@ -438,17 +444,16 @@ public class TutorialScreen extends JPanel implements ActionListener {
 
 	private class MiniGameScreen extends JPanel{
 
-		public MiniGameScreen(int x, int y, int width, int height) {
-			this.setBounds(x, y, width, height);
+		public MiniGameScreen(int width, int height) {
+			this.setBounds(0, 0, width, height);
 			this.setBackground(Color.BLACK);
 			this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
-			//this.addMouseMotionListener(MiniGameScreen.this);
 		}
 
 		@Override
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
-			g.drawImage(minibgImage, 0, 0, this);
+			g.drawImage(minibgImage, 0, 0, layeredPane.getWidth(),layeredPane.getHeight(), MiniGameScreen.this);
 			g.drawImage(diverImage, cursorx, cursory, this);
 			
 		}
@@ -492,6 +497,14 @@ public class TutorialScreen extends JPanel implements ActionListener {
 			cursorx = 0;
 			cursory = 0;
 		}
+	}
+
+	public static JLabel getInstructions() {
+		return instructions;
+	}
+
+	public static void setInstructions(JLabel instructions) {
+		TutorialScreen.instructions = instructions;
 	}
 
 }
