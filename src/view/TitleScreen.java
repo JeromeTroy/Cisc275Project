@@ -64,6 +64,7 @@ public class TitleScreen extends GodView implements MouseMotionListener {
 	private JButton createButton(String label, String actionCommand) {
 		JButton b = new JButton(label);
 		b.setActionCommand(actionCommand);
+		b.setFont(new Font("Arial", Font.PLAIN, 40));
 		return b;
 	}
 	

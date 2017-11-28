@@ -200,6 +200,7 @@ public class TutorialScreen extends JPanel implements ActionListener {
 	private JButton createButton(String label, String actionCommand) {
 		JButton b = new JButton(label);
 		b.setActionCommand(actionCommand);
+		b.setFont(new Font("Arial", Font.PLAIN, 40));
 		return b;
 	}
 
