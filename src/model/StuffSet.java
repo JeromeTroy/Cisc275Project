@@ -136,7 +136,7 @@ public class StuffSet {
 		int angle = fishy.getAngle();
 		
 		// standard case: stuff moves left, right relative to fish
-		int deltaX = (int) (-speed * Math.cos(Math.toRadians(angle)));
+		int deltaX = -8;
 		
 		// move every object individually
 		

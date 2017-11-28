@@ -6,9 +6,12 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.MouseInfo;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -55,12 +58,15 @@ public class GamePlayScreen extends GodView {
 	private BufferedImage diverImage;
 	private BufferedImage minibgImage;
 	private BufferedImage bgImage1;
-	private int bgHeight = 592;
-	private static int bgLength = 5728;
+	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	private static int windowWidth = (int) screenSize.getWidth();
+	private static int windowHeight = (int) screenSize.getHeight();
+	private int bgHeight = windowHeight;
+	private static int bgLength = windowWidth;
 	// windowHeght is based on the desired height of the tutorial screen window
 	// based on background image size
-	private static int playHeight = 592;
-	private final static int playLength = 2000;
+	private static int playHeight = windowHeight;
+	private final static int playLength = windowWidth;
 	private final int controlpanelHeight = 100;
 
 	// controller
@@ -109,7 +115,11 @@ public class GamePlayScreen extends GodView {
 
 		// add game panel
 		gamePanel = new PlayScreen();
-		gamePanel.setSize(new Dimension(playLength, playHeight));
+		gamePanel.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		gamePanel.setPreferredSize(new Dimension(playLength, playHeight));
+		gamePanel.setBorder(BorderFactory.createLineBorder(Color.red));
+
 		// gamePanel.addMouseMotionListener(this);
 		// add(gamePanel);
 
@@ -118,11 +128,13 @@ public class GamePlayScreen extends GodView {
 		// mgs = new
 		// MiniGameScreen(playLength*(1/4),playHeight*(1/4),playLength*7/8,
 		// playHeight*7/8);
-		mgs = new MiniGameScreen(500, 100, playLength * 7 / 8, playHeight * 7 / 8);
-		layeredPane.add(mgs);
-		layeredPane.setPreferredSize(new Dimension(playLength, playHeight + controlpanelHeight)); // resize
-		gamePanel.add(layeredPane, new Integer(300));
+		mgs = new MiniGameScreen(gamePanel.getWidth() / 2, gamePanel.getHeight() / 2, playLength / 2, playHeight / 2);
+		layeredPane.add(mgs, gbc);
+		layeredPane.setPreferredSize(new Dimension(playLength / 2, playHeight / 2)); // resize
+		gamePanel.add(layeredPane, gbc);
+		gamePanel.revalidate();
 		add(gamePanel);
+		layeredPane.setVisible(false);
 
 		add(createControlPanel());
 
@@ -202,6 +214,8 @@ public class GamePlayScreen extends GodView {
 		// Display the window
 		frame.pack();
 		frame.setVisible(true);
+		frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+
 
 		// create Timer
 		// create Swing timer with actionListener
