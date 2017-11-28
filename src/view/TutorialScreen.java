@@ -137,23 +137,19 @@ public class TutorialScreen extends JPanel implements ActionListener {
 
 		// add game panel
 		gamePanel = new PlayScreen();
-		gamePanel.setSize(new Dimension(playLength, playHeight));
+		gamePanel.setPreferredSize(new Dimension(playLength, playHeight));
 		gamePanel.setBorder(BorderFactory.createLineBorder(Color.red));
-		// gamePanel.addMouseMotionListener(this);
-		// add(gamePanel);
 
 		// add layered pane for minigame
 		JLayeredPane layeredPane = new JLayeredPane(); // create
-		// mgs = new
-		// MiniGameScreen(playLength*(1/4),playHeight*(1/4),playLength*7/8,
-		// playHeight*7/8);
-		mgs = new MiniGameScreen(500, 100, playLength * 7 / 8, playHeight * 7 / 8);
+
+		mgs = new MiniGameScreen(gamePanel.getWidth() / 2, gamePanel.getHeight() / 2, playLength / 2, playHeight / 2);
 		layeredPane.add(mgs);
-		layeredPane.setPreferredSize(new Dimension(playLength, playHeight + controlpanelHeight)); // resize
-		//gamePanel.add(layeredPane, new Integer(300));
+		layeredPane.setPreferredSize(new Dimension(playLength / 2, playHeight / 2)); // resize
+		gamePanel.add(layeredPane, new Integer(300));
 		add(gamePanel);
 		
-		mgs.setVisible(false);
+		//mgs.setVisible(true);
 
 		add(createControlPanel());
 
@@ -285,102 +281,10 @@ public class TutorialScreen extends JPanel implements ActionListener {
 	}
 
 	public void paintComponent(Graphics g) {
-		// super.paintComponent(g);
 
-		// // disp map
-		// g.drawImage(bgImage1, bg1xpos, 0, playLength, playHeight, gamePanel);
-		// g.drawImage(bgImage1, bg2xpos, 0, playLength, playHeight, gamePanel);
-		//
-		// // disp objects
-		// if (dispFood) {
-		// for (int i = 0; i < numFood; i++) {
-		// foodxLocation[i] -= autoscrolldpt;
-		// g.drawImage(foodImage, foodxLocation[i], foodyLocation[i] + 50,
-		// this);
-		// // System.out.println((foodxLocation[i]-j)+" "+
-		// // foodyLocation[i]);
-		// // g.drawImage(foodImage, 1000, 250, this);
-		// }
-		// }
-		// if (dispTrash) {
-		// for (int i = 0; i < numTrash; i++) {
-		// trashxLocation[i] -= autoscrolldpt;
-		// g.drawImage(trashImage, trashxLocation[i], trashyLocation[i] + 50,
-		// this);
-		// }
-		// }
-		//
-		// // disp fish
-		// g.drawImage(fishImage, 0, 0, gamePanel);
-
-		// display instructions
-		// TODO: add game intruction tutorial mode
 	}
 
-	/**
-	 * updates positions
-	 */
-	// public static void update() {
-	// //update background position
-	// bg1xpos -= autoscrolldpt;
-	// bg2xpos -= autoscrolldpt;
-	//
-	// // push items to back end of screen
-	// System.out.println("update");
-	// for (int i = 0; i < numFood; i++) {
-	// if (foodxLocation[i] <= 0) {
-	// foodxLocation[i] = playLength + 100;
-	// foodyLocation[i] = (int) (Math.random() * playHeight);
-	// }
-	// }
-	//
-	// for (int i = 0; i < numTrash; i++) {
-	// if (trashxLocation[i] <= 0) {
-	// trashxLocation[i] = playLength + 100;
-	// trashyLocation[i] = (int) (Math.random() * playHeight);
-	// }
-	// }
-	//
-	// // relocateMap
-	// if (bg1xpos < bg2xpos && bg1xpos < (-bgLength)) {
-	// bg1xpos = bg2xpos + (bgLength);
-	// } else if (bg1xpos > bg2xpos && bg2xpos < (-bgLength)) {
-	// bg2xpos = bg1xpos + (bgLength);
-	// }
-	//
-	// // update mode
-	// if (mode == "instructions") {
-	// pauseMovement = true;
-	// } else if (mode == "moveFish") {
-	// text = "Use mouse to move fish!";
-	// dispFood = false;
-	// dispTrash = false;
-	// pauseMovement = false;
-	// } else if (mode == "getFood") {
-	// text = "Move fish to food to eat fish";
-	// dispFood = true;
-	// dispTrash = false;
-	// pauseMovement = false;
-	// } else if (mode == "avoidTrash") {
-	// text = "Avoid the trash as you are swimming";
-	// dispFood = true;
-	// dispTrash = true;
-	// pauseMovement = false;
-	// } else if (mode == "accumulateTrash") {
-	// text = "Trash accumulates in the game, keep avoiding trash!";
-	// dispFood = false;
-	// dispTrash = false;
-	// pauseMovement = false;
-	// } else if (mode == "collectTrash") {
-	// text = "You hit trash";
-	// dispFood = false;
-	// dispTrash = false;
-	// pauseMovement = false;
-	// }
-	//
-	// // runTutorial();
-	// }
-
+	
 	public static void runTutorial() {
 		mode = "moveFish";
 		mode = "getFood";
@@ -511,15 +415,15 @@ public class TutorialScreen extends JPanel implements ActionListener {
 
 		public MiniGameScreen(int x, int y, int width, int height) {
 			this.setBounds(x, y, width, height);
-			this.setBackground(Color.RED);
-			this.setBorder(BorderFactory.createRaisedBevelBorder());
+			this.setBackground(Color.BLACK);
+			this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
 			// this.addMouseListener(new MouseHandler(this));
 		}
 
 		@Override
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
-			// g.drawImage(minibgImage, 0, 0, observer)
+			g.drawImage(minibgImage, 0, 0, this);
 		}
 
 		public void update() {
