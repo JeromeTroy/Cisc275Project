@@ -313,7 +313,7 @@ public class TutorialScreen extends JPanel implements ActionListener {
 			if (dispFood) {
 				for (int i = 0; i < numFood; i++) {
 					foodxLocation[i] -= autoscrolldpt;
-					g.drawImage(foodImage, foodxLocation[i], foodyLocation[i] + 50, this);
+					g.drawImage(foodImage, foodxLocation[i]-(foodImage.getWidth()/2), foodyLocation[i]-(foodImage.getHeight()/2), this);
 					// System.out.println((foodxLocation[i]-j)+" "+
 					// foodyLocation[i]);
 					// g.drawImage(foodImage, 1000, 250, this);
@@ -322,12 +322,12 @@ public class TutorialScreen extends JPanel implements ActionListener {
 			if (dispTrash) {
 				for (int i = 0; i < numTrash; i++) {
 					trashxLocation[i] -= autoscrolldpt;
-					g.drawImage(trashImage, trashxLocation[i], trashyLocation[i] + 50, this);
+					g.drawImage(trashImage, trashxLocation[i]-(trashImage.getWidth()/2), trashyLocation[i]-(foodImage.getHeight()/2), this);
 				}
 			}
 
 			// disp fish
-			g.drawImage(fishImage, cursorx, cursory, this);
+			g.drawImage(fishImage, cursorx-(fishImage.getWidth()/2), cursory-(fishImage.getHeight()/2), this);
 			//g2d.drawImage(fishImage, fishxLocation, fishyLocation, this);
 			// display instructions
 			// TODO: add game intruction tutorial mode
