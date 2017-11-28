@@ -53,6 +53,7 @@ public class GamePlayScreen extends GodView {
 	static Timer timer;
 	private static MiniGameScreen mgs;
 	private static PlayScreen gamePanel;
+	private static JPanel controlPanel;
 	private JLabel clock;
 	private JLabel miniclock;
 
@@ -144,7 +145,8 @@ public class GamePlayScreen extends GodView {
 		gamePanel.revalidate();
 		add(gamePanel);
 
-		add(createControlPanel());
+		controlPanel = createControlPanel();
+		add(controlPanel);
 
 		// create map locations
 		bg1xpos = 0;
@@ -195,8 +197,8 @@ public class GamePlayScreen extends GodView {
 		quit.addActionListener(this);
 		JPanel controls = new JPanel();
 		controls.setMinimumSize(new Dimension(playLength, controlpanelHeight));
-		clock = new JLabel("clock");
-		clock.setBackground(Color.BLUE);
+		clock = new JLabel(c.getTimeString());
+		//clock.setBackground(Color.BLUE);
 		clock.setLocation(0, 0);
 		clock.setSize(400,400);
 		clock.setOpaque(true);
@@ -247,6 +249,8 @@ public class GamePlayScreen extends GodView {
 				} else {
 					gamePanel.update();
 					gamePanel.repaint();
+					controlPanel.setToolTipText(c.getTimeString());
+					controlPanel.repaint();
 				}		
 				
 				newContentPane.repaint();
