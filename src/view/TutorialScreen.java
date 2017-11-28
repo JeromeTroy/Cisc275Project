@@ -78,7 +78,7 @@ public class TutorialScreen extends JPanel implements ActionListener {
 	private static int numFood = 10;
 	private static int numTrash = 25;
 	private static boolean dispFood = true;
-	private static boolean dispTrash = false;
+	private static boolean dispTrash = true;
 
 	private static int autoscrolldpt = 0; // autoscroll x distance per tick
 											// (positive objects travel to left)
