@@ -50,6 +50,7 @@ public class Map {
 		setLength(l);
 		setHeight(h);
 		origin = new OurVector();
+		System.out.println(l);
 		setUniqueLength(getLength());
 		origin.setY(-getHeight()/2);
 	}

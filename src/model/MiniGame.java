@@ -10,6 +10,9 @@ public class MiniGame extends MainModel{
 	private int startingTrash = 10;
 	private int startingFood = 0;
 	
+	private int width;
+	private int height;
+	
 	// methods
 	
 	
@@ -42,8 +45,11 @@ public class MiniGame extends MainModel{
 	}
 	
 	public MiniGame(int width, int height){
-		this();
+		this.width = width;
+		this.height = height;
 		this.map = new Map(width, height);
+		this.fishy = new MiniMainCharacter(map);
+		accumulateAll();
 	}
 	
 	
@@ -62,7 +68,7 @@ public class MiniGame extends MainModel{
 				trashLoc[0] = MainModel.randint(0, getMap().getLength());
 				trashLoc[1] = MainModel.randint(0, getMap().getHeight());
 				trashAdded = getStuffSet().add(trashLoc,"trash");
-				System.out.println("trash"+trashLoc[0]+"/"+getMap().getLength());
+				//System.out.println("trash"+trashLoc[0]+"/"+getMap().getLength());
 			}
 		}
 	}
@@ -103,17 +109,17 @@ public class MiniGame extends MainModel{
 		getMainCharacter().setAngle(deltaTheta);
 		
 		// if move is allowed
-//		if (getMap().moveMap(getMainCharacter())) {
-//			// move everything
-//			System.out.println("Valid move");
-//			//getStuffSet().move(getMainCharacter());
-//			getMainCharacter().move();
-//		}
+		if (getMap().moveMap(getMainCharacter())) {
+			// move everything
+			System.out.println("Valid move");
+			//getStuffSet().move(getMainCharacter());
+			getMainCharacter().move();
+		}
 		
 		// move not allowed
-//		else {
-//			System.out.println("Invalid move, not moving");
-//		}
+		else {
+			System.out.println("Invalid move, not moving");
+		}
 		
 		// display the state of the world
 		System.out.println(this);
