@@ -54,7 +54,7 @@ public class GamePlayScreen extends GodView {
 	private static MiniGameScreen mgs;
 	private static PlayScreen gamePanel;
 	private static JPanel controlPanel;
-	private JLabel clock;
+	private static JLabel clock;
 	private JLabel miniclock;
 
 	// Images
@@ -249,7 +249,7 @@ public class GamePlayScreen extends GodView {
 				} else {
 					gamePanel.update();
 					gamePanel.repaint();
-					controlPanel.setToolTipText(c.getTimeString());
+					clock.setText(c.getTimeString());
 					controlPanel.repaint();
 				}		
 				
