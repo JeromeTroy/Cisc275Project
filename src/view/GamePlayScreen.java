@@ -476,7 +476,7 @@ public class GamePlayScreen extends GodView {
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			g.drawImage(minibgImage, 0, 0, layeredPane.getWidth(),layeredPane.getHeight(), MiniGameScreen.this);
-			g.drawImage(diverImage, cursorx, cursory, this);
+			//g.drawImage(diverImage, cursorx, cursory, this);
 			
 			//draw trash and food
 			for (int[] loc : c.getModel().getMiniGame().getStuffSet().getTrash()) {
@@ -487,8 +487,28 @@ public class GamePlayScreen extends GodView {
 				g.drawImage(trashImage, loc[0], loc[1], this);
 			}
 			
+			// disp fish
+						int mouseX = cursorx;
+						int mouseY = cursory;
+						
+						
+						System.out.println("mouse at <" + mouseX + ", " + mouseY + ">");
+			
+			double newSpeed = c.getModel().getMiniGame().getMainCharacter().getPosition().distFrom(mouseX, mouseY);
+			int deltaTheta = c.getModel().getMiniGame().getMainCharacter().getPosition().angleBetween(mouseX, mouseY);
+			System.out.println(deltaTheta);
+			c.getModel().update(0,deltaTheta);
+			
+			double tmpx = c.getModel().getMiniGame().getMainCharacter().getPosition().getX();
+			double tmpy = c.getModel().getMiniGame().getMainCharacter().getPosition().getY();
+			int fishx = (int) tmpx;
+			int fishy = (int) tmpy;
+			//g.drawImage(fishImage, cursorx, cursory, this); // where cursor is
+			///g.drawImage(fishImage, fishx, fishy, this); // where the fish is on the
+														// map
+			
 			//draw the diver
-			g.drawImage(diverImage, cursorx, cursory, this);
+			g.drawImage(diverImage, fishx, fishy, this);
 		}
 
 		public void update() {
