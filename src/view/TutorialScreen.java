@@ -239,10 +239,9 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		String cmd = e.getActionCommand();
 		//MainController c = new MainController(true);
 		if (cmd == "goToGame") {
-//			window.stopAndRemoveTimer(timer);
-//			c.startGame();
-			setUseMGS(!useMSG);
-			
+			window.stopAndRemoveTimer(timer);
+			c.startGame();
+			//setUseMGS(!useMSG);
 		} else if (cmd == "goTo") {
 			window.stopAndRemoveTimer(timer);
 			this.c.showTitleScreen();

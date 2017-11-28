@@ -28,6 +28,7 @@ public class MainController {
 	private final String endbg_badURL = "src/view/images/bg_badend.png";
 	private final String diverURL = "src/view/images/diver.png";
 	private final String diverdarkURL = "src/view/images/diver2.png";
+	private final String titleURL = "src/view/images/title_screen_final.png";
 	
 	
 	//Timer
@@ -389,6 +390,11 @@ public class MainController {
 	
 	public String getTimeString() {
 		return model.timeString();
+	}
+
+
+	public String getTitleURL() {
+		return titleURL;
 	}
 	
 	//public int foodHypontenuse(){

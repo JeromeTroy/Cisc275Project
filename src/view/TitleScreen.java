@@ -4,7 +4,11 @@ package view;
 // imports
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -26,7 +30,7 @@ public class TitleScreen extends GodView implements MouseMotionListener {
 	
 	
 	// attributes
-	private JLayeredPane layeredPane;
+	private JPanel layeredPane;
 	private JButton gameStart;
 	private JButton tutorial;
 	private JButton FishCaught;
@@ -49,16 +53,30 @@ public class TitleScreen extends GodView implements MouseMotionListener {
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
 		// layered pane
-		layeredPane = new JLayeredPane();
+		layeredPane = new JPanel();
 		layeredPane.setPreferredSize(new Dimension(300,300));
 		layeredPane.setBorder(BorderFactory.createTitledBorder("Title Screen")); //TODO: remove
 		
 		layeredPane.addMouseMotionListener(this);
+		BufferedImage myPicture = createBufferedImage(c.getTitleURL());
+		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+		picLabel.setPreferredSize(new Dimension(500,500));
+		layeredPane.add(picLabel);
 		
 		add(Box.createRigidArea(new Dimension(0,10)));
 		add(layeredPane);
 		add(createControlPanel());		
 
+	}
+	public BufferedImage createBufferedImage(String fileLocation) {
+		BufferedImage img;
+		try {
+			img = ImageIO.read(new File(fileLocation));
+			return img;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	private JButton createButton(String label, String actionCommand) {
@@ -137,6 +155,7 @@ public class TitleScreen extends GodView implements MouseMotionListener {
         JComponent newContentPane = new TitleScreen(c);
         newContentPane.setOpaque(true); //content panes must be opaque
         frame.setContentPane(newContentPane);
+        frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 		
 		// display
         frame.pack();
