@@ -33,6 +33,8 @@ public class MainModel {
 	private int timeMin = 1;
 	private int maxAllowedTime = timeMin*60*1000; 		// maximum allowed time for the game
 	private int remainingTime;						// remaining time time
+	private int startingTrash = 0;
+	private int startingFood = 75;
 	
 	private int miniHeight;
 	private int miniWidth;
@@ -54,6 +56,7 @@ public class MainModel {
 		map = new Map();
 		fishy = new MainCharacter(map);
 		remainingTime = maxAllowedTime;
+
 		
 	}
 	
@@ -66,6 +69,8 @@ public class MainModel {
 		m.getMap().setHeight(mapHeight);
 		m.getMap().setLength(mapLength);
 		m.getMap().setUniqueLength(mapUnique);
+		m.setAccumulationDistance(mapUnique);
+		m.accumulateAll();
 	}
 	
 	public static void setup(MainModel m, int mainCharRad, int foodSize, int trashSize, 
@@ -215,6 +220,30 @@ public class MainModel {
 		while (!foodAdded) {
 			foodLoc[1] = randint(0,getMap().getHeight());			// random y location
 			foodAdded = everyThing.add(foodLoc, "food"); 			// try to add
+		}
+	}
+	
+	public void accumulateAll() {
+		for (int i=0; i<getStartingTrash(); i++) {
+			boolean trashAdded = false;
+			int[] trashLoc = {0, 0};
+			while (!trashAdded) {
+				trashLoc[0] = MainModel.randint(75, getMap().getLength());
+				trashLoc[1] = MainModel.randint(75, getMap().getHeight());
+				trashAdded = getStuffSet().add(trashLoc,"trash");
+				//System.out.println("trash"+trashLoc[0]+"/"+getMap().getLength());
+			}
+		}
+		
+		for (int i=0; i<getStartingFood(); i++) {
+			boolean foodAdded = false;
+			int[] foodLoc = {0, 0};
+			while (!foodAdded) {
+				foodLoc[0] = MainModel.randint(75, getMap().getLength()-75);
+				foodLoc[1] = MainModel.randint(75, getMap().getHeight()-75);
+				foodAdded = getStuffSet().add(foodLoc,"food");
+				//System.out.println("trash"+trashLoc[0]+"/"+getMap().getLength());
+			}
 		}
 	}
 	
@@ -405,6 +434,22 @@ public class MainModel {
 
 	public void setMiniWidth(int miniWidth) {
 		this.miniWidth = miniWidth;
+	}
+
+	public int getStartingTrash() {
+		return startingTrash;
+	}
+
+	public void setStartingTrash(int startingTrash) {
+		this.startingTrash = startingTrash;
+	}
+
+	public int getStartingFood() {
+		return startingFood;
+	}
+
+	public void setStartingFood(int startingFood) {
+		this.startingFood = startingFood;
 	}
 	
 	
