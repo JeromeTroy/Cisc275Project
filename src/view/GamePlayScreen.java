@@ -258,8 +258,10 @@ public class GamePlayScreen extends GodView {
 
 					//System.out.println("GAME PANEL");
 
-					clock.setText(c.getTimeString());
-					controlPanel.repaint();
+					if(c.getRemainingTime() > 0) {
+						clock.setText(c.getTimeString());
+						controlPanel.repaint();
+					}
 				}		
 				
 				newContentPane.repaint();

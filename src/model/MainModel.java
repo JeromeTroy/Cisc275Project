@@ -31,10 +31,10 @@ public class MainModel {
 	// timing (all in ms)
 	private int tickLength = 30; 						// time period of a single tick
 	private int timeMin = 1;
-	private int maxAllowedTime = timeMin*60*1000; 		// maximum allowed time for the game
+	private int maxAllowedTime = timeMin*60*100; 		// maximum allowed time for the game
 	private int remainingTime;						// remaining time time
 	private int startingTrash = 0;
-	private int startingFood = 75;
+	private int startingFood = 10;
 	
 	private int miniHeight;
 	private int miniWidth;
@@ -163,7 +163,8 @@ public class MainModel {
 			}
 			// collision with food
 			else if (collision.equals("food")) {
-				increaseScore();				// gain points
+				increaseScore();// gain points
+				remainingTime += 1000;
 			}
 			
 			// check if game over

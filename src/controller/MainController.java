@@ -402,6 +402,12 @@ public class MainController {
 	public String getTitleURL() {
 		return titleURL;
 	}
+
+
+	public int getRemainingTime() {
+		// TODO Auto-generated method stub
+		return model.getRemainingTime();
+	}
 	
 	//public int foodHypontenuse(){
 	//}

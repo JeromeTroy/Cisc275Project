@@ -69,7 +69,7 @@ public class TitleScreen extends GodView implements MouseMotionListener {
 		layeredPane.addMouseMotionListener(this);
 		BufferedImage myPicture = createBufferedImage(c.getTitleURL());
 		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
-		picLabel.setPreferredSize(new Dimension(500,500));
+		picLabel.setPreferredSize(new Dimension(700,700));
 		layeredPane.add(picLabel);
 		
 		add(Box.createRigidArea(new Dimension(0,10)));
