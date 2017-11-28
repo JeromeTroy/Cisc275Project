@@ -21,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 import controller.MainController;
@@ -72,8 +73,8 @@ public class TutorialScreen extends GodView {
 	private static int[] foodyLocation;
 	private static int[] trashxLocation;
 	private static int[] trashyLocation;
-	private static int cursorx;
-	private static int cursory;
+	private int cursorx;
+	private int cursory;
 	private static int numFood = 10;
 	private static int numTrash = 25;
 	private static boolean dispFood = true;
@@ -90,6 +91,8 @@ public class TutorialScreen extends GodView {
 	private int tick;
 	private JPanel instructionsPanel;
 	private static PlayScreen gamePanel;
+	
+	private static boolean useMSG;
 
 	// constructor
 	public TutorialScreen() { // TODO: update mouselistener to limit fish
@@ -227,9 +230,10 @@ public class TutorialScreen extends GodView {
 		String cmd = e.getActionCommand();
 		MainController c = new MainController(true);
 		if (cmd == "goToGame") {
-			window.stopAndRemoveTimer(timer);
-			c.startGame();
-			// TODO: need action to open game
+//			window.stopAndRemoveTimer(timer);
+//			c.startGame();
+			setUseMGS(!useMSG);
+			
 		} else if (cmd == "goToTitle") {
 			window.stopAndRemoveTimer(timer);
 			c.showTitleScreen();
@@ -257,14 +261,15 @@ public class TutorialScreen extends GodView {
 		timer = new Timer(40, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// update();
-				gamePanel.update();
-				boolean b = true;
-				if (b) {
+				mgs.setVisible(useMSG);
+				if (useMSG) {
 					mgs.update();
+					mgs.repaint();
 				} else {
-					mgs.setVisible(false);
+					gamePanel.update();
+					gamePanel.repaint();
 				}
-				newContentPane.repaint();
+				//newContentPane.repaint();
 				newContentPane.revalidate();
 				// System.out.println("paint tut"); //TODO: remove
 			}
@@ -303,7 +308,7 @@ public class TutorialScreen extends GodView {
 		}
 
 		public void paintComponent(Graphics g) {
-			super.paintComponent(g);
+			//super.paintComponent(g);
 
 			// disp map
 			g.drawImage(bgImage1, bg1xpos, 0, playLength, playHeight, this);
@@ -332,6 +337,8 @@ public class TutorialScreen extends GodView {
 			//g2d.drawImage(fishImage, fishxLocation, fishyLocation, this);
 			// display instructions
 			// TODO: add game intruction tutorial mode
+			
+			System.out.println("PAINT "+cursorx+" "+cursory);
 		}
 
 		/**
@@ -400,31 +407,43 @@ public class TutorialScreen extends GodView {
 
 		@Override
 		public void mouseMoved(MouseEvent e) {
-			System.out.println(e.getX() + " " + e.getY());
+			if (!useMSG){
+			//System.out.println("PLAY SCREEN "+e.getX() + " " + e.getY());
 			cursorx = e.getX();
 			cursory = e.getY();
+			} else {
+				//System.out.println("MGS SCREEN "+e.getX() + " " + e.getY());
+				Point p = SwingUtilities.convertPoint(gamePanel, e.getPoint(), mgs);
+				if (mgs.contains(e.getPoint())){
+					System.out.println(p);
+					cursorx = (int) p.getX();
+					cursory = (int) p.getY();
+				}
+				
+			}
 		}
 
 		@Override
 		public void mouseDragged(MouseEvent arg0) {
-			// TODO Auto-generated method stub
 
 		}
 	}
 
-	private class MiniGameScreen extends JPanel {
+	private class MiniGameScreen extends JPanel{
 
 		public MiniGameScreen(int x, int y, int width, int height) {
 			this.setBounds(x, y, width, height);
 			this.setBackground(Color.BLACK);
 			this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
-			// this.addMouseListener(new MouseHandler(this));
+			//this.addMouseMotionListener(MiniGameScreen.this);
 		}
 
 		@Override
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			g.drawImage(minibgImage, 0, 0, this);
+			g.drawImage(diverImage, cursorx, cursory, this);
+			
 		}
 
 		public void update() {
@@ -442,6 +461,8 @@ public class TutorialScreen extends GodView {
 				return null;
 			}
 		}
+
+
 	}
 	
 	/**
@@ -456,6 +477,14 @@ public class TutorialScreen extends GodView {
 	 */
 	public int getCursory(){
 		return cursory;
+	}
+	
+	public void setUseMGS(Boolean b){
+		useMSG = b;
+		if (useMSG){
+			cursorx = 0;
+			cursory = 0;
+		}
 	}
 
 }
