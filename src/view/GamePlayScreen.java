@@ -497,6 +497,8 @@ public class GamePlayScreen extends GodView {
 						
 						System.out.println("mouse at <" + mouseX + ", " + mouseY + ">");
 			
+						
+			
 			double newSpeed = c.getModel().getMiniGame().getMainCharacter().getPosition().distFrom(mouseX, mouseY);
 			int deltaTheta = c.getModel().getMiniGame().getMainCharacter().getPosition().angleBetween(mouseX, mouseY);
 			System.out.println(deltaTheta);
@@ -504,6 +506,8 @@ public class GamePlayScreen extends GodView {
 			
 			double tmpx = c.getModel().getMiniGame().getMainCharacter().getPosition().getX();
 			double tmpy = c.getModel().getMiniGame().getMainCharacter().getPosition().getY();
+			
+			
 			int fishx = (int) tmpx;
 			int fishy = (int) tmpy;
 			//g.drawImage(fishImage, cursorx, cursory, this); // where cursor is
