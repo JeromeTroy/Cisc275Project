@@ -52,6 +52,18 @@ public class MainModel {
 		map = new Map();
 		fishy = new MainCharacter(map);
 		remainingTime = maxAllowedTime;
+		
+	}
+	
+	public static void setup(MainModel m, int mainCharRad, int foodSize, int trashSize, 
+			int mapHeight, int mapLength, int mapUnique) {
+		
+		m.getMainCharacter().setRadius(mainCharRad);
+		m.getStuffSet().setFoodSize(foodSize);
+		m.getStuffSet().setTrashSize(trashSize);
+		m.getMap().setHeight(mapHeight);
+		m.getMap().setLength(mapLength);
+		m.getMap().setUniqueLength(mapUnique);
 	}
 	
 		
