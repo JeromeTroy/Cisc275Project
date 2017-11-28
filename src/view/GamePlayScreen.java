@@ -42,6 +42,7 @@ import javax.swing.Timer;
 import controller.GameTimer;
 import controller.MainController;
 import model.MainModel;
+import view.TitleScreen.GameOverScreen;
 
 public class GamePlayScreen extends GodView {
 
@@ -53,6 +54,7 @@ public class GamePlayScreen extends GodView {
 	static Timer timer;
 	private static MiniGameScreen mgs;
 	private static PlayScreen gamePanel;
+	private static GameOverScreen gameOver;
 	private static JPanel controlPanel;
 	private static JLabel clock;
 	private JLabel miniclock;
@@ -305,10 +307,13 @@ public class GamePlayScreen extends GodView {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String cmd = e.getActionCommand();
-		if (cmd == "quitGame") {
+		performAction(cmd);
+	}
+	
+	public void performAction(String s) {
+		if (s == "quitGame") {
 			window.stopAndRemoveTimer(timer);
 			c.showTitleScreen();
-
 		}
 	}
 
@@ -458,11 +463,13 @@ public class GamePlayScreen extends GodView {
 
 		@Override
 		public void mouseDragged(MouseEvent arg0) {
-			// TODO Auto-generated method stub
+			int timeRemaining = c.getModel().getRemainingTime();
+			if (timeRemaining <= 0) {
+				performAction("quitGame");
+			}
 
 		}
 	}
-	
 	private class MiniGameScreen extends JPanel {
 
 		public MiniGameScreen(int width, int height) {
@@ -543,6 +550,7 @@ public class GamePlayScreen extends GodView {
 			}
 		}
 	}
+	
 	
 	public int getCursorX() {
 		return cursorx;
