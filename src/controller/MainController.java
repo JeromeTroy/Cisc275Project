@@ -175,10 +175,9 @@ public class MainController {
 	 * 
 	 */
 	protected void tick() {
-
+		GamePlayScreen gameView;
 		if (useView) {
-			GamePlayScreen gameView = (GamePlayScreen) currScreen;
-			
+			gameView = (GamePlayScreen) currScreen;
 		}else {
 			//System.out.println("Console Tick"); //TODO: remove
 			Scanner sc = new Scanner(System.in);
@@ -197,6 +196,10 @@ public class MainController {
 				newSpeed = 0;
 			}
 			model.update(newSpeed,deltaTheta);
+			if (useView){
+				//gameView.setU
+				model.getInMiniGame();
+			}
 		}
 	}
 

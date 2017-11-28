@@ -147,13 +147,15 @@ public class TutorialScreen extends JPanel implements ActionListener {
 
 		// add layered pane for minigame
 		JLayeredPane layeredPane = new JLayeredPane(); // create
-
+		layeredPane.setVisible(false);
+		useMSG = false;
 		mgs = new MiniGameScreen(gamePanel.getWidth() / 2, gamePanel.getHeight() / 2, playLength / 2, playHeight / 2);
 		layeredPane.add(mgs);
 		layeredPane.setPreferredSize(new Dimension(playLength / 2, playHeight / 2)); // resize
 		gamePanel.add(layeredPane, gbc);
 		gamePanel.revalidate();
 		add(gamePanel);
+		layeredPane.setVisible(false);
 		
 		//mgs.setVisible(true);
 
@@ -179,7 +181,8 @@ public class TutorialScreen extends JPanel implements ActionListener {
 			trashyLocation[i] = (int) (Math.random() * playHeight);
 		}
 
-		// window.add(layeredPane);
+		cursorx = 0;
+		cursory = 0;
 
 	}
 
@@ -231,15 +234,13 @@ public class TutorialScreen extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String cmd = e.getActionCommand();
-		//MainController c = new MainController(true);
 		if (cmd == "goToGame") {
 //			window.stopAndRemoveTimer(timer);
 //			c.startGame();
 			setUseMGS(!useMSG);
-			
-		} else if (cmd == "goTo") {
+		} else if (cmd == "goToTitle") {
 			window.stopAndRemoveTimer(timer);
-			this.c.showTitleScreen();
+			c.showTitleScreen();
 
 		}
 	}
@@ -283,8 +284,8 @@ public class TutorialScreen extends JPanel implements ActionListener {
 
 	}
 
-	public static void activateTutorial(MainController c, Window w) {
-		TutorialScreen.c = c;
+	public static void activateTutorial(MainController con, Window w) {
+		c = con;
 		TutorialScreen.window = w;
 		createAndShowGUI(w);
 	}
