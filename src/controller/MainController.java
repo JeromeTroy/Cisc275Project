@@ -4,6 +4,8 @@ package controller;
 import model.*;
 import javax.swing.*;
 import view.*;
+import view.TitleScreen.GameOverScreen;
+
 import java.util.*;
 import java.util.Timer;
 
@@ -15,6 +17,7 @@ public class MainController {
 	//Views
 	private GamePlayScreen gameScreen;
 	private static TitleScreen titleScreen;
+	private static GameOverScreen gameOverScreen;
 	private static TutorialScreen tutorialScreen;
 	private static Window window;
 	private JComponent currScreen;
@@ -226,6 +229,9 @@ public class MainController {
 		switchScreen(titleScreen);
 	}
 	
+	public void showGameOver() {
+		switchScreen(gameOverScreen);
+	}
 
 	public void showTutorialScreen(){
 		switchScreen(tutorialScreen);

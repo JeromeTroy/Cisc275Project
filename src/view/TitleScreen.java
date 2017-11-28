@@ -41,6 +41,15 @@ public class TitleScreen extends GodView implements MouseMotionListener {
 	// methods
 	
 	// constructor
+	public TitleScreen() {
+		layeredPane = new JLayeredPane();
+		layeredPane.setPreferredSize(new Dimension(300,300));
+		layeredPane.setBorder(BorderFactory.createTitledBorder("Game Over"));
+		layeredPane.addMouseMotionListener(this);
+		add(Box.createRigidArea(new Dimension(0,10)));
+		add(layeredPane);
+		
+	}
 	public TitleScreen(MainController c){
 		//invoke constructor
 		
@@ -149,5 +158,31 @@ public class TitleScreen extends GodView implements MouseMotionListener {
 		return createAndShowGUI(w, c);
 	}
 	
+	
+	public class GameOverScreen extends TitleScreen{
+
+		private JButton quit;
+		
+		private static final String GO_TO_TITLE = "quitGame";
+		public GameOverScreen(MainController c) {
+			super(c);
+		}
+		
+		public GameOverScreen() {
+			
+			add(createControlPanel());
+		}
+		
+		private JPanel createControlPanel() {
+			quit = createButton("Back To Title", GO_TO_TITLE);
+			quit.addActionListener(this);
+			
+			
+			JPanel controls = new JPanel();
+			controls.add(quit);
+			return controls;
+		}
+		
+	}
 
 }
