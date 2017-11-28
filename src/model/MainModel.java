@@ -68,10 +68,14 @@ public class MainModel {
 	}
 	
 	public static void setup(MainModel m, int mainCharRad, int foodSize, int trashSize, 
-			int mapHeight, int mapLength, int mapUnique, int miniwidth, int miniheight) {
-		setup(m, mainCharRad, foodSize, trashSize, mapHeight, mapLength, mapUnique);
-		m.setMiniHeight(miniheight);
-		m.setMiniWidth(miniwidth);
+			int mapHeight, int mapLength, int mapUnique, int miniW, int miniH) {
+		
+		m.getMainCharacter().setRadius(mainCharRad);
+		m.getStuffSet().setFoodSize(foodSize);
+		m.getStuffSet().setTrashSize(trashSize);
+		m.getMap().setHeight(mapHeight);
+		m.getMap().setLength(mapLength);
+		m.getMap().setUniqueLength(mapUnique);
 	}
 	
 		
@@ -115,8 +119,7 @@ public class MainModel {
 	public void update(int newSpeed, int deltaTheta) {
 		if (!getInMiniGame()) { 			 		// in the main game
 			
-			// setup
-			getMainCharacter().setSpeed(newSpeed);
+			// setup			getMainCharacter().setSpeed(newSpeed);
 			getMainCharacter().setAngle(deltaTheta);
 			
 			// if move allowed
@@ -149,7 +152,7 @@ public class MainModel {
 			// collision with trash
 			if (collision.equals("trash")) {
 				decreaseScore(); 				// lose points
-				miniGame = new MiniGame(200,200); 		// start minigame
+				miniGame = new MiniGame(miniWidth,miniHeight); 		// start minigame
 				setInMiniGame(true);
 			}
 			// collision with food

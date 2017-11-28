@@ -387,6 +387,10 @@ public class MainController {
 		return diverdarkURL;
 	}
 	
+	public String getTimeString() {
+		return model.timeString();
+	}
+	
 	//public int foodHypontenuse(){
 	//}
 	
