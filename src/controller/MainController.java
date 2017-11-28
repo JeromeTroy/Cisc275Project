@@ -52,9 +52,9 @@ public class MainController {
 		}
 		//game.gameTimer = new GameTimer(game);
 		//TODO: get input and then iterate through game
-		while (!game.getModel().getGameOver()) {
-			game.tick();
-		}
+		//while (!game.getModel().getGameOver()) {
+			//game.tick();
+		//}
 		
 		
 		
@@ -68,7 +68,7 @@ public class MainController {
 	private void openView() {
 		window = new Window();
 		
-		Runnable theGame = new RunGame();
+		//Runnable theGame = new RunGame();
 		MainController tmp = this;
 		javax.swing.SwingUtilities.invokeLater(new Runnable(){
 			public void run() {
