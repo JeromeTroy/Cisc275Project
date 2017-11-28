@@ -16,7 +16,7 @@ public class MainModel {
 	
 	// value for adding trash (distance away)
 	// TODO: verify
-	private int accumulationDist = 1000;
+	private int accumulationDist = 3000;
 	
 	// flags for game control
 	private boolean gameOver; 			// game still going on
@@ -30,7 +30,8 @@ public class MainModel {
 	
 	// timing (all in ms)
 	private int tickLength = 30; 						// time period of a single tick
-	private int maxAllowedTime = 5*60*1000; 		// maximum allowed time for the game
+	private int timeMin = 1;
+	private int maxAllowedTime = timeMin*60*1000; 		// maximum allowed time for the game
 	private int remainingTime;						// remaining time time
 	private int startingTrash = 0;
 	private int startingFood = 75;
