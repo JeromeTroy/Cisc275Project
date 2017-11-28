@@ -46,7 +46,7 @@ import model.MainModel;
 public class GamePlayScreen extends GodView {
 
 	// Swing Components
-	private JLayeredPane layeredPane;
+	private static JLayeredPane layeredPane;
 	private JButton quit;
 	// private JButton titleScreen;
 	private static Window window;
@@ -60,7 +60,7 @@ public class GamePlayScreen extends GodView {
 	private BufferedImage fishImage;
 	private BufferedImage trashImage;
 	private BufferedImage foodImage;
-	private BufferedImage diverImage;
+	private static BufferedImage diverImage;
 	private BufferedImage minibgImage;
 	private BufferedImage bgImage1;
 	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -240,13 +240,16 @@ public class GamePlayScreen extends GodView {
 		timer = new Timer(40, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// update();
-				mgs.setVisible(useMSG);
+				layeredPane.setVisible(useMSG);
 				if (useMSG) {
+					c.getModel().getMiniGame().getMainCharacter().setRadius((int) Math.sqrt(Math.pow(diverImage.getHeight(),2) + Math.pow(diverImage.getWidth(), 2))-50);
 					mgs.update();
 					mgs.repaint();
+					System.out.println("MGS PANEL");
 				} else {
 					gamePanel.update();
 					gamePanel.repaint();
+					System.out.println("GAME PANEL");
 				}		
 				
 				newContentPane.repaint();
@@ -513,6 +516,7 @@ public class GamePlayScreen extends GodView {
 
 		public void update() {
 			// color = new Color(r.nextInt());
+			setUseMGS(c.getModel().getInMiniGame());
 			repaint();
 		}
 
@@ -537,8 +541,9 @@ public class GamePlayScreen extends GodView {
 	}
 	
 	public void setUseMGS(Boolean b){
+		boolean tmp = useMSG;
 		useMSG = b;
-		if (useMSG){
+		if ((tmp!=useMSG) && useMSG){
 			cursorx = 0;
 			cursory = 0;
 		}

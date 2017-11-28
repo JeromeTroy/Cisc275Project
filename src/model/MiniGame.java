@@ -65,8 +65,8 @@ public class MiniGame extends MainModel{
 			boolean trashAdded = false;
 			int[] trashLoc = {0, 0};
 			while (!trashAdded) {
-				trashLoc[0] = MainModel.randint(0, getMap().getLength());
-				trashLoc[1] = MainModel.randint(0, getMap().getHeight());
+				trashLoc[0] = MainModel.randint(75, getMap().getLength()-75);
+				trashLoc[1] = MainModel.randint(75, getMap().getHeight()-75);
 				trashAdded = getStuffSet().add(trashLoc,"trash");
 				//System.out.println("trash"+trashLoc[0]+"/"+getMap().getLength());
 			}
