@@ -411,7 +411,7 @@ public class GamePlayScreen extends GodView {
 			double newSpeed = c.getModel().getMainCharacter().getPosition().distFrom(mouseX, mouseY);
 			int deltaTheta = c.getModel().getMainCharacter().getPosition().angleBetween(mouseX, mouseY);
 			System.out.println(deltaTheta);
-			c.getModel().update(0,deltaTheta);
+			c.getModel().update((int)newSpeed,deltaTheta);
 			
 			double tmpx = c.getModel().getMainCharacter().getPosition().getX();
 			double tmpy = c.getModel().getMainCharacter().getPosition().getY();

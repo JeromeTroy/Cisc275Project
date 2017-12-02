@@ -14,6 +14,8 @@ public class MainModel {
 	protected Map map; 					// map
 	private MiniGame miniGame;			// mini game
 	
+	private final int minSpeed = 10;
+	
 	// value for adding trash (distance away)
 	// TODO: verify
 	private int accumulationDist = 3000;
@@ -134,7 +136,10 @@ public class MainModel {
 				
 				// move everything and fish
 				getStuffSet().move(getMainCharacter());
-				getMainCharacter().move();
+				
+				if (newSpeed > minSpeed) {
+					getMainCharacter().move();
+				}
 			}
 			
 			// move not allowed
