@@ -418,7 +418,7 @@ public class GamePlayScreen extends GodView {
 			int fishx = (int) tmpx;
 			int fishy = (int) tmpy;
 			//g.drawImage(fishImage, cursorx, cursory, this); // where cursor is
-			g.drawImage(fishImage, fishx, fishy, this); // where the fish is on the
+			g.drawImage(fishImage, fishx-80, fishy-20, this); // where the fish is on the
 														// map
 		}
 
@@ -472,7 +472,7 @@ public class GamePlayScreen extends GodView {
 
 		}
 	}
-	private class MiniGameScreen extends JPanel {
+	private class MiniGameScreen extends GodView implements MouseMotionListener {
 
 		public MiniGameScreen(int width, int height) {
 			this.setBounds(0, 0, width, height);
@@ -507,13 +507,13 @@ public class GamePlayScreen extends GodView {
 				g.drawImage(trashImage, loc[0], loc[1], this);
 			}
 			
-			// disp fish
-						int mouseX = cursorx;
-						int mouseY = cursory;
-						
-						
-						System.out.println("mouse at <" + mouseX + ", " + mouseY + ">");
 			
+			int mouseX = cursorx;
+			int mouseY = cursory;
+			
+			
+			System.out.println("mouse at <" + mouseX + ", " + mouseY + ">");
+
 						
 			
 			double newSpeed = c.getModel().getMiniGame().getMainCharacter().getPosition().distFrom(mouseX, mouseY);
@@ -521,18 +521,17 @@ public class GamePlayScreen extends GodView {
 			System.out.println(deltaTheta);
 			c.getModel().update(0,deltaTheta);
 			
-			double tmpx = c.getModel().getMiniGame().getMainCharacter().getPosition().getX();
-			double tmpy = c.getModel().getMiniGame().getMainCharacter().getPosition().getY();
+			c.getModel().getMiniGame().getMainCharacter().getPosition().setX(mouseX);
+			c.getModel().getMiniGame().getMainCharacter().getPosition().setY(mouseY);;
 			
 			
-			int fishx = (int) tmpx;
-			int fishy = (int) tmpy;
+			
 			//g.drawImage(fishImage, cursorx, cursory, this); // where cursor is
 			///g.drawImage(fishImage, fishx, fishy, this); // where the fish is on the
 														// map
 			
 			//draw the diver
-			g.drawImage(diverImage, fishx, fishy, this);
+			g.drawImage(diverImage, mouseX-50, mouseY-80, this);
 		}
 
 		public void update() {
@@ -550,6 +549,24 @@ public class GamePlayScreen extends GodView {
 				e.printStackTrace();
 				return null;
 			}
+		}
+
+		@Override
+		public void mouseDragged(MouseEvent e) {
+			if (!useMSG){
+				//System.out.println("PLAY SCREEN "+e.getX() + " " + e.getY());
+				cursorx = e.getX();
+				cursory = e.getY();
+				} else {
+					//System.out.println("MGS SCREEN "+e.getX() + " " + e.getY());
+					Point p = SwingUtilities.convertPoint(gamePanel, e.getPoint(), layeredPane);
+					if (layeredPane.contains(p)){
+						System.out.println(p);
+						cursorx = (int) p.getX();
+						cursory = (int) p.getY();
+					}
+					
+				}
 		}
 	}
 	

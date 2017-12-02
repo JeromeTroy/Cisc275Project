@@ -14,7 +14,7 @@ public class MainModel {
 	protected Map map; 					// map
 	private MiniGame miniGame;			// mini game
 	
-	private final int minSpeed = 10;
+	private final int minSpeed = 5;
 	
 	// value for adding trash (distance away)
 	// TODO: verify
@@ -33,7 +33,7 @@ public class MainModel {
 	// timing (all in ms)
 	private int tickLength = 30; 						// time period of a single tick
 	private int timeMin = 1;
-	private int maxAllowedTime = timeMin*60*100; 		// maximum allowed time for the game
+	private int maxAllowedTime = timeMin*60*1000; 		// maximum allowed time for the game
 	private int remainingTime;						// remaining time time
 	private int startingTrash = 0;
 	private int startingFood = 10;
@@ -131,21 +131,23 @@ public class MainModel {
 			getMainCharacter().setAngle(deltaTheta);
 			
 			// if move allowed
-			if (getMap().moveMap(getMainCharacter())) {
+			//if (getMap().moveMap(getMainCharacter())) {
+				getMap().moveMap(getMainCharacter());
 				System.out.println("Valid move");
 				
 				// move everything and fish
 				getStuffSet().move(getMainCharacter());
 				
 				if (newSpeed > minSpeed) {
+					getMainCharacter().setSpeed(newSpeed/5000);
 					getMainCharacter().move();
 				}
-			}
+			//}
 			
 			// move not allowed
-			else {
+			/*else {
 				System.out.println("Invalid move, not moving");
-			}
+			}*/
 			
 			// time to accumulate
 			if (getStuffSet().shouldAccumulate()) {
