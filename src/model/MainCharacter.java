@@ -14,6 +14,8 @@ public class MainCharacter{
 	private int speed = 5;			// speed of the fish
 	private int angle; 				// angle (counterclockwise) from east facing
 	
+	private final double minStep = 3;
+	
 	// location
 	private OurVector position;
 		
@@ -69,8 +71,12 @@ public class MainCharacter{
 	public void move() {
 		double deltaY =  speed * Math.sin(Math.toRadians(angle));
 		double deltaX = speed * Math.cos(Math.toRadians(angle));
-		getPosition().setY(position.getY() + deltaY);
-		getPosition().setX(position.getX() + deltaX);
+		if (Math.abs(deltaX) > minStep) {
+			getPosition().setX(position.getX() + deltaX);
+		}
+		if (Math.abs(deltaY) > minStep) {
+			getPosition().setY(position.getY() + deltaY);
+		}
 	}
 		
 	
