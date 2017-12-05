@@ -28,15 +28,16 @@ public class MainModel {
 	// scoring
 	private int playerScore = 0; 		// the player's score
 	private int foodScore = 10; 		// change in score from eating food
-	private int trashScore = 5; 		// change in score form eating trash
+	private int trashScore = 0; 		// change in score form eating trash
+	private int foodTime = 10;			// time addition from eating food
 	
 	// timing (all in ms)
 	private int tickLength = 30; 						// time period of a single tick
-	private int timeMin = 1;
-	private int maxAllowedTime = timeMin*60*100; 		// maximum allowed time for the game
-	private int remainingTime;						// remaining time time
+	private double timeMin = 1;
+	private int maxAllowedTime = (int) (timeMin*60*1000); 		// maximum allowed time for the game
+	private int remainingTime;							// remaining time
 	private int startingTrash = 0;
-	private int startingFood = 10;
+	private int startingFood = 0;
 	
 	private int miniHeight;
 	private int miniWidth;
@@ -171,11 +172,11 @@ public class MainModel {
 			// collision with food
 			else if (collision.equals("food")) {
 				increaseScore();// gain points
-				remainingTime += 1000;
+				remainingTime += foodTime;
 			}
 			
 			// check if game over
-			setGameOver(getMainCharacter().getPosition().getX() >= getMap().getLength());
+			setGameOver(-getMap().getOrigin().getX() >= getMap().getLength());
 			if (getGameOver()) {
 				setHasWon(true);
 				getStuffSet().clearAll();
@@ -282,6 +283,9 @@ public class MainModel {
 		str += "\n" + everyThing.toString();
 		str += "\n" + map.toString();
 		str += "\n" + timeString();
+		if (getGameOver()) {
+			str += "\nGame Over :-(";
+		}
 		return str;
 	}
 	
