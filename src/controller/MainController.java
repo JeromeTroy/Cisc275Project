@@ -4,7 +4,7 @@ package controller;
 import model.*;
 import javax.swing.*;
 import view.*;
-import view.TitleScreen.GameOverScreen;
+import view.GameOverScreen;
 
 import java.util.*;
 import java.util.Timer;
@@ -222,7 +222,7 @@ public class MainController {
 		gameTimer.stopTimer();
 		System.out.println("Game Over");
 		System.out.println("End Screen");
-		showTitleScreen();
+		showGameOver();
 	}
 	
 	
@@ -407,6 +407,16 @@ public class MainController {
 	public int getRemainingTime() {
 		// TODO Auto-generated method stub
 		return model.getRemainingTime();
+	}
+
+
+	public boolean getGameOver() {
+		// TODO Auto-generated method stub
+		return model.getGameOver();
+	}
+
+	public boolean getHasWon() {
+		return model.getHasWon();
 	}
 	
 	//public int foodHypontenuse(){

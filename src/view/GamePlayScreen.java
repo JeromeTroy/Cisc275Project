@@ -42,7 +42,7 @@ import javax.swing.Timer;
 import controller.GameTimer;
 import controller.MainController;
 import model.MainModel;
-import view.TitleScreen.GameOverScreen;
+import view.GameOverScreen;
 
 public class GamePlayScreen extends GodView {
 
@@ -66,6 +66,8 @@ public class GamePlayScreen extends GodView {
 	private static BufferedImage diverImage;
 	private BufferedImage minibgImage;
 	private BufferedImage bgImage1;
+	private BufferedImage endImageGood;
+	private BufferedImage endImageBad;
 	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private static int windowWidth = (int) screenSize.getWidth();
 	private static int windowHeight = (int) screenSize.getHeight();
@@ -113,7 +115,12 @@ public class GamePlayScreen extends GodView {
 
 		// Create and load the background image
 		bgImage1 = createBufferedImage(c.getBgURL());
+		
+		// Create and load the background image
+		endImageGood = createBufferedImage(c.getEndbg_goodURL());
 
+		// Create and load the background image
+		endImageBad = createBufferedImage(c.getEndbg_badURL());
 		// resize
 		// set size of background
 		bgLength = playLength;
@@ -315,7 +322,7 @@ public class GamePlayScreen extends GodView {
 	public void performAction(String s) {
 		if (s == "quitGame") {
 			window.stopAndRemoveTimer(timer);
-			c.showTitleScreen();
+			c.showGameOver();
 		}
 	}
 
@@ -388,9 +395,21 @@ public class GamePlayScreen extends GodView {
 			super.paintComponent(g);
 
 			// disp map
-			g.drawImage(bgImage1, bg1xpos, 0, playLength, playHeight, this);
-			g.drawImage(bgImage1, bg2xpos, 0, playLength, playHeight, this);
-
+			if(c.getGameOver()) {
+				if(!c.getHasWon()) {
+					g.drawImage(endImageBad, bg1xpos, 0, playLength, playHeight, this);
+					g.drawImage(endImageBad, bg2xpos, 0, playLength, playHeight, this);
+				}
+				else {
+					g.drawImage(endImageGood, bg1xpos, 0, playLength, playHeight, this);
+					g.drawImage(endImageGood, bg2xpos, 0, playLength, playHeight, this);
+				}
+			}
+			else {
+				g.drawImage(bgImage1, bg1xpos, 0, playLength, playHeight, this);
+				g.drawImage(bgImage1, bg2xpos, 0, playLength, playHeight, this);
+			}
+			
 			// disp objects
 			for (int[] loc : c.getModel().getStuffSet().getFood()) {
 				g.drawImage(foodImage, loc[0], loc[1], this);

@@ -123,6 +123,11 @@ public class StuffSet {
 		allTrash.clear();
 	}
 	
+	public void clearAll() {
+		allTrash.clear();
+		allFood.clear();
+	}
+	
 	
 	// mover
 	/**

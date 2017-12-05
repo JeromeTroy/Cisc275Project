@@ -33,7 +33,7 @@ public class MainModel {
 	// timing (all in ms)
 	private int tickLength = 30; 						// time period of a single tick
 	private int timeMin = 1;
-	private int maxAllowedTime = timeMin*60*1000; 		// maximum allowed time for the game
+	private int maxAllowedTime = timeMin*60*100; 		// maximum allowed time for the game
 	private int remainingTime;						// remaining time time
 	private int startingTrash = 0;
 	private int startingFood = 10;
@@ -178,6 +178,7 @@ public class MainModel {
 			setGameOver(getMainCharacter().getPosition().getX() >= getMap().getLength());
 			if (getGameOver()) {
 				setHasWon(true);
+				getStuffSet().clearAll();
 			}
 		}
 		// in the minigame
@@ -405,7 +406,7 @@ public class MainModel {
 	
 	// game over
 	public void setGameOver(boolean b) {
-		gameOver = false;
+		gameOver = b;
 	}
 	
 	

@@ -179,30 +179,5 @@ public class TitleScreen extends GodView implements MouseMotionListener {
 	}
 	
 	
-	public class GameOverScreen extends TitleScreen{
-
-		private JButton quit;
-		
-		private static final String GO_TO_TITLE = "quitGame";
-		public GameOverScreen(MainController c) {
-			super(c);
-		}
-		
-		public GameOverScreen() {
-			
-			add(createControlPanel());
-		}
-		
-		private JPanel createControlPanel() {
-			quit = createButton("Back To Title", GO_TO_TITLE);
-			quit.addActionListener(this);
-			
-			
-			JPanel controls = new JPanel();
-			controls.add(quit);
-			return controls;
-		}
-		
-	}
 
 }
