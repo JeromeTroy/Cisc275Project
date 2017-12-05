@@ -28,7 +28,7 @@ public class MainModel {
 	// scoring
 	private int playerScore = 0; 		// the player's score
 	private int foodScore = 10; 		// change in score from eating food
-	private int trashScore = 5; 		// change in score form eating trash
+	private int trashScore = 0; 		// change in score form eating trash
 	
 	// timing (all in ms)
 	private int tickLength = 30; 						// time period of a single tick
@@ -36,7 +36,7 @@ public class MainModel {
 	private int maxAllowedTime = timeMin*60*1000; 		// maximum allowed time for the game
 	private int remainingTime;						// remaining time time
 	private int startingTrash = 0;
-	private int startingFood = 10;
+	private int startingFood = 0;
 	
 	private int miniHeight;
 	private int miniWidth;

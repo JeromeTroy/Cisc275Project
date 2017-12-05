@@ -32,6 +32,7 @@ public class MainCharacter{
 		position = new OurVector(); //TODO: changed initial location from 5,5 to 10,10
 		// set orientation
 		setAngle(0);
+		position.setX(200);
 	}
 	
 	
@@ -43,6 +44,7 @@ public class MainCharacter{
 	public MainCharacter(Map map) {
 		this();
 		position.setY(map.getHeight()/2);
+		position.setX(200);
 	}
 
 	
