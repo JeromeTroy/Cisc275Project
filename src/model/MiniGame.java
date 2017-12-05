@@ -25,6 +25,7 @@ public class MiniGame extends MainModel{
 	 */
 	public MiniGame() {
 		super();
+		map = new MiniMap();
 		inMiniGame = true;
 		everyThing = new MiniStuffSet();
 		fishy = new MiniMainCharacter(map);
@@ -47,7 +48,7 @@ public class MiniGame extends MainModel{
 	public MiniGame(int width, int height){
 		this.width = width;
 		this.height = height;
-		this.map = new Map(width, height);
+		this.map = new MiniMap(width, height);
 		this.fishy = new MiniMainCharacter(map);
 		accumulateAll();
 	}
