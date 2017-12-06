@@ -4,7 +4,7 @@ package controller;
 import model.*;
 import javax.swing.*;
 import view.*;
-import view.GameOverScreen;
+//import view.GameOverScreen;
 
 import java.util.*;
 import java.util.Timer;
@@ -17,7 +17,7 @@ public class MainController {
 	//Views
 	private GamePlayScreen gameScreen;
 	private static TitleScreen titleScreen;
-	private static GameOverScreen gameOverScreen;
+	//private static GameOverScreen gameOverScreen;
 	private static TutorialScreen tutorialScreen;
 	private static Window window;
 	private JComponent currScreen;
@@ -89,28 +89,30 @@ public class MainController {
 		
 	}
 	
+	public MainController(){
+		tutorial = new Tutorial();
+		inMiniGame = false;
+	}
 	/**
 	 * MainController(boolean) - constructor
 	 * @param b - should the view be used?
 	 */
 	public MainController(boolean b) {
+		this();
 		useView = b;
 		model = new MainModel();
-		inMiniGame = false;
 		
 		
 	}
 	public MainController(boolean b, int len, int hgt) {
-		useView = b;
+		this(b);
 		model = new MainModel(len, hgt);
-		inMiniGame = false;
 		
 	}
 	
 	public MainController(boolean b, int len, int hgt, int ulg) {
-		useView = b;
+		this(b);
 		model = new MainModel(len,hgt,ulg);
-		inMiniGame = false;
 		
 	}
 
@@ -231,7 +233,7 @@ public class MainController {
 	}
 	
 	public void showGameOver() {
-		switchScreen(gameOverScreen);
+		//switchScreen(gameOverScreen);
 	}
 
 	public void showTutorialScreen(){
@@ -282,7 +284,7 @@ public class MainController {
 	}
 	
 	public MainModel getTutorial(){
-		return model;
+		return tutorial;
 	}
 	
 	/*

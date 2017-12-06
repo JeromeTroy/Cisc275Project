@@ -12,13 +12,13 @@ public class MainModel {
 	protected MainCharacter fishy;		// main character 	
 	protected StuffSet everyThing; 		// all the trash and food
 	protected Map map; 					// map
-	private MiniGame miniGame;			// mini game
+	protected MiniGame miniGame;			// mini game
 	
-	private final int minSpeed = 5;
+	protected final int minSpeed = 5;
 	
 	// value for adding trash (distance away)
 	// TODO: verify
-	private int accumulationDist = 3000;
+	protected int accumulationDist = 3000;
 	
 	// flags for game control
 	private boolean gameOver; 			// game still going on
@@ -29,18 +29,17 @@ public class MainModel {
 	private int playerScore = 0; 		// the player's score
 	private int foodScore = 10; 		// change in score from eating food
 	private int trashScore = 0; 		// change in score form eating trash
-	private int foodTime = 10;			// time addition from eating food
+	protected int foodTime = 10;			// time addition from eating food
 	
 	// timing (all in ms)
 	private int tickLength = 30; 						// time period of a single tick
 	private double timeMin = 1;
 	private int maxAllowedTime = (int) (timeMin*60*1000); 		// maximum allowed time for the game
-	private int remainingTime;							// remaining time
+	protected int remainingTime;							// remaining time
 	private int startingTrash = 0;
 	private int startingFood = 0;
-	
-	private int miniHeight;
-	private int miniWidth;
+	protected int miniHeight;
+	protected int miniWidth;
 	
 	// methods
 	
@@ -213,19 +212,24 @@ public class MainModel {
 	 */
 	public void accumulate() {
 		// assume not added
-		boolean trashAdded = false;
+		
 		boolean foodAdded = false;
 		
 		// get locations (initialize x)
-		int[] trashLoc = {accumulationDist, 0};
+		
 		int[] foodLoc = {accumulationDist, 0};
 		
 		// add trash first
-		while (!trashAdded) {
-			trashLoc[1] = randint(0, getMap().getHeight()); 		// random y location
-			trashAdded = everyThing.add(trashLoc, "trash");			// try to add
-		}
-	
+		int trashAmount = everyThing.getTrashSize();
+		//for (int i=0; i<(1+(trashAmount*0.05)); i++){
+			boolean trashAdded = false;
+			int[] trashLoc = {accumulationDist, 0};
+			while (!trashAdded) {
+				trashLoc[1] = randint(0, getMap().getHeight()); 		// random y location
+				trashAdded = everyThing.add(trashLoc, "trash");			// try to add
+			}
+		//}
+		
 		// add the food
 		while (!foodAdded) {
 			foodLoc[1] = randint(0,getMap().getHeight());			// random y location
@@ -304,19 +308,19 @@ public class MainModel {
 	
 	
 	// inc. score
-	private void increaseScore() {
+	protected void increaseScore() {
 		setPlayerScore(getPlayerScore() + getFoodScore());
 	}
 	
 	
 	// dec. score
-	private void decreaseScore() {
+	protected void decreaseScore() {
 		setPlayerScore(getPlayerScore() - getTrashScore());
 	}
 	
 	
 	// timing
-	private void timeIncr() {
+	protected void timeIncr() {
 		remainingTime -= tickLength;
 	}
 	
@@ -429,7 +433,7 @@ public class MainModel {
 		tickLength = a;
 	}
 	
-	private void setHasWon(boolean b) {
+	protected void setHasWon(boolean b) {
 		hasWon = b;
 	}
 

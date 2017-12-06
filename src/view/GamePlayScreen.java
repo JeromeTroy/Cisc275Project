@@ -42,7 +42,7 @@ import javax.swing.Timer;
 import controller.GameTimer;
 import controller.MainController;
 import model.MainModel;
-import view.GameOverScreen;
+//import view.GameOverScreen;
 
 public class GamePlayScreen extends GodView {
 
@@ -54,7 +54,7 @@ public class GamePlayScreen extends GodView {
 	static Timer timer;
 	private static MiniGameScreen mgs;
 	private static PlayScreen gamePanel;
-	private static GameOverScreen gameOver;
+	//private static GameOverScreen gameOver;
 	private static JPanel controlPanel;
 	private static JLabel clock;
 	private JLabel miniclock;
@@ -285,24 +285,6 @@ public class GamePlayScreen extends GodView {
 	}
 
 	protected static void update() {
-//		// update background position
-//		// bg1xpos -= 20;
-//		// bg2xpos -= 20;
-//
-//		// relocate maps
-//		if (bg1xpos < bg2xpos && bg1xpos < (-bgLength)) {
-//			bg1xpos = bg2xpos + (bgLength);
-//		} else if (bg1xpos > bg2xpos && bg2xpos < (-bgLength)) {
-//			bg2xpos = bg1xpos + (bgLength);
-//		}
-
-		// set fish location
-//		if (!c.inMiniGame()) { // main game
-//			int dx = (int) c.getModel().getMainCharacter().getPosition().getX();
-//			int dy = (int) c.getModel().getMainCharacter().getPosition().getY();
-//
-//		}
-
 
 	}
 
@@ -491,36 +473,24 @@ public class GamePlayScreen extends GodView {
 
 		}
 	}
-	private class MiniGameScreen extends GodView implements MouseMotionListener {
+	public class MiniGameScreen extends GodView implements MouseMotionListener {
 
 		public MiniGameScreen(int width, int height) {
 			this.setBounds(0, 0, width, height);
 			this.setBackground(Color.BLACK);
 			this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
 			
-//			int mainCharRad = (int) Math.sqrt(Math.pow(fishImage.getHeight(),2) + Math.pow(fishImage.getWidth(), 2));
-//			int foodSize = (int) Math.sqrt(Math.pow(foodImage.getHeight(), 2) + Math.pow(foodImage.getWidth(), 2));
-//			int trashSize = (int) Math.sqrt(Math.pow(trashImage.getHeight(), 2) + Math.pow(trashImage.getWidth(), 2));
-//			int mapHeight = playHeight;
-//			int mapUnique = playLength;
-//			int mapLength = mapUnique * 3;
-//			
-//			MainModel.setup(c.getModel(), mainCharRad, foodSize, trashSize, mapHeight, mapLength, mapUnique, gamePanel.getWidth(),gamePanel.getHeight());
-//			
-			
-
 		}
 
 		@Override
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			g.drawImage(minibgImage, 0, 0, layeredPane.getWidth(),layeredPane.getHeight(), MiniGameScreen.this);
-			//g.drawImage(diverImage, cursorx, cursory, this);
 			
 			//draw trash and food
 			for (int[] loc : c.getModel().getMiniGame().getStuffSet().getTrash()) {
 				g.drawImage(trashImage, loc[0], loc[1], this);
-				System.out.println(loc[0]+" "+ loc[1]);
+				//System.out.println(loc[0]+" "+ loc[1]);
 			}
 			for (int[] loc : c.getModel().getMiniGame().getStuffSet().getTrash()) {
 				g.drawImage(trashImage, loc[0], loc[1], this);
@@ -541,13 +511,7 @@ public class GamePlayScreen extends GodView {
 			c.getModel().update(0,deltaTheta);
 			
 			c.getModel().getMiniGame().getMainCharacter().getPosition().setX(mouseX);
-			c.getModel().getMiniGame().getMainCharacter().getPosition().setY(mouseY);;
-			
-			
-			
-			//g.drawImage(fishImage, cursorx, cursory, this); // where cursor is
-			///g.drawImage(fishImage, fishx, fishy, this); // where the fish is on the
-														// map
+			c.getModel().getMiniGame().getMainCharacter().getPosition().setY(mouseY);;										
 			
 			//draw the diver
 			g.drawImage(diverImage, mouseX-50, mouseY-80, this);
@@ -572,20 +536,20 @@ public class GamePlayScreen extends GodView {
 
 		@Override
 		public void mouseDragged(MouseEvent e) {
-			if (!useMSG){
-				//System.out.println("PLAY SCREEN "+e.getX() + " " + e.getY());
-				cursorx = e.getX();
-				cursory = e.getY();
-				} else {
-					//System.out.println("MGS SCREEN "+e.getX() + " " + e.getY());
-					Point p = SwingUtilities.convertPoint(gamePanel, e.getPoint(), layeredPane);
-					if (layeredPane.contains(p)){
-						System.out.println(p);
-						cursorx = (int) p.getX();
-						cursory = (int) p.getY();
-					}
-					
-				}
+//			if (!useMSG){
+//				//System.out.println("PLAY SCREEN "+e.getX() + " " + e.getY());
+//				cursorx = e.getX();
+//				cursory = e.getY();
+//				} else {
+//					//System.out.println("MGS SCREEN "+e.getX() + " " + e.getY());
+//					Point p = SwingUtilities.convertPoint(gamePanel, e.getPoint(), layeredPane);
+//					if (layeredPane.contains(p)){
+//						System.out.println(p);
+//						cursorx = (int) p.getX();
+//						cursory = (int) p.getY();
+//					}
+//					
+//				}
 		}
 	}
 	
