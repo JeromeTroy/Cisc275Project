@@ -14,7 +14,7 @@ public class MainCharacter{
 	private int speed = 5;			// speed of the fish
 	private int angle; 				// angle (counterclockwise) from east facing
 	
-	private final double minStep = 3;
+	private final double minStep = 0.5;
 	
 	// location
 	private OurVector position;

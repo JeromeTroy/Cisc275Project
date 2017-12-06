@@ -265,7 +265,7 @@ public class GamePlayScreen extends GodView {
 
 					//System.out.println("GAME PANEL");
 
-					if(c.getRemainingTime() > 0) {
+					if(c.getGameOver() == false) {
 						clock.setText(c.getTimeString());
 						controlPanel.repaint();
 					}
@@ -304,7 +304,7 @@ public class GamePlayScreen extends GodView {
 	public void performAction(String s) {
 		if (s == "quitGame") {
 			window.stopAndRemoveTimer(timer);
-			c.showGameOver();
+			c.endGame();
 		}
 	}
 
@@ -419,8 +419,10 @@ public class GamePlayScreen extends GodView {
 			int fishx = (int) tmpx;
 			int fishy = (int) tmpy;
 			//g.drawImage(fishImage, cursorx, cursory, this); // where cursor is
-			g.drawImage(fishImage, fishx-80, fishy-20, this); // where the fish is on the
+			if(!c.getGameOver()) {
+				g.drawImage(fishImage, fishx-80, fishy-20, this); // where the fish is on the
 														// map
+			}
 		}
 
 		/**
