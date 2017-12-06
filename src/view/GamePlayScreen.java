@@ -165,8 +165,8 @@ public class GamePlayScreen extends GodView {
 		int foodSize = (int) Math.sqrt(Math.pow(foodImage.getHeight(), 2) + Math.pow(foodImage.getWidth(), 2));
 		int trashSize = (int) Math.sqrt(Math.pow(trashImage.getHeight(), 2) + Math.pow(trashImage.getWidth(), 2));
 		int mapHeight = playHeight;
-		int mapUnique = 10*playLength;
-		int mapLength = mapUnique * 1;
+		int mapUnique = playLength;
+		int mapLength = mapUnique * 10;
 		
 		MainModel.setup(c.getModel(), mainCharRad, foodSize, trashSize, mapHeight, mapLength, mapUnique);//, playLength, playHeight);//, gamePanel.getWidth(),gamePanel.getHeight());
 		c.getModel().setMiniHeight(playHeight/2);
