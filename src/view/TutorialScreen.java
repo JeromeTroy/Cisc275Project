@@ -238,9 +238,10 @@ public class TutorialScreen extends JPanel implements ActionListener {
 			window.stopAndRemoveTimer(timer);
 			c.startGame();
 			// setUseMGS(!useMSG);
-		} else if (cmd == "goTo") {
+		} else if (cmd == "goToTitle") {
 			window.stopAndRemoveTimer(timer);
 			this.c.showTitleScreen();
+			c.newGame();
 
 		}
 	}

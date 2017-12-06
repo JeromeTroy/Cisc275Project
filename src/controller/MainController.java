@@ -73,6 +73,10 @@ public class MainController {
 		window = new Window();
 		
 		//Runnable theGame = new RunGame();
+		newGame();
+	}
+	
+	public void newGame() {
 		MainController tmp = this;
 		javax.swing.SwingUtilities.invokeLater(new Runnable(){
 			public void run() {
