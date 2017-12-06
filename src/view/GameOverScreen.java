@@ -30,7 +30,7 @@ public class GameOverScreen extends GodView implements MouseMotionListener {
 	
 	
 	// attributes
-	private JLayeredPane layeredPane;
+	private JPanel layeredPane;
 	private JButton tryAgain;
 	private JButton returnToTitle;
 	
@@ -43,7 +43,7 @@ public class GameOverScreen extends GodView implements MouseMotionListener {
 	
 	// constructor
 	public GameOverScreen() {
-		layeredPane = new JLayeredPane();
+		layeredPane = new JPanel();
 		layeredPane.setPreferredSize(new Dimension(300,300));
 		layeredPane.setBorder(BorderFactory.createTitledBorder("Game Over"));
 		layeredPane.addMouseMotionListener(this);
@@ -59,15 +59,15 @@ public class GameOverScreen extends GodView implements MouseMotionListener {
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
 		// layered pane
-		layeredPane = new JLayeredPane();
+		layeredPane = new JPanel();
 		layeredPane.setPreferredSize(new Dimension(300,300));
 		layeredPane.setBorder(BorderFactory.createLineBorder(Color.BLACK)); //TODO: remove
 		
 		layeredPane.addMouseMotionListener(this);
-		//BufferedImage myPicture = createBufferedImage(c.getTitleURL());
-		//JLabel picLabel = new JLabel(new ImageIcon(myPicture));
-		//picLabel.setPreferredSize(new Dimension(700,700));
-		//layeredPane.add(picLabel);
+		BufferedImage myPicture = createBufferedImage(c.getTitleURL());
+		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+		picLabel.setPreferredSize(new Dimension(700,700));
+		layeredPane.add(picLabel);
 		
 		add(Box.createRigidArea(new Dimension(0,10)));
 		add(layeredPane);
