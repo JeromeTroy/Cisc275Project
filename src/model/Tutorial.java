@@ -9,7 +9,7 @@ public class Tutorial extends MainModel{
 	public Tutorial() {
 		super();
 		mode = "collectFood";
-		getStuffSet().setAccumulationValue(30);
+		getStuffSet().setAccumulationValue(15);
 		//getStuffSet().getFood().clear();
 		//getStuffSet().getTrash().clear();
 		//setStartingTrash(1);
@@ -60,6 +60,7 @@ public class Tutorial extends MainModel{
 			if (foodCollect == 0){
 				mode = "accumulateTrash";
 				accumulateTrash = true;
+				accumulateFood = true;
 			}
 		} else if (mode == "accumulateTrash"){
 			

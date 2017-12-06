@@ -51,7 +51,7 @@ public class TutorialScreen extends JPanel implements ActionListener {
 	// Images
 	private BufferedImage fishImage;
 	private BufferedImage foodImage;
-	private BufferedImage diverImage;
+	private static BufferedImage diverImage;
 	private BufferedImage minibgImage;
 	private BufferedImage trashImage;
 	private BufferedImage bgImage1;
@@ -263,6 +263,7 @@ public class TutorialScreen extends JPanel implements ActionListener {
 				// update();
 				mgs.setVisible(useMSG);
 				if (useMSG) {
+					c.getTutorial().getMiniGame().getMainCharacter().setRadius((int) Math.sqrt(Math.pow(diverImage.getHeight(),2) + Math.pow(diverImage.getWidth(), 2))-50);
 					mgs.update();
 					mgs.repaint();
 				} else {

@@ -41,7 +41,7 @@ public class MainModel {
 	protected int miniHeight;
 	protected int miniWidth;
 	
-	// methods
+	protected double trashAccumulateMultiplier = 0.05;
 	
 	
 	// constructors
@@ -221,14 +221,14 @@ public class MainModel {
 		
 		// add trash first
 		int trashAmount = everyThing.getTrashSize();
-		//for (int i=0; i<(1+(trashAmount*0.05)); i++){
+		for (int i=0; i<(1+(trashAmount*trashAccumulateMultiplier)); i++){
 			boolean trashAdded = false;
 			int[] trashLoc = {accumulationDist, 0};
 			while (!trashAdded) {
 				trashLoc[1] = randint(0, getMap().getHeight()); 		// random y location
 				trashAdded = everyThing.add(trashLoc, "trash");			// try to add
 			}
-		//}
+		}
 		
 		// add the food
 		while (!foodAdded) {

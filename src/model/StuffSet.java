@@ -272,12 +272,12 @@ public class StuffSet {
 	
 	
 	public int getFoodSize() {
-		return foodSize;
+		return getFood().size();
 	}
 	
 	
 	public int getTrashSize() {
-		return trashSize;
+		return getTrash().size();
 	}
 	
 	
