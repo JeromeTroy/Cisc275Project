@@ -181,6 +181,14 @@ public class MainController {
 //		launchMiniGame();
 //	}
 //	
+	public void endGame() {
+		gameTimer.stopTimer();
+		System.out.println("Game Over");
+		System.out.println("End Screen");
+		MainController tmp = this;
+		gameOverScreen = GameOverScreen.activateGameOver(window, tmp);
+		currScreen = gameOverScreen;
+	}
 	
 	/* tick() - controls the model and view updating at each tick
 	 * 
@@ -218,12 +226,6 @@ public class MainController {
 	 * 			   //TODO: needs to fire some sort of end score in view
 	 * 
 	 */
-	public void endGame() {
-		gameTimer.stopTimer();
-		System.out.println("Game Over");
-		System.out.println("End Screen");
-		showGameOver();
-	}
 	
 	
 	public void showTitleScreen(){

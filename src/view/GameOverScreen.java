@@ -153,7 +153,7 @@ public class GameOverScreen extends GodView implements MouseMotionListener {
 	}
 	
 	
-	public static GameOverScreen activateTitle(Window w, MainController c) {
+	public static GameOverScreen activateGameOver(Window w, MainController c) {
 		return createAndShowGUI(w, c);
 	}
 	
