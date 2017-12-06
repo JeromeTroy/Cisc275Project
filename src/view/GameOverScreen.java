@@ -120,14 +120,14 @@ public class GameOverScreen extends GodView implements MouseMotionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		String cmd = e.getActionCommand();
-		if (cmd == "tryAgain"){
+		if (cmd == "goToGame"){
 			System.out.println("game");
 			game.startGame();
 			//c.showTitleScreen(true);
 			//TODO: need action to open game
-		} else if (cmd == "returnToTitle"){
+		} else if (cmd == "goToTitle"){
 			System.out.println("Return Pressed");
-			game.showTitleScreen();
+			game.openView();
 			//TODO: get rid of below
 		} 
 		

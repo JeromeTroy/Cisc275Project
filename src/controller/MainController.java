@@ -69,7 +69,7 @@ public class MainController {
 	 * openView - opens the titlescreen
 	 * 
 	 */
-	private void openView() {
+	public void openView() {
 		window = new Window();
 		
 		//Runnable theGame = new RunGame();
