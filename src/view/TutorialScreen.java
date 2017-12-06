@@ -21,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
@@ -138,6 +139,7 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		getInstructions().setFont(new Font("Arial", Font.PLAIN, 50));
 		getInstructions().setSize(50, instructionsHeight);
 		instructionsPanel.add(getInstructions());
+		instructionsPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.5f));
 		add(instructionsPanel);
 		
 
@@ -305,7 +307,6 @@ public class TutorialScreen extends JPanel implements ActionListener {
 	}
 
 	private class PlayScreen extends JPanel implements MouseMotionListener {
-		String instructions = "estuary";
 		PlayScreen() {
 			addMouseMotionListener(PlayScreen.this);
 			//this.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -315,16 +316,17 @@ public class TutorialScreen extends JPanel implements ActionListener {
 			JPanel p = new JPanel();
 			
 			setLayout(new GridLayout(2,2));
+			/*
 			directions = "Estuary Adventure Tutorial Mode";
-			directionsLabel = new JLabel(directions);
-			directionsLabel.setFont(new Font("Arial", Font.PLAIN, 80));
+			instructions = new JLabel(directions);
+			instructions.setFont(new Font("Arial", Font.PLAIN, 80));
 			//panel.add(directionsLabel);
 			//directionsLabel.setVerticalTextPosition(-500);
-			directionsLabel.setBounds(-250,0,10,10);
-			directionsLabel.setSize(500, 500);
+			instructions.setBounds(-250,0,10,10);
+			instructions.setSize(500, 500);
 			//add(panel);
-			add(directionsLabel);
-			
+			add(instructions);
+			*/
 			
 			
 		}
@@ -446,7 +448,21 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		}
 
 		@Override
-		public void mouseDragged(MouseEvent arg0) {
+		public void mouseDragged(MouseEvent e) {
+			if (!useMSG) {
+				// System.out.println("PLAY SCREEN "+e.getX() + " " + e.getY());
+				cursorx = e.getX();
+				cursory = e.getY();
+			} else {
+				// System.out.println("MGS SCREEN "+e.getX() + " " + e.getY());
+				Point p = SwingUtilities.convertPoint(gamePanel, e.getPoint(), layeredPane);
+				if (layeredPane.contains(p)) {
+					System.out.println(p);
+					cursorx = (int) p.getX();
+					cursory = (int) p.getY();
+				}
+
+			}
 
 		}
 	}
