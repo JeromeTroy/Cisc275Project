@@ -30,7 +30,7 @@ public class TitleScreen extends GodView implements MouseMotionListener {
 	
 	
 	// attributes
-	private JLayeredPane layeredPane;
+	private JPanel layeredPane;
 	private JButton gameStart;
 	private JButton tutorial;
 	private JButton FishCaught;
@@ -46,7 +46,7 @@ public class TitleScreen extends GodView implements MouseMotionListener {
 	
 	// constructor
 	public TitleScreen() {
-		layeredPane = new JLayeredPane();
+		layeredPane = new JPanel();
 		layeredPane.setPreferredSize(new Dimension(300,300));
 		layeredPane.setBorder(BorderFactory.createTitledBorder("Game Over"));
 		layeredPane.addMouseMotionListener(this);
@@ -62,7 +62,7 @@ public class TitleScreen extends GodView implements MouseMotionListener {
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
 		// layered pane
-		layeredPane = new JLayeredPane();
+		layeredPane = new JPanel();
 		layeredPane.setPreferredSize(new Dimension(300,300));
 		layeredPane.setBorder(BorderFactory.createTitledBorder("Title Screen")); //TODO: remove
 		
