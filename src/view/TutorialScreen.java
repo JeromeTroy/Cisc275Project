@@ -134,7 +134,7 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		instructionsPanel = new JPanel();
 		instructionsPanel.setBorder(BorderFactory.createLineBorder(Color.green));
 		instructionsPanel.setMaximumSize(new Dimension(playLength, instructionsHeight));
-		dir = "Estuary Adventure Tutorial Mode";
+		dir = "Estuary Adventure Tutorial Mode - eat the food but avoid the trash!";
 		setInstructions(new JLabel(dir));
 		getInstructions().setFont(new Font("Arial", Font.PLAIN, 50));
 		getInstructions().setSize(50, instructionsHeight);

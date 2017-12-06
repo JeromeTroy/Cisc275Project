@@ -17,7 +17,7 @@ public class MainController {
 	//Views
 	private GamePlayScreen gameScreen;
 	private static TitleScreen titleScreen;
-	//private static GameOverScreen gameOverScreen;
+	private static GameOverScreen gameOverScreen;
 	private static TutorialScreen tutorialScreen;
 	private static Window window;
 	private JComponent currScreen;
@@ -185,7 +185,18 @@ public class MainController {
 //	
 	public void endGame() {
 		gameTimer.stopTimer();
-		System.out.println("Game Over");
+		if (getModel().getHasWon()) {
+			System.out.println("Game Over");
+
+		}
+		else if (getModel().getRemainingTime() <= 0) {
+			System.out.println("Game Over");
+
+		}else {
+			
+		}
+		model = null;
+		model = new MainModel();
 		System.out.println("End Screen");
 		MainController tmp = this;
 		gameOverScreen = GameOverScreen.activateGameOver(window, tmp);
