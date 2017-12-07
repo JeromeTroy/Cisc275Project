@@ -1,7 +1,7 @@
 package model;
 
 /**
- * @author jerome
+ * @author Group 4
  * MiniGame model
  */
 public class MiniGame extends MainModel{
@@ -45,6 +45,10 @@ public class MiniGame extends MainModel{
 		accumulateAll();
 	}
 	
+	/**
+	 * @param width 	width of minigame	
+	 * @param height	height of minigame
+	 */
 	public MiniGame(int width, int height){
 		this.width = width;
 		this.height = height;
@@ -169,6 +173,9 @@ public class MiniGame extends MainModel{
 		startingTrash = num;
 	}
 	
+	/** (non-Javadoc)
+	 * @see model.MainModel#setStartingFood(int)
+	 */
 	public void setStartingFood(int num) {
 		startingFood = num;
 	}

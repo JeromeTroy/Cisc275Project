@@ -1,16 +1,33 @@
 package model;
 
+/**
+ * @author Group 4
+ * Extention of map to provide minigame behavior
+ *
+ */
 public class MiniMap extends Map{
 
 	
+	/**
+	 * Constructor
+	 * @param width		width of map
+	 * @param height	height of map
+	 */
 	public MiniMap(int width, int height) {
 		super(width,height);
 	}
 
+	/**
+	 * default constructor
+	 */
 	public MiniMap() {
 		super();
 	}
 
+	/** 
+	 * moving the map w.r.t. the main character
+	 * @see model.Map#moveMap(model.MainCharacter)
+	 */
 	public boolean moveMap(MainCharacter fishy){
 		int speed = -fishy.getSpeed();						// fish's speed and orientation
 		int angle = fishy.getAngle();

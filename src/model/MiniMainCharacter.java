@@ -1,5 +1,9 @@
 package model;
 
+/**
+ * @author Group 4
+ * Extention of main character to provide minigame behavior
+ */
 public class MiniMainCharacter extends MainCharacter{
 
 	

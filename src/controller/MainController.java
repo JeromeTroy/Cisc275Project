@@ -9,6 +9,11 @@ import view.*;
 import java.util.*;
 import java.util.Timer;
 
+/**
+ * @author Group 4
+ * Controlls the entire game
+ *
+ */
 public class MainController {
 	//Model
 	private  MainModel model;
@@ -46,6 +51,10 @@ public class MainController {
 
 	
 	
+	/**
+	 * @param args
+	 * main execution
+	 */
 	public static void main(String[] args) {
 		//allows the program to be run with args to set the program to use the view or not
 		MainController game = new MainController(true);
@@ -76,6 +85,9 @@ public class MainController {
 		newGame();
 	}
 	
+	/**
+	 * starts a new game
+	 */
 	public void newGame() {
 		MainController tmp = this;
 		javax.swing.SwingUtilities.invokeLater(new Runnable(){
@@ -93,6 +105,10 @@ public class MainController {
 		
 	}
 	
+	/**
+	 * creates a MainController with a model, and sets the scroll speed of the model
+	 * initializes tutorial
+	 */
 	public MainController(){
 		tutorial = new Tutorial();
 		inMiniGame = false;
@@ -110,15 +126,30 @@ public class MainController {
 		
 	}
 	
+	/**
+	 * @return
+	 * get the scroll speed of the game
+	 */
 	public int getSpeed() {
 		return speed;
 	}
+	/**
+	 * @param b 	should view be used
+	 * @param len 	length of map
+	 * @param hgt	height of map
+	 */
 	public MainController(boolean b, int len, int hgt) {
 		this(b);
 		model = new MainModel(len, hgt);
 		
 	}
 	
+	/**
+	 * @param b 	use view
+	 * @param len	map length
+	 * @param hgt	map height
+	 * @param ulg	unique length of map
+	 */
 	public MainController(boolean b, int len, int hgt, int ulg) {
 		this(b);
 		model = new MainModel(len,hgt,ulg);
@@ -192,6 +223,9 @@ public class MainController {
 //		launchMiniGame();
 //	}
 //	
+	/**
+	 * stop the game and display end game screen
+	 */
 	public void endGame() {
 		gameTimer.stopTimer();
 		if (getModel().getHasWon()) {
@@ -204,15 +238,17 @@ public class MainController {
 		}else {
 			
 		}
+		// reset model
 		model = null;
 		model = new MainModel();
 		System.out.println("End Screen");
 		MainController tmp = this;
+		//setup game over screen
 		gameOverScreen = GameOverScreen.activateGameOver(window, tmp);
 		currScreen = gameOverScreen;
 	}
 	
-	/* tick() - controls the model and view updating at each tick
+	/** tick() - controls the model and view updating at each tick
 	 * 
 	 */
 	protected void tick() {
@@ -250,19 +286,26 @@ public class MainController {
 	 */
 	
 	
+	/**
+	 * showing title
+	 */
 	public void showTitleScreen(){
 		switchScreen(titleScreen);
 	}
 	
-	public void showGameOver() {
-		//switchScreen(gameOverScreen);
-	}
 
+	/**
+	 * show tutorial
+	 */
 	public void showTutorialScreen(){
 		switchScreen(tutorialScreen);
 	}
 	
 	
+	/**
+	 * switching between screens
+	 * @param a 	screen to switch to
+	 */
 	public void switchScreen(JPanel a){
 		System.out.println(a);
 		window.setContentPane(a);
@@ -285,22 +328,41 @@ public class MainController {
 		inMiniGame = false;
 	}
 	*/
+	/**
+	 * length of time for one tick
+	 * @return
+	 */
 	public int getTickPeriod() {
 		return tickPeriod;
 	}
 
+	/**
+	 * set time for one tick
+	 * @param tickPeriod
+	 */
 	public void setTickPeriod(int tickPeriod) {
 		this.tickPeriod = tickPeriod;
 	}
 	
+	/**
+	 * @return	whether the minigame is active
+	 */
 	public boolean inMiniGame(){
 		return inMiniGame;
 	}
 	
+	/**
+	 * set if the minigame is active
+	 * @param b
+	 */
 	public void setInMiniGame(boolean b){
 		inMiniGame = b;
 	}
 
+	/**
+	 * get the current state of the model
+	 * @return
+	 */
 	public MainModel getModel(){
 		return model;
 	}
@@ -315,130 +377,234 @@ public class MainController {
 	}
 	*/
 	
+	/**
+	 * set up game play screen
+	 * @param g
+	 */
 	public void setGamePlayScreen(GamePlayScreen g){
 		gameScreen = g;
 	}
 	
+	/**
+	 * get the game play screen state
+	 * @return
+	 */
 	public GamePlayScreen getGamePlayScreen(){
 		return gameScreen;
 	}
 
 
+	/**
+	 * food image
+	 * @return
+	 */
 	public String getFoodURL() {
 		return foodURL;
 	}
 
 
+	/**
+	 * trash image
+	 * @return
+	 */
 	public String getTrashURL() {
 		return trashURL;
 	}
 
 
+	/**
+	 * background image
+	 * @return
+	 */
 	public String getBgURL() {
 		return bgURL;
 	}
 
 
+	/**
+	 * diver image
+	 * @return
+	 */
 	public String getHumanURL() {
 		return humanURL;
 	}
 
 
+	/**
+	 * fish image
+	 * @return
+	 */
 	public String getFishURL() {
 		return fishURL;
 	}
 
 
+	/**
+	 * get the current game play screen
+	 * @return
+	 */
 	public GamePlayScreen getGameScreen() {
 		return gameScreen;
 	}
 
 
+	/**
+	 * set up the game play screen
+	 * @param gameScreen
+	 */
 	public void setGameScreen(GamePlayScreen gameScreen) {
 		this.gameScreen = gameScreen;
 	}
 
 
+	/**
+	 * get the title screen
+	 * @return
+	 */
 	public static TitleScreen getTitleScreen() {
 		return titleScreen;
 	}
 
 
+	/**
+	 * set titlescreen
+	 * @param titleScreen
+	 */
 	public static void setTitleScreen(TitleScreen titleScreen) {
 		MainController.titleScreen = titleScreen;
 	}
 
 
+	/**
+	 * get the tutorial screen
+	 * @return
+	 */
 	public static TutorialScreen getTutorialScreen() {
 		return tutorialScreen;
 	}
 
 
+	/**
+	 * set the tutorial screen
+	 * @param tutorialScreen
+	 */
 	public static void setTutorialScreen(TutorialScreen tutorialScreen) {
 		MainController.tutorialScreen = tutorialScreen;
 	}
 
 
+	/**
+	 * get the current window
+	 * @return
+	 */
 	public static Window getWindow() {
 		return window;
 	}
 
 
+	/**
+	 * set current window
+	 * @param window
+	 */
 	public static void setWindow(Window window) {
 		MainController.window = window;
 	}
 
 
+	/**
+	 * get the length of the game
+	 * @return
+	 */
 	public int getGameLength() {
 		return gameLength;
 	}
 
 
+	/**
+	 * minigame background image
+	 * @return
+	 */
 	public String getMinibgURL() {
 		return minibgURL;
 	}
 
 
+	/**
+	 * ending background (winning)
+	 * @return
+	 */
 	public String getEndbg_goodURL() {
 		return endbg_goodURL;
 	}
 
 
+	/**
+	 * ending background (losing)
+	 * @return
+	 */
 	public String getEndbg_badURL() {
 		return endbg_badURL;
 	}
 
 
+	/**
+	 * diver image
+	 * @return
+	 */
 	public String getDiverURL() {
 		return diverURL;
 	}
 
 
+	/**
+	 * alternative diver image
+	 * @return
+	 */
 	public String getDiverdarkURL() {
 		return diverdarkURL;
 	}
 	
+	/**
+	 * get the time displayed
+	 * @return
+	 */
 	public String getTimeString() {
 		return model.timeString();
 	}
 
 
+	/**
+	 * title screen image
+	 * @return
+	 */
 	public String getTitleURL() {
 		return titleURL;
 	}
 
 
+	/**
+	 * remaining time
+	 * @return
+	 */
 	public int getRemainingTime() {
 		// TODO Auto-generated method stub
 		return model.getRemainingTime();
 	}
 
 
+	/**
+	 * whether the game is over
+	 * @return
+	 */
 	public boolean getGameOver() {
 		// TODO Auto-generated method stub
 		return model.getGameOver();
 	}
 
+	/**
+	 * whether the player was victorious
+	 * @return
+	 */
 	public boolean getHasWon() {
 		return model.getHasWon();
 	}
