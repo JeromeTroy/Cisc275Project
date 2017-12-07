@@ -2,6 +2,11 @@ package model;
 
 import java.util.*;
 import java.math.*;
+/**
+ * @author Group 4
+ * the main character of the game
+ *
+ */
 public class MainCharacter{
 	
 	/*
@@ -15,6 +20,7 @@ public class MainCharacter{
 	private int angle; 				// angle (counterclockwise) from east facing
 	
 	private final double minStep = 0.5;
+	private int motion;
 	
 	// location
 	private OurVector position;
@@ -22,6 +28,22 @@ public class MainCharacter{
 	
 	// Methods
 	
+	
+	/**
+	 * set the scroll rate
+	 * @param a
+	 */
+	public void setmotion(int a) {
+		motion = a;
+	}
+	
+	/**
+	 * get the scroll rate
+	 * @return
+	 */
+	public int getmotion(){
+		return motion;
+	}
 	
 	// constructors
 	/**
@@ -164,24 +186,40 @@ public class MainCharacter{
 	
 	
 	// radius
+	/**
+	 * size
+	 * @return
+	 */
 	public int getRadius(){
 		return radius;
 	}
 	
 	
 	// speed
+	/**
+	 * get how fast the fish can swim
+	 * @return
+	 */
 	public int getSpeed(){
 		return speed;
 	}
 	
 	
 	// angle
+	/**
+	 * orientation of the fish
+	 * @return
+	 */
 	public int getAngle(){
 		return angle;
 	}
 	
 	
 	// position
+	/**
+	 * location of fish
+	 * @return
+	 */
 	public OurVector getPosition() {
 		return position;
 	}

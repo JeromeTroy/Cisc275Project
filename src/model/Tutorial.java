@@ -1,14 +1,27 @@
 package model;
 
+/**
+ * @author Group 4
+ * extension of MainModel to provide tutorial behavior
+ *
+ */
 public class Tutorial extends MainModel{
 	String mode;
 	
 	boolean murderOfTrash = false;
 	
+	/**
+	 * current mode of tutorial
+	 * @return
+	 */
 	public String getMode() {
 		return mode;
 	}
 
+	/**
+	 * current mode of tutorial
+	 * @param mode
+	 */
 	public void setMode(String mode) {
 		this.mode = mode;
 	}
@@ -21,6 +34,9 @@ public class Tutorial extends MainModel{
 	boolean runMode = true;
 	int foodCollect = 10;
 	
+	/**
+	 * Constructor
+	 */
 	public Tutorial() {
 		super();
 		
@@ -36,9 +52,12 @@ public class Tutorial extends MainModel{
 //		contactedTrash = false;
 //		contactedFood = false;
 //		inMiniGame = true;
-		getMap().setLength(5);
 	}
 	
+	/**
+	 * accumulate all the food and trash
+	 * @see model.MainModel#accumulateAll()
+	 */
 	public void accumulateAll() {
 		
 		for (int i=0; i<getStartingFood(); i++) {
@@ -54,6 +73,10 @@ public class Tutorial extends MainModel{
 	}
 	
 	
+	/**
+	 * accumulation of food and trash
+	 * @see model.MainModel#accumulate()
+	 */
 	public void accumulate() {
 		// assume not added
 		boolean trashAdded = false;
@@ -98,6 +121,10 @@ public class Tutorial extends MainModel{
 //		getStuffSet().add(foodLoc, "food");
 //	}
 	
+	/**
+	 * updating the tutorial
+	 * @see model.MainModel#update(int, int)
+	 */
 	public void update(int newSpeed, int deltaTheta) {
 		//set mode
 		if (mode == "collectFood"){

@@ -48,7 +48,7 @@ public class GamePlayScreen extends GodView {
 
 	// Swing Components
 	private static JLayeredPane layeredPane;
-	private JButton quit;
+	private static JButton quit;
 	// private JButton titleScreen;
 	private static Window window;
 	static Timer timer;
@@ -163,7 +163,7 @@ public class GamePlayScreen extends GodView {
 		bg1xpos = 0;
 		bg2xpos = bgLength;
 
-		int mainCharRad = (int) Math.sqrt(Math.pow(fishImage.getHeight(), 2) + Math.pow(fishImage.getWidth(), 2));
+		int mainCharRad = (int) Math.sqrt(Math.pow(fishImage.getHeight(), 2) + Math.pow(fishImage.getWidth(), 2))/4;
 		int foodSize = (int) Math.sqrt(Math.pow(foodImage.getHeight(), 2) + Math.pow(foodImage.getWidth(), 2));
 		int trashSize = (int) Math.sqrt(Math.pow(trashImage.getHeight(), 2) + Math.pow(trashImage.getWidth(), 2));
 		int mapHeight = playHeight;
@@ -271,9 +271,13 @@ public class GamePlayScreen extends GodView {
 					// System.out.println("GAME PANEL");
 
 				}
-				if (c.getGameOver() == false) {
+				if (!c.getGameOver()) {
 					clock.setText(c.getTimeString());
 					controlPanel.repaint();
+				}
+				if(c.getGameOver()) {
+					quit.setText("Continue?");
+					clock.setText("Score: " + c.getPlayerScore());
 				}
 				newContentPane.repaint();
 				newContentPane.revalidate();

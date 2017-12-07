@@ -3,7 +3,7 @@ package model;
 import java.util.Random;
 
 /**
- * @author jerome
+ * @author Group 4
  * MainModel class, simplified using flyWeight
  */
 public class MainModel {
@@ -25,11 +25,7 @@ public class MainModel {
 	protected boolean inMiniGame; 		// activate minigame
 	private boolean hasWon;				// winning the game
 	
-	// scoring
-	private int playerScore = 0; 		// the player's score
-	private int foodScore = 10; 		// change in score from eating food
-	private int trashScore = 0; 		// change in score form eating trash
-	protected int foodTime = 10;			// time addition from eating food
+			// time addition from eating food
 	
 	// timing (all in ms)
 	private int tickLength = 30; 						// time period of a single tick
@@ -40,6 +36,16 @@ public class MainModel {
 	private int startingFood = 0;
 	protected int miniHeight;
 	protected int miniWidth;
+	
+	// scoring
+	private int playerScore = 0;        // the player's score
+	private int winBonus = 1000;		//bonus for winning game
+	private int timeScore = (int)(-(1/60)*(maxAllowedTime - remainingTime));
+	private int foodScore = 100; 		// change in score from eating food
+	private int trashScore = 0; 		// change in score form eating trash
+	protected int foodTime = 100;
+	
+	private int speed;
 	
 	protected double trashAccumulateMultiplier = 0.05;
 	
@@ -62,11 +68,41 @@ public class MainModel {
 		
 	}
 	
+	/**
+	 * @see MainModel()
+	 * @param mapL 	map length
+	 */
 	public MainModel(int mapL) {
 		this();
 		map.setLength(mapL);
 	}
 	
+	/**
+	 * setting scroll speed
+	 * @param a
+	 */
+	public void setSpeed(int a) {
+		speed = a;
+		fishy.setmotion(a);
+	}
+	
+	/**
+	 * get scroll speed
+	 * @return
+	 */
+	public int getSpeed() {
+		return speed;
+	}
+	/**
+	 * setting up the model
+	 * @param m				model
+	 * @param mainCharRad	size of main character
+	 * @param foodSize 		size of food
+	 * @param trashSize		size of trash
+	 * @param mapHeight		height of map
+	 * @param mapLength		length of map
+	 * @param mapUnique		unique length of map
+	 */
 	public static void setup(MainModel m, int mainCharRad, int foodSize, int trashSize, 
 			int mapHeight, int mapLength, int mapUnique) {
 		
@@ -80,15 +116,24 @@ public class MainModel {
 		m.accumulateAll();
 	}
 	
+	/**
+	 * @param m
+	 * @param mainCharRad 	
+	 * @param foodSize
+	 * @param trashSize
+	 * @param mapHeight
+	 * @param mapLength
+	 * @param mapUnique
+	 * @param miniW			mini game width
+	 * @param miniH			mini game height
+	 * @see setup
+	 */
 	public static void setup(MainModel m, int mainCharRad, int foodSize, int trashSize, 
 			int mapHeight, int mapLength, int mapUnique, int miniW, int miniH) {
 		
-		m.getMainCharacter().setRadius(mainCharRad);
-		m.getStuffSet().setFoodSize(foodSize);
-		m.getStuffSet().setTrashSize(trashSize);
-		m.getMap().setHeight(mapHeight);
-		m.getMap().setLength(mapLength);
-		m.getMap().setUniqueLength(mapUnique);
+		setup(m,mainCharRad,foodSize,trashSize,mapHeight,mapLength,mapUnique);
+		m.getMiniGame().setMiniHeight(miniH);
+		m.getMiniGame().setMiniWidth(miniW);
 	}
 	
 		
@@ -119,9 +164,6 @@ public class MainModel {
 		
 	}
 	
-	public void update(){
-		
-	}
 	
 	// updating
 	/**
@@ -184,6 +226,7 @@ public class MainModel {
 			setGameOver(-getMap().getOrigin().getX() >= getMap().getLength());
 			if (getGameOver()) {
 				setHasWon(true);
+				setPlayerScore(getPlayerScore() + timeScore + winBonus);
 				gameOver();
 			}
 		}
@@ -207,6 +250,7 @@ public class MainModel {
 			setGameOver(getRemainingTime() <= 0);
 			if (getGameOver()) {
 				setHasWon(false);
+				setPlayerScore(getPlayerScore() + timeScore);
 				gameOver();
 			}
 		}
@@ -245,6 +289,9 @@ public class MainModel {
 		}
 	}
 	
+	/**
+	 * accumulate all trash initially
+	 */
 	public void accumulateAll() {
 		for (int i=0; i<getStartingTrash(); i++) {
 			boolean trashAdded = false;
@@ -269,6 +316,9 @@ public class MainModel {
 		}
 	}
 	
+	/**
+	 * if the game is over clear out all the trash and food
+	 */
 	public void gameOver(){
 		inMiniGame = false;
 		getStuffSet().clearAll();
@@ -306,6 +356,10 @@ public class MainModel {
 		return str;
 	}
 	
+	/**
+	 * convert the time remaining to a string
+	 * @return
+	 */
 	public String timeString() {
 		String str = "Time remaining: ";
 		//long ms = remainingTime % 1000 / 10;
@@ -321,18 +375,27 @@ public class MainModel {
 	
 	
 	// inc. score
+	/**
+	 * increase the player score
+	 */
 	protected void increaseScore() {
 		setPlayerScore(getPlayerScore() + getFoodScore());
 	}
 	
 	
 	// dec. score
+	/**
+	 * decrease player score
+	 */
 	protected void decreaseScore() {
 		setPlayerScore(getPlayerScore() - getTrashScore());
 	}
 	
 	
 	// timing
+	/**
+	 * increment time
+	 */
 	protected void timeIncr() {
 		remainingTime -= tickLength;
 	}
@@ -351,62 +414,102 @@ public class MainModel {
 	
 	
 	// in the mini game
+	/**
+	 * is the minigame active
+	 * @return
+	 */
 	public boolean getInMiniGame() {
 		return inMiniGame;
 	}
 	
 	
 	// map
+	/**
+	 * current state of the map
+	 * @return
+	 */
 	public Map getMap() {
 		return map;
 	}
 	
 	
 	// main character
+	/**
+	 * current state of the main character
+	 * @return
+	 */
 	public MainCharacter getMainCharacter() {
 		return fishy;
 	}
 	
 	
 	// food and trash
+	/**
+	 * get all the stuff in the ocean
+	 * @return
+	 */
 	public StuffSet getStuffSet() {
 		return everyThing;
 	}
 	
 	
 	// score change from food
+	/**
+	 * score from food
+	 * @return
+	 */
 	public int getFoodScore() {
 		return foodScore;
 	}
 	
 	
-	// score change from trash
+	/**
+	 *  score change from trash
+	 */
 	public int getTrashScore() {
 		return trashScore;
 	}
 	
 	
-	// current score
+	/**
+	 * get current score
+	 * @return
+	 */
 	public int getPlayerScore() {
 		return playerScore;
 	}
 	
 	
-	// the mini game
+	/**
+	 * get the mini game
+	 * @return
+	 */
 	public MiniGame getMiniGame() {
 		return miniGame;
 	}
 	
 	
+	/**
+	 * length of one tick
+	 * @return
+	 */
 	public int getTickLength() {
 		return tickLength;
 	}
 	
+	/**
+	 * remaining time
+	 * @return
+	 */
 	public int getRemainingTime() {
 		return remainingTime;
 	}
 	
 	
+	/**
+	 * was the player victorious
+	 * @return
+	 */
 	public boolean getHasWon() {
 		return hasWon;
 	}
@@ -425,59 +528,108 @@ public class MainModel {
 	}
 	
 	
-	// game over
+	/**
+	 *  game over
+	 * @param b
+	 */
 	public void setGameOver(boolean b) {
 		gameOver = b;
 	}
 	
 	
-	// in the mini game
+	/**
+	 * in the mini game
+	 * @param b
+	 */
 	public void setInMiniGame(boolean b) {
 		inMiniGame = b;
 	}
 	
 	
-	// current score
+	/**
+	 * current score
+	 * @param a
+	 */
 	private void setPlayerScore(int a) {
 		playerScore = a;
 	}
 	
+	/**
+	 * set length of one tick
+	 * @param a
+	 */
 	public void setTickLength(int a) {
 		tickLength = a;
 	}
 	
+	/**
+	 * set victory
+	 * @param b
+	 */
 	protected void setHasWon(boolean b) {
 		hasWon = b;
 	}
 
+	/**
+	 * get the height of the minigame
+	 * @return
+	 */
 	public int getMiniHeight() {
 		return miniHeight;
 	}
 
+	/**
+	 * set height of mini game
+	 * @param miniHeight
+	 */
 	public void setMiniHeight(int miniHeight) {
 		this.miniHeight = miniHeight;
 	}
 
+	/**
+	 * width of minigame
+	 * @return
+	 */
 	public int getMiniWidth() {
 		return miniWidth;
 	}
 
+	/**
+	 * get width of minigame
+	 * @param miniWidth
+	 */
 	public void setMiniWidth(int miniWidth) {
 		this.miniWidth = miniWidth;
 	}
 
+	/**
+	 * starting amount of trash
+	 * @return
+	 */
 	public int getStartingTrash() {
 		return startingTrash;
 	}
 
+	/**
+	 * set starting amount of trash
+	 * @param startingTrash
+	 */
 	public void setStartingTrash(int startingTrash) {
 		this.startingTrash = startingTrash;
 	}
 
+	/**
+	 * starting amount of food
+	 * @return
+	 */
 	public int getStartingFood() {
 		return startingFood;
 	}
 
+	/**
+	 * set the starting amount of food
+	 * @param startingFood
+	 */
 	public void setStartingFood(int startingFood) {
 		this.startingFood = startingFood;
 	}
