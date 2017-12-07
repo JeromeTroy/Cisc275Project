@@ -169,10 +169,10 @@ public class GamePlayScreen extends GodView {
 		int trashSize = (int) Math.sqrt(Math.pow(trashImage.getHeight(), 2) + Math.pow(trashImage.getWidth(), 2));
 		int mapHeight = playHeight;
 		int mapUnique = playLength;
-		int mapLength = mapUnique * 1; //TODO
+		int mapLength = mapUnique * 2; //TODO
 
 		MainModel.setup(c.getModel(), mainCharRad, foodSize, trashSize, mapHeight, mapLength, mapUnique);// ,
-																											// playLength,
+		autoscrolldpt = c.getModel().getSpeed();																						// playLength,
 																											// playHeight);//,
 																											// gamePanel.getWidth(),gamePanel.getHeight());
 		c.getModel().setMiniHeight(playHeight / 2);
@@ -429,6 +429,8 @@ public class GamePlayScreen extends GodView {
 																		// is on
 																		// the
 				// map
+			} else {
+				g.drawImage(fishImage, cursorx, cursory, this);
 			}
 		}
 
@@ -438,7 +440,6 @@ public class GamePlayScreen extends GodView {
 		public void update() {
 			boolean endScreen1 = false;
 			// update background position
-			autoscrolldpt = c.getModel().getSpeed();
 			bg1xpos -= autoscrolldpt;
 			bg2xpos -= autoscrolldpt;
 
