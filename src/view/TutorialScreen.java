@@ -42,12 +42,14 @@ public class TutorialScreen extends JPanel implements ActionListener {
 
 	// Swing components
 	private JLayeredPane layeredPane;
+	private static JLabel title;
 	private static JLabel instructions;
 	private JButton gameStart;
 	private JButton titleScreen;
 	private static Window window;
 	static Timer timer;
 	private static MiniGameScreen mgs;
+	TutorialScreen content;
 
 	// Images
 	private BufferedImage fishImage;
@@ -95,10 +97,12 @@ public class TutorialScreen extends JPanel implements ActionListener {
 	private int tick;
 	private JPanel instructionsPanel;
 	private static PlayScreen gamePanel;
+	
 
 	private static boolean useMSG;
 	String directions;
-	JLabel directionsLabel;
+	static JLabel directionsLabel;
+	private JPanel directionsPanel;
 
 	
 	private void setupInstructions(String s) {
@@ -141,17 +145,29 @@ public class TutorialScreen extends JPanel implements ActionListener {
 
 		// add title panel
 		instructionsPanel = new JPanel();
-		instructionsPanel.setBorder(BorderFactory.createLineBorder(Color.green));
 		instructionsPanel.setMaximumSize(new Dimension(playLength, instructionsHeight));
-		dir = "Estuary Adventure Tutorial Mode - eat the food but avoid the trash!";
-		
+		dir = "Estuary Adventure Tutorial Mode - Migrate to the Sea to Spawn!!";
 		setInstructions(new JLabel(dir));
-		
-		getInstructions().setFont(new Font("Arial", Font.PLAIN, 50));
+		getInstructions().setFont(new Font("Arial", Font.BOLD, 50));
+		getInstructions().setForeground(Color.WHITE);
 		getInstructions().setSize(50, instructionsHeight);
 		instructionsPanel.add(getInstructions());
+		instructionsPanel.setSize(playLength, instructionsHeight);
 		instructionsPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.5f));
 		add(instructionsPanel);
+		
+		// add directions panel
+				directionsPanel = new JPanel();
+				directionsPanel.setMaximumSize(new Dimension(playLength, instructionsHeight));
+				text = "Estuary Adventure Tutorial Mode - Migrate to to lay eggs!";
+				directionsLabel = new JLabel(text);
+				setInstructions(directionsLabel);
+				getInstructions().setFont(new Font("Arial", Font.PLAIN, 30));
+				getInstructions().setSize(50, instructionsHeight);
+				getInstructions().setForeground(Color.white);
+				directionsPanel.add(getInstructions());
+				directionsPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.5f));
+				add(directionsPanel);
 		
 
 		// add game panel
@@ -192,6 +208,7 @@ public class TutorialScreen extends JPanel implements ActionListener {
 																											// gamePanel.getWidth(),gamePanel.getHeight());
 		c.getTutorial().setMiniHeight(playHeight / 2);
 		c.getTutorial().setMiniWidth(playLength / 2);
+		//content = (TutorialScreen) newContentPane;
 
 	}
 
@@ -280,14 +297,16 @@ public class TutorialScreen extends JPanel implements ActionListener {
 				// update();
 				mgs.setVisible(useMSG);
 				if (useMSG) {
-					TutorialScreen content = (TutorialScreen) newContentPane;
-					content.setupInstructions("Collect all the trash!");
+					//TutorialScreen content = (TutorialScreen) newContentPane;
+					//content.setupInstructions(text);
+					directionsLabel.setText(text);
 					c.getTutorial().getMiniGame().getMainCharacter().setRadius((int) Math.sqrt(Math.pow(diverImage.getHeight(),2) + Math.pow(diverImage.getWidth(), 2))-50);
 					mgs.update();
 					mgs.repaint();
 				} else {
-					TutorialScreen content = (TutorialScreen) newContentPane;
-					content.setupInstructions("Estuary Adventure Tutorial Mode - eat the food but avoid the trash!");
+					//TutorialScreen content = (TutorialScreen) newContentPane;
+					//content.setupInstructions("Estuary Adventure Tutorial Mode - eat the food but avoid the trash!");
+					directionsLabel.setText(text);
 					gamePanel.update();
 					gamePanel.repaint();
 				}
@@ -414,20 +433,16 @@ public class TutorialScreen extends JPanel implements ActionListener {
 			}
 
 			// update mode
-			if (mode == "instructions") {
-				pauseMovement = true;
-			} else if (mode == "moveFish") {
-				text = "Use mouse to move fish!";
-				dispFood = false;
-				dispTrash = false;
+			mode = c.getTutorial().getMode();
+			if (mode == "collectFood") {
+				text = "Eat Food as you Migrate! Try to eat "+c.getTutorial().getCollectFood()+" shrimp! It increases the time you have to migrate";
+			} else if (mode == "hitTrash") {
+				text = "Pollution Causes Trash to Accumulate in Estuaries. See What Happens when the eel accidentally eats trash";
 				pauseMovement = false;
-			} else if (mode == "getFood") {
-				text = "Move fish to food to eat fish";
-				dispFood = true;
-				dispTrash = false;
-				pauseMovement = false;
-			} else if (mode == "avoidTrash") {
-				text = "Avoid the trash as you are swimming";
+			} else if (mode == "inMiniGame") {
+				text = "As a human, you have to do your part to clean the trash! Get all 10 items of trash!";
+			} else if (mode == "collectFoodAgain") {
+				text = "When you clean trash from the estuaries, it reduces the trash in the estuary! Thank you good samaratin. Go Ahead and Play the game or redo tutorial";
 				dispFood = true;
 				dispTrash = true;
 				pauseMovement = false;
