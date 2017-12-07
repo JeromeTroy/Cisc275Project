@@ -445,12 +445,10 @@ public class GamePlayScreen extends GodView {
 		public void update() {
 			boolean endScreen1 = false;
 			// update background position
+			setautoscroll();
 			bg1xpos -= autoscrolldpt;
 			bg2xpos -= autoscrolldpt;
 
-			if (c.getGameOver() && !c.getHasWon()) {
-				autoscrolldpt = 200;
-			}
 
 			// relocateMap & change map to endscreen
 			if (!stopScroll) {
@@ -475,11 +473,11 @@ public class GamePlayScreen extends GodView {
 			} else { //stop scrolling to show end game
 				if (endScreen1) {
 					if (bg1xpos <= -playLength+150) {
-						autoscrolldpt = 0;
+						//autoscrolldpt = 0;
 					}
 				} else {
 					if (bg2xpos <= -playLength+150) {
-						autoscrolldpt = 0;
+						//autoscrolldpt = 0;
 					}
 				}
 			}
@@ -491,6 +489,17 @@ public class GamePlayScreen extends GodView {
 				setUseMGS(!c.getModel().getMiniGame().getMiniGameOver());
 			}
 
+		}
+
+		private void setautoscroll() {
+			if (c.getGameOver() && !c.getHasWon()) {
+				autoscrolldpt = 200;
+			} else if (c.getModel().getInMiniGame()){
+				autoscrolldpt = 0;
+			} else {
+				autoscrolldpt = c.getModel().getSpeed();
+			}
+			
 		}
 
 		@Override
