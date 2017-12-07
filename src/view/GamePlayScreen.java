@@ -438,7 +438,7 @@ public class GamePlayScreen extends GodView {
 		public void update() {
 			boolean endScreen1 = false;
 			// update background position
-			autoscrolldpt = 10;
+			autoscrolldpt = c.getModel().getSpeed();
 			bg1xpos -= autoscrolldpt;
 			bg2xpos -= autoscrolldpt;
 

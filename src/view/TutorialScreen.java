@@ -442,7 +442,7 @@ public class TutorialScreen extends JPanel implements ActionListener {
 				text = "Pollution causes trash to accumulate in estuaries. See what happens when the eel accidentally eats trash";
 				pauseMovement = false;
 			} else if (mode == "inMiniGame") {
-				text = "As a human, you have to do your part to clean the trash! Get all 10 items of trash!";
+				text = "As a human, you have to do your part to clean the trash! Get all of trash!";
 			} else if (mode == "collectFoodAgain") {
 				text = "When you clean trash from the estuaries, it reduces the trash in the estuary! Play the game or redo tutorial!";
 				dispFood = true;

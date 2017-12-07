@@ -47,7 +47,7 @@ public class MainController {
 	private int tickPeriod = 30; // in milliseconds
 	boolean inMiniGame;
 	public static boolean useView;
-	// private mainView gameView;
+	
 
 	
 	
