@@ -39,6 +39,7 @@ public class GameOverScreen extends GodView implements MouseMotionListener {
 	
 	private MainController game;
 	
+	Color customColor = new Color(98,101,176);
 	// methods
 	
 	// constructor
@@ -56,11 +57,12 @@ public class GameOverScreen extends GodView implements MouseMotionListener {
 		
 		game = c;
 		// layout
-		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
 		
 		// layered pane
 		layeredPane = new JPanel();
-		layeredPane.setPreferredSize(new Dimension(300,300));
+		layeredPane.setPreferredSize(new Dimension(700,700));
 		layeredPane.setBorder(BorderFactory.createLineBorder(Color.BLACK)); //TODO: remove
 		
 		layeredPane.addMouseMotionListener(this);
@@ -70,8 +72,18 @@ public class GameOverScreen extends GodView implements MouseMotionListener {
 		layeredPane.add(picLabel);
 		
 		add(Box.createRigidArea(new Dimension(0,10)));
-		add(layeredPane);
-		add(createControlPanel());		
+		gbc.weightx=0.0;
+		gbc.gridwidth=3;
+		gbc.gridx=1;
+		gbc.gridy=0;
+		add(layeredPane,gbc);
+		gbc.weightx=0.0;
+		gbc.gridwidth=3;
+		gbc.gridx=1;
+		gbc.gridy=1;
+		add(createControlPanel(),gbc);
+		setBackground(customColor);
+		layeredPane.setBackground(customColor);
 
 	}
 	public BufferedImage createBufferedImage(String fileLocation) {
@@ -101,6 +113,7 @@ public class GameOverScreen extends GodView implements MouseMotionListener {
 		JPanel controls = new JPanel();
 		controls.add(tryAgain);
 		controls.add(returnToTitle);
+		controls.setBackground(customColor);
 		return controls;
 	}
 	

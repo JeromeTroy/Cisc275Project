@@ -608,6 +608,12 @@ public class MainController {
 	public boolean getHasWon() {
 		return model.getHasWon();
 	}
+
+
+	public int getPlayerScore() {
+		// TODO Auto-generated method stub
+		return model.getPlayerScore();
+	}
 	
 	//public int foodHypontenuse(){
 	//}
