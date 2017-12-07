@@ -12,7 +12,7 @@ import java.util.Timer;
 public class MainController {
 	//Model
 	private  MainModel model;
-	private MainModel tutorial;
+	private Tutorial tutorial;
 	
 	//Views
 	private GamePlayScreen gameScreen;
@@ -300,7 +300,7 @@ public class MainController {
 		return model;
 	}
 	
-	public MainModel getTutorial(){
+	public Tutorial getTutorial(){
 		return tutorial;
 	}
 	
