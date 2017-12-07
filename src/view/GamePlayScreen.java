@@ -138,7 +138,7 @@ public class GamePlayScreen extends GodView {
 		gamePanel.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gamePanel.setPreferredSize(new Dimension(playLength, playHeight));
-		gamePanel.setBorder(BorderFactory.createLineBorder(Color.red));
+		//gamePanel.setBorder(BorderFactory.createLineBorder(Color.red));
 
 		// add clock
 
@@ -533,8 +533,8 @@ public class GamePlayScreen extends GodView {
 		
 		public MiniGameScreen(int width, int height) {
 			this.setBounds(0, 0, width, height);
-			this.setBackground(Color.BLACK);
-			this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
+			//this.setBackground(Color.BLACK);
+			//this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
 
 		}
 
