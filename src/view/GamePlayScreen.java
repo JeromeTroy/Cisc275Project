@@ -286,7 +286,7 @@ public class GamePlayScreen extends GodView {
 				}
 				if(c.getGameOver()) {
 					quit.setText("Continue?");
-					clock.setText("Score: " + c.getPlayerScore());
+					clock.setText("");
 				}
 				newContentPane.repaint();
 				newContentPane.revalidate();
