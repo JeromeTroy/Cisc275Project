@@ -49,6 +49,7 @@ public class GamePlayScreen extends GodView {
 	// Swing Components
 	private static JLayeredPane layeredPane;
 	private static JButton quit;
+	Color customColor = new Color(98,101,176);
 	// private JButton titleScreen;
 	private static Window window;
 	static Timer timer;
@@ -217,8 +218,11 @@ public class GamePlayScreen extends GodView {
 		// clock.setPreferredSize(new Dimension(400,400));
 		clock.setFont(new Font("Arial", Font.PLAIN, 40));
 		clock.setOpaque(true);
+		clock.setBackground(customColor);
+		clock.setForeground(Color.white);
 		controls.add(quit);
 		controls.add(clock);
+		controls.setBackground(customColor);
 		return controls;
 	}
 

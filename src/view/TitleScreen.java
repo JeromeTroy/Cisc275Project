@@ -88,6 +88,7 @@ public class TitleScreen extends GodView implements MouseMotionListener {
 		info.setFont(new Font("Arial",Font.PLAIN,30));
 		info.setBackground(customColor);
 		info.setSize(1000, 100);
+		info.setForeground(Color.white);
 		infoPanel.add(info,gbc);
 		
 		
