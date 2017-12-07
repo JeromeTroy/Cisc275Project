@@ -90,7 +90,7 @@ public class Map {
 		boolean validMove = ((0 >= proposedY) && (proposedY >= -getHeight()));		// is the move valid
 		
 		if (validMove){										// if so, execute
-			getOrigin().setX(getOrigin().getX() - 8);
+			getOrigin().setX(getOrigin().getX() - fishy.getmotion());
 			getOrigin().setY((int) proposedY);		
 		}
 		//return validMove;									// return if the move was valid

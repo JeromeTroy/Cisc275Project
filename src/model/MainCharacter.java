@@ -15,6 +15,7 @@ public class MainCharacter{
 	private int angle; 				// angle (counterclockwise) from east facing
 	
 	private final double minStep = 0.5;
+	private int motion;
 	
 	// location
 	private OurVector position;
@@ -22,6 +23,14 @@ public class MainCharacter{
 	
 	// Methods
 	
+	
+	public void setmotion(int a) {
+		motion = a;
+	}
+	
+	public int getmotion(){
+		return motion;
+	}
 	
 	// constructors
 	/**

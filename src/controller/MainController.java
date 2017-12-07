@@ -32,7 +32,7 @@ public class MainController {
 	private final String diverURL = "src/view/images/diver.png";
 	private final String diverdarkURL = "src/view/images/diver2.png";
 	private final String titleURL = "src/view/images/title_screen_final.png";
-	
+	private final int speed = 8;
 	
 	//Timer
 	private  GameTimer gameTimer;
@@ -96,6 +96,8 @@ public class MainController {
 	public MainController(){
 		tutorial = new Tutorial();
 		inMiniGame = false;
+		model = new MainModel();
+		model.setSpeed(speed);
 	}
 	/**
 	 * MainController(boolean) - constructor
@@ -104,9 +106,12 @@ public class MainController {
 	public MainController(boolean b) {
 		this();
 		useView = b;
-		model = new MainModel();
 		
 		
+	}
+	
+	public int getSpeed() {
+		return speed;
 	}
 	public MainController(boolean b, int len, int hgt) {
 		this(b);

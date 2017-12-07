@@ -41,6 +41,8 @@ public class MainModel {
 	protected int miniHeight;
 	protected int miniWidth;
 	
+	private int speed;
+	
 	protected double trashAccumulateMultiplier = 0.05;
 	
 	
@@ -67,6 +69,14 @@ public class MainModel {
 		map.setLength(mapL);
 	}
 	
+	public void setSpeed(int a) {
+		speed = a;
+		fishy.setmotion(a);
+	}
+	
+	public int getSpeed() {
+		return speed;
+	}
 	public static void setup(MainModel m, int mainCharRad, int foodSize, int trashSize, 
 			int mapHeight, int mapLength, int mapUnique) {
 		
