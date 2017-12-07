@@ -81,6 +81,7 @@ public class GamePlayScreen extends GodView {
 	private static int playHeight = windowHeight;
 	private final static int playLength = windowWidth;
 	private final static int controlpanelHeight = 600;
+	double fishScale = 2;
 
 	// controller
 	private static MainController c;
@@ -169,7 +170,7 @@ public class GamePlayScreen extends GodView {
 		bg2xpos = bgLength;
 
 		numRepeats = c.getNumRepeats();
-		int mainCharRad = (int) Math.sqrt(Math.pow(fishImage.getHeight(), 2) + Math.pow(fishImage.getWidth(), 2))/3;
+		int mainCharRad = (int) ((Math.sqrt(Math.pow(fishImage.getHeight(), 2) + Math.pow(fishImage.getWidth(), 2))/3)*fishScale);
 		int foodSize = (int) Math.sqrt(Math.pow(foodImage.getHeight(), 2) + Math.pow(foodImage.getWidth(), 2));
 		int trashSize = (int) Math.sqrt(Math.pow(trashImage.getHeight(), 2) + Math.pow(trashImage.getWidth(), 2));
 		int mapHeight = playHeight;
@@ -355,8 +356,9 @@ public class GamePlayScreen extends GodView {
 			g.drawImage(bgImage2, bg2xpos, 0, playLength, playHeight, this);
 			System.out.println(c.getModel().getMap().getLength());
 			System.out.println(c.getModel().getMap().getRemainingLength());
-			g.drawImage(endImageGood, (int) c.getModel().getMap().getRemainingLength(), 0, playLength, playHeight, this);
-			setAtEnd(true);
+				g.drawImage(endImageGood, (int) c.getModel().getMap().getRemainingLength(), 0, playLength, playHeight, this);
+		
+			//setAtEnd(true);
 
 			// disp objects
 			for (int[] loc : c.getModel().getStuffSet().getFood()) {
@@ -384,14 +386,14 @@ public class GamePlayScreen extends GodView {
 			// g.drawImage(fishImage, cursorx, cursory, this); // where cursor
 			// is
 			if (!c.getGameOver()) {
-				g.drawImage(fishImage, fishx - 80, fishy - 20, this); // where
+				g.drawImage(fishImage, fishx - 80, fishy - 20, (int) (fishImage.getWidth()*fishScale), (int)(fishImage.getHeight()*fishScale), this); // where
 																		// the
 																		// fish
 																		// is on
 																		// the
 				// map
 			} else {
-				g.drawImage(fishImage, cursorx, cursory, this);
+				g.drawImage(fishImage, cursorx, cursory,(int) (fishImage.getWidth()*fishScale), (int)(fishImage.getHeight()*fishScale), this);
 			}
 		}
 
@@ -403,25 +405,31 @@ public class GamePlayScreen extends GodView {
 		public void update() {
 			boolean endScreen1 = false;
 			// update background position
-			setautoscroll();
+			if (!stopScroll){
+				setautoscroll();
+			}
 			bg1xpos -= autoscrolldpt;
 			bg2xpos -= autoscrolldpt;
 
 
 			// relocateMap & change map to endscreen
 			if (!stopScroll) {
+				if (c.getGameOver() && !c.getHasWon()){
+					endImageGood = null;
+				}
+				
 				//update map position
 				if (bg1xpos < bg2xpos && bg1xpos < (-bgLength)) {
 					bg1xpos = bg2xpos + (bgLength);
 					//check to see if the game is over and the user lost
-					if (c.getGameOver() && !c.getHasWon() && !getAtEnd()) {
+					if (c.getGameOver() && !c.getHasWon()) {
 						bgImage1 = endImageBad; //change image
 						stopScroll = true;
 						endScreen1 = true;
 					}
 				} else if (bg1xpos > bg2xpos && bg2xpos < (-bgLength)) {
 					bg2xpos = bg1xpos + (bgLength);
-					if (c.getGameOver() && !c.getHasWon() && !getAtEnd()) {
+					if (c.getGameOver() && !c.getHasWon()) {
 						bgImage2 = endImageBad;
 						stopScroll = true;
 						System.out.println("the the the");
@@ -431,11 +439,11 @@ public class GamePlayScreen extends GodView {
 			} else { //stop scrolling to show end game
 				if (endScreen1) {
 					if (bg1xpos <= -playLength+150) {
-						//autoscrolldpt = 0;
+						autoscrolldpt = 0;
 					}
 				} else {
 					if (bg2xpos <= -playLength+150) {
-						//autoscrolldpt = 0;
+						autoscrolldpt = 0;
 					}
 				}
 			}
