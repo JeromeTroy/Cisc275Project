@@ -352,21 +352,7 @@ public class TutorialScreen extends JPanel implements ActionListener {
 			//add directions
 			JPanel p = new JPanel();
 			p.setSize(200, 20);
-			setLayout(new GridLayout(2,2));
-			/*
-			directions = "Estuary Adventure Tutorial Mode";
-			instructions = new JLabel(directions);
-			instructions.setFont(new Font("Arial", Font.PLAIN, 80));
-			//panel.add(directionsLabel);
-
-			//directionsLabel.setVerticalTextPosition(-500);
-			instructions.setBounds(-250,0,10,10);
-			instructions.setSize(500, 500);
-			//add(panel);
-			add(instructions);
-			*/
-			
-			
+			setLayout(new GridLayout(2,2));			
 		}
 
 		public void paintComponent(Graphics g) {

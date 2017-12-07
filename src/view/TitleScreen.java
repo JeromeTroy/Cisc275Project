@@ -143,29 +143,21 @@ public class TitleScreen extends GodView implements MouseMotionListener {
 		controls.add(gameStart);
 		controls.add(tutorial);
 		controls.setBackground(customColor);
-		//TODO:remove
-//		controls.add(FishCaught);
-//		controls.add(MiniGameOver);
-//		controls.add(MainGameOver);
-//		controls.setBorder(BorderFactory.createTitledBorder("Choose"));
 		return controls;
 	}
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		String cmd = e.getActionCommand();
 		if (cmd == "goToGame"){
 			System.out.println("game");
@@ -175,15 +167,7 @@ public class TitleScreen extends GodView implements MouseMotionListener {
 		} else if (cmd == "goToTutorial"){
 			System.out.println("Tutorial Pressed");
 			game.startTutorial();
-			//TODO: get rid of below
-		} else if (cmd== "fishCaught"){
-			//c.getModel().getFishy().setCaught(!c.getModel().getFishy().getIsCaught());
-		} else if (cmd == "miniGameOver"){
-			//c.getMiniGame().setGameOver(true);
-		} else if (cmd == "mainGameOver"){
-			//c.getModel().setGameOver(true);
 		}
-		
 	}
 	
 	

@@ -42,8 +42,8 @@ public class MainModel {
 	private int winBonus = 1000;		//bonus for winning game
 	private int timeScore = (int)(-(1/60)*(maxAllowedTime - remainingTime));
 	private int foodScore = 100; 		// change in score from eating food
-	private int trashScore = 0; 		// change in score form eating trash
-	protected int foodTime = 100;
+	private int trashScore = 100; 		// change in score form eating trash
+	protected int foodTime = 1000;
 	
 	private int speed;
 	
@@ -51,8 +51,8 @@ public class MainModel {
 	
 	
 	
-	public void setTimeInMin(int t) {
-		timeMin = t;
+	public void setTimeInMin(double d) {
+		timeMin = d;
 		maxAllowedTime = (int) (timeMin*60*1000);
 		remainingTime = maxAllowedTime;
 	}

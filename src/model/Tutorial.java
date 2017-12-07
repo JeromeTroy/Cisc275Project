@@ -8,8 +8,6 @@ package model;
 public class Tutorial extends MainModel{
 	String mode;
 	
-	//boolean murderOfTrash = false;
-	
 	/**
 	 * current mode of tutorial
 	 * @return
@@ -44,14 +42,6 @@ public class Tutorial extends MainModel{
 		getStuffSet().setAccumulationValue(20);
 		setStartingFood(8);
 		accumulateAll();
-		//getStuffSet().getFood().clear();
-		//getStuffSet().getTrash().clear();
-		//setStartingTrash(1);
-		//setStartingFood(1);
-//		accumulateAll();
-//		contactedTrash = false;
-//		contactedFood = false;
-//		inMiniGame = true;
 	}
 	
 	/**
@@ -112,14 +102,6 @@ public class Tutorial extends MainModel{
 			//}
 		}
 	}
-	
-	
-//	public void accumulateAll() {
-//		int[] trashLoc = {2*getMap().getLength()/3,2*getMap().getHeight()/3};
-//		int[] foodLoc = {2*getMap().getLength()/3,getMap().getHeight()/3};
-//		getStuffSet().add(trashLoc,"trash");
-//		getStuffSet().add(foodLoc, "food");
-//	}
 	
 	/**
 	 * updating the tutorial
@@ -186,12 +168,6 @@ public class Tutorial extends MainModel{
 				decreaseScore(); 				// lose points
 				miniGame = new MiniGame(miniWidth,miniHeight); 		// start minigame
 				mode = "inMiniGame";
-				/*try {
-					//Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}*/
 				
 				setInMiniGame(true);
 			}
@@ -224,12 +200,6 @@ public class Tutorial extends MainModel{
 			if (!getInMiniGame()) {
 				//mode = "miniGameOver";
 				System.out.println("Mini game over");
-				/*try {
-					//Thread.sleep(2000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}*/
 				getStuffSet().removeAllTrash(); 			// eliminate all trash in the main game
 				
 				mode = "collectFoodAgain";
@@ -242,30 +212,5 @@ public class Tutorial extends MainModel{
 	public int getCollectFood(){
 		return foodCollect;
 	}
-
-	
-//	public void setContact(String s) {
-//		if (s.equals("trash")) {
-//			contactedTrash = true;
-//		}else if (s.equals("food")) {
-//			contactedFood = true;
-//		}
-//	}
-//	
-//	public void setContactedFood(boolean b) {
-//		contactedFood = b;
-//	}
-//	
-//	public void setContactedTrash(boolean b) {
-//		contactedTrash = b;
-//	}
-//	
-//	public boolean getContactedTrash() {
-//		return contactedTrash;
-//	}
-//	
-//	public boolean getContactedFood() {
-//		return contactedFood;
-//	}
 
 }

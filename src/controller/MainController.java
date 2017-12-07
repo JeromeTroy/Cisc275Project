@@ -48,8 +48,8 @@ public class MainController {
 	boolean inMiniGame;
 	public static boolean useView;
 	
-	private int numRepeats = 1;
-	private int timeInMin = 1;
+	private int numRepeats = 10;
+	private double timeInMin = 1.5;
 	// private mainView gameView;
 
 	
@@ -65,15 +65,7 @@ public class MainController {
 			game.openView();
 		} else {
 			game.openConsole();
-		}
-		//game.gameTimer = new GameTimer(game);
-		//TODO: get input and then iterate through game
-		//while (!game.getModel().getGameOver()) {
-			//game.tick();
-		//}
-		
-		
-		
+		}		
 	}
 	
 	
@@ -187,44 +179,8 @@ public class MainController {
 		tutorial = new Tutorial();
 		TutorialScreen.activateTutorial(this, window); //setTitleScreen
 		currScreen = tutorialScreen;
-		
-		
-//		while(currScreen == tutorialScreen){
-//			int cx = tutorialScreen.getCursorX();
-//			int cy = tutorialScreen.getCursorY();
-//		
-//			double dist = tutorial.getMainCharacter().getPosition().distFrom(cx, cy);
-//			int angle = tutorial.getMainCharacter().getPosition().angleBetween(cx, cy);
-//		
-//			tutorial.update(0, angle - tutorial.getMainCharacter().getAngle());
-//			
-//			try {
-//				Thread.sleep(100);
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
 	}
 	
-	//controls state of the game
-//	if (inMiniGame) {
-//		miniGame.update();
-//		if (miniGame.getGameOver()) {
-//			endMiniGame();
-//		}
-//	} else {
-//		mainGameModel.update();
-//		if (useView) {
-//			//GamePlayScreen.paint();
-//		}
-//	}
-//	if (mainGameModel.getGameOver()) {
-//		endGame();
-//	}
-//	if (mainGameModel.getFishy().getIsCaught()) {
-//		launchMiniGame();
-//	}
 //	
 	/**
 	 * stop the game and display end game screen
@@ -281,13 +237,7 @@ public class MainController {
 				model.getInMiniGame();
 			}
 		}
-	}
-
-	/* endGame() - end the GamePlay
-	 * 			   //TODO: needs to fire some sort of end score in view
-	 * 
-	 */
-	
+	}	
 	
 	/**
 	 * showing title
@@ -316,21 +266,6 @@ public class MainController {
 		//window.repaint();
 	}
 
-	/* launchMiniGame() - initializes minigame launches miniGame
-	 * 
-	 *
-	public void launchMiniGame() {
-		inMiniGame = true;
-		miniGame = new MiniGameModel();
-		System.out.println("MiniGame Launched...");
-		mainGameModel.getFishy().setCaught(false);
-
-	}
-
-	public void endMiniGame() {
-		inMiniGame = false;
-	}
-	*/
 	/**
 	 * length of time for one tick
 	 * @return
@@ -374,11 +309,6 @@ public class MainController {
 		return tutorial;
 	}
 	
-	/*
-	public MainGameModel getMiniGame(){
-		return miniGame;
-	}
-	*/
 	
 	/**
 	 * set up game play screen
@@ -590,7 +520,6 @@ public class MainController {
 	 * @return
 	 */
 	public int getRemainingTime() {
-		// TODO Auto-generated method stub
 		return model.getRemainingTime();
 	}
 
@@ -600,7 +529,6 @@ public class MainController {
 	 * @return
 	 */
 	public boolean getGameOver() {
-		// TODO Auto-generated method stub
 		return model.getGameOver();
 	}
 
@@ -614,18 +542,15 @@ public class MainController {
 
 
 	public int getPlayerScore() {
-		// TODO Auto-generated method stub
 		return model.getPlayerScore();
 	}
 	
-	//public int foodHypontenuse(){
-	//}
 	
 	public int getNumRepeats() {
 		return numRepeats;
 	}
 	
-	public int getTime() {
+	public double getTime() {
 		return timeInMin;
 	}
 

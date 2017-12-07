@@ -125,23 +125,19 @@ public class GameOverScreen extends GodView implements MouseMotionListener {
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		String cmd = e.getActionCommand();
 		if (cmd == "goToGame"){
 			System.out.println("game");
 			game.startGame();
 			//c.showTitleScreen(true);
-			//TODO: need action to open game
 		} else if (cmd == "goToTitle"){
 			System.out.println("Return Pressed");
 			game.newGame();
-			//TODO: get rid of below
 		} 
 		
 	}

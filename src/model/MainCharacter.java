@@ -50,8 +50,8 @@ public class MainCharacter{
 	 * Constructor
 	 * Sets location, score
 	 */
-	public MainCharacter(){	// TODO implement view parameters through controller
-		position = new OurVector(); //TODO: changed initial location from 5,5 to 10,10
+	public MainCharacter(){
+		position = new OurVector(); 
 		// set orientation
 		setAngle(0);
 		position.setX(200);
