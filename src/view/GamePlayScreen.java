@@ -48,7 +48,7 @@ public class GamePlayScreen extends GodView {
 
 	// Swing Components
 	private static JLayeredPane layeredPane;
-	private JButton quit;
+	private static JButton quit;
 	// private JButton titleScreen;
 	private static Window window;
 	static Timer timer;
@@ -271,9 +271,13 @@ public class GamePlayScreen extends GodView {
 					// System.out.println("GAME PANEL");
 
 				}
-				if (c.getGameOver() == false) {
+				if (!c.getGameOver()) {
 					clock.setText(c.getTimeString());
 					controlPanel.repaint();
+				}
+				if(c.getGameOver()) {
+					quit.setText("Continue?");
+					clock.setText("Score: " + c.getPlayerScore());
 				}
 				newContentPane.repaint();
 				newContentPane.revalidate();

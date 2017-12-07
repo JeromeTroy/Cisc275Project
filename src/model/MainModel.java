@@ -25,11 +25,7 @@ public class MainModel {
 	protected boolean inMiniGame; 		// activate minigame
 	private boolean hasWon;				// winning the game
 	
-	// scoring
-	private int playerScore = 0; 		// the player's score
-	private int foodScore = 10; 		// change in score from eating food
-	private int trashScore = 0; 		// change in score form eating trash
-	protected int foodTime = 10;			// time addition from eating food
+			// time addition from eating food
 	
 	// timing (all in ms)
 	private int tickLength = 30; 						// time period of a single tick
@@ -40,6 +36,14 @@ public class MainModel {
 	private int startingFood = 0;
 	protected int miniHeight;
 	protected int miniWidth;
+	
+	// scoring
+	private int playerScore = 0;        // the player's score
+	private int winBonus = 1000;		//bonus for winning game
+	private int timeScore = (int)(-(1/60)*(maxAllowedTime - remainingTime));
+	private int foodScore = 100; 		// change in score from eating food
+	private int trashScore = 0; 		// change in score form eating trash
+	protected int foodTime = 100;
 	
 	private int speed;
 	
@@ -194,6 +198,7 @@ public class MainModel {
 			setGameOver(-getMap().getOrigin().getX() >= getMap().getLength());
 			if (getGameOver()) {
 				setHasWon(true);
+				setPlayerScore(getPlayerScore() + timeScore + winBonus);
 				gameOver();
 			}
 		}
@@ -217,6 +222,7 @@ public class MainModel {
 			setGameOver(getRemainingTime() <= 0);
 			if (getGameOver()) {
 				setHasWon(false);
+				setPlayerScore(getPlayerScore() + timeScore);
 				gameOver();
 			}
 		}
