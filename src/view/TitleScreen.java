@@ -41,6 +41,9 @@ public class TitleScreen extends GodView implements MouseMotionListener {
 	private static String GO_TO_TUTORIAL = "goToTutorial";
 	
 	private MainController game;
+	private JPanel infoPanel;
+	
+	Color customColor = new Color(98,101,176);
 	
 	// methods
 	
@@ -59,22 +62,47 @@ public class TitleScreen extends GodView implements MouseMotionListener {
 		
 		game = c;
 		// layout
-		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
 		
 		// layered pane
 		layeredPane = new JPanel();
-		layeredPane.setPreferredSize(new Dimension(300,300));
-		layeredPane.setBorder(BorderFactory.createTitledBorder("Title Screen")); //TODO: remove
+		layeredPane.setPreferredSize(new Dimension(700,700));
+		//layeredPane.setBorder(BorderFactory.createTitledBorder("Title Screen")); //TODO: remove
 		
 		layeredPane.addMouseMotionListener(this);
 		BufferedImage myPicture = createBufferedImage(c.getTitleURL());
 		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 		picLabel.setPreferredSize(new Dimension(700,700));
-		layeredPane.add(picLabel);
+		layeredPane.add(picLabel, gbc);
+		
+		
+		infoPanel = new JPanel();
+		JLabel info = new JLabel("Migrate through the estuary while collecting food, but watch out for trash!");
+		infoPanel.setSize(new Dimension(100,100));
+		infoPanel.add(info,gbc);
+		
 		
 		add(Box.createRigidArea(new Dimension(0,10)));
-		add(layeredPane);
-		add(createControlPanel());		
+		gbc.weightx=0.0;
+		gbc.gridwidth=3;
+		gbc.gridx=1;
+		gbc.gridy=0;
+		add(layeredPane,gbc);
+		gbc.weightx=0.0;
+		gbc.gridwidth=3;
+		gbc.gridx=1;
+		gbc.gridy=1;
+		add(createControlPanel(),gbc);
+		gbc.weightx=0.0;
+		gbc.gridwidth=3;
+		gbc.gridx=1;
+		gbc.gridy=2;
+		add(infoPanel,gbc);
+		setBackground(customColor);
+		layeredPane.setBackground(customColor);
+		infoPanel.setBackground(customColor);
+		
 
 	}
 	public BufferedImage createBufferedImage(String fileLocation) {
@@ -101,16 +129,11 @@ public class TitleScreen extends GodView implements MouseMotionListener {
 		tutorial = createButton("Tutorial", GO_TO_TUTORIAL);
 		tutorial.addActionListener(this);
 		//TODO: remove
-		FishCaught = createButton("fishCaught", "fishCaught");
-		FishCaught.addActionListener(this);
-		MiniGameOver = createButton("miniGameOver", "miniGameOver");
-		MiniGameOver.addActionListener(this);
-		MainGameOver = createButton("mainGameOver", "mainGameOver");
-		MainGameOver.addActionListener(this);
 		
 		JPanel controls = new JPanel();
 		controls.add(gameStart);
 		controls.add(tutorial);
+		controls.setBackground(customColor);
 		//TODO:remove
 //		controls.add(FishCaught);
 //		controls.add(MiniGameOver);
