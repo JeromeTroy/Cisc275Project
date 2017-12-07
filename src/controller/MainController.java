@@ -47,6 +47,9 @@ public class MainController {
 	private int tickPeriod = 30; // in milliseconds
 	boolean inMiniGame;
 	public static boolean useView;
+	
+	private int numRepeats = 1;
+	private int timeInMin = 2;
 	// private mainView gameView;
 
 	
@@ -618,8 +621,12 @@ public class MainController {
 	//public int foodHypontenuse(){
 	//}
 	
+	public int getNumRepeats() {
+		return numRepeats;
+	}
 	
-	
-	
+	public int getTime() {
+		return timeInMin;
+	}
 
 }

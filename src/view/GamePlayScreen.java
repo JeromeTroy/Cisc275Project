@@ -95,6 +95,9 @@ public class GamePlayScreen extends GodView {
 	private static int bg1xpos;
 	private static int bg2xpos;
 	private static int autoscrolldpt = 5;
+	
+	
+	private int numRepeats;
 	// private static int[] shift = {0,0}; //difference between map origin and
 	// window origin
 
@@ -164,13 +167,15 @@ public class GamePlayScreen extends GodView {
 		bg1xpos = 0;
 		bg2xpos = bgLength;
 
+		numRepeats = c.getNumRepeats();
 		int mainCharRad = (int) Math.sqrt(Math.pow(fishImage.getHeight(), 2) + Math.pow(fishImage.getWidth(), 2))/3;
 		int foodSize = (int) Math.sqrt(Math.pow(foodImage.getHeight(), 2) + Math.pow(foodImage.getWidth(), 2));
 		int trashSize = (int) Math.sqrt(Math.pow(trashImage.getHeight(), 2) + Math.pow(trashImage.getWidth(), 2));
 		int mapHeight = playHeight;
 		int mapUnique = playLength;
-		int mapLength = mapUnique * 1; //TODO
+		int mapLength = mapUnique * numRepeats; //TODO
 
+		c.getModel().setTimeInMin(c.getTime());
 		MainModel.setup(c.getModel(), mainCharRad, foodSize, trashSize, mapHeight, mapLength, mapUnique);// ,
 																											// playLength,
 																											// playHeight);//,
@@ -632,4 +637,7 @@ public class GamePlayScreen extends GodView {
 		return layeredPane.getHeight();
 	}
 
+	public void setNumRepeats(int n) {
+		numRepeats = n;
+	}
 }

@@ -50,6 +50,12 @@ public class MainModel {
 	protected double trashAccumulateMultiplier = 0.05;
 	
 	
+	
+	public void setTimeInMin(int t) {
+		timeMin = t;
+		maxAllowedTime = (int) (timeMin*60*1000);
+		remainingTime = maxAllowedTime;
+	}
 	// constructors
 	
 	
