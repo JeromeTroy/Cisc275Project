@@ -49,7 +49,7 @@ public class MainController {
 	public static boolean useView;
 	
 	private int numRepeats = 10;
-	private double timeInMin = .1;
+	private double timeInMin = 1;
 	// private mainView gameView;
 
 	

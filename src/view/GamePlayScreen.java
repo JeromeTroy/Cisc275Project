@@ -437,11 +437,11 @@ public class GamePlayScreen extends GodView {
 				}
 			} else { //stop scrolling to show end game
 				if (endScreen1) {
-					if (bg1xpos <= -playLength+150) {
+					if (bg2xpos <= playLength*0.1) {
 						autoscrolldpt = 0;
 					}
 				} else {
-					if (bg2xpos <= -playLength+150) {
+					if (bg1xpos <= playLength*0.1) {
 						autoscrolldpt = 0;
 					}
 				}
