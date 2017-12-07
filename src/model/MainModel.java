@@ -64,7 +64,7 @@ public class MainModel {
 		map = new Map();
 		fishy = new MainCharacter(map);
 		remainingTime = maxAllowedTime;
-
+		setSpeed(8);
 		
 	}
 	
