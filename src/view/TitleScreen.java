@@ -20,6 +20,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 import controller.MainController;
 
@@ -78,13 +80,18 @@ public class TitleScreen extends GodView implements MouseMotionListener {
 		
 		
 		infoPanel = new JPanel();
-		JLabel info = new JLabel("Migrate through the estuary while collecting food, but watch out for trash!");
+		JTextArea info = new JTextArea("An eel migrating through the Delaware Estuary back to the sea, to spawn.  \n"
+				+ "Eat food to increase your eel's chance of survival and your score.  \n"
+				+ "Avoid hitting the trash polluting the estuary.  If your eel gets \n"
+				+ "caught in the trash, you will need to clean the trash to free your eel friend");
 		infoPanel.setSize(new Dimension(100,100));
 		info.setFont(new Font("Arial",Font.PLAIN,30));
+		info.setBackground(customColor);
+		info.setSize(1000, 100);
 		infoPanel.add(info,gbc);
 		
 		
-		add(Box.createRigidArea(new Dimension(0,10)));
+		add(Box.createRigidArea(new Dimension(1,10)));
 		gbc.weightx=0.0;
 		gbc.gridwidth=3;
 		gbc.gridx=1;
