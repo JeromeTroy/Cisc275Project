@@ -33,7 +33,7 @@ public class MainModel {
 	
 	// timing (all in ms)
 	private int tickLength = 30; 						// time period of a single tick
-	private double timeMin = 1;
+	private double timeMin = 5;
 	private int maxAllowedTime = (int) (timeMin*60*1000); 		// maximum allowed time for the game
 	protected int remainingTime;							// remaining time
 	private int startingTrash = 0;
@@ -140,6 +140,7 @@ public class MainModel {
 	 * @param deltaTheta		angle to rotate the fish
 	 */
 	public void update(int newSpeed, int deltaTheta) {
+		if (!gameOver){
 		if (!getInMiniGame()) { 			 		// in the main game
 			
 			// setup			getMainCharacter().setSpeed(newSpeed);
@@ -193,7 +194,7 @@ public class MainModel {
 			setGameOver(-getMap().getOrigin().getX() >= getMap().getLength());
 			if (getGameOver()) {
 				setHasWon(true);
-				getStuffSet().clearAll();
+				gameOver();
 			}
 		}
 		// in the minigame
@@ -216,7 +217,9 @@ public class MainModel {
 			setGameOver(getRemainingTime() <= 0);
 			if (getGameOver()) {
 				setHasWon(false);
+				gameOver();
 			}
+		}
 		}
 	}
 	
@@ -274,6 +277,11 @@ public class MainModel {
 				//System.out.println("trash"+trashLoc[0]+"/"+getMap().getLength());
 			}
 		}
+	}
+	
+	public void gameOver(){
+		inMiniGame = false;
+		getStuffSet().clearAll();
 	}
 	
 	
