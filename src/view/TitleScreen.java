@@ -83,7 +83,10 @@ public class TitleScreen extends GodView implements MouseMotionListener {
 		JTextArea info = new JTextArea("Play as an eel migrating through the Delaware Estuary back to the sea to spawn.  \n"
 				+ "Eat food to increase your eel's chance of survival and your score.  \n"
 				+ "Avoid hitting the trash polluting the estuary.  If your eel gets \n"
-				+ "caught in the trash, you will need to clean the trash to free your eel friend!");
+				+ "caught in the trash, you will need to clean the trash to free your eel friend! \n"
+				+ "Remember, human activities can impact estuaries by degrading water quality \n"
+				+ "or altering habitats; therefore, we are responsible for making decisions \n"
+				+ "to protect and maintain the health of estuaries.");
 		infoPanel.setSize(new Dimension(100,100));
 		info.setFont(new Font("Arial",Font.PLAIN,30));
 		info.setBackground(customColor);
