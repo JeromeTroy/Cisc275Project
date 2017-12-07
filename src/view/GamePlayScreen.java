@@ -98,6 +98,7 @@ public class GamePlayScreen extends GodView {
 	
 	
 	private int numRepeats;
+	private boolean atEnd = false;
 	// private static int[] shift = {0,0}; //difference between map origin and
 	// window origin
 
@@ -341,6 +342,7 @@ public class GamePlayScreen extends GodView {
 
 	private class PlayScreen extends GodView implements MouseMotionListener {
 
+
 		PlayScreen() {
 			addMouseMotionListener(PlayScreen.this);
 
@@ -354,6 +356,7 @@ public class GamePlayScreen extends GodView {
 			System.out.println(c.getModel().getMap().getLength());
 			System.out.println(c.getModel().getMap().getRemainingLength());
 			g.drawImage(endImageGood, (int) c.getModel().getMap().getRemainingLength(), 0, playLength, playHeight, this);
+			setAtEnd(true);
 
 			// disp objects
 			for (int[] loc : c.getModel().getStuffSet().getFood()) {
@@ -392,6 +395,8 @@ public class GamePlayScreen extends GodView {
 			}
 		}
 
+
+
 		/**
 		 * updates positions
 		 */
@@ -409,14 +414,14 @@ public class GamePlayScreen extends GodView {
 				if (bg1xpos < bg2xpos && bg1xpos < (-bgLength)) {
 					bg1xpos = bg2xpos + (bgLength);
 					//check to see if the game is over and the user lost
-					if (c.getGameOver() && !c.getHasWon()) {
+					if (c.getGameOver() && !c.getHasWon() && !getAtEnd()) {
 						bgImage1 = endImageBad; //change image
 						stopScroll = true;
 						endScreen1 = true;
 					}
 				} else if (bg1xpos > bg2xpos && bg2xpos < (-bgLength)) {
 					bg2xpos = bg1xpos + (bgLength);
-					if (c.getGameOver() && !c.getHasWon()) {
+					if (c.getGameOver() && !c.getHasWon() && !getAtEnd()) {
 						bgImage2 = endImageBad;
 						stopScroll = true;
 						System.out.println("the the the");
@@ -585,8 +590,14 @@ public class GamePlayScreen extends GodView {
 	public int gerMiniGameHeight() {
 		return layeredPane.getHeight();
 	}
+	public boolean getAtEnd() {
+		return atEnd;
+	}
 
 	public void setNumRepeats(int n) {
 		numRepeats = n;
+	}
+	private void setAtEnd(boolean b) {
+		atEnd = b;
 	}
 }
