@@ -21,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
@@ -99,6 +100,15 @@ public class TutorialScreen extends JPanel implements ActionListener {
 	String directions;
 	JLabel directionsLabel;
 
+	
+	private void setupInstructions(String s) {
+		instructionsPanel.remove(getInstructions());
+		setInstructions(new JLabel(s));
+		getInstructions().setFont(new Font("Arial", Font.PLAIN, 50));
+		getInstructions().setSize(50, instructionsHeight);
+		instructionsPanel.add(getInstructions());
+	}
+	
 	// constructor
 	public TutorialScreen() {
 		// create buffered images:
@@ -133,11 +143,14 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		instructionsPanel = new JPanel();
 		instructionsPanel.setBorder(BorderFactory.createLineBorder(Color.green));
 		instructionsPanel.setMaximumSize(new Dimension(playLength, instructionsHeight));
-		dir = "Estuary Adventure Tutorial Mode";
+		dir = "Estuary Adventure Tutorial Mode - eat the food but avoid the trash!";
+		
 		setInstructions(new JLabel(dir));
+		
 		getInstructions().setFont(new Font("Arial", Font.PLAIN, 50));
 		getInstructions().setSize(50, instructionsHeight);
 		instructionsPanel.add(getInstructions());
+		instructionsPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.5f));
 		add(instructionsPanel);
 		
 
@@ -171,7 +184,7 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		int trashSize = (int) Math.sqrt(Math.pow(trashImage.getHeight(), 2) + Math.pow(trashImage.getWidth(), 2));
 		int mapHeight = playHeight;
 		int mapUnique = playLength;
-		int mapLength = mapUnique * 1;
+		int mapLength = mapUnique * 1000;
 
 		MainModel.setup(c.getTutorial(), mainCharRad, foodSize, trashSize, mapHeight, mapLength, mapUnique);// ,
 																											// playLength,
@@ -236,9 +249,10 @@ public class TutorialScreen extends JPanel implements ActionListener {
 			window.stopAndRemoveTimer(timer);
 			c.startGame();
 			// setUseMGS(!useMSG);
-		} else if (cmd == "goTo") {
+		} else if (cmd == "goToTitle") {
 			window.stopAndRemoveTimer(timer);
 			this.c.showTitleScreen();
+			c.newGame();
 
 		}
 	}
@@ -266,10 +280,14 @@ public class TutorialScreen extends JPanel implements ActionListener {
 				// update();
 				mgs.setVisible(useMSG);
 				if (useMSG) {
+					TutorialScreen content = (TutorialScreen) newContentPane;
+					content.setupInstructions("Collect all the trash!");
 					c.getTutorial().getMiniGame().getMainCharacter().setRadius((int) Math.sqrt(Math.pow(diverImage.getHeight(),2) + Math.pow(diverImage.getWidth(), 2))-50);
 					mgs.update();
 					mgs.repaint();
 				} else {
+					TutorialScreen content = (TutorialScreen) newContentPane;
+					content.setupInstructions("Estuary Adventure Tutorial Mode - eat the food but avoid the trash!");
 					gamePanel.update();
 					gamePanel.repaint();
 				}
@@ -305,7 +323,6 @@ public class TutorialScreen extends JPanel implements ActionListener {
 	}
 
 	private class PlayScreen extends JPanel implements MouseMotionListener {
-		String instructions = "estuary";
 		PlayScreen() {
 			addMouseMotionListener(PlayScreen.this);
 			//this.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -315,15 +332,18 @@ public class TutorialScreen extends JPanel implements ActionListener {
 			JPanel p = new JPanel();
 			p.setSize(200, 20);
 			setLayout(new GridLayout(2,2));
+			/*
 			directions = "Estuary Adventure Tutorial Mode";
-			directionsLabel = new JLabel(directions);
-			directionsLabel.setFont(new Font("Arial", Font.PLAIN, 80));
+			instructions = new JLabel(directions);
+			instructions.setFont(new Font("Arial", Font.PLAIN, 80));
 			//panel.add(directionsLabel);
-			directionsLabel.setBounds(-250,0,10,10);
-			directionsLabel.setSize(500, 500);
+
+			//directionsLabel.setVerticalTextPosition(-500);
+			instructions.setBounds(-250,0,10,10);
+			instructions.setSize(500, 500);
 			//add(panel);
-			add(directionsLabel);
-			
+			add(instructions);
+			*/
 			
 			
 		}
@@ -445,7 +465,22 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		}
 
 		@Override
-		public void mouseDragged(MouseEvent arg0) {
+		public void mouseDragged(MouseEvent e) {
+			if (!useMSG) {
+				// System.out.println("PLAY SCREEN "+e.getX() + " " + e.getY());
+				cursorx = e.getX();
+				cursory = e.getY();
+			} else {
+				// System.out.println("MGS SCREEN "+e.getX() + " " + e.getY());
+				
+				Point p = SwingUtilities.convertPoint(gamePanel, e.getPoint(), layeredPane);
+				if (layeredPane.contains(p)) {
+					System.out.println(p);
+					cursorx = (int) p.getX();
+					cursory = (int) p.getY();
+				}
+
+			}
 
 		}
 	}

@@ -498,17 +498,31 @@ public class GamePlayScreen extends GodView {
 		}
 
 		@Override
-		public void mouseDragged(MouseEvent arg0) {
+		public void mouseDragged(MouseEvent e) {
 			int timeRemaining = c.getModel().getRemainingTime();
 			if (timeRemaining <= 0) {
 				performAction("quitGame");
 			}
-
+			if (!useMSG){
+				//System.out.println("PLAY SCREEN "+e.getX() + " " + e.getY());
+				cursorx = e.getX();
+				cursory = e.getY();
+				} else {
+					//System.out.println("MGS SCREEN "+e.getX() + " " + e.getY());
+					Point p = SwingUtilities.convertPoint(gamePanel, e.getPoint(), layeredPane);
+					if (layeredPane.contains(p)){
+						System.out.println(p);
+						cursorx = (int) p.getX();
+						cursory = (int) p.getY();
+					}
+					
+				}
 		}
 	}
 
 	public class MiniGameScreen extends GodView implements MouseMotionListener {
 
+		
 		public MiniGameScreen(int width, int height) {
 			this.setBounds(0, 0, width, height);
 			this.setBackground(Color.BLACK);

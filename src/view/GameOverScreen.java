@@ -127,7 +127,7 @@ public class GameOverScreen extends GodView implements MouseMotionListener {
 			//TODO: need action to open game
 		} else if (cmd == "goToTitle"){
 			System.out.println("Return Pressed");
-			game.openView();
+			game.newGame();
 			//TODO: get rid of below
 		} 
 		
