@@ -3,13 +3,14 @@ package model;
 import java.util.Vector;
 
 import java.util.*;
-
+/**
+ * @author Group 4
+ * The map of the game
+ * No real detailed information other than the size of the map
+ * Note: the default size will be the size of the minigame
+ */
 public class Map {
-	/**
-	 * The map of the game
-	 * No real detailed information other than the size of the map
-	 * Note: the default size will be the size of the minigame
-	 */
+	
 
 	// dimensions
 	private int length; 			// total length of the map
@@ -90,7 +91,7 @@ public class Map {
 		boolean validMove = ((0 >= proposedY) && (proposedY >= -getHeight()));		// is the move valid
 		
 		if (validMove){										// if so, execute
-			getOrigin().setX(getOrigin().getX() - 8);
+			getOrigin().setX(getOrigin().getX() - fishy.getmotion());
 			getOrigin().setY((int) proposedY);		
 		}
 		//return validMove;									// return if the move was valid
@@ -117,29 +118,48 @@ public class Map {
 	
 	// getters
 	
+	/**
+	 * left over length of map
+	 * @return
+	 */
 	public double getRemainingLength(){
 		return (double)length + origin.getX();
 	}
 	
 	// length
+	/**
+	 * length of map
+	 * @return
+	 */
 	public int getLength(){
 		return length;
 	}
 	
 	
 	// height
+	/**
+	 * height of map
+	 * @return
+	 */
 	public int getHeight(){
 		return height;
 	}
 	
 	
-	// uniquelength
+	/**
+	 *  unique length of map
+	 * @return
+	 */
 	public int getUniqueLength() {
 		return uniqueLength;
 	}
 	
 	
 	// origin
+	/**
+	 * location of the origin of the map (relative to fish)
+	 * @return
+	 */
 	public OurVector getOrigin() {
 		return origin;
 	}
@@ -149,18 +169,29 @@ public class Map {
 	
 	
 	// length
+	/**
+	 * length of map
+	 * @param l
+	 */
 	public void setLength(int l){
 		length = l;
 	}
 	
 	
-	// height
+	/**
+	 *  height of map
+	 * @param h
+	 */
 	public void setHeight(int h){
 		height = h;
 	}
 	
 	
 	// unique length
+	/**
+	 * unique length of map
+	 * @param u
+	 */
 	public void setUniqueLength(int u){
 		uniqueLength = u;
 	}

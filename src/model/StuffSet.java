@@ -3,7 +3,7 @@ package model;
 import java.util.*;
 
 /**
- * @author jerome
+ * @author Group 4
  * List to hold all the locations of objects in the ocean
  */
 
@@ -118,11 +118,16 @@ public class StuffSet {
 	}
 	
 	
-	// deleting all trash
+	/**
+	 * deleting all trash
+	 */
 	public void removeAllTrash() {
 		allTrash.clear();
 	}
 	
+	/**
+	 * clear all the food and trash
+	 */
 	public void clearAll() {
 		allTrash.clear();
 		allFood.clear();
@@ -141,7 +146,7 @@ public class StuffSet {
 		int angle = fishy.getAngle();
 		
 		// standard case: stuff moves left, right relative to fish
-		int deltaX = -8;
+		int deltaX = -fishy.getmotion();
 		
 		// move every object individually
 		
@@ -238,6 +243,10 @@ public class StuffSet {
 	}
 	
 	
+	/**
+	 * remove stuff that has passed by the fish
+	 * @param fishy
+	 */
 	public void removePassedStuff(MainCharacter fishy) {
 		for (int[] v : allTrash) {
 			if (v[0] < -fishy.getRadius()) {
@@ -258,11 +267,19 @@ public class StuffSet {
 	// lists
 	
 	
+	/**
+	 * get all the trash
+	 * @return
+	 */
 	public ArrayList<int[]> getTrash(){
 		return allTrash;
 	}
 	
 	
+	/**
+	 * get all the food
+	 * @return
+	 */
 	public ArrayList<int[]> getFood(){
 		return allFood;
 	}
@@ -271,11 +288,19 @@ public class StuffSet {
 	// sizes
 	
 	
+	/**
+	 * size of food
+	 * @return
+	 */
 	public int getFoodSize() {
 		return getFood().size();
 	}
 	
 	
+	/**
+	 * size of trash
+	 * @return
+	 */
 	public int getTrashSize() {
 		return getTrash().size();
 	}
@@ -287,11 +312,19 @@ public class StuffSet {
 	// sizes
 	
 	
+	/**
+	 * size of trash
+	 * @param s
+	 */
 	public void setTrashSize(int s) {
 		trashSize = s;
 	}
 	
 	
+	/**
+	 * size of food
+	 * @param s
+	 */
 	public void setFoodSize(int s) {
 		foodSize = s;
 	}
@@ -300,6 +333,10 @@ public class StuffSet {
 	// accumulation flag
 	
 	
+	/**
+	 * how often to accumulate trash
+	 * @param val
+	 */
 	public void setAccumulationValue(int val) {
 		accumulationValue = val;
 	}

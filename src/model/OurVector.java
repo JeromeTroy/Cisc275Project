@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * @author Group4
+ * vectorized locations of objects for tracking/collision detections
+ *
+ */
 public class OurVector {
 
 	/**
@@ -105,11 +110,25 @@ public class OurVector {
 	}
 	
 	
+	/**
+	 * get the angle between 2 points
+	 * @param x1 		x position 1
+	 * @param y1		y position 1
+	 * @param x2		x position 2
+	 * @param y2		y position 2
+	 * @return
+	 */
 	public static double angleBetween(double x1, double y1, double x2, double y2) {
 		OurVector v1 = new OurVector(x1,y1);
 		return v1.angleBetween(x2,y2);
 	}
 	
+	/**
+	 * angle between this and another vector
+	 * @param x 	next x
+	 * @param y 	next y
+	 * @return
+	 */
 	public int angleBetween(double x, double y) {
 		double newX = x - getX();
 		double newY = y - getY();
@@ -146,12 +165,20 @@ public class OurVector {
 	
 	
 	// x
+	/**
+	 * x value
+	 * @return
+	 */
 	public double getX(){
 		return x;
 	}
 	
 	
 	// y
+	/**
+	 * y value
+	 * @return
+	 */
 	public double getY(){
 		return y;
 	}
@@ -161,12 +188,20 @@ public class OurVector {
 	
 	
 	// x
+	/**
+	 * x value
+	 * @param xval
+	 */
 	public void setX(double xval){
 		x = xval;
 	}
 	
 	
 	// y
+	/**
+	 * y value
+	 * @param yval
+	 */
 	public void setY(double yval){
 		y = yval;
 	}
