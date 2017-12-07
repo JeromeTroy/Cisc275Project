@@ -21,7 +21,6 @@ public class Window extends JFrame {
 	public Window() {
 		// set JFrame settings
 		setTitle("Estuary Adventure - DNERR");
-		// TODO: setIconImage(Image);
 
 		// set close action
 		addWindowListener(new WindowAdapter() {

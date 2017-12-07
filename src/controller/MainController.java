@@ -1,6 +1,6 @@
 package controller;
 
-//TODO: organize imports
+
 import model.*;
 import javax.swing.*;
 import view.*;
@@ -215,7 +215,7 @@ public class MainController {
 		if (useView) {
 			gameView = (GamePlayScreen) currScreen;
 		}else {
-			//System.out.println("Console Tick"); //TODO: remove
+			//System.out.println("Console Tick"); 
 			Scanner sc = new Scanner(System.in);
 			String angle = sc.nextLine();
 			String speed = sc.nextLine();

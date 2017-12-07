@@ -63,7 +63,7 @@ public class GameOverScreen extends GodView implements MouseMotionListener {
 		// layered pane
 		layeredPane = new JPanel();
 		layeredPane.setPreferredSize(new Dimension(700,700));
-		//layeredPane.setBorder(BorderFactory.createLineBorder(Color.BLACK)); //TODO: remove
+		//layeredPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
 		layeredPane.addMouseMotionListener(this);
 		BufferedImage myPicture = createBufferedImage(c.getTitleURL());
@@ -119,7 +119,6 @@ public class GameOverScreen extends GodView implements MouseMotionListener {
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 

@@ -291,7 +291,7 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 		frame.setVisible(true);
 
-		// System.out.println("disp"); // TODO: remove
+		// System.out.println("disp");
 		// create Timer - updates and paints
 		// create Swing timer with actionListener
 		timer = new Timer(40, new ActionListener() {
@@ -314,7 +314,7 @@ public class TutorialScreen extends JPanel implements ActionListener {
 				}
 				newContentPane.repaint();
 				newContentPane.revalidate();
-				// System.out.println("paint tut"); //TODO: remove
+				// System.out.println("paint tut"); 
 			}
 		});
 		frame.addTimer(timer);
@@ -392,9 +392,6 @@ public class TutorialScreen extends JPanel implements ActionListener {
 																	// on the
 
 			// g2d.drawImage(fishImage, fishxLocation, fishyLocation, this);
-			// display instructions
-			// TODO: add game intruction tutorial mode
-			
 
 			System.out.println("PAINT " + fishx + " " + fishy);
 		}

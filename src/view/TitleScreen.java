@@ -70,7 +70,7 @@ public class TitleScreen extends GodView implements MouseMotionListener {
 		// layered pane
 		layeredPane = new JPanel();
 		layeredPane.setPreferredSize(new Dimension(700,700));
-		//layeredPane.setBorder(BorderFactory.createTitledBorder("Title Screen")); //TODO: remove
+		//layeredPane.setBorder(BorderFactory.createTitledBorder("Title Screen")); 
 		
 		layeredPane.addMouseMotionListener(this);
 		BufferedImage myPicture = createBufferedImage(c.getTitleURL());
@@ -137,7 +137,6 @@ public class TitleScreen extends GodView implements MouseMotionListener {
 		gameStart.addActionListener(this);
 		tutorial = createButton("Tutorial", GO_TO_TUTORIAL);
 		tutorial.addActionListener(this);
-		//TODO: remove
 		
 		JPanel controls = new JPanel();
 		controls.add(gameStart);
@@ -162,8 +161,6 @@ public class TitleScreen extends GodView implements MouseMotionListener {
 		if (cmd == "goToGame"){
 			System.out.println("game");
 			game.startGame();
-			//c.showTitleScreen(true);
-			//TODO: need action to open game
 		} else if (cmd == "goToTutorial"){
 			System.out.println("Tutorial Pressed");
 			game.startTutorial();
