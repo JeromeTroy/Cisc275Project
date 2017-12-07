@@ -53,7 +53,7 @@ public class TitleScreen extends GodView implements MouseMotionListener {
 	public TitleScreen() {
 		layeredPane = new JPanel();
 		layeredPane.setPreferredSize(new Dimension(300,300));
-		layeredPane.setBorder(BorderFactory.createTitledBorder("Game Over"));
+		//layeredPane.setBorder(BorderFactory.createTitledBorder("Game Over"));
 		layeredPane.addMouseMotionListener(this);
 		add(Box.createRigidArea(new Dimension(0,10)));
 		add(layeredPane);
@@ -80,10 +80,10 @@ public class TitleScreen extends GodView implements MouseMotionListener {
 		
 		
 		infoPanel = new JPanel();
-		JTextArea info = new JTextArea("An eel migrating through the Delaware Estuary back to the sea, to spawn.  \n"
+		JTextArea info = new JTextArea("Play as an eel migrating through the Delaware Estuary back to the sea to spawn.  \n"
 				+ "Eat food to increase your eel's chance of survival and your score.  \n"
 				+ "Avoid hitting the trash polluting the estuary.  If your eel gets \n"
-				+ "caught in the trash, you will need to clean the trash to free your eel friend");
+				+ "caught in the trash, you will need to clean the trash to free your eel friend!");
 		infoPanel.setSize(new Dimension(100,100));
 		info.setFont(new Font("Arial",Font.PLAIN,30));
 		info.setBackground(customColor);

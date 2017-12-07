@@ -41,6 +41,7 @@ import javax.swing.JButton;
 public class TutorialScreen extends JPanel implements ActionListener {
 
 	// Swing components
+	Color customColor = new Color(98,101,176);
 	private JLayeredPane layeredPane;
 	private static JLabel title;
 	private static JLabel instructions;
@@ -153,7 +154,7 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		getInstructions().setSize(50, instructionsHeight);
 		instructionsPanel.add(getInstructions());
 		instructionsPanel.setSize(playLength, instructionsHeight);
-		instructionsPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.5f));
+		instructionsPanel.setBackground(customColor);
 		add(instructionsPanel);
 		
 		// add directions panel
@@ -166,7 +167,7 @@ public class TutorialScreen extends JPanel implements ActionListener {
 				getInstructions().setSize(50, instructionsHeight);
 				getInstructions().setForeground(Color.white);
 				directionsPanel.add(getInstructions());
-				directionsPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.5f));
+				directionsPanel.setBackground(customColor);
 				add(directionsPanel);
 		
 
@@ -175,7 +176,7 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		gamePanel.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gamePanel.setPreferredSize(new Dimension(playLength, playHeight));
-		gamePanel.setBorder(BorderFactory.createLineBorder(Color.red));
+		//gamePanel.setBorder(BorderFactory.createLineBorder(Color.red));
 
 		// add layered pane for minigame
 		layeredPane = new JLayeredPane(); // create
@@ -240,10 +241,11 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		titleScreen.addActionListener(this);
 
 		JPanel controls = new JPanel();
-		controls.setBorder(BorderFactory.createLineBorder(Color.blue));
+		//controls.setBorder(BorderFactory.createLineBorder(Color.blue));
 		controls.add(gameStart);
 		controls.add(titleScreen);
 		controls.setMaximumSize(new Dimension(windowWidth, controlpanelHeight));
+		controls.setBackground(customColor);
 		return controls;
 	}
 
@@ -435,14 +437,14 @@ public class TutorialScreen extends JPanel implements ActionListener {
 			// update mode
 			mode = c.getTutorial().getMode();
 			if (mode == "collectFood") {
-				text = "Eat Food as you Migrate! Try to eat "+c.getTutorial().getCollectFood()+" shrimp! It increases the time you have to migrate";
+				text = "Eat food as you migrate! Try to eat "+c.getTutorial().getCollectFood()+" shrimp! It increases the time you have to migrate!";
 			} else if (mode == "hitTrash") {
-				text = "Pollution Causes Trash to Accumulate in Estuaries. See What Happens when the eel accidentally eats trash";
+				text = "Pollution causes trash to accumulate in estuaries. See what happens when the eel accidentally eats trash";
 				pauseMovement = false;
 			} else if (mode == "inMiniGame") {
-				text = "As a human, you have to do your part to clean the trash! Get all 10 items of trash!";
+				text = "As a human, you have to do your part to clean the trash! Get all of trash!";
 			} else if (mode == "collectFoodAgain") {
-				text = "When you clean trash from the estuaries, it reduces the trash in the estuary! Thank you good samaratin. Go Ahead and Play the game or redo tutorial";
+				text = "When you clean trash from the estuaries, it reduces the trash in the estuary! Play the game or redo tutorial!";
 				dispFood = true;
 				dispTrash = true;
 				pauseMovement = false;
@@ -504,8 +506,8 @@ public class TutorialScreen extends JPanel implements ActionListener {
 
 		public MiniGameScreen(int width, int height) {
 			this.setBounds(0, 0, width, height);
-			this.setBackground(Color.BLACK);
-			this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
+			//this.setBackground(Color.BLACK);
+			//this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
 		}
 
 		@Override

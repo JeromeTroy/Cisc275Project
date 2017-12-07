@@ -46,7 +46,7 @@ public class GameOverScreen extends GodView implements MouseMotionListener {
 	public GameOverScreen() {
 		layeredPane = new JPanel();
 		layeredPane.setPreferredSize(new Dimension(300,300));
-		layeredPane.setBorder(BorderFactory.createTitledBorder("Game Over"));
+		//layeredPane.setBorder(BorderFactory.createTitledBorder("Game Over"));
 		layeredPane.addMouseMotionListener(this);
 		add(Box.createRigidArea(new Dimension(0,10)));
 		add(layeredPane);
@@ -63,7 +63,7 @@ public class GameOverScreen extends GodView implements MouseMotionListener {
 		// layered pane
 		layeredPane = new JPanel();
 		layeredPane.setPreferredSize(new Dimension(700,700));
-		layeredPane.setBorder(BorderFactory.createLineBorder(Color.BLACK)); //TODO: remove
+		//layeredPane.setBorder(BorderFactory.createLineBorder(Color.BLACK)); //TODO: remove
 		
 		layeredPane.addMouseMotionListener(this);
 		BufferedImage myPicture = createBufferedImage(c.getTitleURL());

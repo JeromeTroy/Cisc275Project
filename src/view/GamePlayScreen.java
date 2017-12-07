@@ -141,7 +141,7 @@ public class GamePlayScreen extends GodView {
 		gamePanel.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gamePanel.setPreferredSize(new Dimension(playLength, playHeight));
-		gamePanel.setBorder(BorderFactory.createLineBorder(Color.red));
+		//gamePanel.setBorder(BorderFactory.createLineBorder(Color.red));
 
 		// add clock
 
@@ -177,7 +177,7 @@ public class GamePlayScreen extends GodView {
 
 		c.getModel().setTimeInMin(c.getTime());
 		MainModel.setup(c.getModel(), mainCharRad, foodSize, trashSize, mapHeight, mapLength, mapUnique);// ,
-																											// playLength,
+		autoscrolldpt = c.getModel().getSpeed();																						// playLength,
 																											// playHeight);//,
 																											// gamePanel.getWidth(),gamePanel.getHeight());
 		c.getModel().setMiniHeight(playHeight / 2);
@@ -434,6 +434,8 @@ public class GamePlayScreen extends GodView {
 																		// is on
 																		// the
 				// map
+			} else {
+				g.drawImage(fishImage, cursorx, cursory, this);
 			}
 		}
 
@@ -443,7 +445,6 @@ public class GamePlayScreen extends GodView {
 		public void update() {
 			boolean endScreen1 = false;
 			// update background position
-			autoscrolldpt = 10;
 			bg1xpos -= autoscrolldpt;
 			bg2xpos -= autoscrolldpt;
 
@@ -538,8 +539,8 @@ public class GamePlayScreen extends GodView {
 		
 		public MiniGameScreen(int width, int height) {
 			this.setBounds(0, 0, width, height);
-			this.setBackground(Color.BLACK);
-			this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
+			//this.setBackground(Color.BLACK);
+			//this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
 
 		}
 

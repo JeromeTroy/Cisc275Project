@@ -29,7 +29,7 @@ public class MainModel {
 	
 	// timing (all in ms)
 	private int tickLength = 30; 						// time period of a single tick
-	private double timeMin = 5;
+	private double timeMin = .1;
 	private int maxAllowedTime = (int) (timeMin*60*1000); 		// maximum allowed time for the game
 	protected int remainingTime;							// remaining time
 	private int startingTrash = 0;
