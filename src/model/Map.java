@@ -117,6 +117,9 @@ public class Map {
 	
 	// getters
 	
+	public double getRemainingLength(){
+		return (double)length + origin.getX();
+	}
 	
 	// length
 	public int getLength(){
