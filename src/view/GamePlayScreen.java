@@ -81,7 +81,6 @@ public class GamePlayScreen extends GodView {
 	private static int playHeight = windowHeight;
 	private final static int playLength = windowWidth;
 	private final static int controlpanelHeight = 600;
-	double fishScale = 2;
 
 	// controller
 	private static MainController c;
@@ -170,7 +169,7 @@ public class GamePlayScreen extends GodView {
 		bg2xpos = bgLength;
 
 		numRepeats = c.getNumRepeats();
-		int mainCharRad = (int) ((Math.sqrt(Math.pow(fishImage.getHeight(), 2) + Math.pow(fishImage.getWidth(), 2))/3)*fishScale);
+		int mainCharRad = (int) Math.sqrt(Math.pow(fishImage.getHeight(), 2) + Math.pow(fishImage.getWidth(), 2))/3;
 		int foodSize = (int) Math.sqrt(Math.pow(foodImage.getHeight(), 2) + Math.pow(foodImage.getWidth(), 2));
 		int trashSize = (int) Math.sqrt(Math.pow(trashImage.getHeight(), 2) + Math.pow(trashImage.getWidth(), 2));
 		int mapHeight = playHeight;
@@ -386,14 +385,14 @@ public class GamePlayScreen extends GodView {
 			// g.drawImage(fishImage, cursorx, cursory, this); // where cursor
 			// is
 			if (!c.getGameOver()) {
-				g.drawImage(fishImage, fishx - 80, fishy - 20, (int) (fishImage.getWidth()*fishScale), (int)(fishImage.getHeight()*fishScale), this); // where
+				g.drawImage(fishImage, fishx - 80, fishy - 20, this); // where
 																		// the
 																		// fish
 																		// is on
 																		// the
 				// map
 			} else {
-				g.drawImage(fishImage, cursorx, cursory,(int) (fishImage.getWidth()*fishScale), (int)(fishImage.getHeight()*fishScale), this);
+				g.drawImage(fishImage, cursorx, cursory, this);
 			}
 		}
 

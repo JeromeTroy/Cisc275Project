@@ -48,7 +48,7 @@ public class MainController {
 	boolean inMiniGame;
 	public static boolean useView;
 	
-	private int numRepeats = 1;
+	private int numRepeats = 10;
 	private double timeInMin = .1;
 	// private mainView gameView;
 
