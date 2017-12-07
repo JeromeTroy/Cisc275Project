@@ -2,14 +2,26 @@ package model;
 
 public class Tutorial extends MainModel{
 	String mode;
+	public String getMode() {
+		return mode;
+	}
+
+	public void setMode(String mode) {
+		this.mode = mode;
+	}
+
+
 	boolean accumulateTrash = false;
 	boolean accumulateFood = true;
+	boolean runMode = true;
 	int foodCollect = 10;
 	
 	public Tutorial() {
 		super();
 		mode = "collectFood";
-		getStuffSet().setAccumulationValue(15);
+		getStuffSet().setAccumulationValue(20);
+		setStartingFood(8);
+		accumulateAll();
 		//getStuffSet().getFood().clear();
 		//getStuffSet().getTrash().clear();
 		//setStartingTrash(1);
@@ -19,6 +31,21 @@ public class Tutorial extends MainModel{
 //		contactedFood = false;
 //		inMiniGame = true;
 	}
+	
+	public void accumulateAll() {
+		
+		for (int i=0; i<getStartingFood(); i++) {
+			boolean foodAdded = false;
+			int[] foodLoc = {0, 0};
+			while (!foodAdded) {
+				foodLoc[0] = MainModel.randint(100, getMap().getLength()-20);
+				foodLoc[1] = MainModel.randint(250, getMap().getHeight()-100);
+				foodAdded = getStuffSet().add(foodLoc,"food");
+				//System.out.println("trash"+trashLoc[0]+"/"+getMap().getLength());
+			}
+		}
+	}
+	
 	
 	public void accumulate() {
 		// assume not added
@@ -31,7 +58,7 @@ public class Tutorial extends MainModel{
 		int[] trashLoc = {accumulationDist, 0};
 		// add trash first
 		while (!trashAdded) {
-			trashLoc[1] = randint(0, getMap().getHeight()); 		// random y location
+			trashLoc[1] = randint(250, getMap().getHeight()-100); 		// random y location
 			trashAdded = everyThing.add(trashLoc, "trash");			// try to add
 		}
 		}
@@ -40,7 +67,7 @@ public class Tutorial extends MainModel{
 		int[] foodLoc = {accumulationDist, 0};
 		// add the food
 		while (!foodAdded) {
-			foodLoc[1] = randint(0,getMap().getHeight());			// random y location
+			foodLoc[1] = randint(250,getMap().getHeight());			// random y location
 			foodAdded = everyThing.add(foodLoc, "food"); 			// try to add
 		}
 		}
@@ -58,12 +85,17 @@ public class Tutorial extends MainModel{
 		//set mode
 		if (mode == "collectFood"){
 			if (foodCollect == 0){
-				mode = "accumulateTrash";
+				mode = "hitTrash";
 				accumulateTrash = true;
 				accumulateFood = true;
 			}
-		} else if (mode == "accumulateTrash"){
+		} else if (mode == "hitTrash"){
 			
+		} else if (mode == "tutorialOver"){
+			runMode = false;
+			setInMiniGame(false);
+		} else if (mode == "miniGameOver"){
+			setInMiniGame(false);
 		}
 				
 		
@@ -108,6 +140,14 @@ public class Tutorial extends MainModel{
 			if (collision.equals("trash")) {
 				decreaseScore(); 				// lose points
 				miniGame = new MiniGame(miniWidth,miniHeight); 		// start minigame
+				mode = "hitTrash";
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 				setInMiniGame(true);
 			}
 			// collision with food
@@ -130,12 +170,34 @@ public class Tutorial extends MainModel{
 			getMiniGame().update(newSpeed, deltaTheta);
 			
 			// check if we should still be in the minigame
+			if (!getMiniGame().getMiniGameOver() == false){
+				mode = "miniGameOver";
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			setInMiniGame(!getMiniGame().getMiniGameOver());
 			
 			// minigame is over
 			if (!getInMiniGame()) {
 				System.out.println("Mini game over");
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				getStuffSet().removeAllTrash(); 			// eliminate all trash in the main game
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				mode = "tutorialOver";
 			} 
 		}
 		// time updating

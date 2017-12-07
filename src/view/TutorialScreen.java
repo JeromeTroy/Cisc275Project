@@ -96,6 +96,8 @@ public class TutorialScreen extends JPanel implements ActionListener {
 	private static PlayScreen gamePanel;
 
 	private static boolean useMSG;
+	String directions;
+	JLabel directionsLabel;
 
 	// constructor
 	public TutorialScreen() {
@@ -127,16 +129,17 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		// setSize(new Dimension(windowWidth,windowHeight));
 
-		// add instructions panel
+		// add title panel
 		instructionsPanel = new JPanel();
 		instructionsPanel.setBorder(BorderFactory.createLineBorder(Color.green));
 		instructionsPanel.setMaximumSize(new Dimension(playLength, instructionsHeight));
 		dir = "Estuary Adventure Tutorial Mode";
 		setInstructions(new JLabel(dir));
-		getInstructions().setFont(new Font("Arial", Font.PLAIN, 40));
+		getInstructions().setFont(new Font("Arial", Font.PLAIN, 50));
 		getInstructions().setSize(50, instructionsHeight);
 		instructionsPanel.add(getInstructions());
 		add(instructionsPanel);
+		
 
 		// add game panel
 		gamePanel = new PlayScreen();
@@ -302,9 +305,28 @@ public class TutorialScreen extends JPanel implements ActionListener {
 	}
 
 	private class PlayScreen extends JPanel implements MouseMotionListener {
-
+		String instructions = "estuary";
 		PlayScreen() {
 			addMouseMotionListener(PlayScreen.this);
+			//this.setLayout(new FlowLayout(FlowLayout.CENTER));
+			// add instructions panel
+			
+			//add directions
+			JPanel p = new JPanel();
+			
+			setLayout(new GridLayout(2,2));
+			directions = "Estuary Adventure Tutorial Mode";
+			directionsLabel = new JLabel(directions);
+			directionsLabel.setFont(new Font("Arial", Font.PLAIN, 80));
+			//panel.add(directionsLabel);
+			//directionsLabel.setVerticalTextPosition(-500);
+			directionsLabel.setBounds(-250,0,10,10);
+			directionsLabel.setSize(500, 500);
+			//add(panel);
+			add(directionsLabel);
+			
+			
+			
 		}
 
 		public void paintComponent(Graphics g) {
@@ -346,6 +368,7 @@ public class TutorialScreen extends JPanel implements ActionListener {
 			// g2d.drawImage(fishImage, fishxLocation, fishyLocation, this);
 			// display instructions
 			// TODO: add game intruction tutorial mode
+			
 
 			System.out.println("PAINT " + fishx + " " + fishy);
 		}
