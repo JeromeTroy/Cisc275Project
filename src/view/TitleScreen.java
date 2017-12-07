@@ -80,6 +80,7 @@ public class TitleScreen extends GodView implements MouseMotionListener {
 		infoPanel = new JPanel();
 		JLabel info = new JLabel("Migrate through the estuary while collecting food, but watch out for trash!");
 		infoPanel.setSize(new Dimension(100,100));
+		info.setFont(new Font("Arial",Font.PLAIN,30));
 		infoPanel.add(info,gbc);
 		
 		
