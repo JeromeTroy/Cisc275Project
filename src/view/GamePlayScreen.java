@@ -490,6 +490,7 @@ public class GamePlayScreen extends GodView {
 	}
 	public class MiniGameScreen extends GodView implements MouseMotionListener {
 
+		
 		public MiniGameScreen(int width, int height) {
 			this.setBounds(0, 0, width, height);
 			this.setBackground(Color.BLACK);

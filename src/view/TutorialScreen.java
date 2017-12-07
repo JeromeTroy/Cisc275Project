@@ -100,6 +100,15 @@ public class TutorialScreen extends JPanel implements ActionListener {
 	String directions;
 	JLabel directionsLabel;
 
+	
+	private void setupInstructions(String s) {
+		instructionsPanel.remove(getInstructions());
+		setInstructions(new JLabel(s));
+		getInstructions().setFont(new Font("Arial", Font.PLAIN, 50));
+		getInstructions().setSize(50, instructionsHeight);
+		instructionsPanel.add(getInstructions());
+	}
+	
 	// constructor
 	public TutorialScreen() {
 		// create buffered images:
@@ -135,7 +144,9 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		instructionsPanel.setBorder(BorderFactory.createLineBorder(Color.green));
 		instructionsPanel.setMaximumSize(new Dimension(playLength, instructionsHeight));
 		dir = "Estuary Adventure Tutorial Mode - eat the food but avoid the trash!";
+		
 		setInstructions(new JLabel(dir));
+		
 		getInstructions().setFont(new Font("Arial", Font.PLAIN, 50));
 		getInstructions().setSize(50, instructionsHeight);
 		instructionsPanel.add(getInstructions());
@@ -173,7 +184,7 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		int trashSize = (int) Math.sqrt(Math.pow(trashImage.getHeight(), 2) + Math.pow(trashImage.getWidth(), 2));
 		int mapHeight = playHeight;
 		int mapUnique = playLength;
-		int mapLength = mapUnique * 1;
+		int mapLength = mapUnique * 1000;
 
 		MainModel.setup(c.getTutorial(), mainCharRad, foodSize, trashSize, mapHeight, mapLength, mapUnique);// ,
 																											// playLength,
@@ -269,10 +280,14 @@ public class TutorialScreen extends JPanel implements ActionListener {
 				// update();
 				mgs.setVisible(useMSG);
 				if (useMSG) {
+					TutorialScreen content = (TutorialScreen) newContentPane;
+					content.setupInstructions("Collect all the trash!");
 					c.getTutorial().getMiniGame().getMainCharacter().setRadius((int) Math.sqrt(Math.pow(diverImage.getHeight(),2) + Math.pow(diverImage.getWidth(), 2))-50);
 					mgs.update();
 					mgs.repaint();
 				} else {
+					TutorialScreen content = (TutorialScreen) newContentPane;
+					content.setupInstructions("Estuary Adventure Tutorial Mode - eat the food but avoid the trash!");
 					gamePanel.update();
 					gamePanel.repaint();
 				}
@@ -456,6 +471,7 @@ public class TutorialScreen extends JPanel implements ActionListener {
 				cursory = e.getY();
 			} else {
 				// System.out.println("MGS SCREEN "+e.getX() + " " + e.getY());
+				
 				Point p = SwingUtilities.convertPoint(gamePanel, e.getPoint(), layeredPane);
 				if (layeredPane.contains(p)) {
 					System.out.println(p);

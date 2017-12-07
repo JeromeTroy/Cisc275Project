@@ -62,6 +62,11 @@ public class MainModel {
 		
 	}
 	
+	public MainModel(int mapL) {
+		this();
+		map.setLength(mapL);
+	}
+	
 	public static void setup(MainModel m, int mainCharRad, int foodSize, int trashSize, 
 			int mapHeight, int mapLength, int mapUnique) {
 		
