@@ -90,6 +90,7 @@ public class GamePlayScreen extends GodView {
 	private int cursory;
 	protected static boolean useMSG;
 	boolean stopScroll = false;
+	boolean endScreen1 = false;
 
 	// settings
 	private static int bg1xpos;
@@ -353,11 +354,9 @@ public class GamePlayScreen extends GodView {
 
 			g.drawImage(bgImage1, bg1xpos, 0, playLength, playHeight, this);
 			g.drawImage(bgImage2, bg2xpos, 0, playLength, playHeight, this);
-			System.out.println(c.getModel().getMap().getLength());
-			System.out.println(c.getModel().getMap().getRemainingLength());
 				g.drawImage(endImageGood, (int) c.getModel().getMap().getRemainingLength(), 0, playLength, playHeight, this);
-		
-			//setAtEnd(true);
+	
+
 
 			// disp objects
 			for (int[] loc : c.getModel().getStuffSet().getFood()) {
@@ -402,7 +401,6 @@ public class GamePlayScreen extends GodView {
 		 * updates positions
 		 */
 		public void update() {
-			boolean endScreen1 = false;
 			// update background position
 			if (!stopScroll){
 				setautoscroll();
@@ -431,18 +429,24 @@ public class GamePlayScreen extends GodView {
 					if (c.getGameOver() && !c.getHasWon()) {
 						bgImage2 = endImageBad;
 						stopScroll = true;
+						endScreen1 = false;
 						System.out.println("the the the");
 						System.out.println(playLength + " " + endImageBad.getWidth() + " " + bgImage2.getWidth());
 					}
 				}
 			} else { //stop scrolling to show end game
+				System.out.println(bg1xpos+" "+bg2xpos);
 				if (endScreen1) {
-					if (bg2xpos <= playLength*0.1) {
+					System.out.println("image1");
+					if (bg1xpos <= autoscrolldpt) {
 						autoscrolldpt = 0;
+						System.out.println("stop");
 					}
 				} else {
-					if (bg1xpos <= playLength*0.1) {
+					System.out.println("image2");
+					if (bg2xpos <= autoscrolldpt) {
 						autoscrolldpt = 0;
+						System.out.println("stop");
 					}
 				}
 			}

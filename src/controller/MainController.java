@@ -15,7 +15,7 @@ import java.util.Timer;
  *
  */
 public class MainController {
-	//Model
+	//Models
 	private  MainModel model;
 	private Tutorial tutorial;
 	
@@ -26,6 +26,8 @@ public class MainController {
 	private static TutorialScreen tutorialScreen;
 	private static Window window;
 	private JComponent currScreen;
+	
+	//image file locations
 	private final String foodURL = "src/view/images/foodsmall.png";
 	private final String trashURL = "src/view/images/trashsmall.png";
 	private final String bgURL = "src/view/images/bg.png";
@@ -37,29 +39,31 @@ public class MainController {
 	private final String diverURL = "src/view/images/diver.png";
 	private final String diverdarkURL = "src/view/images/diver2.png";
 	private final String titleURL = "src/view/images/title_screen_final.png";
-	private final int speed = 8;
 	
-	//Timer
-	private  GameTimer gameTimer;
-	private int gameLength; //in milliseconds
+	
+	//Timing
+	private  GameTimer gameTimer; //game timer that fires ticks
+	//private int gameLength; //in milliseconds
 	
 	//Settings
 	private int tickPeriod = 30; // in milliseconds
-	boolean inMiniGame;
+	//boolean inMiniGame;
 	public static boolean useView;
 	
+	//TODO: set vals here to control game;
 	private int numRepeats = 10;
 	private double timeInMin = 1;
 	// private mainView gameView;
-
+	private final int speed = 8;
 	
 	
 	/**
+	 * main method; opens console or view based on setting. Game setting must be set in method
 	 * @param args
 	 * main execution
 	 */
 	public static void main(String[] args) {
-		//allows the program to be run with args to set the program to use the view or not
+		//TODO: allows the program to be run with args to set the program to use the view or not
 		MainController game = new MainController(true);
 		if (game.useView){
 			game.openView();
@@ -70,13 +74,14 @@ public class MainController {
 	
 	
 	/**
-	 * openView - opens the titlescreen
+	 * openView - create window and open the titlescreen
 	 * 
 	 */
 	public void openView() {
+		//create a window to hold the game screens
 		window = new Window();
 		
-		//Runnable theGame = new RunGame();
+		//open title screen
 		newGame();
 	}
 	
@@ -97,7 +102,7 @@ public class MainController {
 	 * openConsole - runs the game from the console
 	 */
 	private void openConsole(){
-		
+		//TODO: where did this go????
 	}
 	
 	/**
@@ -106,7 +111,7 @@ public class MainController {
 	 */
 	public MainController(){
 		tutorial = new Tutorial();
-		inMiniGame = false;
+		//inMiniGame = false;
 		model = new MainModel();
 		model.setSpeed(speed);
 	}
@@ -186,22 +191,22 @@ public class MainController {
 	 * stop the game and display end game screen
 	 */
 	public void endGame() {
+		//stop ticking
 		gameTimer.stopTimer();
+		
+		//print game over when game is won or when game has no time left
 		if (getModel().getHasWon()) {
 			System.out.println("Game Over");
-
-		}
-		else if (getModel().getRemainingTime() <= 0) {
+		} else if (getModel().getRemainingTime() <= 0) {
 			System.out.println("Game Over");
-
-		}else {
-			
 		}
+		
 		// reset model
 		model = null;
 		model = new MainModel();
 		System.out.println("End Screen");
 		MainController tmp = this;
+		
 		//setup game over screen
 		gameOverScreen = GameOverScreen.activateGameOver(window, tmp);
 		currScreen = gameOverScreen;
@@ -212,10 +217,11 @@ public class MainController {
 	 */
 	protected void tick() {
 		GamePlayScreen gameView;
-		if (useView) {
+		if (useView) { //game play mode
 			gameView = (GamePlayScreen) currScreen;
-		}else {
-			//System.out.println("Console Tick"); 
+		}else { //consolve view
+			
+			//scanner input
 			Scanner sc = new Scanner(System.in);
 			String angle = sc.nextLine();
 			String speed = sc.nextLine();
@@ -263,7 +269,6 @@ public class MainController {
 		System.out.println(a);
 		window.setContentPane(a);
 		window.revalidate();
-		//window.repaint();
 	}
 
 	/**
@@ -282,29 +287,21 @@ public class MainController {
 		this.tickPeriod = tickPeriod;
 	}
 	
-	/**
-	 * @return	whether the minigame is active
-	 */
-	public boolean inMiniGame(){
-		return inMiniGame;
-	}
+
 	
-	/**
-	 * set if the minigame is active
-	 * @param b
-	 */
-	public void setInMiniGame(boolean b){
-		inMiniGame = b;
-	}
 
 	/**
-	 * get the current state of the model
-	 * @return
+	 * get the game model
+	 * @return	game model
 	 */
 	public MainModel getModel(){
 		return model;
 	}
 	
+	/**
+	 * get the tutorial model
+	 * @return tutorial model
+	 */
 	public Tutorial getTutorial(){
 		return tutorial;
 	}
@@ -319,7 +316,7 @@ public class MainController {
 	}
 	
 	/**
-	 * get the game play screen state
+	 * get the game play screen
 	 * @return
 	 */
 	public GamePlayScreen getGamePlayScreen(){
@@ -328,8 +325,8 @@ public class MainController {
 
 
 	/**
-	 * food image
-	 * @return
+	 * get food image file location
+	 * @return food image file location
 	 */
 	public String getFoodURL() {
 		return foodURL;
@@ -337,8 +334,8 @@ public class MainController {
 
 
 	/**
-	 * trash image
-	 * @return
+	 * get trash image file location
+	 * @return trash image file location
 	 */
 	public String getTrashURL() {
 		return trashURL;
@@ -346,8 +343,8 @@ public class MainController {
 
 
 	/**
-	 * background image
-	 * @return
+	 * get background image file location
+	 * @return background image file location
 	 */
 	public String getBgURL() {
 		return bgURL;
@@ -355,8 +352,8 @@ public class MainController {
 
 
 	/**
-	 * diver image
-	 * @return
+	 * get diver image file location
+	 * @return diver image file location
 	 */
 	public String getHumanURL() {
 		return humanURL;
@@ -364,8 +361,8 @@ public class MainController {
 
 
 	/**
-	 * fish image
-	 * @return
+	 * get fish image file location
+	 * @return fish image file location
 	 */
 	public String getFishURL() {
 		return fishURL;
@@ -441,15 +438,6 @@ public class MainController {
 	 */
 	public static void setWindow(Window window) {
 		MainController.window = window;
-	}
-
-
-	/**
-	 * get the length of the game
-	 * @return
-	 */
-	public int getGameLength() {
-		return gameLength;
 	}
 
 
@@ -541,15 +529,27 @@ public class MainController {
 	}
 
 
+	/**
+	 * get score
+	 * @return
+	 */
 	public int getPlayerScore() {
 		return model.getPlayerScore();
 	}
 	
 	
+	/**
+	 * get map repeating lengths
+	 * @return
+	 */
 	public int getNumRepeats() {
 		return numRepeats;
 	}
 	
+	/**
+	 * get game length in mins
+	 * @return total length in mins
+	 */
 	public double getTime() {
 		return timeInMin;
 	}
