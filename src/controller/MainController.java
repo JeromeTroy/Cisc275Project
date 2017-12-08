@@ -56,8 +56,8 @@ public class MainController {
 	public static boolean useView;
 	
 	//TODO: set vals here to control game;
-	private int numRepeats = 10;
-	private double timeInMin = 1;
+	private int numRepeats = 2;
+	private double timeInMin = .75;
 	private double trashAccumulationMultiplier = 0.05; //adds 1 + multiplier of trash on screen per tick; keep under 20% //0 = trash & food //-1 no trash
 	private int accumulationval = 20; //controls how fast accumulation occurs
 	private final int speed = 8;

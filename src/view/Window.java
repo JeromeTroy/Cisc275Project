@@ -19,7 +19,7 @@ public class Window extends JFrame {
 
 	public Window() {
 		// set JFrame settings
-		setTitle("Estuary Adventure - DNERR");
+		setTitle("Eel Quest - DNERR");
 
 		// set close action
 		addWindowListener(new WindowAdapter() {

@@ -102,9 +102,9 @@ public class GameOverScreen extends GodView  {
 	}
 	
 	private JPanel createControlPanel(){
-		tryAgain = createButton("Try Again?", TRY_AGAIN);
+		tryAgain = createButton("Try Again", TRY_AGAIN);
 		tryAgain.addActionListener(this);
-		returnToTitle = createButton("Return To Title?",RETURN_TO_TITLE);
+		returnToTitle = createButton("Return To Title",RETURN_TO_TITLE);
 		returnToTitle.addActionListener(this);
 
 		JPanel controls = new JPanel();
