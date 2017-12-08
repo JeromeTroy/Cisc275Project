@@ -53,9 +53,8 @@ public class MainController {
 	//TODO: set vals here to control game;
 	private int numRepeats = 10;
 	private double timeInMin = 1;
-	private double trashAccumulationMultiplier = 0.01; //adds 1 + multiplier of trash on screen per tick; keep under 20% //0 = trash & food //-1 no trash
+	private double trashAccumulationMultiplier = 0.05; //adds 1 + multiplier of trash on screen per tick; keep under 20% //0 = trash & food //-1 no trash
 	private int accumulationval = 20; //controls how fast accumulation occurs
-	// private mainView gameView;
 	private final int speed = 8;
 	
 	
@@ -88,10 +87,12 @@ public class MainController {
 	}
 	
 	/**
-	 * starts a new game
+	 * open title screen
 	 */
 	public void newGame() {
 		MainController tmp = this;
+		
+		//open title screen
 		javax.swing.SwingUtilities.invokeLater(new Runnable(){
 			public void run() {
 				titleScreen = TitleScreen.activateTitle(window, tmp);
@@ -104,7 +105,7 @@ public class MainController {
 	 * openConsole - runs the game from the console
 	 */
 	private void openConsole(){
-		//TODO: where did this go????
+		
 	}
 	
 	/**
@@ -113,7 +114,6 @@ public class MainController {
 	 */
 	public MainController(){
 		tutorial = new Tutorial();
-		//inMiniGame = false;
 		model = new MainModel();
 		model.setSpeed(speed);
 		model.setTrashAccumulateMultiplier(trashAccumulationMultiplier);
@@ -126,8 +126,6 @@ public class MainController {
 	public MainController(boolean b) {
 		this();
 		useView = b;
-		
-		
 	}
 	
 	/**
@@ -171,9 +169,11 @@ public class MainController {
 		gameTimer = new GameTimer(this);
 		gameTimer.start();
 		currScreen = gameScreen;
-		
+	
 		if (useView) {
+			//open game play screen
 			currScreen = gameScreen.activateGamePlayScreen(this, window);
+			//add timer, so thread is stopped on window close
 			window.addTimer(gameTimer.getSwingTimer());
 		}
 
@@ -185,7 +185,7 @@ public class MainController {
 	 */
 	public void startTutorial() {
 		System.out.println("Start Tutorial");
-		tutorial = new Tutorial();
+		tutorial = new Tutorial(); //create tutorial
 		TutorialScreen.activateTutorial(this, window); //setTitleScreen
 		currScreen = tutorialScreen;
 	}
@@ -223,9 +223,6 @@ public class MainController {
 		GamePlayScreen gameView;
 		if (useView) { //game play mode
 			gameView = (GamePlayScreen) currScreen;
-			
-			//clear trash off screen
-			//model.getStuffSet().removeStuffBeforeXCoord((int)(model.getMap().getOrigin().getX()));
 		}else { //consolve view
 			
 			//scanner input
@@ -273,7 +270,6 @@ public class MainController {
 	 * @param a 	screen to switch to
 	 */
 	public void switchScreen(JPanel a){
-		System.out.println(a);
 		window.setContentPane(a);
 		window.revalidate();
 	}
@@ -562,11 +558,19 @@ public class MainController {
 	}
 
 
+	/**
+	 * get accumulationval
+	 * @return accumulationvalue - controls how quickly trash generates
+	 */
 	public int getAccumulationval() {
 		return accumulationval;
 	}
 
 
+	/**
+	 * set accumulationval
+	 * @param accumulationval - how quickly trash generates
+	 */
 	public void setAccumulationval(int accumulationval) {
 		this.accumulationval = accumulationval;
 	}

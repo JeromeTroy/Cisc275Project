@@ -430,23 +430,16 @@ public class GamePlayScreen extends GodView {
 						bgImage2 = endImageBad;
 						stopScroll = true;
 						endScreen1 = false;
-						System.out.println("the the the");
-						System.out.println(playLength + " " + endImageBad.getWidth() + " " + bgImage2.getWidth());
 					}
 				}
 			} else { //stop scrolling to show end game
-				System.out.println(bg1xpos+" "+bg2xpos);
 				if (endScreen1) {
-					System.out.println("image1");
 					if (bg1xpos <= autoscrolldpt) {
 						autoscrolldpt = 0;
-						System.out.println("stop");
 					}
 				} else {
-					System.out.println("image2");
 					if (bg2xpos <= autoscrolldpt) {
 						autoscrolldpt = 0;
-						System.out.println("stop");
 					}
 				}
 			}
@@ -474,14 +467,11 @@ public class GamePlayScreen extends GodView {
 		@Override
 		public void mouseMoved(MouseEvent e) {
 			if (!useMSG) {
-				// System.out.println("PLAY SCREEN "+e.getX() + " " + e.getY());
 				cursorx = e.getX();
 				cursory = e.getY();
 			} else {
-				// System.out.println("MGS SCREEN "+e.getX() + " " + e.getY());
 				Point p = SwingUtilities.convertPoint(gamePanel, e.getPoint(), layeredPane);
 				if (layeredPane.contains(p)) {
-					System.out.println(p);
 					cursorx = (int) p.getX();
 					cursory = (int) p.getY();
 				}
@@ -491,25 +481,27 @@ public class GamePlayScreen extends GodView {
 
 		@Override
 		public void mouseDragged(MouseEvent e) {
-			int timeRemaining = c.getModel().getRemainingTime();
-			if (timeRemaining <= 0) {
-				performAction("quitGame");
-			}
-			if (!useMSG){
-				//System.out.println("PLAY SCREEN "+e.getX() + " " + e.getY());
-				cursorx = e.getX();
-				cursory = e.getY();
-				} else {
-					//System.out.println("MGS SCREEN "+e.getX() + " " + e.getY());
-					Point p = SwingUtilities.convertPoint(gamePanel, e.getPoint(), layeredPane);
-					if (layeredPane.contains(p)){
-						System.out.println(p);
-						cursorx = (int) p.getX();
-						cursory = (int) p.getY();
-					}
-					
-				}
-		}
+//			int timeRemaining = c.getModel().getRemainingTime();
+//			if (timeRemaining <= 0) {
+//				performAction("quitGame");
+//			}
+//			if (!useMSG){
+//				//System.out.println("PLAY SCREEN "+e.getX() + " " + e.getY());
+//				cursorx = e.getX();
+//				cursory = e.getY();
+//				} else {
+//					//System.out.println("MGS SCREEN "+e.getX() + " " + e.getY());
+//					Point p = SwingUtilities.convertPoint(gamePanel, e.getPoint(), layeredPane);
+//					if (layeredPane.contains(p)){
+//						System.out.println(p);
+//						cursorx = (int) p.getX();
+//						cursory = (int) p.getY();
+//					}
+//					
+//				}
+//		}
+			mouseMoved(e);
+	}
 	}
 
 	public class MiniGameScreen extends GodView implements MouseMotionListener {

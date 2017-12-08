@@ -279,23 +279,8 @@ public class StuffSet {
 		}
 	}
 	
-	/**
-	 * remove stuff that has passed by the fish
-	 * @param fishy
-	 */
-	public void removeStuffBeforeXCoord( int xcoord) {
-		for (int[] v : allTrash) {
-			if (v[0] < xcoord) {
-				remove(v, "trash");
-			}
-		}
-		
-		for (int[] v : allFood) {
-			if (v[0] < xcoord) {
-				remove(v,"food");
-			}
-		}
-	}
+	
+
 	
 	// getters
 

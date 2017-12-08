@@ -466,22 +466,24 @@ public class TutorialScreen extends JPanel implements ActionListener {
 
 		@Override
 		public void mouseDragged(MouseEvent e) {
-			if (!useMSG) {
-				// System.out.println("PLAY SCREEN "+e.getX() + " " + e.getY());
-				cursorx = e.getX();
-				cursory = e.getY();
-			} else {
-				// System.out.println("MGS SCREEN "+e.getX() + " " + e.getY());
-				
-				Point p = SwingUtilities.convertPoint(gamePanel, e.getPoint(), layeredPane);
-				if (layeredPane.contains(p)) {
-					System.out.println(p);
-					cursorx = (int) p.getX();
-					cursory = (int) p.getY();
-				}
-
-			}
-
+//			if (!useMSG) {
+//				// System.out.println("PLAY SCREEN "+e.getX() + " " + e.getY());
+//				cursorx = e.getX();
+//				cursory = e.getY();
+//			} else {
+//				// System.out.println("MGS SCREEN "+e.getX() + " " + e.getY());
+//				
+//				Point p = SwingUtilities.convertPoint(gamePanel, e.getPoint(), layeredPane);
+//				if (layeredPane.contains(p)) {
+//					System.out.println(p);
+//					cursorx = (int) p.getX();
+//					cursory = (int) p.getY();
+//				}
+//
+//			}
+//
+//		}
+			mouseMoved(e);
 		}
 	}
 

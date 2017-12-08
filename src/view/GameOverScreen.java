@@ -133,7 +133,6 @@ public class GameOverScreen extends GodView implements MouseMotionListener {
 		if (cmd == "goToGame"){
 			System.out.println("game");
 			game.startGame();
-			//c.showTitleScreen(true);
 		} else if (cmd == "goToTitle"){
 			System.out.println("Return Pressed");
 			game.newGame();
