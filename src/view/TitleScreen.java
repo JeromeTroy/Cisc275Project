@@ -2,32 +2,35 @@ package view;
 
 
 // imports
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 import controller.MainController;
 
-import javax.swing.JButton;
 
-
+/**
+ * @author team 4
+ *
+ */
 public class TitleScreen extends GodView implements MouseMotionListener {
 	
 	
@@ -172,10 +175,7 @@ public class TitleScreen extends GodView implements MouseMotionListener {
 	
 	
 	private static TitleScreen createAndShowGUI(Window frame, MainController c) {
-		// window
-		//JFrame frame = new JFrame("TitleScreen");
-        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+				
 		// content
         JComponent newContentPane = new TitleScreen(c);
         newContentPane.setOpaque(true); //content panes must be opaque

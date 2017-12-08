@@ -1,17 +1,11 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -24,13 +18,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -39,7 +29,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
-import controller.GameTimer;
 import controller.MainController;
 import model.MainModel;
 //import view.GameOverScreen;
@@ -219,6 +208,8 @@ public class GamePlayScreen extends GodView {
 		quit.addActionListener(this);
 		JPanel controls = new JPanel();
 		controls.setMinimumSize(new Dimension(playLength, controlpanelHeight));
+		
+		//add clock to control panel
 		clock = new JLabel(c.getTimeString());
 		// clock.setBackground(Color.BLUE);
 		clock.setLocation(0, 0);
@@ -266,28 +257,29 @@ public class GamePlayScreen extends GodView {
 		// create Swing timer with actionListener
 		timer = new Timer(40, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// update();
+				//set layered pane visibility
 				layeredPane.setVisible(useMSG);
-				if (useMSG) {
+				if (useMSG) { //in minigame
 					c.getModel().getMiniGame().getMainCharacter().setRadius(
 							(int) Math.sqrt(Math.pow(diverImage.getHeight(), 2) + Math.pow(diverImage.getWidth(), 2))
 									- 50);
 					mgs.update();
 					mgs.repaint();
 					// System.out.println("MGS PANEL");
-				} else {
+				} else { //in main game
 					gamePanel.update();
 					gamePanel.repaint();
 
-					// System.out.println("GAME PANEL");
-
 				}
+				
+				//update clock text when game isn't over
 				if (!c.getGameOver()) {
 					clock.setText(c.getTimeString());
 					controlPanel.repaint();
 				}
+				//change quit button to continue button
 				if(c.getGameOver()) {
-					quit.setText("Continue?");
+					quit.setText("Continue");
 					//clock.setText("Score: " + c.getPlayerScore());
 					//clock.setText("");
 				}
@@ -297,7 +289,8 @@ public class GamePlayScreen extends GodView {
 				// c.getGamePlayScreen().updateFishPosition();
 			}
 		});
-
+		
+		//add timer to window to end thread on force close
 		window.addTimer(timer);
 		timer.start();
 
@@ -341,6 +334,10 @@ public class GamePlayScreen extends GodView {
 
 	// classes
 
+	/**
+	 * @author Alani
+	 *
+	 */
 	private class PlayScreen extends GodView implements MouseMotionListener {
 
 
@@ -351,13 +348,13 @@ public class GamePlayScreen extends GodView {
 
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
-
+			
+			//paint background images
 			g.drawImage(bgImage1, bg1xpos, 0, playLength, playHeight, this);
 			g.drawImage(bgImage2, bg2xpos, 0, playLength, playHeight, this);
-				g.drawImage(endImageGood, (int) c.getModel().getMap().getRemainingLength(), 0, playLength, playHeight, this);
+			//paint finish line
+			g.drawImage(endImageGood, (int) c.getModel().getMap().getRemainingLength(), 0, playLength, playHeight, this);
 	
-
-
 			// disp objects
 			for (int[] loc : c.getModel().getStuffSet().getFood()) {
 				g.drawImage(foodImage, loc[0], loc[1], this);
@@ -370,8 +367,9 @@ public class GamePlayScreen extends GodView {
 			int mouseX = cursorx;
 			int mouseY = cursory;
 
-			System.out.println("mouse at <" + mouseX + ", " + mouseY + ">");
-
+			//System.out.println("mouse at <" + mouseX + ", " + mouseY + ">");
+			
+			//update model parameters extracted from view
 			double newSpeed = c.getModel().getMainCharacter().getPosition().distFrom(mouseX, mouseY);
 			int deltaTheta = c.getModel().getMainCharacter().getPosition().angleBetween(mouseX, mouseY);
 			System.out.println(deltaTheta);
@@ -381,16 +379,16 @@ public class GamePlayScreen extends GodView {
 			double tmpy = c.getModel().getMainCharacter().getPosition().getY();
 			int fishx = (int) tmpx;
 			int fishy = (int) tmpy;
-			// g.drawImage(fishImage, cursorx, cursory, this); // where cursor
-			// is
-			if (!c.getGameOver()) {
+			
+			
+			if (!c.getGameOver()) { //fish uses model information
 				g.drawImage(fishImage, fishx - 80, fishy - 20, this); // where
 																		// the
 																		// fish
 																		// is on
 																		// the
 				// map
-			} else {
+			} else { //paint fish to cursor
 				g.drawImage(fishImage, cursorx, cursory, this);
 			}
 		}
@@ -405,6 +403,8 @@ public class GamePlayScreen extends GodView {
 			if (!stopScroll){
 				setautoscroll();
 			}
+			
+			//move bg
 			bg1xpos -= autoscrolldpt;
 			bg2xpos -= autoscrolldpt;
 
@@ -453,6 +453,9 @@ public class GamePlayScreen extends GodView {
 
 		}
 
+		/**
+		 * set the scroll speed of the background
+		 */
 		private void setautoscroll() {
 			if (c.getGameOver() && !c.getHasWon()) {
 				autoscrolldpt = 200;

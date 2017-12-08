@@ -4,7 +4,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashSet;
 
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 

@@ -195,7 +195,9 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		// create map locations
 		bg1xpos = 0;
 		bg2xpos = bgLength;
-
+		
+		
+		//set model parameters from view size
 		int mainCharRad = (int) Math.sqrt(Math.pow(fishImage.getHeight(), 2) + Math.pow(fishImage.getWidth(), 2));
 		int foodSize = (int) Math.sqrt(Math.pow(foodImage.getHeight(), 2) + Math.pow(foodImage.getWidth(), 2));
 		int trashSize = (int) Math.sqrt(Math.pow(trashImage.getHeight(), 2) + Math.pow(trashImage.getWidth(), 2));
@@ -249,6 +251,11 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		return controls;
 	}
 
+	/**
+	 * create buffered image from string location of image
+	 * @param fileLocation
+	 * @return bufferedImage
+	 */
 	public BufferedImage createBufferedImage(String fileLocation) {
 		BufferedImage img;
 		try {
@@ -333,21 +340,10 @@ public class TutorialScreen extends JPanel implements ActionListener {
 	//
 	// }
 
-	public static void runTutorial() {
-		mode = "moveFish";
-		mode = "getFood";
-		mode = "avoidTrash";
-		mode = "accumlateTrash";
-		mode = "collectTrash";
-		mode = "dispInstuctions";
-
-	}
 
 	private class PlayScreen extends JPanel implements MouseMotionListener {
 		PlayScreen() {
 			addMouseMotionListener(PlayScreen.this);
-			//this.setLayout(new FlowLayout(FlowLayout.CENTER));
-			// add instructions panel
 			
 			//add directions
 			JPanel p = new JPanel();
@@ -373,9 +369,11 @@ public class TutorialScreen extends JPanel implements ActionListener {
 			// disp fish
 			int mouseX = cursorx;
 			int mouseY = cursory;
-
-			System.out.println("mouse at <" + mouseX + ", " + mouseY + ">");
-
+			
+			//print cursor to console
+			//System.out.println("mouse at <" + mouseX + ", " + mouseY + ">");
+			
+			//set parameters from view in model
 			double newSpeed = c.getTutorial().getMainCharacter().getPosition().distFrom(mouseX, mouseY);
 			int deltaTheta = c.getTutorial().getMainCharacter().getPosition().angleBetween(mouseX, mouseY);
 			System.out.println(deltaTheta);
@@ -385,19 +383,17 @@ public class TutorialScreen extends JPanel implements ActionListener {
 			double tmpy = c.getTutorial().getMainCharacter().getPosition().getY();
 			int fishx = (int) tmpx;
 			int fishy = (int) tmpy;
-			// g.drawImage(fishImage, cursorx, cursory, this); // where cursor
-			// is
+			// g.drawImage(fishImage, cursorx, cursory, this); // where cursor is
+			
+			//draw main character
 			g.drawImage(fishImage, fishx - 80, fishy - 20, this); // where the
 																	// fish is
 																	// on the
 
-			// g2d.drawImage(fishImage, fishxLocation, fishyLocation, this);
-
-			System.out.println("PAINT " + fishx + " " + fishy);
 		}
 
 		/**
-		 * updates positions
+		 * updates background positions and images
 		 */
 		public void update() {
 			// update background position
@@ -443,7 +439,6 @@ public class TutorialScreen extends JPanel implements ActionListener {
 				pauseMovement = false;
 			}
 
-			// runTutorial();
 		}
 
 		@Override
@@ -487,6 +482,11 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		}
 	}
 
+	/**
+	 * Mini game screen for mini game
+	 * @author Team 4
+	 *
+	 */
 	private class MiniGameScreen extends GodView {
 
 		public MiniGameScreen(int width, int height) {
@@ -513,14 +513,14 @@ public class TutorialScreen extends JPanel implements ActionListener {
 			int mouseX = cursorx;
 			int mouseY = cursory;
 			
-			
-			System.out.println("mouse at <" + mouseX + ", " + mouseY + ">");
+			//print cursor
+			//System.out.println("mouse at <" + mouseX + ", " + mouseY + ">");
 
 						
-			
+			//set parameters from view to model
 			double newSpeed = c.getTutorial().getMiniGame().getMainCharacter().getPosition().distFrom(mouseX, mouseY);
 			int deltaTheta = c.getTutorial().getMiniGame().getMainCharacter().getPosition().angleBetween(mouseX, mouseY);
-			System.out.println(deltaTheta);
+			//System.out.println(deltaTheta);
 			c.getTutorial().update(0,deltaTheta);
 			
 			c.getTutorial().getMiniGame().getMainCharacter().getPosition().setX(mouseX);
@@ -531,6 +531,9 @@ public class TutorialScreen extends JPanel implements ActionListener {
 
 		}
 
+		/**
+		 * update minigame panel
+		 */
 		public void update() {
 			// color = new Color(r.nextInt());
 			setUseMGS(c.getTutorial().getInMiniGame());
@@ -566,19 +569,30 @@ public class TutorialScreen extends JPanel implements ActionListener {
 		return cursory;
 	}
 
+	/**
+	 * set the use of the mini game screen
+	 * @param b
+	 */
 	public void setUseMGS(Boolean b) {
 		boolean tmp = useMSG;
 		useMSG = b;
+		//initialize cursor to be within minigame screen
 		if ((tmp!=useMSG) && useMSG){
 			cursorx = 0;
 			cursory = 0;
 		}
 	}
 
+	/**get instructions text
+	 * @return
+	 */
 	public static JLabel getInstructions() {
 		return instructions;
 	}
 
+	/**set instructions text
+	 * @param instructions
+	 */
 	public static void setInstructions(JLabel instructions) {
 		TutorialScreen.instructions = instructions;
 	}

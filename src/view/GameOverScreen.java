@@ -2,31 +2,29 @@ package view;
 
 
 // imports
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 import controller.MainController;
 
-import javax.swing.JButton;
 
-
-public class GameOverScreen extends GodView implements MouseMotionListener {
+public class GameOverScreen extends GodView  {
 	
 	
 	// attributes
@@ -46,8 +44,7 @@ public class GameOverScreen extends GodView implements MouseMotionListener {
 	public GameOverScreen() {
 		layeredPane = new JPanel();
 		layeredPane.setPreferredSize(new Dimension(300,300));
-		//layeredPane.setBorder(BorderFactory.createTitledBorder("Game Over"));
-		layeredPane.addMouseMotionListener(this);
+		//layeredPane.addMouseMotionListener(this);
 		add(Box.createRigidArea(new Dimension(0,10)));
 		add(layeredPane);
 		
@@ -65,7 +62,7 @@ public class GameOverScreen extends GodView implements MouseMotionListener {
 		layeredPane.setPreferredSize(new Dimension(700,700));
 		//layeredPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
-		layeredPane.addMouseMotionListener(this);
+		//layeredPane.addMouseMotionListener(this);
 		BufferedImage myPicture = createBufferedImage(c.getTitleURL());
 		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 		picLabel.setPreferredSize(new Dimension(700,700));
@@ -117,15 +114,7 @@ public class GameOverScreen extends GodView implements MouseMotionListener {
 		return controls;
 	}
 	
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		
-	}
-
-	@Override
-	public void mouseMoved(MouseEvent e) {
-		
-	}
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -142,9 +131,7 @@ public class GameOverScreen extends GodView implements MouseMotionListener {
 	
 	
 	private static GameOverScreen createAndShowGUI(Window frame, MainController c) {
-		// window
-		//JFrame frame = new JFrame("TitleScreen");
-        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		
 		// content
         JComponent newContentPane = new GameOverScreen(c);
