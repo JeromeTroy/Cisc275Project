@@ -1,17 +1,22 @@
 package controller;
 
 
-import model.*;
-import javax.swing.*;
-import view.*;
-//import view.GameOverScreen;
+import java.util.Scanner;
 
-import java.util.*;
-import java.util.Timer;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+
+import model.MainModel;
+import model.Tutorial;
+import view.GameOverScreen;
+import view.GamePlayScreen;
+import view.TitleScreen;
+import view.TutorialScreen;
+import view.Window;
 
 /**
  * @author Group 4
- * Controlls the entire game
+ * Controls the entire game
  *
  */
 public class MainController {

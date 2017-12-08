@@ -1,7 +1,5 @@
 package model;
 
-import java.util.*;
-import java.math.*;
 /**
  * @author Group 4
  * the main character of the game
@@ -27,8 +25,7 @@ public class MainCharacter{
 		
 	
 	// Methods
-	
-	
+		
 	/**
 	 * set the scroll rate
 	 * @param a
@@ -242,6 +239,10 @@ public class MainCharacter{
 	
 	
 	// angle
+	/**
+	 * set character angle
+	 * @param a
+	 */
 	public void setAngle(int a) {
 		angle = a;
 	}
