@@ -44,6 +44,7 @@ public class MainController {
 	private final String diverURL = "src/view/images/diver.png";
 	private final String diverdarkURL = "src/view/images/diver2.png";
 	private final String titleURL = "src/view/images/title_screen_final.png";
+	private final String iconURL = "src/view/images/ICON.PNG";
 	
 	
 	//Timing
@@ -85,7 +86,7 @@ public class MainController {
 	 */
 	public void openView() {
 		//create a window to hold the game screens
-		window = new Window();
+		window = new Window(this);
 		
 		//open title screen
 		newGame();
@@ -578,6 +579,11 @@ public class MainController {
 	 */
 	public void setAccumulationval(int accumulationval) {
 		this.accumulationval = accumulationval;
+	}
+
+
+	public String getIconURL() {
+		return iconURL;
 	}
 
 }

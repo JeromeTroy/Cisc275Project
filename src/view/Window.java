@@ -4,8 +4,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashSet;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.Timer;
+
+import controller.MainController;
 
 /**
  * Window class creates JFrame to hold JPanel game screens
@@ -17,9 +20,11 @@ import javax.swing.Timer;
 public class Window extends JFrame {
 	static HashSet<Timer> timers = new HashSet<>();
 
-	public Window() {
+	public Window(MainController c) {
 		// set JFrame settings
 		setTitle("Eel Quest - DNERR");
+		ImageIcon icon = new ImageIcon(c.getIconURL());
+		this.setIconImage(icon.getImage());
 
 		// set close action
 		addWindowListener(new WindowAdapter() {
