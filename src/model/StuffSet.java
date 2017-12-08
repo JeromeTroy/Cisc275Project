@@ -248,8 +248,7 @@ public class StuffSet {
 	 * @param fishy
 	 */
 	public void removePassedStuff(MainCharacter fishy) {
-		Iterator it = allTrash.iterator();
-		int[] key;
+		
 //		for (int[] v : allTrash) {
 //			if (v[0] < -fishy.getRadius()) {
 //				remove(v, "trash");
@@ -262,6 +261,8 @@ public class StuffSet {
 //			}
 //		}
 		
+		Iterator it = allTrash.iterator();
+		int[] key;
 		while(it.hasNext()){
 			key = (int[]) it.next();
 			if (key[0] < -fishy.getRadius()){

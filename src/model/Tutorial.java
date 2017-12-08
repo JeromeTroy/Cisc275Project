@@ -7,30 +7,13 @@ package model;
  */
 public class Tutorial extends MainModel{
 	String mode;
-	
-	/**
-	 * current mode of tutorial
-	 * @return
-	 */
-	public String getMode() {
-		return mode;
-	}
-
-	/**
-	 * current mode of tutorial
-	 * @param mode
-	 */
-	public void setMode(String mode) {
-		this.mode = mode;
-	}
-
-
 	boolean accumulateTrash = false;
 	boolean accumulateFood = true;
 	
 	
 	boolean runMode = true;
 	int foodCollect = 5;
+	int tmp = foodCollect; //stores initial val of food collect
 	
 	/**
 	 * Constructor
@@ -203,14 +186,34 @@ public class Tutorial extends MainModel{
 				getStuffSet().removeAllTrash(); 			// eliminate all trash in the main game
 				
 				mode = "collectFoodAgain";
-				foodCollect = 5;
+				foodCollect = tmp;
 			} 
 		}
 		
 	}
 	
+	/**
+	 * get food to collect
+	 * @return
+	 */
 	public int getCollectFood(){
 		return foodCollect;
+	}
+	
+	/**
+	 * current mode of tutorial
+	 * @return
+	 */
+	public String getMode() {
+		return mode;
+	}
+
+	/**
+	 * current mode of tutorial
+	 * @param mode
+	 */
+	public void setMode(String mode) {
+		this.mode = mode;
 	}
 
 }

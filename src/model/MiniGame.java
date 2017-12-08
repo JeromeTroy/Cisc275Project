@@ -70,6 +70,7 @@ public class MiniGame extends MainModel{
 			boolean trashAdded = false;
 			int[] trashLoc = {0, 0};
 			while (!trashAdded) {
+				//generate random coordinates for stuff
 				trashLoc[0] = MainModel.randint(75, getMap().getLength()-75);
 				trashLoc[1] = MainModel.randint(75, getMap().getHeight()-75);
 				trashAdded = getStuffSet().add(trashLoc,"trash");

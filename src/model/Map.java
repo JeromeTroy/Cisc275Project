@@ -1,8 +1,5 @@
 package model;
 
-import java.util.Vector;
-
-import java.util.*;
 /**
  * @author Group 4
  * The map of the game
@@ -51,7 +48,6 @@ public class Map {
 		setLength(l);
 		setHeight(h);
 		origin = new OurVector();
-		System.out.println(l);
 		setUniqueLength(getLength());
 		origin.setY(-getHeight()/2);
 	}
