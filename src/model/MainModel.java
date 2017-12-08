@@ -49,8 +49,9 @@ public class MainModel {
 	
 	protected double trashAccumulateMultiplier = 0.05;
 	
-	
-	
+
+
+
 	public void setTimeInMin(double d) {
 		timeMin = d;
 		maxAllowedTime = (int) (timeMin*60*1000);
@@ -639,8 +640,25 @@ public class MainModel {
 	public void setStartingFood(int startingFood) {
 		this.startingFood = startingFood;
 	}
+
+
+	public double getTrashAccumulateMultiplier() {
+		return trashAccumulateMultiplier;
+	}
+
+
+	public void setTrashAccumulateMultiplier(double trashAccumulateMultiplier) {
+		this.trashAccumulateMultiplier = trashAccumulateMultiplier;
+	}
 	
-	
+	public int getAccumulationval() {
+		return getStuffSet().getAccumulationValue();
+	}
+
+
+	public void setAccumulationval(int accumulationval) {
+		getStuffSet().setAccumulationValue(accumulationval);
+	}
 	
 	
 }

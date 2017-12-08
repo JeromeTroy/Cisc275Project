@@ -248,14 +248,50 @@ public class StuffSet {
 	 * @param fishy
 	 */
 	public void removePassedStuff(MainCharacter fishy) {
+		Iterator it = allTrash.iterator();
+		int[] key;
+//		for (int[] v : allTrash) {
+//			if (v[0] < -fishy.getRadius()) {
+//				remove(v, "trash");
+//			}
+//		}
+		
+//		for (int[] v : allFood) {
+//			if (v[0] < -fishy.getRadius()) {
+//				remove(v,"food");
+//			}
+//		}
+		
+		while(it.hasNext()){
+			key = (int[]) it.next();
+			if (key[0] < -fishy.getRadius()){
+				//allFood.remove(key);
+				it.remove();
+			}
+		}
+		it = allFood.iterator();
+		while(it.hasNext()){
+			key = (int[]) it.next();
+			if (key[0] < -fishy.getRadius()){
+				//allFood.remove(key);
+				it.remove();
+			}
+		}
+	}
+	
+	/**
+	 * remove stuff that has passed by the fish
+	 * @param fishy
+	 */
+	public void removeStuffBeforeXCoord( int xcoord) {
 		for (int[] v : allTrash) {
-			if (v[0] < -fishy.getRadius()) {
+			if (v[0] < xcoord) {
 				remove(v, "trash");
 			}
 		}
 		
 		for (int[] v : allFood) {
-			if (v[0] < -fishy.getRadius()) {
+			if (v[0] < xcoord) {
 				remove(v,"food");
 			}
 		}
@@ -339,6 +375,11 @@ public class StuffSet {
 	 */
 	public void setAccumulationValue(int val) {
 		accumulationValue = val;
+	}
+
+
+	public int getAccumulationValue() {
+		return accumulationValue;
 	}
 	
 	

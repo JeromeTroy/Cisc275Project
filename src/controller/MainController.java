@@ -53,6 +53,8 @@ public class MainController {
 	//TODO: set vals here to control game;
 	private int numRepeats = 10;
 	private double timeInMin = 1;
+	private double trashAccumulationMultiplier = 0.01; //adds 1 + multiplier of trash on screen per tick; keep under 20% //0 = trash & food //-1 no trash
+	private int accumulationval = 20; //controls how fast accumulation occurs
 	// private mainView gameView;
 	private final int speed = 8;
 	
@@ -114,6 +116,8 @@ public class MainController {
 		//inMiniGame = false;
 		model = new MainModel();
 		model.setSpeed(speed);
+		model.setTrashAccumulateMultiplier(trashAccumulationMultiplier);
+		model.setAccumulationval(accumulationval);
 	}
 	/**
 	 * MainController(boolean) - constructor
@@ -219,6 +223,9 @@ public class MainController {
 		GamePlayScreen gameView;
 		if (useView) { //game play mode
 			gameView = (GamePlayScreen) currScreen;
+			
+			//clear trash off screen
+			//model.getStuffSet().removeStuffBeforeXCoord((int)(model.getMap().getOrigin().getX()));
 		}else { //consolve view
 			
 			//scanner input
@@ -552,6 +559,16 @@ public class MainController {
 	 */
 	public double getTime() {
 		return timeInMin;
+	}
+
+
+	public int getAccumulationval() {
+		return accumulationval;
+	}
+
+
+	public void setAccumulationval(int accumulationval) {
+		this.accumulationval = accumulationval;
 	}
 
 }

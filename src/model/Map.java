@@ -112,6 +112,7 @@ public class Map {
 	public String toString() {
 		String mapString = "Length: " + getLength() + ", height: " + getHeight() + " unique length: " + getUniqueLength();
 		mapString += "\n Origin at " + getOrigin().toString();
+		mapString += "\n Length Remaining: " + getRemainingLength();
 		return mapString;
 	}
 	
