@@ -12,16 +12,16 @@ import javax.swing.Timer;
  *
  */
 public class GameTimer extends Thread implements Runnable {
-	Timer timer; 
+	Timer timer; //swing timer to control ticks
 	private int tickPeriod; //in milliseconds
-	MainController c;
+	MainController c; //controller that accesses timer
 	
-	/**
-	 * @param c
-	 * sets the MainController
+	/** 
+	 * constructor - creates timer and fires controller tick
+	 * @param c - MainController that should tick
 	 */
 	public GameTimer(MainController c) {
-		this.c = c;
+		this.c = c; //set controller
 		this.tickPeriod = c.getTickPeriod();
 		
 		//create Swing timer with actionListener
@@ -61,14 +61,15 @@ public class GameTimer extends Thread implements Runnable {
 	}
 	
 	/**
-	 * create timer
+	 * create timer that fires tick method in controller
 	 * @param tickPeriod
 	 * @return
 	 */
 	public Timer createTimer(int tickPeriod){
 		return new Timer(tickPeriod, new ActionListener(){
 		    public void actionPerformed(ActionEvent e) {
-		        c.tick();
+		    	//controller tick
+		        c.tick(); 
 		        }
 	});
 	}
