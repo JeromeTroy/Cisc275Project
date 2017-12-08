@@ -17,7 +17,6 @@ public class MainModel {
 	protected final int minSpeed = 5;
 	
 	// value for adding trash (distance away)
-	// TODO: verify
 	protected int accumulationDist = 3000;
 	
 	// flags for game control
@@ -52,6 +51,10 @@ public class MainModel {
 
 
 
+	/**
+	 * set game time length
+	 * @param d - time in mins
+	 */
 	public void setTimeInMin(double d) {
 		timeMin = d;
 		maxAllowedTime = (int) (timeMin*60*1000);
@@ -642,20 +645,36 @@ public class MainModel {
 	}
 
 
+	/**
+	 * get trash accumulation multiplier - how quickly trash generates compared to food
+	 * @return
+	 */
 	public double getTrashAccumulateMultiplier() {
 		return trashAccumulateMultiplier;
 	}
 
 
+	/**
+	 * set trash accumulation multipler - how quickly trash generates compared to food
+	 * @param trashAccumulateMultiplier
+	 */
 	public void setTrashAccumulateMultiplier(double trashAccumulateMultiplier) {
 		this.trashAccumulateMultiplier = trashAccumulateMultiplier;
 	}
 	
+	/**
+	 * get accumulation val
+	 * @return
+	 */
 	public int getAccumulationval() {
 		return getStuffSet().getAccumulationValue();
 	}
 
 
+	/**
+	 * set accumulation value - controls how spaced items are on screen
+	 * @param accumulationval
+	 */
 	public void setAccumulationval(int accumulationval) {
 		getStuffSet().setAccumulationValue(accumulationval);
 	}
